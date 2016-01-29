@@ -1,5 +1,8 @@
 Flight Appliance Documentation - OpenStack
 ==========================================
+.. figure:: _images/OpenStackAlces.png
+    :alt: Alces Computing on OpenStack
+
 Guides designed to create a simple research compute environment creation process using many popular public and private cloud platforms together with the Alces Flight Appliances.
 
 Quick-start
