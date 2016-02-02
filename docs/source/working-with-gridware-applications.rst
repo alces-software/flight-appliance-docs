@@ -38,13 +38,18 @@ From any node within your environment, the ``alces gridware list`` will provide 
     base/apps/atlassnp2/1.4.3                base/apps/augustus/2.6.1
     ...
 
-There are many hundreds of Gridware packages available - should you wish to search for a specific package, combine the ``alces gridware list`` function with ``grep``, for example - to find the available versions of *Python*:
+There are many hundreds of Gridware packages available - should you wish to search for a specific package, use the `alces gridware search --names <name>` function - for example, to find the available versions of *Python*:
 
 .. code:: bash
 
-    [alces@login1(cluster) ~]$ alces gridware list python*
-    base/apps/python/2.7.3   base/apps/python/2.7.5   base/apps/python/2.7.8   base/apps/python3/3.2.3
-    base/apps/python3/3.3.3  base/apps/python3/3.4.0  base/apps/python3/3.4.3
+    [alces@login1(cluster) ~]$ alces gridware search --names python
+    base/apps/ipython/2.3.0   base/apps/python/2.7.3    base/apps/python/2.7.5    base/apps/python/2.7.8  
+    base/apps/python3/3.2.3   base/apps/python3/3.3.3   base/apps/python3/3.4.0   base/apps/python3/3.4.3 
+    base/libs/biopython/1.61  base/libs/biopython/1.63
+
+The `alces gridware search` utility provides many other powerful search functions, for example using `alces gridware search python` will display all of the Gridware packages that have `python` as a dependency.
+
+To view more of the available `search` functions - use the `alces help gridware search` command.
 
 Viewing information about Gridware packages
 -------------------------------------------
