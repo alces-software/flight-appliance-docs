@@ -21,5 +21,6 @@ Galaxy research compute environments
 
 .. toctree::
 
-
+* :ref:`Run a basic Galaxy job <run-a-basic-galaxy-job>`
+* :ref:`Run a FastQ Galaxy job <run-a-fastq-galaxy-job>`
 
