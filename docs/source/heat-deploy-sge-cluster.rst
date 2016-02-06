@@ -6,10 +6,10 @@ Deploy an Alces ClusterWare research compute environment using OpenStack Heat
 The following steps will provide you with an Alces ClusterWare SGE cluster, complete with Gridware applications and all required OpenStack networking services. The cluster is comprised of a single user accessible login node and SGE compute nodes, with customisable instance types. 
 
 **Prerequisites**
-* Alces OpenStack user account
-* Correctly connected to the cluster DMZ network
-* Appropriate resource quota to create the number of compute nodes you choose
-* OpenStack keypair added
+ * Alces OpenStack user account
+ * Correctly connected to the cluster DMZ network
+ * Appropriate resource quota to create the number of compute nodes you choose
+ * OpenStack keypair added
 
 Deploying via Horizon web interface
 -----------------------------------
