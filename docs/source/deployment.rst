@@ -38,3 +38,13 @@ Manual deployment via Horizon
 .. toctree::
 
     deploy-single-node-galaxy
+
+Container compute environments
+------------------------------
+
+Manual deployment via Horizon
+*****************************
+
+.. toctree::
+
+    manual-deploy-flight-container-appliance
