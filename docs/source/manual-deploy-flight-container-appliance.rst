@@ -1,5 +1,8 @@
 .. _manual-deploy-flight-container-appliance:
 
+Manual deployment of an Alces Flight Container Appliance
+========================================================
+
 The following guide details how to manually deploy a single Alces Flight Container Appliance using an Alces OpenStack environment. 
 
 Prerequisites
