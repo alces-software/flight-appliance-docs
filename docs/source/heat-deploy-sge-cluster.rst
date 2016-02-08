@@ -3,13 +3,13 @@
 Deploy an Alces ClusterWare research compute environment using OpenStack Heat
 =============================================================================
 
-The following steps will provide you with an Alces ClusterWare SGE cluster complete with Gridware applications and all required OpenStack networking services. The cluster is comprised of a single user accessible login node and SGE compute nodes, with customisable instance types. 
+The following steps will provide you with an Alces ClusterWare SGE cluster, complete with Gridware applications and all required OpenStack networking services. The cluster is comprised of a single user accessible login node and SGE compute nodes, with customisable instance types. 
 
 **Prerequisites**
-* Alces OpenStack user account
-* Correctly connected to the cluster DMZ
-* Appropriate resource quota to create the number of compute nodes you choose
-* OpenStack keypair added
+ * Alces OpenStack user account
+ * Correctly connected to the cluster DMZ network
+ * Appropriate resource quota to create the number of compute nodes you choose
+ * OpenStack keypair added
 
 Deploying via Horizon web interface
 -----------------------------------
@@ -52,6 +52,6 @@ Using your environment
 Destroying your environment
 ---------------------------
 
-1.  From the Horizon dashboard, navigate to the ``Porject -> Orchestration -> Stacks`` page
+1.  From the Horizon dashboard, navigate to the ``Project -> Orchestration -> Stacks`` page
 2.  Using the dropdown box for your stack name, select ``Delete Stack``
 3.  Your stack is now deleted and all resources including any data are destroyed
