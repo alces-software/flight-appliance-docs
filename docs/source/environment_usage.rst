@@ -29,4 +29,4 @@ Container compute environments
 
 .. toctree::
 
-* :ref:`Basic Alces Flight Container Appliance Usage <basic-usage-flight-container-appliance`
+* :ref:`Basic Alces Flight Container Appliance Usage <basic-usage-flight-container-appliance>`
