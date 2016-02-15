@@ -30,7 +30,7 @@ Automated deployment via OpenStack Heat
 
 .. toctree::
 
-    heat-deploy-galaxy-environment
+    heat-deploy-galaxy-cluster
 
 Manual deployment via Horizon
 *****************************
