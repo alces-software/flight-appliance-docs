@@ -1,4 +1,4 @@
-.. _heat-deploy-sge-cluster:
+.. _heat-deploy-galaxy-cluster:
 
 Deploy an Alces Galaxy research compute environment using OpenStack Heat
 ========================================================================
