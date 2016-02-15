@@ -29,9 +29,9 @@ Deploying via Horizon web interface
 12.  **Galaxy Image**: Select the Alces Galaxy image from the list of available images
 13.  **Instance Type**: Select the instance type to deploy, this defines the number of cores and memory available to each instance
 14.  **Number of compute nodes**: Enter the number of dedicate compute nodes you wish to deploy
-16.  Click the ``Launch`` button. 
-17.  Once the stack is in ``Status: Create In Progress`` - enter the stack and navigate to the ``Overview`` tab
-18.  Once the stack has finished creating, the ``Overview`` tab will provide you with the cluster public IP address, used to log in with the administrator user ``alces``
+15.  Click the ``Launch`` button. 
+16.  Once the stack is in ``Status: Create In Progress`` - enter the stack and navigate to the ``Overview`` tab
+17.  Once the stack has finished creating, the ``Overview`` tab will provide you with the cluster public IP address, used to log in with the administrator user ``alces``
 
 Access your environment
 -----------------------
