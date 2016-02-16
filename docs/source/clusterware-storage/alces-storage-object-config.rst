@@ -65,7 +65,7 @@ The newly configured S3 storage target will be available to your user:
     [ ] alces-s3 (s3)
     [*] cluster1-home (posix)
 
-.. note:: You can set your default storage target to the ``alces-s3`` storage target using the ``alces storage use <config-name`` command.
+.. note:: You can set your default storage target to the ``alces-s3`` storage target using the ``alces storage use <config-name>`` command.
 
 
 Configuring Dropbox storage
@@ -78,7 +78,7 @@ To configure your Dropbox storage target, use the ``alces storage configure <nam
 
 .. code:: bash
 
-    [root@login1(cluster1) ~]# alces storage configure alces-dropbox dropbox
+    [alces@login1(cluster1) ~]$ alces storage configure alces-dropbox dropbox
     Display name [alces-dropbox]:
     Please visit the following URL in your browser and click 'Authorize':
     
@@ -107,4 +107,4 @@ Working with object storage
 
 For information on working with your object storage targets, please see the following guide: 
 
--  `Alces Storage: Object Storage Usage <alces-storage-object-usage`_
+-  `Alces Storage: Object Storage Usage <alces-storage-object-usage>`
