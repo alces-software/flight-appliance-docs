@@ -111,9 +111,9 @@ The following example uses a basic job script to demonstrate the functionality -
 
 .. code:: bash
 
-    #!/bin/bash
+    #!/bin/bash -l
     echo "Output of job $JOB_ID" > /tmp/output.$JOB_ID
-    /opt/clusterware/bin/alces storage put /tmp/output.$JOB_ID job-scripts/results/
+    alces storage put /tmp/output.$JOB_ID job-scripts/results/
 
 Run the job script - once complete you can see the output data of your job script using the ``alces storage list`` command, e.g.: 
 

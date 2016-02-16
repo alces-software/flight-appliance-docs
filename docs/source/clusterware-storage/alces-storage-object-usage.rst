@@ -100,9 +100,9 @@ The following example uses a basic job script to demonstration the functionality
 
 .. code:: bash
 
-    #!/bin/bash
+    #!/bin/bash -l
     dd if=/dev/zero of=/tmp/output.$JOB_ID bs=1M count=10
-    /opt/clusterware/bin/alces storage put /tmp/output.$JOB_ID
+    alces storage put /tmp/output.$JOB_ID
 
 Run the job script - once the job has finished, you should see your output data located in your object storage target: 
 
