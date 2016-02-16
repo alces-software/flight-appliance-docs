@@ -1,6 +1,6 @@
 .. _alces-storage-file-usage:
 
-Alces Storage File Usage
+Alces Storage File Storage Usage
 ========================
 
 The following section details how to use your :ref:`previously set up <alces-storage-file-config>` file storage targets. 

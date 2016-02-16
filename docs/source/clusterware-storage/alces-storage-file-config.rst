@@ -1,7 +1,7 @@
 .. _alces-storage-file-config:
 
-Alces Storage File Configuration
-================================
+Alces Storage File Storage Configuration
+========================================
 
 The following section will detail how to configure your local POSIX storage for use with the Alces Storage utility. 
 
