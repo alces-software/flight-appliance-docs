@@ -30,3 +30,15 @@ Container compute environments
 .. toctree::
 
 * :ref:`Basic Alces Flight Container Appliance Usage <basic-usage-flight-container-appliance>`
+
+Working with your storage
+-------------------------
+
+.. toctree::
+
+* :ref:`Alces Storage Overview <alces-storage-overview>`
+* :ref:`File storage configuration <alces-storage-file-config>`
+* :ref:`File storage usage <alces-storage-file-usage>`
+* :ref:`Object storage configuration <alces-storage-object-config>`
+* :ref:`Object storage usage <alces-storage-object-usage>`
+
