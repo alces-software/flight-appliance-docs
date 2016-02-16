@@ -16,15 +16,11 @@ The following guides will assist you in configuring and using your local and rem
 File storage
 ------------
 
-.. toctree::
-
 * :ref:`File storage configuration <alces-storage-file-config>`
 * :ref:`File storage usage <alces-storage-file-usage>`
 
 Object storage
 --------------
-
-.. toctree::
 
 * :ref:`Object storage configuration <alces-storage-object-config>`
 * :ref:`Object storage usage <alces-storage-object-usage>`
