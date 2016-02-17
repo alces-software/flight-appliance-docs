@@ -8,7 +8,7 @@ The following section will detail how to configure object storage for use with t
 Prerequisites
 -------------
 
--  :ref:`deployment`
+-  :ref:`Alces compute environment deployed <deployment>`
 -  Access gained to deployed environment
 
 Configuring your storage
