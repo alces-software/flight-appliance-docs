@@ -8,7 +8,7 @@ The following section will detail how to configure object storage for use with t
 Prerequisites
 -------------
 
--  `Alces environment deployed <deployment>`_
+-  :ref:`deployment`
 -  Access gained to deployed environment
 
 Configuring your storage
@@ -107,4 +107,4 @@ Working with object storage
 
 For information on working with your object storage targets, please see the following guide: 
 
--  `Alces Storage: Object Storage Usage <alces-storage-object-usage>`
+-  :ref:`alces-storage-object-usage`

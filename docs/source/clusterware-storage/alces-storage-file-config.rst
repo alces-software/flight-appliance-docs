@@ -8,7 +8,7 @@ The following section will detail how to configure your local POSIX storage for 
 Prerequisites
 -------------
 
--  `Alces environment deployed <deployment>`_
+-  :ref:`deployment`
 -  Access gained to deployed environment
 
 Configuring your storage
@@ -80,4 +80,4 @@ Working with file storage
 
 For information on working with your file storage targets, please see the following guide: 
 
--  `Alces Storage: File Usage <alces-storage-file-usage>`_
+-  :ref:`Alces Storage: File Usage <alces-storage-file-usage>`
