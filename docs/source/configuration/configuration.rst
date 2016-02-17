@@ -1,7 +1,7 @@
-.. _configuration:
+.. _customisation:
 
-Configuration
-#############
+Advanced Customisation
+######################
 
 The following section details the initial configuration options available from user-data when deploying Alces compute environments in the Cloud.
 

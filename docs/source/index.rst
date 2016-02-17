@@ -46,3 +46,11 @@ See `Creative-Commons: Attribution-ShareAlike 4.0 International <http://creative
    :name: usagetoc
 
    environment-usage/environment_usage
+
+.. toctree::
+   :maxdepth: 2
+   :glob:
+   :caption: Customizing your environment 
+   :name: configurationtoc
+
+   configuration/*
