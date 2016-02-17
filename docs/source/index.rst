@@ -9,17 +9,40 @@ Quick-start
 -----------
 :ref:`Deploy an SGE compute cluster using OpenStack Heat <heat-deploy-sge-cluster>`
 
-Contents:
-
-.. toctree::
-   :maxdepth: 2
-
-   overview
-   deployment
-   configuration
-   environment_usage
-
 License
 -------
 See `Creative-Commons: Attribution-ShareAlike 4.0 International <http://creativecommons.org/licenses/by-sa/4.0/>`_
 
+.. Navigation/TOC
+
+.. toctree::
+   :maxdepth: 3
+   :glob:
+   :caption: About
+   :name: abouttoc
+
+   about/*
+
+.. toctree::
+   :maxdepth: 2
+   :glob:
+   :caption: Getting started
+   :name: gstoc
+
+   getting-started/deployment
+
+.. toctree::
+   :maxdepth: 2
+   :glob:
+   :caption: Customizing your environment 
+   :name: configurationtoc
+
+   configuration/*
+
+.. toctree::
+   :maxdepth: 2
+   :glob:
+   :caption: Using your environment 
+   :name: usagetoc
+
+   environment-usage/environment_usage
