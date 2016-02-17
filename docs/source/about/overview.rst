@@ -1,12 +1,10 @@
 .. _overview:
 
-Overview
-########
+Alces Flight Appliances
+#######################
 
 The Alces Flight appliances are designed to simplify deployment of various compute environments using public and private Cloud providers including AWS and OpenStack. The Flight appliances lower the barrier to entry of Cloud computing, as well as reducing overall cost by serving a pre-configured environment to you in just minutes.
 
-Available Appliances
---------------------
 The currently available Alces Flight appliances include:
 
 * `Alces Flight Compute Appliance`_
