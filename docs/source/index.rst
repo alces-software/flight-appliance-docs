@@ -30,13 +30,6 @@ See `Creative-Commons: Attribution-ShareAlike 4.0 International <http://creative
    :name: gstoc
 
    getting-started/deployment
-
-.. toctree::
-   :maxdepth: 2
-   :glob:
-   :caption: Using your environment 
-   :name: usagetoc
-
    environment-usage/environment_usage
 
 .. toctree::
