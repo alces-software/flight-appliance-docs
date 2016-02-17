@@ -1,4 +1,4 @@
-.. _environment_usage
+.. _environment_usage:
 
 Environment Usage
 #################
