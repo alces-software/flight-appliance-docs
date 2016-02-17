@@ -46,7 +46,7 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = u'flight-appliance-docs-openstack'
+project = u'flight-appliance-docs'
 copyright = u'2016, Alces Software'
 author = u'Alces Software'
 
@@ -222,7 +222,7 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-    (master_doc, 'flight-appliance-docs-openstack.tex', u'flight-appliance-docs-openstack Documentation',
+    (master_doc, 'flight-appliance-docs.tex', u'flight-appliance-docs Documentation',
      u'Alces Software', 'manual'),
 ]
 
@@ -252,7 +252,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    (master_doc, 'flight-appliance-docs-openstack', u'flight-appliance-docs-openstack Documentation',
+    (master_doc, 'flight-appliance-docs', u'flight-appliance-docs Documentation',
      [author], 1)
 ]
 
@@ -266,8 +266,8 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-    (master_doc, 'flight-appliance-docs-openstack', u'flight-appliance-docs-openstack Documentation',
-     author, 'flight-appliance-docs-openstack', 'One line description of project.',
+    (master_doc, 'flight-appliance-docs', u'flight-appliance-docs Documentation',
+     author, 'flight-appliance-docs', 'One line description of project.',
      'Miscellaneous'),
 ]
 
