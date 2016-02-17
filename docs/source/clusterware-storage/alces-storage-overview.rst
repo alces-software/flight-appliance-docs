@@ -5,6 +5,8 @@ Alces Storage Overview
 
 Alces ClusterWare: Storage provides simple but powerful management of your local and remote storage targets including file and object storage. The Alces Storage utility assists with the configuration of your storage targets - and provides a single interface to managing multiple types of storage. 
 
+Using the Alces Storage utility allows you to interact with multiple storage platforms under a single simple, but feature-rich interface - abstracting the underlying storage platform. The Alces Storage utility allows you to easily work with multiple storage tiers both interactively and within your automated workloads using the same familiar command set. 
+
 The Alces Storage utility currently provides support for: 
 
 -  Amazon S3 object storage
