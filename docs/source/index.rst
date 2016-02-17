@@ -34,14 +34,6 @@ See `Creative-Commons: Attribution-ShareAlike 4.0 International <http://creative
 .. toctree::
    :maxdepth: 2
    :glob:
-   :caption: Customizing your environment 
-   :name: configurationtoc
-
-   configuration/*
-
-.. toctree::
-   :maxdepth: 2
-   :glob:
    :caption: Using your environment 
    :name: usagetoc
 
