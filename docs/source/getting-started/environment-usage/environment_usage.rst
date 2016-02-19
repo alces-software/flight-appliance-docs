@@ -49,6 +49,7 @@ Additional application features
 
 .. toctree::
    :maxdepth: 1
+   :glob:
    :name: gridwareappfeatures
 
    getting-started/environment-usage/gridware/*
