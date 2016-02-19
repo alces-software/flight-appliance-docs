@@ -160,7 +160,7 @@ As the user you wish to install a Python library for, load the ``setuptools`` Gr
     >>> HTSeq.__version__
     '0.6.0'
 
-The ``htseq`` installation was successful - and we can now use it as the ``barney`` user. Switching to another user will confirm the user-level installation success, the ``alces`` user will not be able to user the ``HTSeq`` Python library: 
+The ``htseq`` installation was successful - and we can now use it as the ``barney`` user. Switching to another user will confirm the user-level installation success, the ``alces`` user will not be able to use the ``HTSeq`` Python library: 
 
 .. code:: bash
 
