@@ -52,4 +52,4 @@ Additional application features
    :glob:
    :name: gridwareappfeatures
 
-   getting-started/environment-usage/gridware/*
+   gridware/*
