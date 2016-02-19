@@ -88,7 +88,7 @@ Through the Alces Gridware utility, installation of lanaguage libraries is possi
 System-wide language libraries: Python
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-As the ``alces`` administrator user - switch to the ``root`` user account. 
+As the ``alces`` administrator user, or any other sudo enabled user that can switch to root - change to the ``root`` user account.
 
 To add Python packages, the ``setuptools`` Gridware application is required - this can be installed using ``alces gridware install setuptools/15.1 --variant default``. Once the ``setuptools`` module is available, load it as the ``root`` user: 
 

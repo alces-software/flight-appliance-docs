@@ -85,7 +85,7 @@ Through the Alces Gridware utility, installation of lanaguage libraries is possi
 System-wide language libraries: Perl
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-As the ``alces`` administrator user - switch to the ``root`` user account. 
+As the ``alces`` administrator user, or any other sudo enabled user that can switch to root - change to the ``root`` user account.
 
 Next, load the version of Perl you wish to add language libraries to - for example ``perl/5.20.2``
 
