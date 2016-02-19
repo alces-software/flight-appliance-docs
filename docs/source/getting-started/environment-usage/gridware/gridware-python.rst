@@ -79,3 +79,103 @@ Only one version of a particular application can be loaded at any one time - to 
      OK
     [alces@login1(hpc1) ~]$ python --version
     Python 2.7.5
+
+Installation of language libraries
+----------------------------------
+
+Through the Alces Gridware utility, installation of lanaguage libraries is possible both on a system-wide level, and also on a per-user basis. The following section details both system-wide language library installation, as well as user-level language library installation.
+
+System-wide language libraries: Python
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+As the ``alces`` administrator user - switch to the ``root`` user account. 
+
+To add Python packages, the ``setuptools`` Gridware application is required - this can be installed using ``alces gridware install setuptools/15.1 --variant default``. Once the ``setuptools`` module is available, load it as the ``root`` user: 
+
+.. code:: bash
+
+    [root@login1(hpc1) ~]# module load apps/setuptools
+    apps/setuptools/15.1/python-2.7.8
+     | -- apps/python/2.7.8/gcc-4.8.5
+     |    | -- libs/gcc/system
+     |    |    * --> OK
+     |    * --> OK
+     |
+     OK
+
+Next, using ``easy_install`` - install the Python libraries required, for example: 
+
+.. code:: bash
+
+    [root@login1(hpc1) ~]# easy_install numpy
+    Creating /opt/gridware/share/python/2.7.8/lib/python2.7/site-packages/site.py
+    Searching for numpy
+    Reading https://pypi.python.org/simple/numpy/
+    Best match: numpy 1.11.0b3
+    <-- snip -->
+    Installed /opt/gridware/share/python/2.7.8/lib/python2.7/site-packages/numpy-1.11.0b3-py2.7-linux-x86_64.egg
+    Processing dependencies for numpy
+    Finished processing dependencies for numpy
+
+Once the installation is complete - you can check the library is available to other users on the system: 
+
+.. code:: bash
+
+    [barney@login1(hpc1) ~]$ module load apps/python/2.7.8
+    apps/python/2.7.8/gcc-4.8.5
+     | -- libs/gcc/system
+     |    * --> OK
+     |
+     OK
+    [barney@login1(hpc1) ~]$ python
+    Python 2.7.8 (default, Feb 19 2016, 10:02:41)
+    [GCC 4.8.5 20150623 (Red Hat 4.8.5-4)] on linux2
+    Type "help", "copyright", "credits" or "license" for more information.
+    >>> import numpy
+    >>> numpy.version.version
+    '1.11.0b3'
+
+User-specific language libraries: Python
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Users may also wish to install their own language libraries, these will be unavailable to other users of the environment. 
+
+As the user you wish to install a Python library for, load the ``setuptools`` Gridware application for the version of Python you wish to install libraries for (e.g. ``apps/setuptools/15.1/python-2.7.8``), then use ``easy_install`` to install the required module: 
+
+.. code:: bash
+
+    [barney@login1(hpc1) ~]$ easy_install htseq
+    Searching for htseq
+    Reading https://pypi.python.org/simple/htseq/
+    Best match: HTSeq 0.6.1
+    <-- snip -->
+    Installed /home/barney/gridware/share/python/2.7.8/lib/python2.7/site-packages/HTSeq-0.6.1-py2.7-linux-x86_64.egg
+    Processing dependencies for htseq
+    Finished processing dependencies for htseq
+    [barney@login1(hpc1) ~]$ python
+    Python 2.7.8 (default, Feb 19 2016, 10:02:41)
+    [GCC 4.8.5 20150623 (Red Hat 4.8.5-4)] on linux2
+    Type "help", "copyright", "credits" or "license" for more information.
+    >>> import HTSeq
+    >>> HTSeq.__version__
+    '0.6.0'
+
+The ``htseq`` installation was successful - and we can now use it as the ``barney`` user. Switching to another user will confirm the user-level installation success, the ``alces`` user will not be able to user the ``HTSeq`` Python library: 
+
+.. code:: bash
+
+    [alces@login1(hpc1) ~]$ module load apps/python
+    apps/python/2.7.8/gcc-4.8.5
+     | -- libs/gcc/system
+     |    * --> OK
+     |
+     OK
+    [alces@login1(hpc1) ~]$ python
+    Python 2.7.8 (default, Feb 19 2016, 10:02:41)
+    [GCC 4.8.5 20150623 (Red Hat 4.8.5-4)] on linux2
+    Type "help", "copyright", "credits" or "license" for more information.
+    >>> import HTSeq
+    Traceback (most recent call last):
+      File "<stdin>", line 1, in <module>
+    ImportError: No module named HTSeq
+
