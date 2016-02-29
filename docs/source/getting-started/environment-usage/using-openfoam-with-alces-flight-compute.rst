@@ -200,3 +200,5 @@ Alternatively - the process can be automated through your cluster job scheduler.
 
 10.  Using the ``Mesh Regions`` box on the bottom left of the interface - enable all of the Mesh regions. 
 11.  Click the ``Play`` button using the toolbar to run the output.
+
+.. image:: ../../_images/paraFoam.png
