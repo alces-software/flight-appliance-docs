@@ -24,13 +24,6 @@ Galaxy research compute environments
 * :ref:`Run a basic Galaxy job <run-a-basic-galaxy-job>`
 * :ref:`Run a FastQ Galaxy job <run-a-fastq-galaxy-job>`
 
-Container compute environments
-------------------------------
-
-.. toctree::
-
-* :ref:`Basic Alces Flight Container Appliance Usage <basic-usage-flight-container-appliance>`
-
 Working with your storage
 -------------------------
 
