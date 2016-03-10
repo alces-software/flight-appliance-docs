@@ -38,6 +38,11 @@ Working with your applications
 
 * :ref:`Working with Gridware applications <working-with-gridware-applications>`
 
+Working with the MPI application via a cluster scheduler
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+* :ref:`run-mpi-imb`
+
 Additional application features
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
