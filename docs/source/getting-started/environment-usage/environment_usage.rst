@@ -41,7 +41,13 @@ Working with your applications
 Working with the MPI application via a cluster scheduler
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-* :ref:`run-mpi-imb`
+.. toctree::
+   :maxdepth: 1
+   :glob:
+   :name: gridwarehowto
+
+   gridware-howto/*
+   
 
 Additional application features
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -51,4 +57,4 @@ Additional application features
    :glob:
    :name: gridwareappfeatures
 
-   gridware/*
+   gridware-features/*
