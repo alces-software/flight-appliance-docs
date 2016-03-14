@@ -30,7 +30,6 @@ Cluster master node
           role: 'master'
           tags:
             scheduler_roles: ':master:'
-          quorum: 3
           gridware:
             depots:
             - name: benchmark
@@ -66,7 +65,6 @@ Cluster compute node
           role: 'slave'
           tags:
             scheduler_roles: ':compute:'
-          quorum: 3
         instance:
           users:
           - username: alces-cluster
@@ -81,6 +79,8 @@ Cluster compute node
       owner: root:root
       path: /opt/clusterware/etc/config.yml
       permissions: '0640'
+
+.. note:: When deploying to AWS, compute nodes should include the ``master`` tag in the ``cluster`` configuration section. This provides compute nodes the login node internal IP address - for example: ``master: 10.75.0.10``
 
 Configuration values
 -------------------

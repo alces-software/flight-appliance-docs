@@ -54,6 +54,8 @@ Galaxy compute node
       path: /opt/clusterware/etc/config.yml
       permissions: '0640'
 
+.. note:: When deploying to AWS, compute nodes should include the ``master`` tag in the ``cluster`` configuration section. This provides compute nodes the login node internal IP address - for example: ``master: 10.75.0.10``
+
 Configuration values
 -------------------
 
