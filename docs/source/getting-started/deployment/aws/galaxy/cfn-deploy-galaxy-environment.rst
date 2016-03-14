@@ -45,7 +45,7 @@ Galaxy environment:
 
 .. code:: bash
 
-    [alces@login1(galaxy) ~]$  alces about environment
+    [alces@login1(galaxy) ~]$  alces about node
           Clusterware release: 2016.01
              Public host name: galaxy-ea944b00.cloud.compute.estate
              Clusterware name: galaxy-ea944b00

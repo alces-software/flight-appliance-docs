@@ -39,11 +39,11 @@ Access your environment
 1.  From the ``Overview`` tab of your stack, make a note of the cluster master node public IP address displayed, e.g. ``10.77.0.100``
 2.  SSH to the public IP address as the ``alces`` administrator account - together with your previously selected OpenStack keypair, e.g. ``ssh -i ~/.ssh/openstack_key.pem alces@10.77.0.100``
 3.  Once your environment has finished configuring - the Galaxy appliance will display a system-wide prompt, alerting you the configuration has finished 
-4.  Run ``alces about environment`` to gain access information for your Galaxy web browser, including administrator username and password. A sample output would look like the following: 
+4.  Run ``alces about node`` to gain access information for your Galaxy web browser, including administrator username and password. A sample output would look like the following: 
 
 .. code-block:: 
 
-    [root@galaxy(cluster1) ~]# alces about environment
+    [root@galaxy(cluster1) ~]# alces about node
           Clusterware release: 2016.01
              Public host name: cluster1-c6ece10c.cloud.compute.estate
              Clusterware name: cluster1-c6ece10c
