@@ -14,7 +14,6 @@ HPC/scheduler environments
 * :ref:`Run an MPI job over multiple nodes <run-an-mpi-job>`
 * :ref:`Run a graphical application <run-a-graphical-application>`
 * :ref:`Run storage benchmarks <run-storage-benchmarks>`
-* :ref:`Using OpenFoam in a Flight Compute environment <using-openfoam-with-alces-flight-compute>`
 
 Galaxy research compute environments
 ------------------------------------
