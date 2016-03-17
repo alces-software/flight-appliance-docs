@@ -205,5 +205,19 @@ Multiple Gridware depots can be installed at the same time, for example:
         - name: chem
           url: https://s3-eu-west-1.amazonaws.com/packages.alces-software.com/depots/chem
 
+**Defering Gridware initlisation**
+
 The Alces Application Manager appliance can also be used to pre-install and manage Gridware depots.
 
+It is also possible to defer initial Gridware initlisation - in the case that you require a larger, external disk to be used; for example a block storage volume. To defer Gridware initlisation, add the following configuration to your user-data: 
+
+.. code-block:: yaml
+
+    gridware:
+      triggers: delayed
+
+Next - mount your external block storage volume to ``/opt/gridware``, then run the following command to configure the Gridware volume, and share it amongst the nodes in your environment: 
+
+.. code-block:: bash
+
+    /opt/clusterware/libexec/share/trigger-event --local gridware-initialize
