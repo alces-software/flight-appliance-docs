@@ -36,6 +36,7 @@ Working with your applications
 ------------------------------
 
 * :ref:`Working with Gridware applications <working-with-gridware-applications>`
+* :ref:`Using OpenFoam on Alces Flight Compute <using-openfoam-with-alces-flight-compute>`
 
 Working with the MPI application via a cluster scheduler
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

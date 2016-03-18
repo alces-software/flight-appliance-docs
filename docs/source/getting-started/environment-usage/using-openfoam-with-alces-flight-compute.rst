@@ -1,15 +1,18 @@
 .. _using-openfoam-with-alces-flight-compute:
 
+Using OpenFoam with Alces Flight Compute
+========================================
+
 The following guide will run through the basics of using OpenFOAM together with an Alces Flight Compute environment. 
 
 Prerequisites
-=============
+-------------
 
 -  `Alces Flight compute environment
    deployed <heat-deploy-sge-cluster>`__
 
 Installing the OpenFOAM Gridware Depot
-======================================
+--------------------------------------
 
 The OpenFOAM Gridware depot can be easily installed, providing you instant access to the OpenFOAM application. 
 
@@ -34,7 +37,7 @@ As an authorised user, download and enable the OpenFOAM Gridware Depot:
               Enable ... OK
     
 Manual installation of OpenFOAM
--------------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Alternatively, you may wish to install the Gridware applications yourself - this can be done by installing the following Gridware packages in order: 
 
@@ -47,7 +50,7 @@ Alternatively, you may wish to install the Gridware applications yourself - this
     alces gridware install paraview/4.3.1
 
 Running OpenFOAM
-================
+----------------
 
 The following tutorial makes use of the OpenFOAM graphical interface. To use the graphical interface, a GNOME desktop session should be started. Sessions can easily be created using ``alces session``. Create a GNOME desktop session and connect to it using your favourite VNC client: 
 
@@ -72,7 +75,7 @@ The following tutorial makes use of the OpenFOAM graphical interface. To use the
     If prompted, you should supply the following password: vvrDZM2Z
 
 Loading OpenFOAM
-----------------
+^^^^^^^^^^^^^^^^
 
 Once you have connected to the VNC session - the OpenFOAM application will need to be loaded.
 
