@@ -31,11 +31,3 @@ See `Creative-Commons: Attribution-ShareAlike 4.0 International <http://creative
 
    getting-started/deployment/deployment
    getting-started/environment-usage/environment_usage
-
-.. toctree::
-   :maxdepth: 2
-   :glob:
-   :caption: Customising your environment 
-   :name: configurationtoc
-
-   configuration/*
