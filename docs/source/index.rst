@@ -29,5 +29,4 @@ See `Creative-Commons: Attribution-ShareAlike 4.0 International <http://creative
    :caption: Getting started
    :name: gstoc
 
-   getting-started/deployment/deployment
    getting-started/environment-usage/environment_usage
