@@ -31,6 +31,7 @@ Working with your storage
 *  :ref:`alces-storage-file-usage`
 *  :ref:`alces-storage-object-config`
 *  :ref:`alces-storage-object-usage`
+*  :ref:`alces-storage-examples`
 
 Working with your applications
 ------------------------------
