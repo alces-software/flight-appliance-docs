@@ -21,24 +21,20 @@ Deploying via AWS web interface
 1.  Navigate to the CloudFormation console
 2.  Click ``Create Stack``
 3.  Choose the ``Specify an S3 URL`` option - enter the following URL:
-    ``https://s3-eu-west-1.amazonaws.com/clusterware/cloudformation/1.0.2/spot-cluster.json``
+    ``https://raw.githubusercontent.com/alces-software/flight-appliance-support/master/aws-cloudformation/aws-tools/templates/all-in-one/hpc-cluster.json``
 4.  Click ``Next``
-5.  Enter a ``stack name``, for example ``ResearchCluster1``
-6.  Select your desired AWS key pair from the list of available keys.
+5.  Enter a ``stack name``, for example ``ResearchCluster1``. This defines the cluster name.
+6.  Enter the ``ComputeNumber`` - this defines the number of dedicated compute hosts to deploy
+7. Select the instance type to deploy (``small`` or ``large``). Small
+    nodes each have 2 cores and 3.75GB memory, large nodes each have 16
+    cores and 30GB memory.
+8.  Select your desired AWS key pair from the list of available keys.
     This is used to access the cluster administrator account
     (``alces``). If no AWS key pair is selected - the cluster will fail
     to create.
-7.  Enter your chosen ``cluster name``, for example ``research-cluster``
-8.  Select the ClusterWare GridWare depot to install, depots install a
-    pack of applications e.g. ``benchmark`` installs popular
-    benchmarking utilities
-9.  Select the number of compute nodes you wish to deploy
-10. Select the instance type to deploy (``small`` or ``large``). Small
-    nodes each have 2 cores and 3.75GB memory, large nodes each have 16
-    cores and 30GB memory.
-11. Enter a ``NetworkCIDR`` if you would like to restrict access to your
+9. Enter a ``NetworkCIDR`` if you would like to restrict access to your
     environment for increased security
-12. Select the maximum bid per hour for each instance within the
+10. Select the maximum bid per hour for each instance within the
     ClusterWare environment. View the `Spot Pricing
     Calculator <https://eu-west-1.console.aws.amazon.com/ec2spot/home?region=eu-west-1#>`__
     for more information on spot prices. We recommend leaving the bid at
