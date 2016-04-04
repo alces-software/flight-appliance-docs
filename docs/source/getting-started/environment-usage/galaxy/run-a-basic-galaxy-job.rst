@@ -1,17 +1,21 @@
 .. _run-a-basic-galaxy-job:
 
+Run a basic Galaxy job
+======================
+
 How to run a basic job using your Galaxy environment. 
 
 The following guide will detail how to upload sample data to your Galaxy environment, and then run a basic job using the Pulsar compute service on either a single-node Galaxy environment, or a multiple-node Galaxy environment. 
 
 Prerequisites
-=============
+-------------
 
 - Alces Galaxy environment deployed
 - Access to Galaxy environment obtained, logged in with provided acccount
 
 Uploading data
-==============
+--------------
+
 First - some test data will need to be added to the Galaxy environment in order to run our example job, from the Galaxy web console: 
 
 1. Using the ``Tools`` pane on the left-hand side - navigate to the ``Get Data -> Upload File`` page 
@@ -26,7 +30,8 @@ First - some test data will need to be added to the Galaxy environment in order 
 4. Galaxy will provide feedback on the successful upload of your example data
 
 Running an example task
-=======================
+-----------------------
+
 From the Galaxy web console: 
 
 1. Using the ``Tools`` pane on the left-hand side - navigate to the ``Filter and Sort -> Select lines that match an expression`` page
@@ -42,7 +47,8 @@ From the Galaxy web console:
       description: Some content
 
 What's next?
-============
+------------
+
 For more advanced Galaxy usage - read the Galaxy project wiki: 
 
 -  https://wiki.galaxyproject.org/

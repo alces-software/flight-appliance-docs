@@ -1,7 +1,7 @@
 Flight Appliance Documentation
 ==========================================
 .. figure:: _images/AlcesCloud.png
-    :alt: Alces Computing in the Cloud 
+    :alt: Alces Computing in the Cloud
 
 Guides designed to create a simple research compute environment creation process using many popular public and private cloud platforms together with the Alces Flight Appliances.
 
@@ -18,15 +18,36 @@ See `Creative-Commons: Attribution-ShareAlike 4.0 International <http://creative
 .. toctree::
    :maxdepth: 3
    :glob:
-   :caption: About
-   :name: abouttoc
+   :caption: Alces Flight Appliances
+   :name: flightappliances
 
-   about/*
+   about/alces-flight-compute
+   about/alces-flight-storage-access
+   about/alces-flight-application-manager
+   about/alces-flight-galaxy
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 3
    :glob:
-   :caption: Getting started
-   :name: gstoc
+   :caption: Environment Usage: HPC 
+   :name: environmentusage 
 
-   getting-started/environment-usage/environment_usage
+   getting-started/environment-usage/run-an-interactive-application
+   getting-started/environment-usage/run-a-graphical-application
+
+.. toctree::
+   :maxdepth: 1
+   :glob:
+   :caption: Application Usage: HPC 
+   :name: appusage 
+
+   getting-started/environment-usage/gridware-features/*
+   getting-started/environment-usage/gridware-howto/*
+
+.. toctree::
+   :maxdepth: 1
+   :glob:
+   :caption: Application Usage: Galaxy 
+   :name: galaxyusage 
+
+   getting-started/environment-usage/galaxy/*

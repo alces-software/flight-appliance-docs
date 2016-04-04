@@ -1,17 +1,20 @@
 .. _run-a-fastq-galaxy-job:
 
+Run a FastQ Galaxy job
+======================
+
 How to run a FastQC read analysis job using your Galaxy environment. 
 
 The following guide will detail how to upload publicly available genome data to your Galaxy environment - and then run a FastQ analsysis on that data using the available Pulsar compute hosts.
 
 Prerequisites
-=============
+-------------
 
 - Alces Galaxy environment deployed
 - Access to Galaxy environment obtained, logged in with provided acccount
 
 Uploading data
-==============
+--------------
 To upload the ``hg19`` data to your Galaxy environment - first log in to your environment, then navigate to the ``Upload File - From your computer`` tab from the tool box on the left. 
 
 1.  Select the ``Paste/Fetch Data`` button
@@ -21,7 +24,8 @@ To upload the ``hg19`` data to your Galaxy environment - first log in to your en
 3.  Click the ``Start`` button to begin uploading to your local Galaxy environment
 
 Install the FastQ application
-=============================
+-----------------------------
+
 From the Galaxy web console, navigate to the ``Admin`` tab - then follow the below instructions: 
 
 1.  Select the ``Search tool shed`` button
@@ -34,7 +38,8 @@ From the Galaxy web console, navigate to the ``Admin`` tab - then follow the bel
 8.  Click ``Install`` to start installing the ``FastQC`` tool to your local toolshed
 
 Running the analysis
-====================
+--------------------
+
 From the Galaxy web console, navigate to the ``Analyze Data`` tab - then follow the below instructions:
 
 1.  From the available tools on the left - select the ``FastQC - Read Quality Reports`` application
@@ -47,7 +52,8 @@ From the Galaxy web console, navigate to the ``Analyze Data`` tab - then follow 
 5. FastQC Read Reports output a HTML page for you to view the available output data. 
 
 What's next?
-============
+------------
+
 For more advanced Galaxy usage - read the Galaxy project wiki: 
 
 -  https://wiki.galaxyproject.org/

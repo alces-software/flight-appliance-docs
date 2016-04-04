@@ -1,5 +1,8 @@
 .. _run-an-mpi-job:
 
+Run an MPI Job
+##############
+
 How to run an MPI job over 2 compute nodes using a ClusterWare SGE
 compute environment. The following guide will detail how to perform a
 2-node MPI job using the Intel Messaging Benchmark Gridware application,
@@ -7,7 +10,7 @@ which measures latency and bandwidth metrics between multiple compute
 nodes.
 
 Prerequisites
-=============
+-------------
 
 -  `SGE compute node environment
    deployed <https://github.com/alces-software/clusterware-deployment-methods/wiki/AWS:-Deploy-an-SGE-on-demand-compute-cluster>`__
@@ -15,7 +18,7 @@ Prerequisites
 -  ``benchmark`` Gridware depot installed
 
 Running IMB
-===========
+-----------
 
 From the ClusterWare environment login node, as either the administrator
 (``alces``) user - or a regular cluster user account - check the ``imb``

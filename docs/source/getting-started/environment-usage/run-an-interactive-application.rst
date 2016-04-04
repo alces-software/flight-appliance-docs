@@ -1,12 +1,15 @@
 .. _run-an-interactive-application:
 
+Run an interactive application
+==============================
+
 How to run an interactive application using your ClusterWare
 environment.
 
 The following guide will teach you how gain an interactive session on a compute node, then run an application interactively
 
 Prerequisites
-=============
+-------------
 
 -  :ref:`SGE compute node environment deployed <heat-deploy-sge-cluster>`
 -  At least 1 compute node deployed to the environment
