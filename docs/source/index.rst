@@ -52,14 +52,14 @@ See `Creative-Commons: Attribution-ShareAlike 4.0 International <http://creative
 
    getting-started/environment-usage/galaxy/*
 
-   .. toctree::
-      :maxdepth: 1
-      :glob:
-      :caption: Working with your storage
-      :name: alcesstorageusage
+.. toctree::
+   :maxdepth: 1
+   :glob:
+   :caption: Working with your storage
+   :name: alcesstorageusage
 
-      clusterware-storage/alces-storage-overview
-      clusterware-storage/alces-storage-file-config
-      clusterware-storage/alces-storage-file-usage
-      clusterware-storage/alces-storage-object-config
-      clusterware-storage/alces-storage-object-usage
+   clusterware-storage/alces-storage-overview
+   clusterware-storage/alces-storage-file-config
+   clusterware-storage/alces-storage-file-usage
+   clusterware-storage/alces-storage-object-config
+   clusterware-storage/alces-storage-object-usage
