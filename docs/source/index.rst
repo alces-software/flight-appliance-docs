@@ -24,13 +24,13 @@ See `Creative-Commons: Attribution-ShareAlike 4.0 International <http://creative
    about/alces-flight-compute
    about/alces-flight-storage-access
    about/alces-flight-application-manager
-   about/alces-flight-galaxy
+   about/alces-flight-galaxy-appliance
 
 .. toctree::
    :maxdepth: 3
    :glob:
-   :caption: Environment Usage: HPC 
-   :name: environmentusage 
+   :caption: Environment Usage: HPC
+   :name: environmentusage
 
    getting-started/environment-usage/run-an-interactive-application
    getting-started/environment-usage/run-a-graphical-application
@@ -38,8 +38,8 @@ See `Creative-Commons: Attribution-ShareAlike 4.0 International <http://creative
 .. toctree::
    :maxdepth: 1
    :glob:
-   :caption: Application Usage: HPC 
-   :name: appusage 
+   :caption: Application Usage: HPC
+   :name: appusage
 
    getting-started/environment-usage/gridware-features/*
    getting-started/environment-usage/gridware-howto/*
@@ -47,7 +47,19 @@ See `Creative-Commons: Attribution-ShareAlike 4.0 International <http://creative
 .. toctree::
    :maxdepth: 1
    :glob:
-   :caption: Application Usage: Galaxy 
-   :name: galaxyusage 
+   :caption: Application Usage: Galaxy
+   :name: galaxyusage
 
    getting-started/environment-usage/galaxy/*
+
+   .. toctree::
+      :maxdepth: 1
+      :glob:
+      :caption: Working with your storage
+      :name: alcesstorageusage
+
+      clusterware-storage/alces-storage-overview
+      clusterware-storage/alces-storage-file-config
+      clusterware-storage/alces-storage-file-usage
+      clusterware-storage/alces-storage-object-config
+      clusterware-storage/alces-storage-object-usage
