@@ -43,6 +43,7 @@ See `Creative-Commons: Attribution-ShareAlike 4.0 International <http://creative
 
    getting-started/environment-usage/gridware-features/*
    getting-started/environment-usage/gridware-howto/*
+   getting-started/environment-usage/run-an-mpi-job
 
 .. toctree::
    :maxdepth: 1
@@ -63,3 +64,4 @@ See `Creative-Commons: Attribution-ShareAlike 4.0 International <http://creative
    clusterware-storage/alces-storage-file-usage
    clusterware-storage/alces-storage-object-config
    clusterware-storage/alces-storage-object-usage
+   environment-usage/alces-storage-examples
