@@ -1,13 +1,9 @@
 Flight Appliance Documentation
 ==========================================
-.. figure:: _images/AlcesCloud.png
+.. figure:: _images/AlcesFlight.png
     :alt: Alces Computing in the Cloud
 
 Guides designed to create a simple research compute environment creation process using many popular public and private cloud platforms together with the Alces Flight Appliances.
-
-Quick-start
------------
-:ref:`Deploy an SGE compute cluster using OpenStack Heat <heat-deploy-sge-cluster>`
 
 License
 -------
