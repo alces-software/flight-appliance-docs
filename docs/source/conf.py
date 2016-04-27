@@ -47,8 +47,8 @@ master_doc = 'index'
 
 # General information about the project.
 project = u'flight-appliance-docs'
-copyright = u'2016, Alces Software'
-author = u'Alces Software'
+copyright = u'2016, Alces Flight Ltd'
+author = u'Alces Flight Ltd'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -223,7 +223,7 @@ latex_elements = {
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
     (master_doc, 'flight-appliance-docs.tex', u'flight-appliance-docs Documentation',
-     u'Alces Software', 'manual'),
+     u'Alces Flight Ltd', 'manual'),
 ]
 
 # The name of an image file (relative to this directory) to place at the top of
