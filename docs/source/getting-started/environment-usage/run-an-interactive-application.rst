@@ -6,7 +6,7 @@ Run an interactive application
 How to run an interactive application using your ClusterWare
 environment.
 
-The following guide will teach you how gain an interactive session on a compute node, then run an application interactively
+The following guide will teach you how to gain an interactive session on a compute node, then run an application interactively
 
 Prerequisites
 -------------
