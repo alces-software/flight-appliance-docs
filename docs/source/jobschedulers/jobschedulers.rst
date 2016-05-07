@@ -18,3 +18,6 @@ Link to OGS/SGE page
 
 - Mention of what/when other schedulers might be available
 
+
+Using the alces template command
+--------------------------------
