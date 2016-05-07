@@ -17,3 +17,14 @@ Who is it for?
 
 
 How much does it cost?
+----------------------
+
+
+
+Prerequisites
+-------------
+
+
+
+Where can I get help?
+---------------------
