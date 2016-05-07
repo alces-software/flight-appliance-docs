@@ -61,7 +61,7 @@ We recommend that users wishing to use Flight Appliances have basic Linux skills
    :caption: Graphical access to your cluster
    :name: graphicaldesktop
    
-   graphical-desktop/*
+   graphicaldesktop/*
    
 .. toctree::
    :maxdepth: 3
@@ -96,82 +96,6 @@ We recommend that users wishing to use Flight Appliances have basic Linux skills
    sge/*
    
    
-Overview:
- - What is Alces Flight (what does it do, and what it doesn't do)
- - Who is it for
- - Pre-reqs
- - How much does it cost
- - Where can I get help
-
-Launching your cluster on AWS
- - Prerequisites
- - Finding Alces Flight Compute on AWS
- - How to answer CFT questions
- - on-demand vs SPOT and autoscaling
- - Accessing your cluster
- - What happens when you terminate the cluster
-
-Launching your cluster on OpenStack
- - Prerequisites
- - Preparing images for launch
- - How to answer Heat questions
- - Accessing your cluster
- - What happens when you terminate the cluster
-
-Basic cluster operation:
- - Logging in; how to, who can, etc.
- - Becoming the root user
- - Moving between login and compute nodes
- - Using PDSH
-
-Getting data to and from your cluster:
- - Shared filesystem (size of it, why it's there)
- - Copying data between nodes
- - Using SCP/SFTP to copy files to/from the cluster (+winscp client and others)
- - Object storage (S3/dropbox)
- - Using alces storage commands
- - Important of storing files safely before shutting down the cluster
-
-Graphical desktop access to your login node:
- - Launching a gnome desktop session
- - Connecting to the session from an external client
- - Connecting multiple users to the same session
- - Resizing the desktop to fit your screen
- - Using alces session commands to enable other types of session
- - Terminating and viewing running sessions
-
-Software applications:
- - base OS version and default software (e.g. gcc)
- - modules environment management; usage and commands, dependencies
- - importance of "module display" to show licenses
- - installing new applications using alces gridware command
- - enabling volatile repos and manual dependency resolution
- - installing from depots
- - installing commercial apps and license management
-
-Parallel (MPI) applications:
- - What the MPI is for
- - How to install MPIs for applications
- - Running an MPI job manually
-
-Job schedulers:
- - What they are for
- - grid-engine specifics:
-  - interactive and non-interactive/batch jobs 
-  - what are job scripts with simple example (link to page on alces template command)
-  - default resources
-  - viewing queue and host status
-  - deleting jobs from the queue
-  - giving job-scheduler instructions (on command-line and in job-scripts)
-  - simple directive examples
-  - Requesting more resources 
-    - More CPU cores
-    - More memory (including using qacct to find out how much has been used)
-    - Longer runtime (including why you'd want to specify this)
-  - Documentation of all available scheduler directives
- - alces template command for generating jobscripts
-
-
 .. toctree::
    :maxdepth: 3
    :glob:
