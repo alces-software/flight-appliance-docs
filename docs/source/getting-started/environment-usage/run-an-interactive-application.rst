@@ -3,26 +3,25 @@
 Run an interactive application
 ==============================
 
-How to run an interactive application using your ClusterWare
-environment.
+How to run an interactive application using your Alces Flight Compute environment 
 
 The following guide will teach you how to gain an interactive session on a compute node, then run an application interactively
 
 Prerequisites
 -------------
 
--  :ref:`SGE compute node environment deployed <heat-deploy-sge-cluster>`
+- Alces Flight Compute environment deployed 
 -  At least 1 compute node deployed to the environment
--  ``benchmark`` Gridware depot installed
+- ``benchmark`` Gridware depot installed
 
 Running an interactive application
 ----------------------------------
 
-Once access has been gained to the ClusterWare login node - gain an
+Once access has been gained to the Alces Flight login node - gain an
 interactive session on one of the compute nodes, with all of that nodes
 resources using the ``qrsh`` command:
 
-.. code:: bahs
+.. code:: bash 
 
     [alces@login1(clusterware) ~]$ qrsh -pe mpinodes-verbose 1
     Warning: Permanently added '[node1.clusterware.alces.network]:60692,[192.168.150.183]:60692' (ECDSA) to the list of known hosts.
