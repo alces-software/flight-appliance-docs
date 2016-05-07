@@ -9,7 +9,6 @@ Tutorials and basic demonstrations of Alces research compute environment capabil
 HPC/scheduler environments
 --------------------------
 
-
 * :ref:`Run an interactive application <run-an-interactive-application>`
 * :ref:`Run an MPI job over multiple nodes <run-an-mpi-job>`
 * :ref:`Run a graphical application <run-a-graphical-application>`
@@ -17,8 +16,6 @@ HPC/scheduler environments
 
 Galaxy research compute environments
 ------------------------------------
-
-.. toctree::
 
 * :ref:`Run a basic Galaxy job <run-a-basic-galaxy-job>`
 * :ref:`Run a FastQ Galaxy job <run-a-fastq-galaxy-job>`

@@ -18,8 +18,7 @@ These can either be installed manually, or via Depot installation:
 
 .. code:: bash
 
-    alces gridware depot fetch https://s3-eu-west-1.amazonaws.com/packages.alces-software.com/depots/hpl
-    alces gridware depot enable hpl 
+    alces gridware depot install benchmark
 
 For more information on Gridware packages and depots - please visit the :ref:`working with Gridware packages<working-with-gridware-applications>` and :ref:`working with depots<working-with-gridware-depots>` guides.
 
