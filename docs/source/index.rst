@@ -3,61 +3,128 @@ Flight Appliance Documentation - 2016.2
 .. figure:: _images/AlcesFlight.png
     :alt: Alces Computing in the Cloud
 
-Guides designed to create a simple research compute environment creation process using many popular public and private cloud platforms together with the Alces Flight Appliances.
+This site holds documentation designed to help users create a simple research compute environment using popular public and private cloud platforms. As well as launching and accessing the environment, guides and tutorials are included to help end-users install software applications, manage their data and run different workloads. 
 
 License
 -------
-See `Creative-Commons: Attribution-ShareAlike 4.0 International <http://creativecommons.org/licenses/by-sa/4.0/>`_
+See `Creative-Commons: Attribution-ShareAlike 4.0 International <http://creativecommons.org/licenses/by-sa/4.0/>`_ and `Alces Flight EULA <https://s3-eu-west-1.amazonaws.com/flight-aws-marketplace/2016.1/EULA.txt>`_.
+
+Pre-requisities
+---------------
+We recommend that users wishing to use Flight Appliances have basic Linux skills. The ability to move about in a filesystem, copy and delete files, read and edit files on the command-line will be needed in order to get the best out of the Flight software. 
 
 .. Navigation/TOC
 
 .. toctree::
    :maxdepth: 3
    :glob:
-   :caption: Alces Flight Appliances
-   :name: flightappliances
+   :caption: Overview of Flight Compute
+   :name: overview
 
-   about/alces-flight-compute
-   about/alces-flight-storage-access
-   about/alces-flight-application-manager
-   about/alces-flight-galaxy-appliance
+   overview/*
+   
+Overview:
+ - What is Alces Flight (what does it do, and what it doesn't do)
+ - Who is it for
+ - Pre-reqs
+ - How much does it cost
+ - Where can I get help
+
+Launching your cluster on AWS
+ - Pre-reqs
+ - Finding Alces Flight Compute on AWS
+ - How to answer CFT questions
+ - on-demand vs SPOT and autoscaling
+ - Accessing your cluster
+ - What happens when you terminate the cluster
+
+Launching your cluster on OpenStack
+ - Pre-reqs
+ - Preparing images for launch
+ - How to answer Heat questions
+ - Accessing your cluster
+ - What happens when you terminate the cluster
+
+Basic cluster operation:
+ - Logging in; how to, who can, etc.
+ - Becoming the root user
+ - Moving between login and compute nodes
+ - Using PDSH
+
+Getting data to and from your cluster:
+ - Shared filesystem (size of it, why it's there)
+ - Copying data between nodes
+ - Using SCP/SFTP to copy files to/from the cluster (+winscp client and others)
+ - Object storage (S3/dropbox)
+ - Using alces storage commands
+ - Important of storing files safely before shutting down the cluster
+
+Graphical desktop access to your login node:
+ - Launching a gnome desktop session
+ - Connecting to the session from an external client
+ - Connecting mutliple users to the same session
+ - Resizing the desktop to fit your screen
+ - Using alces session commands to enable other types of session
+ - Terminating and viewing running sessions
+
+Software applications:
+ - base OS version and default software (e.g. gcc)
+ - modules environment management; usage and commands, dependancies
+ - importance of "module display" to show licenses
+ - installing new applications using alces gridware command
+ - enabling volatile repos and manual dependancy resolution
+ - installing from depots
+ - installing commercial apps and license management
+
+Parallel (MPI) applications:
+ - What the MPI is for
+ - How to install MPIs for applications
+ - Running an MPI job manually
+
+Job schedulers:
+ - What they are for
+ - grid-engine specifics:
+  - interactive and non-interactive/batch jobs 
+  - what are job scripts with simple example (link to page on alces template command)
+  - default resources
+  - viewing queue and host status
+  - deleting jobs from the queue
+  - giving job-scheduler instructions (on command-line and in job-scripts)
+  - simple directive examples
+  - Requesting more resources 
+    - More CPU cores
+    - More memory (including using qacct to find out how much has been used)
+    - Longer runtime (including why you'd want to specify this)
+  - Documentation of all available scheduler directives
+ - alces template command for generating jobscripts
+
 
 .. toctree::
    :maxdepth: 3
    :glob:
-   :caption: Environment Usage: HPC
-   :name: environmentusage
+   :caption: Example workflows 
+   :name: exampleworkflows
 
    getting-started/environment-usage/run-an-interactive-application
    getting-started/environment-usage/run-a-graphical-application
-
-.. toctree::
-   :maxdepth: 1
-   :glob:
-   :caption: Application Usage: HPC
-   :name: appusage
-
    getting-started/environment-usage/gridware-features/*
    getting-started/environment-usage/gridware-howto/*
    getting-started/environment-usage/run-an-mpi-job
-
-.. toctree::
-   :maxdepth: 1
-   :glob:
-   :caption: Application Usage: Galaxy
-   :name: galaxyusage
-
    getting-started/environment-usage/galaxy/*
-
-.. toctree::
-   :maxdepth: 1
-   :glob:
-   :caption: Working with your storage
-   :name: alcesstorageusage
-
    clusterware-storage/alces-storage-overview
    clusterware-storage/alces-storage-file-config
    clusterware-storage/alces-storage-file-usage
    clusterware-storage/alces-storage-object-config
    clusterware-storage/alces-storage-object-usage
    environment-usage/alces-storage-examples
+
+.. toctree::
+   :maxdepth: 3
+   :glob:
+   :caption: Alces Flight Roadmap and future Appliances
+   :name: flightappliances
+
+   about/alces-flight-compute
+   about/alces-flight-storage-access
+   about/alces-flight-application-manager
+   about/alces-flight-galaxy-appliance
