@@ -7,9 +7,9 @@ This site holds documentation designed to help users create a simple research co
 
 License
 -------
-See `Creative-Commons: Attribution-ShareAlike 4.0 International <http://creativecommons.org/licenses/by-sa/4.0/>`_ and `Alces Flight EULA <https://s3-eu-west-1.amazonaws.com/flight-aws-marketplace/2016.1/EULA.txt>`_.
+This documentation is released under the `Creative-Commons: Attribution-ShareAlike 4.0 International <http://creativecommons.org/licenses/by-sa/4.0/>`_ license. The Alces Flight Compute software is released under the terms of the `Alces Flight EULA <https://s3-eu-west-1.amazonaws.com/flight-aws-marketplace/2016.1/EULA.txt>`_. Please read the relevant license text before proceeding to use. 
 
-Pre-requisities
+Prerequisites
 ---------------
 We recommend that users wishing to use Flight Appliances have basic Linux skills. The ability to move about in a filesystem, copy and delete files, read and edit files on the command-line will be needed in order to get the best out of the Flight software. 
 
@@ -23,6 +23,79 @@ We recommend that users wishing to use Flight Appliances have basic Linux skills
 
    overview/*
    
+.. toctree::
+   :maxdepth: 3
+   :glob:
+   :caption: Launching your cluster on AWS
+   :name: launch-aws
+
+   launch-aws/*   
+   
+.. toctree::
+   :maxdepth: 3
+   :glob:
+   :caption: Launching your cluster on OpenStack
+   :name: launch-os
+   
+   launch-os/*
+   
+.. toctree::
+   :maxdepth: 3
+   :glob:
+   :caption: Basic cluster operation
+   :name: basics
+   
+   basics/*
+   
+.. toctree::
+   :maxdepth: 3
+   :glob:
+   :caption: Getting data to and from your cluster
+   :name: databasics
+   
+   databasics/*
+   
+.. toctree::
+   :maxdepth: 3
+   :glob:
+   :caption: Graphical access to your cluster
+   :name: graphicaldesktop
+   
+   graphical-desktop/*
+   
+.. toctree::
+   :maxdepth: 3
+   :glob:
+   :caption: Software applications on your cluster
+   :name: apps
+   
+   apps/*
+   
+.. toctree::
+   :maxdepth: 3
+   :glob:
+   :caption: Parallel (MPI) applications
+   :name: mpiapps
+   
+   mpiapps/*
+   
+.. toctree::
+   :maxdepth: 3
+   :glob:
+   :caption: Cluster job-scheduler
+   :name: jobschedulers
+   
+   jobschedulers/*
+   
+.. toctree::
+   :maxdepth: 3
+   :glob:
+   :caption: Open Grid-scheduler (SGE)
+   :name: sge
+   
+   sge/*
+   
+   
 Overview:
  - What is Alces Flight (what does it do, and what it doesn't do)
  - Who is it for
@@ -31,7 +104,7 @@ Overview:
  - Where can I get help
 
 Launching your cluster on AWS
- - Pre-reqs
+ - Prerequisites
  - Finding Alces Flight Compute on AWS
  - How to answer CFT questions
  - on-demand vs SPOT and autoscaling
@@ -39,7 +112,7 @@ Launching your cluster on AWS
  - What happens when you terminate the cluster
 
 Launching your cluster on OpenStack
- - Pre-reqs
+ - Prerequisites
  - Preparing images for launch
  - How to answer Heat questions
  - Accessing your cluster
@@ -62,17 +135,17 @@ Getting data to and from your cluster:
 Graphical desktop access to your login node:
  - Launching a gnome desktop session
  - Connecting to the session from an external client
- - Connecting mutliple users to the same session
+ - Connecting multiple users to the same session
  - Resizing the desktop to fit your screen
  - Using alces session commands to enable other types of session
  - Terminating and viewing running sessions
 
 Software applications:
  - base OS version and default software (e.g. gcc)
- - modules environment management; usage and commands, dependancies
+ - modules environment management; usage and commands, dependencies
  - importance of "module display" to show licenses
  - installing new applications using alces gridware command
- - enabling volatile repos and manual dependancy resolution
+ - enabling volatile repos and manual dependency resolution
  - installing from depots
  - installing commercial apps and license management
 
