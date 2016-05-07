@@ -3,7 +3,7 @@
 Run a graphical application
 ###########################
 
-How to run a graphical application using your ClusterWare environment.
+How to run a graphical application using your Alces Flight Compute environment.
 
 The following guide will detail how to create an Alces GNOME session,
 then run a graphical application from within the graphical session.
@@ -11,8 +11,7 @@ then run a graphical application from within the graphical session.
 Prerequisites
 -------------
 
--  `ClusterWare compute environment
-   deployed <heat-deploy-sgecluster>`__
+-  Alces Flight compute environment deployed
 
 Creating a graphical session
 ----------------------------

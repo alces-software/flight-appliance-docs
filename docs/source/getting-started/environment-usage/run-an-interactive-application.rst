@@ -3,47 +3,63 @@
 Run an interactive application
 ==============================
 
-How to run an interactive application using your ClusterWare
-environment.
+How to run an interactive application using your Alces Flight Compute environment 
 
 The following guide will teach you how to gain an interactive session on a compute node, then run an application interactively
 
 Prerequisites
 -------------
 
--  :ref:`SGE compute node environment deployed <heat-deploy-sge-cluster>`
+- Alces Flight Compute environment deployed 
 -  At least 1 compute node deployed to the environment
--  ``benchmark`` Gridware depot installed
+- ``benchmark`` Gridware depot installed
 
 Running an interactive application
 ----------------------------------
 
-Once access has been gained to the ClusterWare login node - gain an
+Once access has been gained to the Alces Flight login node - gain an
 interactive session on one of the compute nodes, with all of that nodes
 resources using the ``qrsh`` command:
 
-.. code:: bahs
+.. code:: bash 
 
     [alces@login1(clusterware) ~]$ qrsh -pe mpinodes-verbose 1
     Warning: Permanently added '[node1.clusterware.alces.network]:60692,[192.168.150.183]:60692' (ECDSA) to the list of known hosts.
-                     +++++++++++++++++++++++++++++++++++++++++++++
-                                 Welcome to clusterware
-                              Alces Clusterware (r2016.01)
-                         Based on CentOS Linux 7.2.1511 (Core)
-                     +++++++++++++++++++++++++++++++++++++++++++++
+           `.:/+/
+       ./oooo+`
+     `/oooooo.                       Welcome to flight-cluster
+     /oooooo/
+     ooooooo-  ./o/                Alces Clusterware (r2016.2)
+     +oooooo/`+ooo       Based on CentOS Linux 7.2.1511 (Core)
+     -oooooooooooo
+      :ooooooooooo. `:+:`
+       -+ooooooooo+:ooo`
+        `:ooooooooooooo.                               `.
+          `:+oooooooooo+`                              /o/
+            `-+ooooooooo+-                 :.   .+/   -ooo:
+               .:+oooooooo+-`            .+o: `:ooo  :oooo+
+                  `-/oooooooo/..-....-:/+ooo//oooo+/+ooooo/
+                      ./oooooooo+oooooooooooooooooooooooo/`
+                        .+oooooooooo++oooooooooooooooo+:.
+                          .:/+ooooooo-`..--::::::::-.`
+                                `-:/oo+
+                                   `-.  -[ alces flight ]-
     TIPS:
 
     'module avail'            - show available application environments
     'module add <modulename>' - add a module to your current environment
-
-    'alces session'           - start and manage interactive sessions
+    
     'alces gridware'          - manage software for your environment
     'alces howto'             - guides on how to use your research environment
+    'alces session'           - start and manage interactive sessions
+    'alces storage'           - configure and address storage facilities
     'alces template'          - tailored job script templates
-
+    
     'qstat'                   - show summary of running jobs
     'qsub'                    - submit a job script
     'qdesktop'                - submit an interactive session request
+    
+    'aws help'                - show help for AWS CLI
 
 Once the interactive session has been gained - load the ``memtester``
 Gridware application:

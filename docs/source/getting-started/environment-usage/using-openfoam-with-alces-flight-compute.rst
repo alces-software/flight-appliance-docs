@@ -8,8 +8,7 @@ The following guide will run through the basics of using OpenFOAM together with 
 Prerequisites
 -------------
 
--  `Alces Flight compute environment
-   deployed <heat-deploy-sge-cluster>`__
+-  Alces Flight Compute environment deployed with at least 2 compute nodes
 
 Installing the OpenFOAM Gridware Depot
 --------------------------------------

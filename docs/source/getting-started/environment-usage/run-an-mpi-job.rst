@@ -12,15 +12,14 @@ nodes.
 Prerequisites
 -------------
 
--  `SGE compute node environment
-   deployed <https://github.com/alces-software/clusterware-deployment-methods/wiki/AWS:-Deploy-an-SGE-on-demand-compute-cluster>`__
+-  Alces Flight Compute environment deployed
 -  2 compute nodes provisioned
 -  ``benchmark`` Gridware depot installed
 
 Running IMB
 -----------
 
-From the ClusterWare environment login node, as either the administrator
+From the Alces Flight Compute environment login node, as either the administrator
 (``alces``) user - or a regular cluster user account - check the ``imb``
 application is available from the Gridware depot:
 

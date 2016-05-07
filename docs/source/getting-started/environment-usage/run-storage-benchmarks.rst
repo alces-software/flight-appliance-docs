@@ -40,10 +40,10 @@ Prerequisites
 The following prerequisites must have been met in order to follow this
 guide:
 
--  ClusterWare environment deployed
+-  Alces Flight Compute environment deployed
 -  SSH access to the environment
 -  ``benchmark`` GridWare depot installed
--  Administrator account access (``alces`` user)
+-  Administrator account access 
 
 Measuring write performance
 ---------------------------

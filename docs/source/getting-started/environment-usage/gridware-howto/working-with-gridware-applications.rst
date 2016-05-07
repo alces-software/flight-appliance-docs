@@ -10,7 +10,6 @@ Prerequisites
 
 -  `SGE compute node environment deployed <cfn-deploy-sge-spot-cluster>`_
 -  At least 1 compute node deployed
--  *Optional*: Application Manager Appliance deployed
 
 Overview
 --------
@@ -18,7 +17,7 @@ Alces Gridware provides users with a simple method to install many applications,
 
 Using the *modules* environment with the Alces Gridware utility enables you to install multiple versions of applications if required, traditionally this is not possible without advanced configuration.
 
-Gridware can install be installed from any host within your environment, in the case more powerful compute hosts are available - you may wish to compile applications on compute hosts. The default configuration shares Gridware applications across the ``/opt/gridware`` shared NFS directory from either the cluster login node or the Application Manager appliance, depending on your installation type.
+Gridware can install be installed from any host within your environment, in the case more powerful compute hosts are available - you may wish to compile applications on compute hosts. The default configuration shares Gridware applications across the ``/opt/gridware`` shared NFS directory from the cluster login node.
 
 Viewing available Gridware
 --------------------------
