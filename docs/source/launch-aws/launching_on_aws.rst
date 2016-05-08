@@ -131,7 +131,7 @@ If you are accessing from a Windows client using the Putty utility, enter the us
 The first time you connect to your cluster, you will be prompted to accept a new server SSH hostkey. This happens because you've never logged in to your cluster before - it should only happen the first time you login; click **OK** to accept the warning. Once connected to the cluster, you should be logged in to the cluster login node as your user.
 
 .. image:: firstlogin.jpg
-    :alt: Putty login
+    :alt: Logging in to the cluster
     
 
 
@@ -142,5 +142,5 @@ Your cluster login node will continue running until you terminate it via the `AW
 
 Over the next few minutes, your cluster login and compute nodes will be terminated. Any data held on EBS will be erased, with storage volumes being wiped and returned to the AWS pool. **Ensure that you have downloaded data that you want to keep to your client machine, or stored in safely in an object storage service before terminating your cluster.**
 
-See - **Getting data to and from your cluster** :ref:`data_basics` for more information on storing your data. 
+See - :ref:`data_basics` for more information on storing your data. 
 
