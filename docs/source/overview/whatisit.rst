@@ -53,19 +53,22 @@ You'll need a client device as well - something to log into your cluster from. T
 
 It's worth checking for centrally-managed client systems that you can install the software that you need - some research sites don't allow users to install new software. Here are some recommendations of software that you can use on client machines; this is far from a complete list, but should help you get started:
 
-+--------------------+---------+-------------+-----------+-------------------------+
-| **Client type**        |  **SSH**    |   **Browser**   |   **VNC**     | **Graphical file transfer** |
-+--------------------+---------+-------------+-----------+-------------------------+
-| Mac                | SSH        | Safari     |  vncviewer | `Cyberduck <http://cyberduck.ch/>`_ |
-|                    | (built-in) | (built-in) | (built-in) | `Filezilla <https://filezilla-project.org/>`_ |
-+--------------------+---------+-------------+-----------+-------------------------+
-| Linux              | SSH        | `Firefox <http://www.mozilla.org/firefox>`_ | `RealVNC viewer <https://www.realvnc.com/download/viewer/linux/>`_ |  `Cyberduck <http://cyberduck.ch/>`_ |
-|                    |  (built-in) | `Chrome <https://www.google.com/chrome/browser/desktop/>`_ |           | `Filezilla <https://filezilla-project.org/>`_ |
-+--------------------+---------+-------------+-----------+-------------------------+
-| Windows            | `Putty <http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html>`_ | `Firefox <http://www.mozilla.org/firefox>`_ | `TurboVNC <https://sourceforge.net/projects/turbovnc/>`_ | `WinSCP <https://winscp.net/>`_ |
-|                    | `SmaTTY <http://smartty.sysprogs.com/>`_ | `Chrome <https://www.google.com/chrome/browser/desktop/>`_ |         | `Filezilla <https://filezilla-project.org/>`_ |
-+--------------------+---------+-------------+-----------+-------------------------+
-
+ - SSH client:
+     - Use the built-in ``ssh`` client for Mac and Linux
+     - For Windows, try `Putty <http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html>`_ or `SmaTTY <http://smartty.sysprogs.com/>`_
+     
+ - Web-browser:
+     - Use the built-in Safari browser On Macs
+     - For Linux and Windows, install `Firefox <http://www.mozilla.org/firefox>`_ or `Chrome <https://www.google.com/chrome/browser/desktop/>`_
+     
+ - VNC (Graphical desktop client):
+     - Use the built-in VNC client on Macs
+     - For Linux, install "vncviewer" package, or install `RealVNC viewer <https://www.realvnc.com/download/viewer/linux/>`_
+     - For Windows, install `TurboVNC <https://sourceforge.net/projects/turbovnc/>`_
+     
+ - Graphical file-transfer tools:
+     - For Macs and Linux, install `Cyberduck <http://cyberduck.ch/>`_ or `Filezilla <https://filezilla-project.org/>`_
+     - For Windows, try `WinSCP <https://winscp.net/>`_, `Cyberduck <http://cyberduck.ch/>`_ or `Filezilla <https://filezilla-project.org/>`_
 
 We've tried to make recommendations for open-source and/or free software client software here - as ever, please read and obey the licensing terms, and try to contribute to the supporting projects either financially, or by referencing them in your research publications. 
 
