@@ -96,9 +96,8 @@ There are also a number of graphical file-management interfaces available that s
 
 
 .. image:: winscpconfig.jpg
-    :alt: Configuring WinSCP
+   :alt: Configuring WinSCP
 
-    
  - Optionally click the ``Save`` button and give this session a name
  - Click the ``Login`` button to connect to your cluster
  - Accept the warning about adding a new server key to your cache; this message is displayed only once when you first connect to a new cluster
@@ -110,7 +109,7 @@ There are also a number of graphical file-management interfaces available that s
 .. image:: winscpcopyfiles.jpg
     :alt: Copying files with WinSCP
 
- 
+
 The amount of time taken to copy data to and from your cluster will depend on a number of factors, including:
 
  - The size of the data being copied
