@@ -142,4 +142,4 @@ Your cluster login node will continue running until you terminate it via the `AW
 
 Over the next few minutes, your cluster login and compute nodes will be terminated. Any data held on EBS will be erased, with storage volumes being wiped and returned to the AWS pool. **Ensure that you have downloaded data that you want to keep to your client machine, or stored in safely in an object storage service before terminating your cluster.**
 
-See `Getting data to and from your cluster <databasics/data_basics>`_ for more information on storing your data. 
+See `Getting data to and from your cluster <../databasics/data_basics>`_ for more information on storing your data. 
