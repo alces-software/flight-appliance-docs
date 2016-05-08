@@ -11,7 +11,7 @@ Prerequisites
 
 There are some things that you need to get ready before you can launch your own cluster on AWS. They are:
 
- - Check client :ref:`clientprereqs` to make sure you have the software you need.
+ - Check client prerequisites to make sure you have the software you need - :ref:`whatisit` 
  - **Get yourself an AWS account**; this might be your personal account, or you may have a sub-account as part of your institution or company
  - **Create an SSH keypair** for yourself in the region you want to run in. `Follow this guide <http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html>`_ if you've not done this before. 
 
