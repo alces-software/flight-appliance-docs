@@ -13,6 +13,8 @@ Alces Flight Compute is a software appliance designed to help researchers and sc
 
 Flight is designed to get researchers started with HPC as quickly as possible, providing a pre-configured environment which is ready for work immediately. The cluster you build is personal to you - users have root-access to the environment, and can setup and configure the system to their needs. 
 
+Your cluster is designed to be **ephemeral** - i.e. you run it for as long as you need it, then shut it down. Although there is no built-in time limit for Flight clusters, the most effective way of sharing compute resources in the cloud is to book them out only when you need them. Contrary to popular belief, you can achieve huge cost savings over purchasing server hardware if learn to work effectively in this way.
+
 Who is it for?
 --------------
 
@@ -38,7 +40,7 @@ You are likely to incur infrastructure costs from your platform provider (i.e. A
 
 
 Prerequisites
--------------
+=============
 
 You're going to need access to some computers. If you already have access to cloud resources, then great - you're ready to go. There are some specific requirements depending on your platform type, which are discussed in the relevant chapters of this guide. If you don't have access to anything yet then that's fine too - just sign up for an AWS account now and you'll have all the access you need. 
 
@@ -46,9 +48,9 @@ You'll need a client device as well - something to log into your cluster from. T
 
  - **A computer with a screen and a keyboard**; you can probably access on a tablet or smartphone too, if your typing is good enough
  - **A relatively modern web-browser**; Microsoft Edge, Google Chrome, Mozilla Firefox, Apple Safari and pretty much anything else that was written/updated in the last couple of years should all be fine.
- - **An SSH client**; this comes built-in for Linux and Mac based machines, but you'll need to install one for Windows clients or some tablets.
+ - **An SSH client**; this comes built-in for Linux and Mac based machines, but you'll need to install one for Windows clients and some tablets.
  - **Internet access**; it seems dumb to list this as a requirement for running HPC on cloud resources, but a surprising number of sites actually limit outbound connectivity to the Internet. 
- - ***Optionally*; A graphical data transfer tool**; you don't actually need one of these, but they can really help new users get started more quickly. 
+ - *Optionally*; **A graphical data transfer tool**; you don't actually need one of these, but they can really help new users get started more quickly. 
  
 
 It's worth checking for centrally-managed client systems that you can install the software that you need - some research sites don't allow users to install new software. Here are some recommendations of software that you can use on client machines; this is far from a complete list, but should help you get started:
@@ -74,7 +76,7 @@ We've tried to make recommendations for open-source and/or free software client 
 
 
 Where can I get help?
----------------------
+=====================
 
 This documentation is designed to walk users through the first stages of creating their clusters, and getting started in the environment. Capable users with some experience can be up and running in a handful of minutes - don't panic if it takes you a little more time, especially if you've not used Linux or HPC clusters before. Firstly - don't worry that you might break something complicated and expensive; one of the joys of having your own personal environment to work in is that no one can see what you did wrong, and nothing is at risk of being broken, aside from the data and work you've done yourself in the environment. 
 
