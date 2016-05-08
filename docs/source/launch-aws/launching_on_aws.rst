@@ -11,7 +11,7 @@ Prerequisites
 
 There are some things that you need to get ready before you can launch your own cluster on AWS. They are:
 
- - **Client prerequisites**
+ - `Client prerequisites <overview/whatisit#prerequisites>`_
  - **Get yourself an AWS account**; this might be your personal account, or you may have a sub-account as part of your institution or company
  - **Create an SSH keypair** for yourself in the region you want to run in. `Follow this guide <http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html>`_ if you've not done this before. 
 
@@ -92,7 +92,7 @@ The AWS EC2 service supports a number of different charging models for launching
 
  - On-demand instances; instances are launched immediately at a fixed hourly price. Once launched, your instance will not normally be terminated unless you choose to stop it.
  
- - **`SPOT instances <https://aws.amazon.com/ec2/spot/>`_**; instances are requested with a bid-price entered by the end-user which represents the maximum amount they want to pay for them per hour. If public demand for this instance type allows, instances will be launched at the current SPOT price, which is typically much lower than the equivalent on-demand price. As demand increases for the instance type increases, so the cost per hour charged to users also increases. AWS will automatically stop any instances (or delay starting new ones) if the current SPOT price is higher than the maximum amount users want to pay for them. 
+ - `SPOT instances <https://aws.amazon.com/ec2/spot/>`_; instances are requested with a bid-price entered by the end-user which represents the maximum amount they want to pay for them per hour. If public demand for this instance type allows, instances will be launched at the current SPOT price, which is typically much lower than the equivalent on-demand price. As demand increases for the instance type increases, so the cost per hour charged to users also increases. AWS will automatically stop any instances (or delay starting new ones) if the current SPOT price is higher than the maximum amount users want to pay for them. 
  
 SPOT instances are a good way to pay a lower cost for cloud computing for non-urgent workloads. If SPOT compute node instances are terminated in your cluster, any running jobs will be lost - the nodes will also be automatically removed from the queue system to ensure no new jobs attempt to start on them. Once the SPOT price becomes low enough for your instances to start again, your compute nodes will automatically restart and rejoin the cluster. 
 
@@ -104,14 +104,14 @@ Using an auto-scaling cluster
 
 An auto-scaling cluster automatically reports the status of the job scheduler queue to AWS to allow idle compute nodes to be shut-down, and new nodes to be started when jobs are queuing. Auto-scaling is a good way to manage the size of your ephemeral cluster automatically, and is useful if you want to run a number of unattended jobs, and minimise costs after the jobs have finished by terminating unused resources.
 
-If you are running jobs manually (i.e. not through the job-scheduler), you may wish to disable autoscaling to prevent nodes not running scheduled jobs from being shutdown. This can be done by entering 0 (zero) in the **ComputeSpotPrice** when launching your Flight Compute cluster via AWS Marketplace, or using the command ``alces configure autoscaling disable`` command when logged in to the cluster login node.
+If you are running jobs manually (i.e. not through the job-scheduler), you may wish to disable autoscaling to prevent nodes not running scheduled jobs from being shutdown. This can be done by entering ``0`` (zero) in the **ComputeSpotPrice** when launching your Flight Compute cluster via AWS Marketplace, or using the command ``alces configure autoscaling disable`` command when logged in to the cluster login node.
 
 
 
 Accessing your cluster
 ======================
 
-Once your cluster has been launched, the login node will be accessible via SSH from the IP address range you entered in the **NetworkCIDR**. If you entered "0.0.0.0/0" as the **NetworkCIDR**, your login node will be accessible from any IP address on the Internet. The login node's public IP address is reported by the AWS Cloud-formation template, along with the username you must use to login with your keypair. 
+Once your cluster has been launched, the login node will be accessible via SSH from the IP address range you entered in the **NetworkCIDR**. If you entered ``0.0.0.0/0`` as the **NetworkCIDR**, your login node will be accessible from any IP address on the Internet. Your login node's public IP address is reported by the AWS Cloud-formation template, along with the username you must use to login with your keypair. 
 
 To access the cluster login node from a Linux or Mac client, use the following command:
 
@@ -137,4 +137,4 @@ Your cluster login node will continue running until you terminate it via the `AW
 
 Over the next few minutes, your cluster login and compute nodes will be terminated. Any data held on EBS will be erased, with storage volumes being wiped and returned to the AWS pool. **Ensure that you have downloaded data that you want to keep to your client machine, or stored in safely in an object storage service before terminating your cluster.**
 
-See `Getting data to and from your cluster </databasics/data_basics>` for more information on storing your data. 
+See `Getting data to and from your cluster <databasics/data_basics>`_ for more information on storing your data. 

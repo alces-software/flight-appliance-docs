@@ -58,8 +58,8 @@ Using PDSH
 Users can run a command across all compute nodes at once using the ``pdsh`` command. This can be useful if users want to make a change to all nodes in the cluster - for example, installing a new software package. The ``pdsh`` command can take a number of parameters that control now commands are processed; for example:
 
   - ``pdsh -g cluster uptime`` 
-     - executes the ``uptime`` command on all available compute and login nodes
-  - ``pdsh -g nodes \'sudo yum -y install screen\'`` 
+     - executes the ``uptime`` command on all available compute and login nodes in the cluster
+  - ``pdsh -g nodes 'sudo yum -y install screen'`` 
      - use ``yum`` to install the ``screen`` package as the root user on all compute nodes
   - ``pdsh -g nodes -f 1 df -h /tmp`` 
      - executes the command ``df -h /tmp`` on all compute nodes of the cluster, one at a time (fanout=1)
