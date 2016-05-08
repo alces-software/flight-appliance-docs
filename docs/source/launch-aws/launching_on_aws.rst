@@ -11,7 +11,7 @@ Prerequisites
 
 There are some things that you need to get ready before you can launch your own cluster on AWS. They are:
 
- - `Client prerequisites :ref:_data_basics`
+ - :ref:_data_basics
  - **Get yourself an AWS account**; this might be your personal account, or you may have a sub-account as part of your institution or company
  - **Create an SSH keypair** for yourself in the region you want to run in. `Follow this guide <http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html>`_ if you've not done this before. 
 
@@ -142,4 +142,5 @@ Your cluster login node will continue running until you terminate it via the `AW
 
 Over the next few minutes, your cluster login and compute nodes will be terminated. Any data held on EBS will be erased, with storage volumes being wiped and returned to the AWS pool. **Ensure that you have downloaded data that you want to keep to your client machine, or stored in safely in an object storage service before terminating your cluster.**
 
-See `Getting data to and from your cluster <../databasics/data_basics>`_ for more information on storing your data. 
+See `Getting data to and from your cluster </databasics/data_basics>`_ for more information on storing your data. 
+
