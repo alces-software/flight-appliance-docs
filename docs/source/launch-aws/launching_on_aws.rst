@@ -77,8 +77,7 @@ When you choose to start a Flight Compute cluster from AWS Marketplace, you will
  
  - **Username**; enter the username you want to use to connect to the cluster. Flight will automatic create this user on the cluster, and add your public SSH key to the user. 
  
-.. image:: launch-aws/aws-launch_CFT_questions.jpg
-    :alt: AWS CFT questions
+.. image:: aws-launch_CFT_questions.jpg
    
 When all the questions are answered, click the **Next** button to proceed. Enter any tags you wish to use to identify instances in your environment on the next page, then click the **Next** button again. On the review page, read through the answers you've provided and correct any mistakes - click on the *Capabilities* check-box to authorize creations of an IAM role to report cluster performance back to AWS, and click on the **Create** button.
 

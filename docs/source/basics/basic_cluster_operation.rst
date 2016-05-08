@@ -22,7 +22,7 @@ Becoming the root user
 
 Most cluster operations, including starting applications and running jobs, should be performed as the user created when the Flight Compute cluster was launched from AWS Marketplace. However - for some privileged operations, users may need to change to being the root user. Users can prefix any command they want to run as the root user with the ``sudo`` command; e.g. 
 
-   ``sudo mount yum install screen``
+   ``sudo yum install screen``
    
 For security reasons, SSH login as the root user is not permitted to a Flight Compute environment. To get a Linux shell with root privileges, please login as your standard user then execute the command ``sudo -s``. 
 
@@ -49,7 +49,7 @@ Flight Compute clusters automatically configure a trust relationship between log
 
   ``ssh host-22-33-11-123``
   
-Use the ``logout`` command (or press ``CTRL+D``) to exit the compute node and return to the login node.
+Use the ``logout`` command (or press **CTRL+D**) to exit the compute node and return to the login node.
 
 
 Using PDSH
