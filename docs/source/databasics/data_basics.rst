@@ -92,10 +92,12 @@ There are also a number of graphical file-management interfaces available that s
  - Start WinSCP; in the **login** configuration box, enter the IP address of your Flight Compute cluster login node in the ``Host name`` box
  - Enter the username you configured for your cluster in the ``User name`` box
  - Click on the ``Advanced`` box and navigate to the ``SSH`` sub-menu, and the ``Authentication`` item
- - In the ``Private key file`` box, select your AWS private key, and click the ``OK`` box
+ - In the ``Private key file`` box, select your AWS private key, and click the ``OK`` box.
+
 
 .. image:: winscpconfig.jpg
     :alt: Configuring WinSCP
+
     
  - Optionally click the ``Save`` button and give this session a name
  - Click the ``Login`` button to connect to your cluster
@@ -104,8 +106,10 @@ There are also a number of graphical file-management interfaces available that s
  - To copy files to the cluster from your client, click and drag them from the left-hand window and drop them on the right-hand window
  - To copy files from the cluster to your client, click and drag them from the right-hand window and drop them on the left-hand window
 
+
 .. image:: winscpcopyfiles.jpg
     :alt: Copying files with WinSCP
+
  
 The amount of time taken to copy data to and from your cluster will depend on a number of factors, including:
 
@@ -118,6 +122,7 @@ Object storage for archiving data
 ---------------------------------
 
 As an alternative to copying data back to your client machine, users may prefer to upload their data to a cloud-based object storage service instead. Flight Compute clusters include tools for accessing data stored in the ``AWS S3 <https://aws.amazon.com/s3/>`_ object storage service, as well as the ``Dropbox <https://www.dropbox.com/>`_ cloud storage service. Benefits of using an cloud-based storage service include:
+
 
  - Data is kept safe and does not have to be independantly backed-up
  - Storage is easily scalable, with the ability for data to grow to practically any size
