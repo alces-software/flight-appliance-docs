@@ -39,6 +39,7 @@ Alces Flight Compute is an open-source software appliance and is freely availabl
 You are likely to incur infrastructure costs from your platform provider (i.e. AWS, or your local OpenStack team) if you are using their compute resources. This documentation will highlight the configuration points that can effect how much you might be charged, but a full cost estimate for your work is outside the scope of Flight documentation. Your platform providers are there to help though - if in doubt, start small (e.g. a handful of nodes for a few hours) and review the costs before scaling your workload up. It's worth spending some time reviewing your costs over the longer term as well, as you may be able to reduce the bill if you run jobs at a different time of day, on different types of resources, or even in a different geographic region if your datasets allow. 
 
 
+.. _clientprereqs:
 Prerequisites
 =============
 
