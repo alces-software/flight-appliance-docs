@@ -1,7 +1,7 @@
 .. _launching_on_aws:
 
 Launching on AWS
-================
+################
 
 Alces Flight Compute can be launched on the Amazon Web Services (AWS) public cloud platform to give you instant access to your own, private HPC cluster from anywhere in the world. You can choose what resources your cluster will start with (e.g. number of nodes, amount of memory, etc.), and for how long the cluster will run. 
 
@@ -11,7 +11,7 @@ Prerequisites
 
 There are some things that you need to get ready before you can launch your own cluster on AWS. They are:
 
- - `Client prerequisites <overview/whatisit#prerequisites>`_
+ - `Client prerequisites :ref:_data_basics`
  - **Get yourself an AWS account**; this might be your personal account, or you may have a sub-account as part of your institution or company
  - **Create an SSH keypair** for yourself in the region you want to run in. `Follow this guide <http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html>`_ if you've not done this before. 
 
@@ -127,7 +127,12 @@ If you are accessing from a Windows client using the Putty utility, enter the us
 
 .. image:: putty.jpg
     :alt: Putty login
+    
+The first time you connect to your cluster, you will be prompted to accept a new server SSH hostkey. This happens because you've never logged in to your cluster before - it should only happen the first time you login; click **OK** to accept the warning. Once connected to the cluster, you should be logged in to the cluster login node as your user.
 
+.. image:: firstlogin.jpg
+    :alt: Putty login
+    
 
 
 Terminating the cluster
