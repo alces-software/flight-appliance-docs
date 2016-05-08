@@ -78,6 +78,7 @@ When you choose to start a Flight Compute cluster from AWS Marketplace, you will
  - **Username**; enter the username you want to use to connect to the cluster. Flight will automatic create this user on the cluster, and add your public SSH key to the user. 
  
 .. image:: aws-launch_CFT_questions.jpg
+    :alt: AWS Marketplace Cloud-formation template questions
    
 When all the questions are answered, click the **Next** button to proceed. Enter any tags you wish to use to identify instances in your environment on the next page, then click the **Next** button again. On the review page, read through the answers you've provided and correct any mistakes - click on the *Capabilities* check-box to authorize creations of an IAM role to report cluster performance back to AWS, and click on the **Create** button.
 
@@ -103,7 +104,7 @@ Using an auto-scaling cluster
 
 An auto-scaling cluster automatically reports the status of the job scheduler queue to AWS to allow idle compute nodes to be shut-down, and new nodes to be started when jobs are queuing. Auto-scaling is a good way to manage the size of your ephemeral cluster automatically, and is useful if you want to run a number of unattended jobs, and minimise costs after the jobs have finished by terminating unused resources.
 
-If you are running jobs manually (i.e. not through the job-scheduler), you may wish to disable autoscaling to prevent nodes not running scheduled jobs from being shutdown. This can be done by entering 0 (zero) in the **ComputeSpotPrice** when launching your Flight Compute cluster via AWS Marketplace, or using the command ``alces autoscaling disable`` command when logged in to the cluster login node.
+If you are running jobs manually (i.e. not through the job-scheduler), you may wish to disable autoscaling to prevent nodes not running scheduled jobs from being shutdown. This can be done by entering 0 (zero) in the **ComputeSpotPrice** when launching your Flight Compute cluster via AWS Marketplace, or using the command ``alces configure autoscaling disable`` command when logged in to the cluster login node.
 
 
 
@@ -124,7 +125,7 @@ To access the cluster login node from a Linux or Mac client, use the following c
   
 If you are accessing from a Windows client using the Putty utility, enter the username and IP address of the cluster login node in the "Host Name" box provided:
 
-.. figure:: _launch-aws/putty.jpg
+.. image:: putty.jpg
     :alt: Putty login
 
 
@@ -136,4 +137,4 @@ Your cluster login node will continue running until you terminate it via the `AW
 
 Over the next few minutes, your cluster login and compute nodes will be terminated. Any data held on EBS will be erased, with storage volumes being wiped and returned to the AWS pool. **Ensure that you have downloaded data that you want to keep to your client machine, or stored in safely in an object storage service before terminating your cluster.**
 
-See :doc:`Getting data to and from your cluster </databasics/*>` for more information on storing your data. 
+See `Getting data to and from your cluster </databasics/data_basics>` for more information on storing your data. 

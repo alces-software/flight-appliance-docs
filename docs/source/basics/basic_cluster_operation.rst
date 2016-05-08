@@ -11,7 +11,7 @@ You can access the login node for your private Flight Compute cluster using SSH 
 
 In cluster launched using the Flight Compute AWS Marketplace Cloud-formation template, compute nodes do not have Internet-addressable IP addresses. In order to access individual compute nodes, you must first login to the cluster login node. 
 
-.. figure:: _AWS-Marketplace-Diagram.png
+.. image:: AWS-Marketplace-Diagram.png
     :alt: AWS CFT Diagram
 
 When you login to the cluster via SSH, you are automatically placed in your home-directory. This area is shared across all compute nodes in the cluster, and is mounted in the same place on every compute. Data copied to the cluster or created in your home-directory on the login node is also accessible from all compute nodes. 
@@ -57,10 +57,14 @@ Using PDSH
 
 Users can run a command across all compute nodes at once using the ``pdsh`` command. This can be useful if users want to make a change to all nodes in the cluster - for example, installing a new software package. The ``pdsh`` command can take a number of parameters that control now commands are processed; for example:
 
-  - ``pdsh -g cluster uptime`` - executes the ``uptime`` command on all available compute and login nodes
-  - ``pdsh -g nodes \'sudo yum -y install screen\'`` - use ``yum`` to install the ``screen`` package as the root user on all compute nodes
-  - ``pdsh -g nodes -f 1 df -h /tmp`` - executes the command ``df -h /tmp`` on all compute nodes of the cluster, one at a time (fanout=1)
-  - ``pdsh -w ip-10-75-0-235,ip-10-75-0-66 which ldconfig`` - runs the ``which ldconfig`` command on two named nodes only
+  - ``pdsh -g cluster uptime`` 
+     - executes the ``uptime`` command on all available compute and login nodes
+  - ``pdsh -g nodes \'sudo yum -y install screen\'`` 
+     - use ``yum`` to install the ``screen`` package as the root user on all compute nodes
+  - ``pdsh -g nodes -f 1 df -h /tmp`` 
+     - executes the command ``df -h /tmp`` on all compute nodes of the cluster, one at a time (fanout=1)
+  - ``pdsh -w ip-10-75-0-235,ip-10-75-0-66 which ldconfig`` 
+     - runs the ``which ldconfig`` command on two named nodes only
   
 
   
