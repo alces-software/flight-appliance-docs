@@ -158,11 +158,30 @@ For example; to configure access to an AWS S3 account using the access and secre
   
 When configuring a Dropbox account, the user is provided with a URL that must be copied and pasted into a browser session on their local client machine:
 
-<insert info here>
+<insert example of dropbox config here>
 
-<alces storage examples>
+Once you have set up one or more configurations, you can switch between the different storage spaces using the following commands:
 
+<insert example of changing between areas>
 
-Important of storing files safely before shutting down the cluster
-------------------------------------------------------------------
+From the command-line, users can upload and download data from their configured storage areas. To upload data to an object storage area, use the ``alces storage put <local-file> <object-name>`` command; e.g.
+
+<insert example of putting data>
+
+To download data from an object storage service, use the ``alces storage get <object-name> <local-file>`` command; e.g.
+
+<insert example of getting data>
+
+Users can also create new buckets in their object-storage service using the ``alces storage mb <bucket-name>`` command, and then put objects into the new bucket; e.g.
+
+<insert example of making a bucket and putting a file into it>
+
+Users can also recursively transfer entire buckets (including any buckets contained within) using the ``--recursive`` option to the ``alces storage`` command; e.g.
+
+<insert example of using recursive option>
+
+Saving data before terminating your cluster
+-------------------------------------------
+
+When you've finished working with your Alces Flight Compute cluster, you can select to terminate it in the AWS console. This will stop any running instances and wipe the shared storage area before returning the EBS volume back to AWS. Before you shutdown your cluster, users must ensure that they store their data safely in a persistent service, using one of the methods described on this page. When you next launch a Flight Compute cluster, you can restore your data from the storage service to begin processing again. 
 
