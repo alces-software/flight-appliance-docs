@@ -74,3 +74,4 @@ To display connection information for an existing session, use the command ``alc
 
 <screenshot>
 
+Users can terminate a running session by using the ``alces session stop <session-ID>`` command. A terminated session will be immediately stopped, disconnecting any users. 
