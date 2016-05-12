@@ -19,14 +19,14 @@ To begin setting up the Alces customiser tool - log in to your Alces Flight Comp
 
     [alces@login1(alces-cluster) ~]$ alces about node
     Clusterware release: 2016.2
-    Customizer bucket prefix: s3://nmi0ztdmyzm3ztm3.alces-flight.com/customizer/default
+    Customizer bucket prefix: s3://a1i0ytdmvzv3ztv3.alces-flight.com/customizer/default
     Platform host name: ec2-52-51-77-141.eu-west-1.compute.amazonaws.com
     Public IP address: 52.51.77.141
-    Account hash: nmi0ztdmyzm3ztm3
+    Account hash: a1i0ytdmvzv3ztv3
 
 Using the information provided - a new S3 bucket must be created using the prefix provided. Using one of the available tools, such as ``alces storage`` or ``s3cmd`` or the S3 web console - create a new bucket, for instance in the example the bucket would be called: 
 
-    ``nmi0ztdmyzm3ztm3.alces-flight.com``
+    ``a1i0ytdmvzv3ztv3.alces-flight.com``
 
 Once the bucket is created - create a "folder" within the bucket named: 
 
