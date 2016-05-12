@@ -17,7 +17,7 @@ To begin setting up the Alces customiser tool - log in to your Alces Flight Comp
 
 .. code:: bash
 
-    [alces@login1(vaughan) ~]$ alces about node
+    [alces@login1(alces-cluster) ~]$ alces about node
     Clusterware release: 2016.2
     Customizer bucket prefix: s3://nmi0ztdmyzm3ztm3.alces-flight.com/customizer/default
     Platform host name: ec2-52-51-77-141.eu-west-1.compute.amazonaws.com
