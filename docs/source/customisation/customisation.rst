@@ -34,6 +34,10 @@ Once the bucket is created - create a "folder" within the bucket named:
 
 Now, from within the ``customizer`` folder - create another folder named ``default``, this sets up the ``default`` customiser profile. 
 
+From within the ``default`` folder - create the configuration folder - this is where all customisation scripts should be placed. Create a new folder within the ``default`` folder named:
+
+    ``configure.d``
+
 .. note:: It is important that the bucket and folders are created with the correct names - failing to create the bucket and folders with the correct names will mean the Alces customiser will not run
 
 Your AWS account is now ready for use with the Alces customiser tool. 
@@ -50,9 +54,9 @@ The following simple example customisation shell script would install the ``emac
     #!/bin/bash
     yum -y install emacs
 
-Once the bash script has been created - upload it to your S3 bucket into the ``default`` folder, for example: 
+Once the bash script has been created - upload it to your S3 bucket into the ``configure.d`` folder previously created, for example: 
 
-    ``s3://<account hash>.alces-flight.com/customizer/default/emacs.sh``
+    ``s3://<account hash>.alces-flight.com/customizer/default/configure.d/emacs.sh``
 
 You can upload multiple customisation scripts to the ``default`` folder - each of the scripts will be run. 
 
