@@ -30,6 +30,7 @@ We recommend that users wishing to use Flight Appliances have basic Linux skills
    :name: launch-aws
 
    launch-aws/*   
+   customisation/*
    
 .. toctree::
    :maxdepth: 3
