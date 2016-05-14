@@ -66,6 +66,7 @@ The ``xrandr`` command will display a list of available resolutions supported by
 
 .. code:: bash
 
+    [alces@login1(scooby) ~]$ xrandr
     Screen 0: minimum 32 x 32, current 1024 x 768, maximum 32768 x 32768
     VNC-0 connected primary 1024x768+0+0 0mm x 0mm
        1920x1200     60.00
