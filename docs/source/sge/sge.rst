@@ -45,3 +45,5 @@ Longer runtime
 All available directives
 ------------------------ 
 Documentation of all available scheduler directives
+Using the alces template command
+

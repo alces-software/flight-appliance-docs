@@ -88,22 +88,23 @@ Using a graphical client to copy data
 
 There are also a number of graphical file-management interfaces available that support the SSH/SCP/SFTP protocols. A graphical interface can make it easier for new users to manage their data, as they provide a simple drag-and-drop interface that helps to visualise where data is being stored. The example below shows how to configure the `WinSCP <https://winscp.net/eng/download.php>`_ utility on a Windows client to allow data to be moved to and from a cluster.
 
- - On a Windows client, download and install `WinSCP <https://winscp.net/eng/download.php>`_
- - Start WinSCP; in the **login** configuration box, enter the IP address of your Flight Compute cluster login node in the ``Host name`` box
- - Enter the username you configured for your cluster in the ``User name`` box
- - Click on the ``Advanced`` box and navigate to the ``SSH`` sub-menu, and the ``Authentication`` item
- - In the ``Private key file`` box, select your AWS private key, and click the ``OK`` box.
+- On a Windows client, download and install `WinSCP <https://winscp.net/eng/download.php>`_
+- Start WinSCP; in the **login** configuration box, enter the IP address of your Flight Compute cluster login node in the ``Host name`` box
+- Enter the username you configured for your cluster in the ``User name`` box
+- Click on the ``Advanced`` box and navigate to the ``SSH`` sub-menu, and the ``Authentication`` item
+- In the ``Private key file`` box, select your AWS private key, and click the ``OK`` box.
 
 
 .. image:: winscpconfig.jpg
    :alt: Configuring WinSCP
 
- - Optionally click the ``Save`` button and give this session a name
- - Click the ``Login`` button to connect to your cluster
- - Accept the warning about adding a new server key to your cache; this message is displayed only once when you first connect to a new cluster
- - WinSCP will login to your cluster; the window shows your local client machine on the left, and the cluster on the right
- - To copy files to the cluster from your client, click and drag them from the left-hand window and drop them on the right-hand window
- - To copy files from the cluster to your client, click and drag them from the right-hand window and drop them on the left-hand window
+
+- Optionally click the ``Save`` button and give this session a name
+- Click the ``Login`` button to connect to your cluster
+- Accept the warning about adding a new server key to your cache; this message is displayed only once when you first connect to a new cluster
+- WinSCP will login to your cluster; the window shows your local client machine on the left, and the cluster on the right
+- To copy files to the cluster from your client, click and drag them from the left-hand window and drop them on the right-hand window
+- To copy files from the cluster to your client, click and drag them from the right-hand window and drop them on the left-hand window
 
 
 .. image:: winscpcopyfiles.jpg
@@ -151,7 +152,7 @@ For example; to configure access to an AWS S3 account using the access and secre
 
     [alces@login1(scooby) ~]$ alces storage configure my-s3area1 s3
     Display name [my-s3area1]:
-    Access key: PZHAA6I2OEDF9F1RQS8Q
+    Access key: PZHAA6I2OEDF9F2RQS8Q
     Secret key: ********************
     Service address [s3.amazonaws.com]:
     alces storage configure: storage configuration complete
@@ -159,27 +160,82 @@ For example; to configure access to an AWS S3 account using the access and secre
   
 When configuring a Dropbox account, the user is provided with a URL that must be copied and pasted into a browser session on their local client machine:
 
-<insert example of dropbox config here>
+.. code:: bash
+
+    [alces@login1(scooby) ~]$ alces storage configure mydb dropbox
+    Display name [mydb]:
+    Please visit the following URL in your browser and click 'Authorize':
+    
+      https://www.dropbox.com/1/oauth/authorize?oauth_token=bdD4e2V2rjTf752u
+    
+    Once you have completed authorization, please press ENTER to continue...
+
+
+Copy the URL provided into your browser on your client system - you will be prompted to login to Dropbox (if you don't already have a session); click on the "Authorize" button on the next screen to allow your Flight Compute cluster to access the files stored in your Dropbox account.
 
 Once you have set up one or more configurations, you can switch between the different storage spaces using the following commands:
 
-<insert example of changing between areas>
+.. code:: bash
 
+    [alces@login1(scooby) ~]$ alces storage use my-s3area1
+    alces storage use: storage configuration 'my-s3area1' now set as default
+    
 From the command-line, users can upload and download data from their configured storage areas. To upload data to an object storage area, use the ``alces storage put <local-file> <object-name>`` command; e.g.
 
-<insert example of putting data>
+.. code:: bash
+
+    [alces@login1(scooby) ~]$ alces storage put mydatafile datafile-may2016
+    alces storage put: mydatafile -> datafile-may2016
+    
+    [alces@login1(scooby) ~]$ alces storage ls
+    2012-08-23 17:08        DIR   Public
+    2016-05-14 16:10       1335   datafile-may2016
+    2012-08-23 17:08     246000   Getting Started.pdf
+    
+    [alces@login1(scooby) ~]$
+
 
 To download data from an object storage service, use the ``alces storage get <object-name> <local-file>`` command; e.g.
 
-<insert example of getting data>
+.. code:: bash
+
+    [alces@login1(scooby) ~]$ alces storage get "Getting Started.pdf" instructions.pdf
+    alces storage get: Getting Started.pdf -> /home/alces/instructions.pdf
+
+    [alces@login1(scooby) ~]$ file instructions.pdf
+    instructions.pdf: PDF document, version 1.4
+
+    [alces@login1(scooby) ~]$
+
 
 Users can also create new buckets in their object-storage service using the ``alces storage mb <bucket-name>`` command, and then put objects into the new bucket; e.g.
 
-<insert example of making a bucket and putting a file into it>
+.. code:: bash
 
-Users can also recursively transfer entire buckets (including any buckets contained within) using the ``--recursive`` option to the ``alces storage`` command; e.g.
+    [alces@login1(scooby) data]$ alces storage mb newdata
+    alces storage mkbucket: created bucket newdata
 
-<insert example of using recursive option>
+    [alces@login1(scooby) data]$ alces storage put datafile2 newdata/datafile2
+    alces storage put: datafile2 -> newdata/datafile2
+
+    [alces@login1(scooby) data]$ alces storage ls newdata
+    2016-05-14 16:14   20971520   datafile2
+
+    [alces@login1(scooby) data]$
+
+
+Users can also recursively transfer entire buckets (including any buckets contained within) using the ``-r`` option to the ``alces storage`` command; e.g.
+
+.. code:: bash
+
+    [alces@login1(scooby) ~]$ alces storage put -r datadir datadir2
+    alces storage put: datadir/datafile2 -> datadir2/datafile2
+    alces storage put: datadir/datafile3 -> datadir2/datafile3
+    alces storage put: datadir/datafile4 -> datadir2/datafile4
+    alces storage put: datadir/datafile5 -> datadir2/datafile5
+    alces storage put: datadir/datafile6 -> datadir2/datafile6
+
+    [alces@login1(scooby) ~]$
 
 Saving data before terminating your cluster
 -------------------------------------------
