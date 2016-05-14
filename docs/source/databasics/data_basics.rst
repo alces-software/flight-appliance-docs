@@ -48,8 +48,8 @@ If necessary, users can use the ``scp`` command to copy files from the compute n
  
 Alternatively, users could login to the compute node (e.g. ``ssh ip-10-75-0-235``) and copy the data back to the shared filesystem on the node:
 
- - ``ssh ip-10-75-0-235
-     cp /tmp/myfile ~/myfile``
+ - ``ssh ip-10-75-0-235``
+   ``cp /tmp/myfile ~/myfile``
 
 
 
@@ -120,7 +120,7 @@ The amount of time taken to copy data to and from your cluster will depend on a 
 Object storage for archiving data
 ---------------------------------
 
-As an alternative to copying data back to your client machine, users may prefer to upload their data to a cloud-based object storage service instead. Flight Compute clusters include tools for accessing data stored in the ``AWS S3 <https://aws.amazon.com/s3/>`_ object storage service, as well as the ``Dropbox <https://www.dropbox.com/>`_ cloud storage service. Benefits of using an cloud-based storage service include:
+As an alternative to copying data back to your client machine, users may prefer to upload their data to a cloud-based object storage service instead. Flight Compute clusters include tools for accessing data stored in the `AWS S3 <https://aws.amazon.com/s3/>`_ object storage service, as well as the `Dropbox <https://www.dropbox.com/>`_ cloud storage service. Benefits of using an cloud-based storage service include:
 
 
  - Data is kept safe and does not have to be independantly backed-up
@@ -147,14 +147,15 @@ Once enabled, a user can configure one or more storage services for use on the c
 
 For example; to configure access to an AWS S3 account using the access and secret key, the following commands can be used:
 
-  ``
-  [alces@login1(scooby) ~]$ alces storage configure my-s3area1 s3
-  Display name [my-s3area1]:
-  Access key: PZHAA6I2OEDF9F1RQS8Q
-  Secret key: ********************
-  Service address [s3.amazonaws.com]:
-  alces storage configure: storage configuration complete
-  ``
+.. code:: bash
+
+    [alces@login1(scooby) ~]$ alces storage configure my-s3area1 s3
+    Display name [my-s3area1]:
+    Access key: PZHAA6I2OEDF9F1RQS8Q
+    Secret key: ********************
+    Service address [s3.amazonaws.com]:
+    alces storage configure: storage configuration complete
+
   
 When configuring a Dropbox account, the user is provided with a URL that must be copied and pasted into a browser session on their local client machine:
 

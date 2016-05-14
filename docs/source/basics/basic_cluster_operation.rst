@@ -45,7 +45,7 @@ The login node hostname for Flight Compute clusters launched from AWS Marketplac
 Moving between login and compute nodes
 --------------------------------------
 
-Flight Compute clusters automatically configure a trust relationship between login and compute nodes in the same cluster to allow users to login between nodes via SSH without a password. This configuration allows moving quickly and easily between nodes, and simplifies running large-scale jobs that involve multiple nodes. From the command line, a user can simply use the ``ssh <node-name>`` command to login to one of the compute nodes from the login node. For example, to login to a compute node named ``host-22-33-11-123`` from the login node, use the command:
+Flight Compute clusters automatically configure a trust relationship between login and compute nodes in the same cluster to allow users to login between nodes via SSH without a password. This configuration allows moving quickly and easily between nodes, and simplifies running large-scale jobs that involve multiple nodes. From the command line, a user can simply use the **ssh <node-name>** command to login to one of the compute nodes from the login node. For example, to login to a compute node named ``host-22-33-11-123`` from the login node, use the command:
 
   ``ssh host-22-33-11-123``
   
