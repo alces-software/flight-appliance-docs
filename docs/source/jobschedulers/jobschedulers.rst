@@ -36,22 +36,22 @@ The cluster job-scheduler is responsible for finding compute nodes in your clust
 Interactive and batch jobs
 --------------------------
 
-Users typically interact with Compute clusters by running either **interactive** or **batch** (or non-interactive) jobs. 
+Users typically interact with compute clusters by running either **interactive** or **batch** (or non-interactive) jobs. 
 
   - An interactive job is one that the user directly controls, either via a graphical interface or by typing at the command-prompt. 
   - A batch job is run by writing a list of instructions that are passed to compute nodes to run at some point in the future. 
   
-Both methods of running jobs can be equally as efficient, particularly on a personal, ephemeral cluster. Both classes of job can be of any type - it's possible to run interative parallel jobs and batch multi-threaded jobs across your cluster. The choice of which class of job-type you want to use will depend on the application you're running, and which method is more convenient for you to use.
+Both methods of running jobs can be equally as efficient, particularly on a personal, ephemeral cluster. Both classes of job can be of any type - it's possible to run interactive parallel jobs and batch multi-threaded jobs across your cluster. The choice of which class of job-type you want to use will depend on the application you're running, and which method is more convenient for you to use.
 
 
 Why use a job-scheduler on a personal cluster?
 ----------------------------------------------
 
-Good question. On shared multi-user clusters, a job-scheduler is often used as a control mechanism to make sure that users don't unfairly monopolise the valuable compute resources. In extreme cases, the schedulder may be wielded by system administrators to force "good behaviour" in a shared environment, and can feel like an imposition to cluster users. With a personal cluster, you have the ability to directly control the resources available in your cluster - you don't need a job-scheduler to limit your usage. 
+Good question. On shared multi-user clusters, a job-scheduler is often used as a control mechanism to make sure that users don't unfairly monopolise the valuable compute resources. In extreme cases, the scheduler may be wielded by system administrators to force "good behaviour" in a shared environment, and can feel like an imposition to cluster users. With a personal cluster, you have the ability to directly control the resources available in your cluster - you don't need a job-scheduler to limit your usage. 
 
 However - there are a number of reasons why your own job-scheduler can be a useful tool in your cluster:
 
- 1. It can help you organise multi-stage workflows, with batch jobs launching subsequent jobs in a defined process.
+ 1. It can help you organise multi-stage work flows, with batch jobs launching subsequent jobs in a defined process.
  2. It can automate launching of MPI jobs, finding available nodes to run applications on.
  3. It can help prevent accidentally over-allocating CPUs or memory, which could lead to nodes failing.
  4. It can help bring discipline to the environment, providing a convenient method to replicate the running of jobs in different environments.
@@ -62,9 +62,9 @@ Your Alces Flight Compute cluster comes with a job-scheduler pre-installed, read
 Cluster job scheduler support
 -----------------------------
 
-This version of Alces Flight Compute includes support for `Open Grid Scheduler (OGS) <http://gridscheduler.sourceforge.net/`_ - an open-source job scheduler, built from the codebase of what was originally the `Sun Grid Engine (SGE) <https://en.wikipedia.org/wiki/Oracle_Grid_Engine>`_ job scheduler. The syntax and usage of commands is identical to historical SGE syntax, and users can typically from one to another with no issues.
+This version of Alces Flight Compute includes support for `Open Grid Scheduler (OGS) <http://gridscheduler.sourceforge.net/>`_ - an open-source job scheduler, built from the codebase of what was originally the `Sun Grid Engine (SGE) <https://en.wikipedia.org/wiki/Oracle_Grid_Engine>`_ job scheduler. The syntax and usage of commands is identical to historical SGE syntax, and users can typically from one to another with no issues.
 
-It is also possible for users to download and install their own job-schedulers across their Flight Compute cluster - any product compatible with RedHat Enterprise Linux 7 and deriviatives should run on your cluster. 
+It is also possible for users to download and install their own job-schedulers across their Flight Compute cluster - any product compatible with RedHat Enterprise Linux 7 and derivatives should run on your cluster. 
 
 We intend to make include support for other job-schedulers in future versions of Alces Flight Compute - please let us know at the `Alces Flight Community Support <http://community.alces-flight.com>`_ site if you have a particular favourite that you'd like us to include, and the reasons why. 
 

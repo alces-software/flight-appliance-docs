@@ -30,7 +30,7 @@ Creating your Cluster
 How much will it cost?
 ----------------------
 
-The Alces Flight software appliance itself it free; however, you're likely to incur costs when running a cluster on AWS resources. Charges typically fall into the following categories:
+The Alces Flight software appliance itself is free; however, you're likely to incur costs when running a cluster on AWS resources. Charges typically fall into the following categories:
 
  - `EC2 <https://aws.amazon.com/ec2/>`_ charges for running instances (your login and compute nodes) 
  - `EBS <https://aws.amazon.com/ebs/>`_ charges for shared cluster filesystem capacity
