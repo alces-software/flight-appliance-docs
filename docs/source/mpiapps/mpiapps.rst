@@ -18,8 +18,8 @@ What MPIs are available?
 A number of different MPIs are under active development; for Linux clusters, there are a number of common versions available, including:
 
  - `OpenMPI <https://www.open-mpi.org/>`_; a modern, open-source implementation supporting a wide array of hardware, Linux distributions and applications
- - `MPICH <https://www.mpich.org/>`_; an older open-source implementation largely superceeded by OpenMPI, but still available for compatibility reasons
- - `MVAPICH <mvapich.cse.ohio-state.edu/>`_; an open-source MPI supporting verbs transport across Infiniband fabrics
+ - `MPICH <https://www.mpich.org/>`_; an older open-source implementation largely superceded by OpenMPI, but still available for compatibility reasons
+ - `MVAPICH <http://mvapich.cse.ohio-state.edu/>`_; an open-source MPI supporting verbs transport across Infiniband fabrics
  - `Intel MPI <https://software.intel.com/en-us/intel-mpi-library>`_; a commercial MPI optimised for Intel CPUs and interconnects
  - `IBM Platform MPI <http://www-03.ibm.com/systems/uk/platformcomputing/products/mpi/>`_; a commercial MPI optimised for particular commercial applications and interconnects
 
@@ -51,20 +51,20 @@ Running an MPI job manually
 
 In some environments, users may wish to manually run MPI jobs across the compute nodes in their cluster without using the job-scheduler. This can be useful when writing and debugging parallel applications, or when running parallel applications which launch directly on compute nodes without requiring a scheduler. A number of commercial applications may fall into this category, including Ansys Workbench, Ansys Fluent, Mathworks Matlab and parallelised R-jobs.
 
-The example below demonstrates how to manually run the **Intel Message-passing Benchmark** application through OpenMPI on an Alces Flight Compute cluster. The exact syntax for your application and MPI may vary, but users should be able to follow the concepts discussed below to run their own software. You will need at least two compute nodes available to run the following example.
-
 .. note:: Before running applications manually on compute nodes, verify that auto-scaling of your cluster is not enabled. Auto-scaling typically uses job-scheduler information to control how many nodes are available in your cluster, and should be disabled if running applications manually. Use the command ``alces configure autoscaling disable`` command to turn off autoscaling before attempting to run jobs manually. 
 
- 1. Install the application and MPI you want to run. The **benchmarks** software depot includes both **OpenMPI** and **IMB** applications, so install and enable that by running these commands:
+The example below demonstrates how to manually run the **Intel Message-passing Benchmark** application through OpenMPI on an Alces Flight Compute cluster. The exact syntax for your application and MPI may vary, but users should be able to follow the concepts discussed below to run their own software. You will need at least two compute nodes available to run the following example.
+
+  1. Install the application and MPI you want to run. The **benchmarks** software depot includes both **OpenMPI** and **IMB** applications, so install and enable that by running these commands:
  
      - ``alces gridware depot install benchmark``
      - ``alces gridware depot enable benchmark``
      
- 2. Create a list of compute nodes to run the job on. The following command will use your **genders** group to create a hostfile:
+  2. Create a list of compute nodes to run the job on. The following command will use your **genders** group to create a hostfile:
  
      - ``cd ; nodeattr -n nodes > mynodesfile``
      
- 3. Load the module file for the **IMB** application; this will also load the **OpenMPI** module file as a dependency. Add the module file to load automatically at login time:
+  3. Load the module file for the **IMB** application; this will also load the **OpenMPI** module file as a dependency. Add the module file to load automatically at login time:
  
 .. code:: bash
 
@@ -79,13 +79,15 @@ The example below demonstrates how to manually run the **Intel Message-passing B
      |
      OK
 
- 4. Start the parallel application in a new **mpirun** session, with the following parameters:
+
+  4. Start the parallel application in a new **mpirun** session, with the following parameters:
  
      - ``-np 2`` - use two CPU cores in total 
      - ``-npernode 1` - place a maximum of one MPI thread on each node
      - ``-hostfile mynodesfile`` - use the list of compute nodes defined in the file ``mynodesfile`` for the MPI job
      - ``$IMBBIN/IMB-MPI1`` - run the binary **IMB-MPI1**, located in the ``$IMBBIN`` directory configured by the ``apps/imb`` module
      - ``PingPong`` - a parameter to the **IMB-MPI1** application, this option instructs it to measure the network bandwidth and latency between nodes
+
      
 .. code:: bash
 
