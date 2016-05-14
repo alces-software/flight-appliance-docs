@@ -21,8 +21,11 @@ You can start a new interactive job on your Flight Compute cluster by using the 
     <<< -[ alces flight ]- >>>
     [alces@ip-10-75-0-21(defiant) ~]$ hostname -f
     ip-10-75-0-21.eu-west-1.compute.internal
+    
     [alces@ip-10-75-0-21(defiant) ~]$ module load apps/R
+    
     [alces@ip-10-75-0-21(defiant) ~]$ R
+    
     R version 3.2.3 (2015-12-10) -- "Wooden Christmas-Tree"
     Copyright (C) 2015 The R Foundation for Statistical Computing
     Platform: x86_64-pc-linux-gnu (64-bit)
@@ -38,6 +41,7 @@ When you've finished running your application, simply type ``logout``, or press 
 If the job-scheduler could not satisfy the resources you've requested for your interactive job (e.g. all your available compute nodes are busy running other jobs), it will report back after a few seconds with an error:
 
 .. code:: bash
+
     [alces@login1(defiant) ~]$ qrsh 
     Your "qrsh" request could not be scheduled, try again later.
 
