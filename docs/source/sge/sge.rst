@@ -204,6 +204,8 @@ Job instructions can be provided in two ways; they are:
          16 11.02734 newname    alces        r     05/15/2016 10:09:13 byslot.q@ip-10-75-0-211.eu-wes     1       
 
 
+
+
  2. For batch jobs, job scheduler instructions can also **included in your job-script** on a line starting with the special identifier ``#$``. 
  
     e.g. the following job-script includes a ``-N`` instruction that sets the name of the job:
