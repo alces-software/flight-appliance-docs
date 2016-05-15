@@ -16,91 +16,21 @@ We recommend that users wishing to use Flight Appliances have basic Linux skills
 .. Navigation/TOC
 
 .. toctree::
-   :maxdepth: 3
+   :maxdepth: 1
    :glob:
-   :caption: Quick-start
-   :name: quickstart
+   :caption: Using your Flight Compute cluster
+   :name: using
 
    quickstart/*
-
-.. toctree::
-   :maxdepth: 3
-   :glob:
-   :caption: Overview of Flight Compute
-   :name: overview
-
    overview/*
-   
-.. toctree::
-   :maxdepth: 3
-   :glob:
-   :caption: Launching your cluster on AWS
-   :name: launch-aws
-
    launch-aws/*   
-   
-.. toctree::
-   :maxdepth: 3
-   :glob:
-   :caption: Launching your cluster on OpenStack
-   :name: launch-os
-   
    launch-os/*
-   
-.. toctree::
-   :maxdepth: 3
-   :glob:
-   :caption: Basic cluster operation
-   :name: basics
-   
    basics/*
-   
-.. toctree::
-   :maxdepth: 3
-   :glob:
-   :caption: Getting data to and from your cluster
-   :name: databasics
-   
    databasics/*
-   
-.. toctree::
-   :maxdepth: 3
-   :glob:
-   :caption: Graphical access to your cluster
-   :name: graphicaldesktop
-   
    graphicaldesktop/*
-   
-.. toctree::
-   :maxdepth: 3
-   :glob:
-   :caption: Software applications on your cluster
-   :name: apps
-   
    apps/*
-   
-.. toctree::
-   :maxdepth: 3
-   :glob:
-   :caption: Parallel (MPI) applications
-   :name: mpiapps
-   
    mpiapps/*
-   
-.. toctree::
-   :maxdepth: 3
-   :glob:
-   :caption: Cluster job-scheduler
-   :name: jobschedulers
-   
    jobschedulers/*
-   
-.. toctree::
-   :maxdepth: 3
-   :glob:
-   :caption: Open Grid-scheduler (SGE)
-   :name: sge
-   
    sge/*
    
 .. toctree::
@@ -111,7 +41,6 @@ We recommend that users wishing to use Flight Appliances have basic Linux skills
         
    customisation/*
 
-   
 .. toctree::
    :maxdepth: 3
    :glob:
