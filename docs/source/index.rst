@@ -18,6 +18,15 @@ We recommend that users wishing to use Flight Appliances have basic Linux skills
 .. toctree::
    :maxdepth: 3
    :glob:
+   :caption: Quick-start
+   :name: quickstart
+
+   quickstart/*
+
+
+.. toctree::
+   :maxdepth: 3
+   :glob:
    :caption: Overview of Flight Compute
    :name: overview
 
