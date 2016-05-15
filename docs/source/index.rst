@@ -34,7 +34,7 @@ We recommend that users wishing to use Flight Appliances have basic Linux skills
    sge/*
    
 .. toctree::
-   :maxdepth: 3
+   :maxdepth: 1
    :glob:
    :caption: Customising your cluster
    :name: customising
@@ -42,7 +42,7 @@ We recommend that users wishing to use Flight Appliances have basic Linux skills
    customisation/*
 
 .. toctree::
-   :maxdepth: 3
+   :maxdepth: 1
    :glob:
    :caption: Example workflows 
    :name: exampleworkflows
