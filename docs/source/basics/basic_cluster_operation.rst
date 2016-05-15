@@ -45,7 +45,7 @@ The login node hostname for Flight Compute clusters launched from AWS Marketplac
 Moving between login and compute nodes
 --------------------------------------
 
-Flight Compute clusters automatically configure a trust relationship between login and compute nodes in the same cluster to allow users to login between nodes via SSH without a password. This configuration allows moving quickly and easily between nodes, and simplifies running large-scale jobs that involve multiple nodes. From the command line, a user can simply use the **ssh <node-name>** command to login to one of the compute nodes from the login node. For example, to login to a compute node named ``host-22-33-11-123`` from the login node, use the command:
+Flight Compute clusters automatically configure a trust relationship between login and compute nodes in the same cluster to allow users to login between nodes via SSH without a password. This configuration allows moving quickly and easily between nodes, and simplifies running large-scale jobs that involve multiple nodes. From the command line, a user can simply use the ``ssh <node-name>`` command to login to one of the compute nodes from the login node. For example, to login to a compute node named ``host-22-33-11-123`` from the login node, use the command:
 
   ``ssh host-22-33-11-123``
   
@@ -55,7 +55,7 @@ Use the ``logout`` command (or press **CTRL+D**) to exit the compute node and re
 Using PDSH
 ----------
 
-Users can run a command across all compute nodes at once using the ``pdsh`` command. This can be useful if users want to make a change to all nodes in the cluster - for example, installing a new software package. The ``pdsh`` command can take a number of parameters that control now commands are processed; for example:
+Users can run a command across all compute nodes at once using the ``pdsh`` command. This can be useful if users want to make a change to all nodes in the cluster - for example, installing a new software package. The ``pdsh`` command can take a number of parameters that control how commands are processed; for example:
 
   - ``pdsh -g cluster uptime`` 
      - executes the ``uptime`` command on all available compute and login nodes in the cluster

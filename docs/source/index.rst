@@ -23,7 +23,6 @@ We recommend that users wishing to use Flight Appliances have basic Linux skills
 
    quickstart/*
 
-
 .. toctree::
    :maxdepth: 3
    :glob:
@@ -39,7 +38,6 @@ We recommend that users wishing to use Flight Appliances have basic Linux skills
    :name: launch-aws
 
    launch-aws/*   
-   customisation/*
    
 .. toctree::
    :maxdepth: 3
@@ -105,6 +103,14 @@ We recommend that users wishing to use Flight Appliances have basic Linux skills
    
    sge/*
    
+.. toctree::
+   :maxdepth: 3
+   :glob:
+   :caption: Customising your Flight Compute cluster
+   :name: customising
+        
+   customisation/*
+
    
 .. toctree::
    :maxdepth: 3

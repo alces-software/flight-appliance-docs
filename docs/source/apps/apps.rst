@@ -33,7 +33,7 @@ Users who are new to Linux may find it convenient to install applications on the
 
 Shared cluster applications
 ---------------------------
-While RPM packages are useful for system packages, they are not designed to manage software applications that have complex dependencies, span multiple nodes or coexist with incompatible applications. Alces Flight Compute clusters include a mechanism to install and manage software applications on your cluster called **Alces Gridware**. Gridware packages are centrally installed on your shared cluster filesystem, making them available to all cluster login and compute nodes. New applications are installed with supporting **environment module** files, and can be dynamically optimised at installation time for specific environments. 
+While RPM packages are useful for system packages, they are not designed to manage software applications that have complex dependencies, span multiple nodes or coexist with other, incompatible applications. Alces Flight Compute clusters include a mechanism to install and manage software applications on your cluster called **Alces Gridware**. Gridware packages are centrally installed on your shared cluster filesystem, making them available to all cluster login and compute nodes. New applications are installed with supporting **environment module** files, and can be dynamically optimised at installation time for specific environments. 
 
 Shared application storage
 ==========================
@@ -53,13 +53,13 @@ Alces Flight Compute clusters include access to the online **Gridware** reposito
 Application catalogue structure
 ===============================
 
-Software applications are listed in the Alces Gridware repository in the structure ``status/type/name/version/variant``, which corresponds to:
+Software applications are listed in the Alces Gridware repository with the structure ``status/type/name/version/variant``, which corresponds to:
 
  - **status** - packages are listed in the **main** repository if tested/stable, and the **volatile** repository otherwise. 
  - **type** - packages are listed as **apps** (applications), **libs** (shared libraries), **compilers** or **mpi** (message-passing interface API software for parallel applications)
  - **name** - the name of the software package
  - **version** - the published version of the software package
- - **variant** - used at installation time to record information about a particular instance of a package, e.g. libraries used to build against, to arbitrary tags
+ - **variant** - used at installation time to record information about a particular instance of a package, e.g. libraries used to build against, or arbitrary tags describing an installation option
  
 For example, a package listed as ``main/apps/bowtie2/2.2.6`` is version 2.2.6 of the Bowtie2 application, from the stable repository. 
  
@@ -70,7 +70,7 @@ From the login node of your Alces Flight Compute cluster, use the command ``alce
 
 .. code:: bash
 
-    [alces@login1(defiant) ~]$ alces gridware search bowtie
+    [alces@login1(scooby) ~]$ alces gridware search bowtie
     main/apps/bowtie/1.1.0   main/apps/bowtie2/2.2.6  main/apps/tophat/2.1.0
 
 .. note:: By default, only the ``main`` repository is enabled; please read the instructions below to enable and use packages from the ``volatile`` repository. 
@@ -83,7 +83,7 @@ Use the command ``alces gridware install <package-name>`` to install a new packa
 
 .. code:: bash
 
-    [alces@login1(defiant) ~]$ alces gridware install apps/memtester
+    [alces@login1(scooby) ~]$ alces gridware install apps/memtester
     Preparing to install main/apps/memtester/4.3.0
     Installing main/apps/memtester/4.3.0
     
@@ -102,18 +102,18 @@ Use the command ``alces gridware install <package-name>`` to install a new packa
               Module ... OK
     
     Installation complete.
-    [alces@login1(defiant) ~]$
+    [alces@login1(scooby) ~]$
 
 
 Where more than one version of the requested application exists in the repository, users will be prompted for more information when attempting to install:
 
 .. code:: bash
 
-    [alces@login1(defiant) ~]$ alces gridware install apps/samtools
+    [alces@login1(scooby) ~]$ alces gridware install apps/samtools
     More than one matching package found, please choose one of:
     main/apps/samtools/0.1.18  main/apps/samtools/0.1.19  main/apps/samtools/1.3
     
-    [alces@login1(defiant) ~]$ alces gridware install apps/samtools/1.3
+    [alces@login1(scooby) ~]$ alces gridware install apps/samtools/1.3
     Preparing to install main/apps/samtools/1.3
     Installing main/apps/samtools/1.3
     
@@ -140,7 +140,7 @@ For more complex applications, Alces Gridware may need to additionally build oth
 
 .. code:: bash
 
-    [alces@login1(defiant) ~]$ alces gridware install apps/R
+    [alces@login1(scooby) ~]$ alces gridware install apps/R
     Preparing to install main/apps/R/3.2.3
     
     WARNING: Package requires the installation of the following:
@@ -154,7 +154,7 @@ For more complex applications, Alces Gridware may need to additionally build oth
 Modules environment management
 ------------------------------
 
-The *Modules* environment management system allows simple configuration of a users' Linux environment across a HPC compute cluster. It allows multiple software applications to be installed together across a group of systems, even if the different applications are incompatible with each other. Modules can also allow basic dependency analysis and resolution for software, helping users to make sure that their applications run correctly. An Alces Flight Compute cluster user can use modules to access the application software they need for running their jobs.
+The `Modules environment management <http://modules.sourceforge.net/>`_ system allows simple configuration of a users' Linux environment across a HPC compute cluster. It allows multiple software applications to be installed together across a group of systems, even if the different applications are incompatible with each other. Modules can also provide basic dependency analysis and resolution for software, helping users to make sure that their applications run correctly. An Alces Flight Compute cluster user can use modules to access the application software they need for running their jobs.
 
 .. note:: Environment modules are included with your Alces Flight Compute cluster for convenience - users are free to use standard Linux configuration methods to setup their environment variables if they prefer. 
 
@@ -176,7 +176,7 @@ Users can view the available environment modules on their Alces Flight Compute c
 
 .. code:: bash
 
-    [alces@login1(defiant) ~]$ module avail 
+    [alces@login1(scooby) ~]$ module avail 
      ---  /opt/gridware/benchmark/el7/etc/modules  ---
        apps/hpl/2.1/gcc-4.8.5+openmpi-1.8.5+atlas-3.10.2
        apps/imb/4.0/gcc-4.8.5+openmpi-1.8.5
@@ -202,7 +202,7 @@ To load a new module for the current session, use the ``module load <module-name
 
 .. code:: bash
 
-    [alces@login1(defiant) ~]$ module load apps/memtester
+    [alces@login1(scooby) ~]$ module load apps/memtester
     apps/memtester/4.3.0/gcc-4.8.5
      | -- libs/gcc/system
      |    * --> OK
@@ -211,10 +211,11 @@ To load a new module for the current session, use the ``module load <module-name
 
 .. note:: Module names will auto-complete if you type the first few letters, then press the **<TAB>** button on your keyboard. 
 
-To unload a module file for the current session, use the ``module unload <module name>`` command. To allow users to configure specific version of modules, the ``module unload`` command does not perform dependency analysis. 
+To unload a module file for the current session, use the ``module unload <module name>`` command. To allow users to configure specific versions of applications, the ``module unload`` command does not perform dependency analysis. 
 
 .. code:: bash
-    [alces@login1(defiant) ~]$ module unload apps/memtester
+
+    [alces@login1(scooby) ~]$ module unload apps/memtester
               apps/memtester/4.3.0/gcc-4.8.5 ... UNLOADING --> OK
               
 
@@ -224,7 +225,7 @@ Module files can be loaded interactively at the command-line or graphical deskto
 Application specific variables
 ==============================
 
-As well as the default environment variables (``$PATH, $LD_LIBRARY_PATH, $MANPATH``), modules included with Alces Flight Compute clusters also provide a number of additional Linux environment variables which are specific to the application being loaded. For example, to help users locate the application installation directory, the following variables are set automatically after loaded a named module file:
+As well as the default environment variables (``$PATH, $LD_LIBRARY_PATH, $MANPATH``), modules included with Alces Flight Compute clusters also provide a number of additional Linux environment variables which are specific to the application being loaded. For example, to help users locate the application installation directory, the following variables are set automatically after laoding a named module file:
 
  - ``{APP-NAME}DIR`` - the location of the base application directory
      e.g. for the **HPL** application, the variable ``$HPLDIR`` contains the base location of the HPL application
@@ -240,13 +241,13 @@ You can use the ``module display <module-name>`` command to view all the environ
 Viewing application license information
 =======================================
 
-The open-source community forms the life-blood of computer-aided scientific research across the world, with both researchers and software developers freely creating and publishing their work for free in order to help others. This collaborative model relies on the kindness and dedication of individuals, public and private organisations and independent research groups in taking the time to develop and publish their software for the benefit of us all. Users of open-source software have a responsibility to obey the licensing terms, credit the original authors wherever possible and follow their shining example by contributing back to the community where possible - either in the form of new software, feedback and bug-reports for the packages you use and highlighting software usage in your research papers and publications. 
+The open-source community forms the life-blood of computer-aided scientific research across the world, with software developers creating and publishing their work for free in order to help others. This collaborative model relies on the kindness and dedication of individuals, public and private organisations and independent research groups in taking the time to develop and publish their software for the benefit of us all. Users of open-source software have a responsibility to obey the licensing terms, credit the original authors and follow their shining example by contributing back to the community where possible - either in the form of new software, feedback and bug-reports for the packages you use and highlighting software usage in your research papers and publications. 
 
 Applications installed by your Alces Flight Compute cluster include a module file that details the license type and original source URL for the package. Use the ``alces display <module-name>`` command to view this information:
 
 .. code:: bash
 
-    [alces@login1(defiant) ~]$ module display apps/hpl
+    [alces@login1(scooby) ~]$ module display apps/hpl
     -------------------------------------------------------------------
     /opt/gridware/benchmark/el7/etc/modules/apps/hpl/2.1/gcc-4.8.5+openmpi-1.8.5+atlas-3.10.2:
     
@@ -290,7 +291,7 @@ Configuring modules for your default session
 
 The ``module load`` command configures your current session only - when a user logs out of the cluster or starts a new session, they are returned to their initial set of modules. This is often preferable for users wanting to include ``module load`` commands in their cluster job-scripts, but it is also possible to instruct environment modules to configure the default login environment so modules are automatically loaded at every login.
 
-Use the ``module initadd <module-file`` command to add an application to the list of automatically loaded modules. The ``module initrm <module-file`` command will remove an application from the list of automatically loaded modules; the ``module initlist`` command will display what applications are currently set to automatically load on login.
+Use the ``module initadd <module-file>`` command to add a software package to the list of automatically loaded modules. The ``module initrm <module-file`` command will remove an application from the list of automatically loaded modules; the ``module initlist`` command will display what applications are currently set to automatically load on login.
 
 .. note:: Commands to submit jobs to your cluster job-scheduler are automatically included in your users' **$PATH** via a ``services/`` module. If you unload this module or remove it from your list of automatically-loaded modules, you may not be able to submit jobs to the cluster scheduler.
 
@@ -314,7 +315,7 @@ When installing packages from the volatile repo, users must resolve any dependen
 
 .. code:: bash
 
-    [alces@login1(defiant) ~]$ alces gridware install volatile/apps/beast/1.7.5
+    [alces@login1(scooby) ~]$ alces gridware install volatile/apps/beast/1.7.5
     Preparing to install volatile/apps/beast/1.7.5
     Installing volatile/apps/beast/1.7.5
     
@@ -336,13 +337,13 @@ When installing packages from the volatile repo, users must resolve any dependen
        > ^
        > compilation terminated.
        > make: *** [NucleotideLikelihoodCore.o] Error 1
-    [alces@login1(defiant) ~]$ 
+    [alces@login1(scooby) ~]$ 
     
 The YUM utility can be used to identify any system packages which may satisfy build dependencies; e.g. 
 
 .. code:: bash
 
-    [alces@login1(defiant) ~]$ yum provides */jni.h
+    [alces@login1(scooby) ~]$ yum provides */jni.h
     Loaded plugins: fastestmirror
     Loading mirror speeds from cached hostfile
      * base: ftp.heanet.ie
@@ -355,13 +356,13 @@ The YUM utility can be used to identify any system packages which may satisfy bu
     Matched from:
     Filename    : /usr/lib/jvm/java-1.6.0-openjdk-1.6.0.36.x86_64/include/jni.h
 
-    [alces@login1(defiant) ~]$
+    [alces@login1(scooby) ~]$
     
 Installing any dependencies may allow the software application to be installed as desired; e.g.
 
 .. code:: bash
 
-    [alces@login1(defiant) ~]$ sudo yum install java-1.8.0-openjdk-devel
+    [alces@login1(scooby) ~]$ pdsh -g cluster 'sudo yum -y -e0 install java-1.8.0-openjdk-devel'
     Resolving Dependencies
     --> Running transaction check
     ---> Package java-1.8.0-openjdk-devel.x86_64 1:1.8.0.91-0.b14.el7_2 will be installed
@@ -399,7 +400,7 @@ Installing any dependencies may allow the software application to be installed a
     
     Complete!
 
-    [alces@login1(defiant) ~]$ alces gridware install volatile/apps/beast/1.7.5
+    [alces@login1(scooby) ~]$ alces gridware install volatile/apps/beast/1.7.5
     Preparing to install volatile/apps/beast/1.7.5
     Installing volatile/apps/beast/1.7.5
     
@@ -443,7 +444,7 @@ Alces Flight Compute clusters also support separate application depots which are
  
 .. code:: bash
  
-    [alces@login1(defiant) ~]$ alces gridware depot install benchmark
+    [alces@login1(scooby) ~]$ alces gridware depot install benchmark
     Installing depot: benchmark
     
      > Initializing depot: benchmark
@@ -485,14 +486,14 @@ Alces Flight Compute clusters also support separate application depots which are
               Update ... OK
         Dependencies ... OK
     
-     [alces@login1(defiant) ~]$
+     [alces@login1(scooby) ~]$
 
  
 Once installed, enable a new depot using the ``alces gridware depot enable <depot-name>`` command; e.g.
  
 .. code:: bash
 
-    [alces@login1(defiant) ~]$ alces gridware depot enable benchmark
+    [alces@login1(scooby) ~]$ alces gridware depot enable benchmark
     
      > Enabling depot: benchmark
               Enable ... OK
@@ -501,12 +502,12 @@ Once installed, enable a new depot using the ``alces gridware depot enable <depo
 Requesting new applications in Gridware
 ---------------------------------------
 
-The list of applications available in the Gridware repository expands over time as more software is added and tested on Flight Compute clusters. Wherever possible, software is not removed from the repository, allowing users to rely on applications continuing to be available for a particular release of Alces Flight. New versions of applications of existing software are also added over time - newly launched Flight Compute clusters automatically use the latest revision of the software repository; use the ``alces gridware update`` command to refresh any running Flight Compute clusters with the latest updates.
+The list of applications available in the Gridware repository expands over time as more software is added and tested on Flight Compute clusters. Wherever possible, software is not removed from the repository, allowing users to rely on applications continuing to be available for a particular release of Alces Flight. New versions of existing applications are also added over time - newly launched Flight Compute clusters automatically use the latest revision of the Gridware repository; use the ``alces gridware update`` command to refresh any running Flight Compute clusters with the latest updates.
 
 If you need to use an application that isn't already part of the Alces Gridware project, there are three methods you can use to get access to the application:
 
- 1. Install the application yourself manually (see below). This is a good first step for any new software package, as it will allow you to evaluate its use on a cluster and confirm that it works as expected in the a Flight Compute cluster environment.
- 2. `Request the addition of an application the community support site <http://community.alces-flight.com>`_. Please include as much information about the application as possible in your request to help new users of the package. There is no fee for requesting software via the community support site - this service is provided to benefit users worldwide by providing convenient access to the best open-source software packages available.
+ 1. Install the application yourself manually (see below). This is a good first step for any new software package, as it will allow you to evaluate its use on a cluster and confirm that it works as expected in  a Flight Compute cluster environment.
+ 2. `Request the addition of an application via the community support site <http://community.alces-flight.com>`_. Please include as much information about the application as possible in your request to help new users of the package. There is no fee for requesting software via the community support site - this service is provided to benefit users worldwide by providing convenient access to the best open-source software packages available.
  3. If you have an urgent need for a new software package, users can fund consultancy time to have packages added to Gridware repository. Please add details of your funding offer to your enhancement request ticket on the `community support site <http://community.alces-flight.com>`_, and a software engineer will contact you with more details.
 
 

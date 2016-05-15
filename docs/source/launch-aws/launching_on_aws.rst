@@ -11,12 +11,12 @@ Prerequisites
 
 There are some things that you need to get ready before you can launch your own cluster on AWS. They are:
 
- - Check client prerequisites to make sure you have the software you need - :ref:`whatisit` 
+ - **Check client prerequisites** to make sure you have the software you need - see :ref:`whatisit` 
  - **Get yourself an AWS account**; this might be your personal account, or you may have a sub-account as part of your institution or company
  - **Create an SSH keypair** for yourself in the region you want to run in. `Follow this guide <http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html>`_ if you've not done this before. 
 
 Your AWS account must have appropriate permissions to do the following:
- - Launch Cloud Formation templates
+ - Launch instances from Cloud Formation templates
  - Create a VPC (virtual private cloud)
  - Create subnets and allocate IP addresses
  - Create an IAM permission
@@ -38,7 +38,7 @@ The Alces Flight software appliance itself is free; however, you're likely to in
  - `Data-egress charges <https://aws.amazon.com/blogs/publicsector/aws-offers-data-egress-discount-to-researchers/>`_ for network traffic out of AWS
  - `Miscellaneous other charges <https://aws.amazon.com/pricing/services/>`_ (e.g. IP address allocation, DNS entry updates, etc.)
 
-Most charges are made per unit (e.g. per compute node instance, or per GB of storage space) and per hour, often with price breaks for using more of a particular resource at once. A full breakdown of pricing is beyond the scope of this document, but there are several tools designed to help you estimate the expected charges:
+Most charges are made per unit (e.g. per compute node instance, or per GB of storage space) and per hour, often with price breaks for using more of a particular resource at once. A full breakdown of pricing is beyond the scope of this document, but there are several tools designed to help you estimate the expected charges; e.g.
 
  - `AWS Simple Monthly Calculator <https://calculator.s3.amazonaws.com/index.html>`_
  - `AWS TCO Calculator <https://awstcocalculator.com/>`_
@@ -59,10 +59,24 @@ When you choose to start a Flight Compute cluster from AWS Marketplace, you will
 
  - **Stack name**; this is the name that you want to call your cluster. It's fine to enter **"cluster"** here if this is your first time, but entering something descriptive will help you keep track of multiple clusters if you launch more. Naming your cluster after colours (red, blue, orange), your favourite singer (clapton, toriamos, bieber) or Greek legends (apollo, thor, aphrodite) keep things more interesting. Avoid using spaces and punctuation, or names longer than 16 characters.
  
- - **ComputeSpotPrice**; in this box, enter the maximum amount you agree to pay per compute node instance, in US dollars. Entering 0 (zero) in this box will cause Flight to use on-demand instances for compute nodes. See the section below on *On-demand and SPOT* instances for more details.
+ - **ComputeSpotPrice**; in this box, enter the maximum amount you agree to pay per compute node instance, in US dollars. Entering **0** (zero) in this box will cause Flight to use **on-demand** instances for compute nodes. See the section below on *On-demand and SPOT* instances for more details.
  
- - **ComputeType**; use the drop-down box to choose what type of compute nodes you want to launch. All compute nodes will launch as the same type. Different types of nodes cost different amounts to run - see the `AWS Pricing Guide <https://aws.amazon.com/ec2/pricing/>`_ for more information.
+ - **ComputeType**; use the drop-down box to choose what type of compute nodes you want to launch. All compute nodes will launch as the same type. Different types of nodes cost different amounts to run, and have different amounts of CPU-cores and memory - see the `AWS Pricing Guide <https://aws.amazon.com/ec2/pricing/>`_ for more information. Node instances are grouped in the following ways:
  
+    - **Type** (compute/balanced/memory/gpu): 
+    	- Compute instances have 2GB of memory per core, and provide the fastest CPUs
+    	- Balanced instances have 4GB of memory per core, and are good all-round performers
+    	- Memory instances have 8GB of memory per core, and are useful for high-memory jobs
+    	- GPU instances have Nvidia CUDA GPU devices installed
+    	
+    - **Size** (small/medium/large/dedicated):
+        - Small, medium and large instances have 2, 4 or 8 CPU cores, and a fraction of a 10Gb Ethernet network link
+        - Dedicated instances have access to a dedicated 10Gb Ethernet network link
+        
+ - **FlightCustomBucket**; enter an S3 bucket containing customisation information for your cluster. Leave this option blank if you have no existing customisation data, or you are starting a new cluster.
+ 
+ - **FlightCustomProfiles**; enter the names of the customisation profiles to use, separated by spaces. Leave this option blank if you have no existing customisation data, or you are starting a new cluster.
+
  - **InitialNodes**; enter the number of nodes you want to start immediately in this box. Entering any number here will enable auto-scaling of the cluster - Flight Compute will add more nodes when jobs are queued, and shutdown idle nodes when they have no jobs to process. Entering 0 (zero) in this box will disable auto-scaling, and start all cluster nodes immediately. 
  
  - **Keypair**; choose an existing AWS keypair to launch your Flight cluster with. If there are no keypairs in the list, check that you've already generated a keypair in the region you're launching in. You must have the private key available for the chosen keypair in order to login to your cluster.
@@ -96,13 +110,15 @@ The AWS EC2 service supports a number of different charging models for launching
  
 SPOT instances are a good way to pay a lower cost for cloud computing for non-urgent workloads. If SPOT compute node instances are terminated in your cluster, any running jobs will be lost - the nodes will also be automatically removed from the queue system to ensure no new jobs attempt to start on them. Once the SPOT price becomes low enough for your instances to start again, your compute nodes will automatically restart and rejoin the cluster. 
 
-The Cloud-formation templates provided for Alces Flight Compute via AWS Marketplace will not launch a login node instance on the SPOT market - login nodes are always launched as on-demand instances, and are immune fluctuating costs in the SPOT market.
+The Cloud-formation templates provided for Alces Flight Compute via AWS Marketplace will not launch a login node instance on the SPOT market - **login nodes are always launched as on-demand instances**, and are immune from fluctuating costs in the SPOT market.
  
 
 Using an auto-scaling cluster
 -----------------------------
 
 An auto-scaling cluster automatically reports the status of the job scheduler queue to AWS to allow idle compute nodes to be shut-down, and new nodes to be started when jobs are queuing. Auto-scaling is a good way to manage the size of your ephemeral cluster automatically, and is useful if you want to run a number of unattended jobs, and minimise costs after the jobs have finished by terminating unused resources.
+
+Your Alces Flight compute cluster will never scale larger than the maximum number of instances entered at launch time. The cluster will automatically scale down to a single compute node when idle, or be reduced to zero nodes if you are using SPOT based compute nodes, and the price climbs higher than your configured maximum.
 
 If you are running jobs manually (i.e. not through the job-scheduler), you may wish to disable autoscaling to prevent nodes not running scheduled jobs from being shutdown. This can be done by entering ``0`` (zero) in the **ComputeSpotPrice** when launching your Flight Compute cluster via AWS Marketplace, or using the command ``alces configure autoscaling disable`` command when logged in to the cluster login node.
 

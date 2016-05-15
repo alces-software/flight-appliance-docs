@@ -19,7 +19,7 @@ Your home directory
 
 The shared filesystem includes the home-directory area for the user you created when your cluster was launched. Linux automatically places users in their home-directory when they login to a node. By default, Flight Compute will create your home-directory under the ``/home/`` directory, named after your username. For example, if your user is called **jane**, then your home-directory will have the absolute path ``/home/jane/``.
 
-The Linux command line will accept the ``~`` (tilde) symbol as a substitute for the currently logged-in users' home-directory. The environment variable ``$HOME`` is also set to this value by default. Hence, the following three commands are all equivalent when logged in as the user **jane**:
+The Linux command line will accept the ``~`` (*tilde*) symbol as a substitute for the currently logged-in users' home-directory. The environment variable ``$HOME`` is also set to this value by default. Hence, the following three commands are all equivalent when logged in as the user **jane**:
 
  - ``ls /home/jane``
  - ``ls ~``
@@ -48,8 +48,10 @@ If necessary, users can use the ``scp`` command to copy files from the compute n
  
 Alternatively, users could login to the compute node (e.g. ``ssh ip-10-75-0-235``) and copy the data back to the shared filesystem on the node:
 
- - ``ssh ip-10-75-0-235``
-   ``cp /tmp/myfile ~/myfile``
+.. code:: bash
+    
+    ssh ip-10-75-0-235 
+    cp /tmp/myfile ~/myfile
 
 
 
@@ -64,7 +66,7 @@ Using command-line tools to copy data
 
 The cluster login node is accessible via SSH, allowing use of the ``scp`` and ``sftp`` commands to transfer data from your local client machine. Linux and Mac users can use in-built SSH support to copy files; e.g.
 
- - To copy file **mydata.zip** to a Flight Compute cluster on IP address 52.48.62.34:
+ - To copy file **mydata.zip** to your cluster on IP address 52.48.62.34, use the command:
     ``scp -i mykeyfile.pub mydata.zip jane@52.48.62.34:.``
     
     - replace ``mykeyfile.pub`` with the name of your SSH public key
@@ -72,14 +74,14 @@ The cluster login node is accessible via SSH, allowing use of the ``scp`` and ``
     
     
 Windows users can download and install the `pscp <http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html>`_ command to perform the same operation:
-    ``pscp -i mykeyfile.pub mydata.zip jane@52.48.62.34:/home/jane/.``
+    ``pscp -i mykeyfile.ppk mydata.zip jane@52.48.62.34:/home/jane/.``
     
     
 Both the ``scp`` and the ``pscp`` commands take the parameter ``-r`` to recursively copy entire directories of files to the cluster. 
 
 To retrieve files from the cluster, simply specify the location of the remote file first in the ``scp`` command, followed by the location on the local system to put the file; e.g.
 
- - To copy file **myresults.zip** from a Flight Compute cluster on IP address 52.48.62.34 to your local Linux or Mac client:
+ - To copy file **myresults.zip** from your cluster on IP address 52.48.62.34 to your local Linux or Mac client:
     ``scp -i mykeyfile.pub jane@52.48.62.34:/home/jane/myresults.zip .``
 
 
@@ -129,7 +131,7 @@ As an alternative to copying data back to your client machine, users may prefer 
  - You only pay for what you use; you do not need to buy expansion room in advance
  - Storage service providers often have multiple tiers available, helping to reduce the cost of storing data
  - Data storage and retrieval times may be improved, as storage service providers typically have more bandwidth than individual sites
- - Your institution or facility may receive some storage capacity for free which you could use
+ - Your company, institution or facility may receive some storage capacity for free which you could use
  
 Object storage is particularly useful for archiving data, as it typically provides a convenient, accessible method of storing data which may need to be shared with a wide group of individuals. 
 
@@ -137,7 +139,7 @@ Object storage is particularly useful for archiving data, as it typically provid
 Using alces storage commands
 ----------------------------
 
-Your Flight Compute cluster includes command-line tools which can be used to enable access to existing AWS S3 and Dropbox accounts. A Ceph storage platform with a compatible **RADOS-gateway** can also be supported using S3 support. To enable access to these services, users must first enable them with the following commands:
+Your Flight Compute cluster includes command-line tools which can be used to enable access to existing **AWS S3** and **Dropbox** accounts. A Ceph storage platform with a compatible **RADOS-gateway** can also be accessed using S3 support. To enable access to these services, users must first enable them with the following commands:
 
  - ``alces storage enable s3`` - enables **AWS S3** service
  - ``alces storage enable dropbox`` - enables **Dropbox** service
@@ -157,6 +159,7 @@ For example; to configure access to an AWS S3 account using the access and secre
     Service address [s3.amazonaws.com]:
     alces storage configure: storage configuration complete
 
+.. note:: If using a Ceph filesystem with a RADOS-gateway, enter the hostname of your gateway service as the ``Service address`` configuration item. For Amazon S3 based storage, choose the default service address.
   
 When configuring a Dropbox account, the user is provided with a URL that must be copied and pasted into a browser session on their local client machine:
 
@@ -171,7 +174,7 @@ When configuring a Dropbox account, the user is provided with a URL that must be
     Once you have completed authorization, please press ENTER to continue...
 
 
-Copy the URL provided into your browser on your client system - you will be prompted to login to Dropbox (if you don't already have a session); click on the "Authorize" button on the next screen to allow your Flight Compute cluster to access the files stored in your Dropbox account.
+Copy the URL provided into your browser on your client system - you will be prompted to login to Dropbox (if you don't already have a session); click on the *Authorize* button on the next screen to allow your Flight Compute cluster to access the files stored in your Dropbox account.
 
 Once you have set up one or more configurations, you can switch between the different storage spaces using the following commands:
 
@@ -240,5 +243,5 @@ Users can also recursively transfer entire buckets (including any buckets contai
 Saving data before terminating your cluster
 -------------------------------------------
 
-When you've finished working with your Alces Flight Compute cluster, you can select to terminate it in the AWS console. This will stop any running instances and wipe the shared storage area before returning the EBS volume back to AWS. Before you shutdown your cluster, users must ensure that they store their data safely in a persistent service, using one of the methods described on this page. When you next launch a Flight Compute cluster, you can restore your data from the storage service to begin processing again. 
+When you've finished working with your Alces Flight Compute cluster, you can select to terminate it in the console for your Cloud service. This will stop any running instances and wipe the shared storage area before returning the block storage volumes back to the provider. Before you shutdown your cluster, users must ensure that they store their data safely in a persistent service, using one of the methods described in this documentation. When you next launch a Flight Compute cluster, you can restore your data from the storage service to begin processing again. 
 

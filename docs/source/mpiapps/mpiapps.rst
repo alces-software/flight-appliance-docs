@@ -51,7 +51,7 @@ Running an MPI job manually
 
 In some environments, users may wish to manually run MPI jobs across the compute nodes in their cluster without using the job-scheduler. This can be useful when writing and debugging parallel applications, or when running parallel applications which launch directly on compute nodes without requiring a scheduler. A number of commercial applications may fall into this category, including Ansys Workbench, Ansys Fluent, Mathworks Matlab and parallelised R-jobs.
 
-.. note:: Before running applications manually on compute nodes, verify that auto-scaling of your cluster is not enabled. Auto-scaling typically uses job-scheduler information to control how many nodes are available in your cluster, and should be disabled if running applications manually. Use the command ``alces configure autoscaling disable`` to turn off autoscaling before attempting to run jobs manually. 
+.. note:: Before running applications manually on compute nodes, verify that auto-scaling of your cluster is not enabled. Auto-scaling typically uses job-scheduler information to control how many nodes are available in your cluster, and should be disabled if running applications manually. Use the command ``alces configure autoscaling disable`` to turn off autoscaling before attempting to run jobs manually on your cluster compute nodes. 
 
 The example below demonstrates how to manually run the **Intel Message-passing Benchmark** application through **OpenMPI** on an Alces Flight Compute cluster. The exact syntax for your application and MPI may vary, but users should be able to follow the concepts discussed below to run their own software. You will need at least two compute nodes available to run the following example.
 
@@ -76,14 +76,14 @@ The example below demonstrates how to manually run the **Intel Message-passing B
  
      - ``-np 2`` - use two CPU cores in total 
      - ``-npernode 1`` - place a maximum of one MPI thread on each node
-     - ``-hostfile mynodesfile`` - use the list of compute nodes defined in the file ``mynodesfile`` for the MPI job
+     - ``-hostfile mynodesfile`` - use the list of compute nodes defined in the file ``mynodesfile`` for the MPI job (as generated in step 2 above)
      - ``$IMBBIN/IMB-MPI1`` - run the binary **IMB-MPI1**, located in the ``$IMBBIN`` directory configured by the ``apps/imb`` module
      - ``PingPong`` - a parameter to the **IMB-MPI1** application, this option instructs it to measure the network bandwidth and latency between nodes
 
      
 .. code:: bash
 
-    [alces@login1(defiant) ~]$ mpirun -np 2 -npernode 1 -hostfile mynodesfile $IMBBIN/IMB-MPI1 PingPong
+    [alces@login1(scooby) ~]$ mpirun -np 2 -npernode 1 -hostfile mynodesfile $IMBBIN/IMB-MPI1 PingPong
     
      benchmarks to run PingPong
     #------------------------------------------------------------

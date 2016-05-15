@@ -15,23 +15,23 @@ You can start a new interactive job on your Flight Compute cluster by using the 
 
 .. code:: bash
 
-    [alces@login1(defiant) ~]$ qrsh
+    [alces@login1(scooby) ~]$ qrsh
     Warning: Permanently added '[ip-10-75-0-21.eu-west-1.compute.internal]:53024,[10.75.0.21]:53024' (ECDSA) to the list of known hosts.
 
     <<< -[ alces flight ]- >>>
-    [alces@ip-10-75-0-21(defiant) ~]$ hostname -f
+    [alces@ip-10-75-0-21(scooby) ~]$ hostname -f
     ip-10-75-0-21.eu-west-1.compute.internal
     
-    [alces@ip-10-75-0-21(defiant) ~]$ module load apps/R
+    [alces@ip-10-75-0-21(scooby) ~]$ module load apps/R
     
-    [alces@ip-10-75-0-21(defiant) ~]$ R
+    [alces@ip-10-75-0-21(scooby) ~]$ R
     
     R version 3.2.3 (2015-12-10) -- "Wooden Christmas-Tree"
     Copyright (C) 2015 The R Foundation for Statistical Computing
     Platform: x86_64-pc-linux-gnu (64-bit)
     > 
 
-Alternatively, the ``qrsh`` command can also be executed from an interactive desktop session; the job-scheduler will automatically find an available compute node to launch the job on. Applications launched from the qrsh session are executed on the assigned cluster compute node:
+Alternatively, the ``qrsh`` command can also be executed from an interactive desktop session; the job-scheduler will automatically find an available compute node to launch the job on. Applications launched from within the qrsh session are executed on the assigned cluster compute node:
 
 .. image:: interactivejob.jpg
      :alt: Running an interactive graphical job
@@ -42,7 +42,7 @@ If the job-scheduler could not satisfy the resources you've requested for your i
 
 .. code:: bash
 
-    [alces@login1(defiant) ~]$ qrsh 
+    [alces@login1(scooby) ~]$ qrsh 
     Your "qrsh" request could not be scheduled, try again later.
 
 You can force an interactive job to queue for available resources by adding the parameter ``-now no`` to your ``qrsh`` command. 
@@ -50,9 +50,9 @@ You can force an interactive job to queue for available resources by adding the 
 Submitting a batch job
 ----------------------
 
-Batch (or non-interactive) jobs allow users to leverage one of the main benefits of having a cluster scheduler; jobs can be queued up with instructions on how to run them and then executed across the cluster while the user does something else. Users submit jobs as scripts, which include instructions on how to run the job - the output of the job (stdout and stderror in Linux terminology) is written to a file on disk for review later on. You can write a batch job that does anything that can be typed on the command-line. 
+Batch (or non-interactive) jobs allow users to leverage one of the main benefits of having a cluster scheduler; jobs can be queued up with instructions on how to run them and then executed across the cluster while the user `does something else <https://www.quora.com/What-do-you-do-while-youre-waiting-for-your-code-to-finish-running>`_. Users submit jobs as scripts, which include instructions on how to run the job - the output of the job (*stdout* and *stderr* in Linux terminology) is written to a file on disk for review later on. You can write a batch job that does anything that can be typed on the command-line. 
 
-We'll start with a basic example - the following script is written in bash (the default Linux command-line interpreter). You can create the script yourself using the `Nano <http://www.howtogeek.com/howto/42980/the-beginners-guide-to-nano-the-linux-command-line-text-editor/>`_ command-line editor - use the command ``nano simplejobscript.sh`` to create a new file, then type in the contents below. The script does nothing more than print some messages to the screen (the **echo** lines), and sleeps for 120 seconds. We've saved the script to file called ``simplejobscript.sh`` - the ``.sh`` extension helps to remind us that this is a **sh** -ell script, but isn't strictly necessary for Linux. 
+We'll start with a basic example - the following script is written in bash (the default Linux command-line interpreter). You can create the script yourself using the `Nano <http://www.howtogeek.com/howto/42980/the-beginners-guide-to-nano-the-linux-command-line-text-editor/>`_ command-line editor - use the command ``nano simplejobscript.sh`` to create a new file, then type in the contents below. The script does nothing more than print some messages to the screen (the **echo** lines), and sleeps for 120 seconds. We've saved the script to a file called ``simplejobscript.sh`` - the ``.sh`` extension helps to remind us that this is a *shell* script, but adding a filename extension isn't strictly necessary for Linux. 
 
 .. code:: bash
     
@@ -72,10 +72,10 @@ To submit your jobscript to the cluster job scheduler, use the command ``qsub si
 
 .. code:: bash
 
-    [alces@login1(defiant) ~]$ qsub simplejobscript.sh
+    [alces@login1(scooby) ~]$ qsub simplejobscript.sh
     Your job 3 ("simplejobscript.sh") has been submitted
 
-    [alces@login1(defiant) ~]$
+    [alces@login1(scooby) ~]$
     
 
 Viewing and controlling queued jobs
@@ -85,7 +85,7 @@ Once your job has been submitted, use the ``qstat`` command to view the status o
 
 .. code:: bash
 
-    [alces@login1(defiant) ~]$ qstat
+    [alces@login1(scooby) ~]$ qstat
     job-ID  prior   name       user         state submit/start at     queue                          slots ja-task-ID
     -----------------------------------------------------------------------------------------------------------------
          3 11.02734 simplejobs alces        r     05/15/2016 09:32:54 byslot.q@ip-10-75-0-131.eu-wes     1       
@@ -95,7 +95,7 @@ You can keep running the ``qstat`` command until your job finishes running and d
 
 .. code:: bash
   
-    [alces@login1(defiant) ~]$ more ~/simplejobscript.sh.o3
+    [alces@login1(scooby) ~]$ more ~/simplejobscript.sh.o3
     Starting running on host ip-10-75-0-131.eu-west-1.compute.internal
     Finished running - goodbye from ip-10-75-0-131.eu-west-1.compute.internal
 
@@ -104,17 +104,17 @@ Your job runs on whatever node the scheduler can find which is available for use
 
 .. code:: bash
     
-    [alces@login1(defiant) ~]$ qsub simplejobscript.sh
+    [alces@login1(scooby) ~]$ qsub simplejobscript.sh
     Your job 4 ("simplejobscript.sh") has been submitted
-    [alces@login1(defiant) ~]$ qsub simplejobscript.sh
+    [alces@login1(scooby) ~]$ qsub simplejobscript.sh
     Your job 5 ("simplejobscript.sh") has been submitted
-    [alces@login1(defiant) ~]$ qsub simplejobscript.sh
+    [alces@login1(scooby) ~]$ qsub simplejobscript.sh
     Your job 6 ("simplejobscript.sh") has been submitted
-    [alces@login1(defiant) ~]$ qsub simplejobscript.sh
+    [alces@login1(scooby) ~]$ qsub simplejobscript.sh
     Your job 7 ("simplejobscript.sh") has been submitted
-    [alces@login1(defiant) ~]$ qsub simplejobscript.sh
+    [alces@login1(scooby) ~]$ qsub simplejobscript.sh
     Your job 8 ("simplejobscript.sh") has been submitted
-    [alces@login1(defiant) ~]$ qstat
+    [alces@login1(scooby) ~]$ qstat
     job-ID  prior   name       user         state submit/start at     queue                          slots ja-task-ID
     -----------------------------------------------------------------------------------------------------------------
           4 11.15234 simplejobs alces        r     05/15/2016 09:43:48 byslot.q@ip-10-75-0-117.eu-wes     1       
@@ -123,7 +123,7 @@ Your job runs on whatever node the scheduler can find which is available for use
           7 11.02734 simplejobs alces        r     05/15/2016 09:43:49 byslot.q@ip-10-75-0-154.eu-wes     1       
           8 11.02734 simplejobs alces        r     05/15/2016 09:43:49 byslot.q@ip-10-75-0-199.eu-wes     1       
  
-    [alces@login1(defiant) ~]$ qdel 8
+    [alces@login1(scooby) ~]$ qdel 8
     alces has registered the job 8 for deletion
 
 
@@ -134,7 +134,7 @@ Users can use the ``qhost`` command to view the status of compute node hosts in 
 
 .. code:: bash
 
-    [alces@login1(defiant) ~]$ qhost
+    [alces@login1(scooby) ~]$ qhost
     HOSTNAME                ARCH         NCPU  LOAD  MEMTOT  MEMUSE  SWAPTO  SWAPUS
     -------------------------------------------------------------------------------
     global                  -               -     -       -       -       -       -
@@ -166,7 +166,7 @@ In order to promote efficient usage of your cluster, the job-scheduler automatic
  - Number of CPU cores for your job: ``1``
  - Maximum job runtime (in hours): ``24``
  - Output file location: ``~/<jobscript-name>.o<jobID>``
- - Output file style: ``stdout`` and ``stderr`` merged in a single file.
+ - Output file style: ``stdout`` and ``stderr`` merged into a single file.
  - Amount of memory for your job: the arithmetic sum of
       ``total memory per node / total cores per node``
       e.g. with 36 core nodes that have 60GB of RAM, the default memory per job is set to around 1.5GB
@@ -193,12 +193,12 @@ Job instructions can be provided in two ways; they are:
  
     e.g. you can set the name of your job using the ``-N <name>`` option:
     
-    .. code:: bash
+.. code:: bash
     
-    [alces@login1(defiant) ~]$ qsub -N newname simplejobscript.sh
+    [alces@login1(scooby) ~]$ qsub -N newname simplejobscript.sh
     Your job 16 ("newname") has been submitted
 
-    [alces@login1(defiant) ~]$ qstat
+    [alces@login1(scooby) ~]$ qstat
     job-ID  prior   name       user         state submit/start at     queue                          slots ja-task-ID
     -----------------------------------------------------------------------------------------------------------------
          16 11.02734 newname    alces        r     05/15/2016 10:09:13 byslot.q@ip-10-75-0-211.eu-wes     1       
@@ -206,7 +206,7 @@ Job instructions can be provided in two ways; they are:
 
  2. For batch jobs, job scheduler instructions can also **included in your job-script** on a line starting with the special identifier ``#$``. 
  
-    e.g. the following job-script includes an instruction the sets the name of the job:
+    e.g. the following job-script includes a ``-N`` instruction that sets the name of the job:
     
 .. code:: bash
     
@@ -217,14 +217,14 @@ Job instructions can be provided in two ways; they are:
     echo "Finished running - goodbye from $HOSTNAME"
 
 
-Including job scheduler instructions in your job-scripts are often the most convenient method of working for batch jobs - follow the guidelines below for the best experience:
+Including job scheduler instructions in your job-scripts is often the most convenient method of working for batch jobs - follow the guidelines below for the best experience:
 
   - Lines in your script that include job-scheduler instructions must start with ``#$`` at the beginning of the line
   - You can have multiple lines starting with ``#$`` in your job-script, with normal scripts lines in-between.
   - You can put multiple instructions separated by a space on a single line starting with ``#$``
-  - The scheduler will parse the script from top to bottom and set instructions in order; if you set the same parameter twice, the second value will be used.
-  - Instructions provided as parameters to "qsub" or "qrsh" typically override values specified in job-scripts. 
-  - Instructions are parsed at job submission time, before the job itself has actually run. That means you can't, for example, tell the scheduler to put your job output in a directory that you only create in the job-script itself - the directory will not exist when the job starts running, and your job will fail with an error. 
+  - The scheduler will parse the script from top to bottom and set instructions in order; if you set the same parameter twice, the second value will be used and a warning will be printed at submission time.
+  - Instructions provided as parameters to ``qsub`` override values specified in job-scripts. 
+  - Instructions are parsed at job submission time, before the job itself has actually run. That means you can't, for example, tell the scheduler to put your job output in a directory that you create in the job-script itself - the directory will not exist when the job starts running, and your job will fail with an error. 
   - You can use dynamic variables in your instructions (see below)
   
 
@@ -233,16 +233,12 @@ Dynamic scheduler variables
 
 Your cluster job scheduler automatically creates a number of pseudo environment variables which are available to your job-scripts when they are running on cluster compute nodes, along with standard Linux variables. Useful values include the following:
 
-===============  ========================================================================================================================
- Variable        Description
-===============  ========================================================================================================================
-``$HOME``        The location of your home-directory
-``$USER``        The Linux username of the submitting user
-``$HOSTNAME``    The Linux hostname of the compute node running the job
-``$JOB_ID``      The job-ID number for the job
-``$JOB_NAME``    The configured job name
-``$SGE_TASK_ID`` For task array jobs, this variable indicates the task number. This variable is not defined for non-task-array jobs. 
-===============  ========================================================================================================================
+ - ``$HOME``        The location of your home-directory
+ - ``$USER``        The Linux username of the submitting user
+ - ``$HOSTNAME``    The Linux hostname of the compute node running the job
+ - ``$JOB_ID``      The job-ID number for the job
+ - ``$JOB_NAME``    The configured job name
+ - ``$SGE_TASK_ID`` For task array jobs, this variable indicates the task number. This variable is not defined for non-task-array jobs. 
  
  
 Simple scheduler instruction examples
@@ -255,11 +251,11 @@ Setting output file location
 
 To set the output file location for your job, use the ``-o <filename>`` option - both standard-out and standard-error from your job-script, including any output generated by applications launched by your script, will be saved in the filename you specify. 
 
-By default, the scheduler stores data relative to your home-directory - but to avoid confusion, we recommend specifying a full path to the filename to be used. Although Linux can support several jobs writing to the same output file, the result is likely to be garbled - it's common practice to include something unique about the job (e.g. it's job-ID) in the output filename to make sure your job's output is clear and easy to read. 
+By default, the scheduler stores data relative to your home-directory - but to avoid confusion, we recommend **specifying a full path to the filename** to be used. Although Linux can support several jobs writing to the same output file, the result is likely to be garbled - it's common practice to include something unique about the job (e.g. it's job-ID) in the output filename to make sure your job's output is clear and easy to read. 
 
-.. note:: The directory used to store your job output must exist **before** you submit your job to the scheduler. Your job may fail to run if the scheduler cannot create the output file in the directory requested. 
+.. note:: The directory used to store your job output file must exist **before** you submit your job to the scheduler. Your job may fail to run if the scheduler cannot create the output file in the directory requested. 
 
-For example; the following job-script sets the output file location:
+For example; the following job-script includes a ``-o`` instruction to set the output file location:
 
 .. code:: bash
     
@@ -270,13 +266,13 @@ For example; the following job-script sets the output file location:
     sleep 120
     echo "Finished running - goodbye from $HOSTNAME"
 
-In the above example, assuming the job was submitted as user ``alces`` and was given job-ID number 24, the job will save output data from the job in the filename ``/home/alces/outputs/output.mytestjob.24``. 
+In the above example, assuming the job was submitted as user ``alces`` and was given job-ID number ``24``, the scheduler will save output data from the job in the filename ``/home/alces/outputs/output.mytestjob.24``. 
 
 
 Setting working directory for your job
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-By default, jobs are executed from your home-directory on the cluster (i.e. ``/home/<your-user-name>``, ``$HOME`` or ``~``). You can include ``cd`` commands in your job-script to change to different directories; alternatively, you can give an instruction to the scheduler to change to a different directory to run your job. The available options are:
+By default, jobs are executed from your home-directory on the cluster (i.e. ``/home/<your-user-name>``, ``$HOME`` or ``~``). You can include ``cd`` commands in your job-script to change to different directories; alternatively, you can provide an instruction to the scheduler to change to a different directory to run your job. The available options are:
 
   - ``-wd <directory>`` - instruct the job scheduler to move into the directory specified before starting to run the job on a compute node
   - ``-cwd`` - instruct the scheduler to move into the same directory you submitted the job from before starting to run the job on a compute node
@@ -287,9 +283,9 @@ By default, jobs are executed from your home-directory on the cluster (i.e. ``/h
 Waiting for a previous job before running
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-You can instruct the scheduler to wait for an existing job to finish before starting to run the job you are submitting with the ``-hold <job-ID`` instruction. This allows you to build up multi-stage jobs by ensuring jobs are executed sequentially, even if enough resources are available to run them in parallel. For example, to submit a new job that will only start running once job number 15352 has completed, use the following command:
+You can instruct the scheduler to wait for an existing job to finish before starting to run the job you are submitting with the ``-hold_jid <job-ID`` instruction. This allows you to build up multi-stage jobs by ensuring jobs are executed sequentially, even if enough resources are available to run them in parallel. For example, to submit a new job that will only start running once job number 15352 has completed, use the following command:
 
-   ``qsub -hold 15352 myjobscript.sh``
+   ``qsub -hold_jid 15352 myjobscript.sh``
 
 
 Running task array jobs
@@ -297,11 +293,11 @@ Running task array jobs
 
 A common workload is having a large number of jobs to run which basically do the same thing, aside perhaps from having different input data. You could generate a job-script for each of them and submit it, but that's not very convenient - especially if you have many hundreds or thousands of tasks to complete. Such jobs are known as **task arrays** - an `embarrassingly parallel <https://en.wikipedia.org/wiki/Embarrassingly_parallel>`_ job will often fit into this category. 
 
-A convenient way to run such jobs on a cluster is to use a task array, using the ``-t <start>-<end>[:<step>]`` instruction to the job-scheduler. Your job-script can then use pseudo environment variables created by the scheduler to refer to data used for the job. If the ``:step`` value is omitted, a step value of one will be used. For example, the following job-script uses the ``$SGE_TASK_ID`` variable to set the input data used for the ``bowtie2`` application:
+A convenient way to run such jobs on a cluster is to use a task array, using the ``-t <start>-<end>[:<step>]`` instruction to the job-scheduler. Your job-script can then use pseudo environment variables created by the scheduler to refer to data used by each task in the job. If the ``:step`` value is omitted, a step value of one will be used. For example, the following job-script uses the ``$SGE_TASK_ID`` variable to set the input data used for the ``bowtie2`` application:
 
 .. code:: bash
     
-    [alces@login1(defiant) ~]$ cat simplejobscript.sh
+    [alces@login1(scooby) ~]$ cat simplejobscript.sh
     #!/bin/bash -l
     #$ -N arrayjob
     #$ -o $HOME/data/outputs/output.$JOB_ID.$TASK_ID
@@ -316,10 +312,10 @@ All tasks in a job are given the same job-ID, with the task number indicated aft
 
 .. code:: bash
 
-    [alces@login1(defiant) ~]$ qsub simplejobscript.sh
+    [alces@login1(scooby) ~]$ qsub simplejobscript.sh
     Your job-array 27.1-10:2 ("arrayjob") has been submitted
 
-    [alces@login1(defiant) ~]$ qstat
+    [alces@login1(scooby) ~]$ qstat
     job-ID  prior   name       user         state submit/start at     queue                          slots ja-task-ID
     -----------------------------------------------------------------------------------------------------------------
          27 11.0273 arrayjob      alces        r     05/15/2016 11:24:29 byslot.q@ip-10-75-0-211.eu-wes     1 1
@@ -347,15 +343,15 @@ For example, to use 4 CPU cores on a single node for an application, the instruc
 
 .. code:: bash
 
-    [alces@login1(defiant) ~]$ more runsmp.sh
+    [alces@login1(scooby) ~]$ more runsmp.sh
     #!/bin/bash -l
     #$ -pe smp 8 -o $HOME/smptest/results/smptest.out.$JOB_ID
     ~/smptest/hello
     
-    [alces@login1(defiant) ~]$ qsub runsmp.sh
+    [alces@login1(scooby) ~]$ qsub runsmp.sh
     Your job 30 ("runsmp") has been submitted
     
-    [alces@login1(defiant) ~]$ more ~/smptest/results/smptest.out.30
+    [alces@login1(scooby) ~]$ more ~/smptest/results/smptest.out.30
     2: Hello World!
     5: Hello World!
     6: Hello World!
@@ -378,7 +374,7 @@ For the best experience, please follow these guidelines when running multi-threa
   
 .. code:: bash
 
-    [alces@login1(defiant) ~]$ qsub -pe smp 150 simplejobscript.sh
+    [alces@login1(scooby) ~]$ qsub -pe smp 150 simplejobscript.sh
     warning: no suitable queues
     Your job 58 ("smpjob") has been submitted
 
@@ -388,25 +384,25 @@ For the best experience, please follow these guidelines when running multi-threa
 Running Parallel (MPI) jobs
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-If users want to use run parallel jobs via an install message passing interface (MPI), they need to inform the scheduler - this allows jobs to be efficiently spread over compute nodes to get the best possible performance. Using multiple CPU cores across multiple nodes is achieved by requesting access to a **Parallel Environment (PE)** - the default MPI PE on your Alces Flight Compute cluster is called **mpislots**. Users wanting to use the **mpislots** PE must request it with a job-scheduler instruction, along with the number of CPU cores they want to use - in the form ``-pe mpislots <number-of-cores>``. This parallel environment is configured to automatically generate an MPI hostfile, and pass it to the MPI using a scheduler integration. 
+If users want to use run parallel jobs via an install message passing interface (MPI), they need to inform the scheduler - this allows jobs to be efficiently spread over compute nodes to get the best possible performance. Using multiple CPU cores across multiple nodes is achieved by requesting access to a **Parallel Environment (PE)** - the default MPI PE on your Alces Flight Compute cluster is called **mpislots**. Users wanting to use the **mpislots PE** must request it with a job-scheduler instruction, along with the number of CPU cores they want to use - in the form ``-pe mpislots <number-of-cores>``. This parallel environment is configured to automatically generate an MPI hostfile, and pass it to the MPI using a scheduler integration. 
 
-There is a second parallel environment available which allows users to request complete nodes to participate in MPI jobs - the **mpinodes** PE allows a number of complete nodes to be booked out for jobs that use complete compute nodes at once. Users wanting to use the **mpinodes** PE must request it with a job-scheduler instruction, along with the number of complete nodes they want to use - in the form ``-pe mpinodes <number-of-nodes>``. 
+There is a second parallel environment available which allows users to request complete nodes to participate in MPI jobs - the **mpinodes PE** allows a number of complete nodes to be booked out for jobs that use complete compute nodes at once. Users wanting to use the **mpinodes** PE must request it with a job-scheduler instruction, along with the number of complete nodes they want to use - in the form ``-pe mpinodes <number-of-nodes>``. 
 
-For example, to use 64 CPU cores on the cluster for a single application, the instruction ``-pe mpislots 64`` can be used. The following example shows launching the **Intel Message-passing** MPI benchmark across 64 cores on your cluster. This application is launched via the OpenMPI **mpirun** command - the number of threads and list of hosts to use are automatically assembled by the scheduler and passed to the MPI at runtime. This jobscript loads the **apps/imb** module before launching the application, which automatically loads the module for the **OpenMPI** MPI. 
+For example, to use 64 CPU cores on the cluster for a single application, the instruction ``-pe mpislots 64`` can be used. The following example shows launching the **Intel Message-passing** MPI benchmark across 64 cores on your cluster. This application is launched via the OpenMPI **mpirun** command - the number of threads and list of hosts to use are automatically assembled by the scheduler and passed to the MPI at runtime. This jobscript loads the **apps/imb** module before launching the application, which automatically loads the module for **OpenMPI**. 
 
 .. code:: bash
 
-    [alces@login1(defiant) ~]$ more runparallel.sh
+    [alces@login1(scooby) ~]$ more runparallel.sh
     #!/bin/bash -l
     #$ -N IMBjob -pe mpislots 64 -o $HOME/imbjob.out.$JOB_ID
     
     module load apps/imb
     mpirun IMB-MPI1
 
-    [alces@login1(defiant) ~]$ qsub runparallel.sh
+    [alces@login1(scooby) ~]$ qsub runparallel.sh
     Your job 31 ("IMBjob") has been submitted
 
-    [alces@login1(defiant) ~]$ more ~/imbjob.out.31
+    [alces@login1(scooby) ~]$ more ~/imbjob.out.31
     #------------------------------------------------------------
     #    Intel (R) MPI Benchmarks 4.0, MPI-1 part
     #------------------------------------------------------------
@@ -444,11 +440,12 @@ For the best experience, please follow these guidelines when running parallel MP
   - **Memory limits** are enforced per CPU-core-slot; for example, if your default memory request is 1.5GB and you request ``-pe mpislots 64``, your 64-core job will be allocated ``64 x 1.5GB = 96GB`` of RAM in total, which may be spread over multiple nodes. 
   - **Runtime** limits are a measurement of wall-clock time and are not effected by requesting multiple CPU cores. 
   - Parallel jobs can be interactive, batch or array type. 
+  - Parallel applications must use an MPI to handle multi-node communications; the scheduler will prepare nodes for use, but users must use an MPI to launch the application (as shown in the example above). 
   - If you request more CPU cores than your cluster can accommodate, your scheduler will print a warning at submission time but still allow the job to queue (in case more nodes are added to your cluster at a later date). For example:
   
 .. code:: bash
 
-    [alces@login1(defiant) ~]$ qsub -pe mpislots 1024 runparallel.sh
+    [alces@login1(scooby) ~]$ qsub -pe mpislots 1024 runparallel.sh
     warning: no suitable queues
     Your job 32 ("IMBjob") has been submitted
 
@@ -459,19 +456,19 @@ For the best experience, please follow these guidelines when running parallel MP
 Requesting more memory
 ----------------------
 
-Your jobs are restricted to using a maximum amount of memory on the compute node they are executed on. The default memory allocation divides the total amount of RAM per node by the number of available CPU cores - e.g. a cluster that has node with 36 cores and 160GB of RAM will have a default memory allocation of 4.4GB. This allows the job scheduler to efficiently manage resources, ensuring all jobs get enough to run without the node running out of memory and crashing. 
+Your jobs are restricted to using a maximum amount of memory on the compute node they are executed on. The default memory allocation divides the total amount of RAM per node by the number of available CPU cores - e.g. a cluster that has node with 36 cores and 160GB of RAM will have a default memory allocation of 4.4GB. This allows the job scheduler to efficiently manage resources, ensuring all jobs get enough memory to run without the node running out of memory and crashing. 
 
 If you need more than the default amount of memory for your job, use the ``-l h_vmem=<amount-of-RAM>`` scheduler instruction to request more. For example, to request 32GB of RAM for your single-CPU interactive job, you can use the command ``qrsh -l h_vmem=32G``:
 
 .. code:: bash
 
-    [alces@login1(defiant) ~]$ qrsh -l h_vmem=32G
+    [alces@login1(scooby) ~]$ qrsh -l h_vmem=32G
     
     <<< -[ alces flight ]- >>>
-    [alces@ip-10-75-0-128(defiant) ~]$
+    [alces@ip-10-75-0-128(scooby) ~]$
     
 
-Memory allocations are performed **per scheduler slot** - i.e. per CPU core. So - if you want to request to run an 8-CPU-core multi-threaded job with 64GB of memory, you would request ``-pe smp 8 -l h_vmem=8G``. 
+Memory allocations are performed **per scheduler slot** - i.e. per CPU core. So - if you want to request to run an 8-CPU-core multi-threaded job with a total of 64GB of memory, you would request ``-pe smp 8 -l h_vmem=8G`` (as 64GB / 8-cores = **8GB per core**). 
 
 .. note:: Memory allocations are automatically enforced by the job scheduler. If your application exceeds it's memory request, your job will be stopped to prevent crashing the hosting compute node. 
 
@@ -493,7 +490,7 @@ It can be difficult for new users to know how much memory their job needs to run
         
   3. Note the job-ID number of your job while it is running, and allow your job to finish normally. 
   4. Use the ``qacct -j <job-ID>`` command to view the scheduler accounting database entry for your job
-  5. Look for the entry in the ``qacct`` that starts **maxvmem** - this will display how much memory your job used when running
+  5. Look for the entry in the ``qacct`` output that starts **maxvmem** - this will display how much memory your job used when running
   
 
 The next time you submit your job, you can use a smaller memory request for your job, based on the information you gathered from the ``qacct`` output. 
@@ -507,7 +504,8 @@ Requesting a longer runtime
 By default, the scheduler imposes a maximum runtime of 24-hours for jobs submitted on your cluster. This ensures that run-away jobs do not continue processing for long periods of time without generating useful output. Users can request a longer runtime (with no upper limit) by using the ``-l h_rt=<hours>:<mins>:<secs>`` scheduler instruction. For example, to submit a job-script called ``longjob.sh`` with a 72-hour runtime, use the following command:
 
 .. code:: bash
-    [alces@login1(defiant) ~]$ qsub -l h_rt=72:0:0 longjob.sh
+
+    [alces@login1(scooby) ~]$ qsub -l h_rt=72:0:0 longjob.sh
     Your job 39 ("longjob.sh") has been submitted
 
 
@@ -519,7 +517,8 @@ Your Alces Flight Compute cluster includes a number of job-script templates for 
 To view the available template for your Flight Compute cluster, use the ``alces template list`` command:
 
 .. code:: bash
-    [alces@login1(defiant) ~]$ alces template list
+
+    [alces@login1(scooby) ~]$ alces template list
      1 -> mpi-nodes    ... MPI multiple node
      2 -> mpi-slots    ... MPI multiple slot
      3 -> simple-array ... Simple serial array
@@ -531,21 +530,32 @@ Templates can be previewed using their number or description - e.g. to look at t
 To create a new job-script based on a template, use the ``alces template copy <template-name> <job-script-filename>`` command; e.g. 
 
 .. code:: bash
-    [alces@login1(defiant) ~]$ alces template copy smp mysmpjob.sh
+
+    [alces@login1(scooby) ~]$ alces template copy smp mysmpjob.sh
     alces template copy: template 'smp' copied to 'mysmpjob.sh'
     
-    [alces@login1(defiant) ~]$ nano mysmpjob.sh
+    [alces@login1(scooby) ~]$ nano mysmpjob.sh
        <edit template to add include details of my application>
     
-    [alces@login1(defiant) ~]$ qsub mysmpjob.sh
+    [alces@login1(scooby) ~]$ qsub mysmpjob.sh
     Your job 41 ("mysmpjob.sh") has been submitted
     
-    [alces@login1(defiant) ~]$ qstat
+    [alces@login1(scooby) ~]$ qstat
     job-ID  prior   name       user         state submit/start at     queue                          slots ja-task-ID
     -----------------------------------------------------------------------------------------------------------------
          41 2.40234 mysmpjob.s alces        r     05/15/2016 13:39:34 byslot.q@ip-10-75-0-114.eu-wes     2
     
 
+
+
+Trouble-shooting
+----------------
+
+Your cluster job-scheduler is capable of running complex workflows, utilising advanced features to control every facet of running your jobs. It's worth reading through the job-script template to look at the common option available, and trying out different options before running production jobs on your cluster.
+
+If you do run into problems, the ``qstat -j <job-id>`` command can be useful - as well as showing you the instructions you passed the scheduler with your job, the output of this command will also show you the current environment settings for your job, and list scheduling information. This can provide you with assistance to debug issues, and explain why jobs are still queuing when you think they should be running. 
+
+Be patient with the job-scheduler if you have auto-scaling enabled - queuing jobs cannot start until new compute nodes have succesfully joined the cluster; the speed of scaling-up the cluster is governed by the performance of your Cloud provider, and the amount you've paid for your instance types. 
 
 
 Further documentation
@@ -564,7 +574,9 @@ Customising your job-scheduler
 
 Your Alces Flight Compute cluster has been pre-configured with default queues, parallel-environments and resource limits based on a known working set used internationally by HPC sites and research organisations. They have been determined to deliver a good balance of safety and flexibility, and are designed to introduce concepts such as requesting resources which are commonplace for many HPC facilities. 
 
-However - your personal Flight Compute cluster can be modified to suit whatever you need it to do. There are no right and no wrong answers here - you have full control over your facility to do whatever you want. Your login user is authorized to make configuration changes to the scheduler as desired - you can also use the ``sudo`` command to become the root-user to make any other changes you require. These is also a graphical administration interface for the OGS scheduler - to use it, follow these instructions:
+However - your personal Flight Compute cluster can be modified to suit whatever you need it to do. There are no right and no wrong answers here - you have full control over your facility to do whatever you want. Your login user is authorized to make configuration changes to the scheduler as desired - you can also use the ``sudo`` command to become the root-user to make any other changes you require. 
+
+There is a graphical administration interface for the OGS scheduler - to use it, follow these instructions:
 
   1. Install the **Motif** software package and fonts needed by the OGS GUI; use the command ``sudo yum install motif xorg-x11-fonts-*``
   2. Use the ``alces session start gnome`` command to start a graphical desktop session, if you don't already have one.
