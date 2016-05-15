@@ -36,7 +36,7 @@ We recommend that users wishing to use Flight Appliances have basic Linux skills
 .. toctree::
    :maxdepth: 3
    :glob:
-   :caption: Customising your Flight Compute cluster
+   :caption: Customising your cluster
    :name: customising
         
    customisation/*
@@ -47,26 +47,6 @@ We recommend that users wishing to use Flight Appliances have basic Linux skills
    :caption: Example workflows 
    :name: exampleworkflows
 
-   getting-started/environment-usage/run-an-interactive-application
-   getting-started/environment-usage/run-a-graphical-application
    getting-started/environment-usage/gridware-features/*
-   getting-started/environment-usage/gridware-howto/*
-   getting-started/environment-usage/run-an-mpi-job
-   getting-started/environment-usage/galaxy/*
-   clusterware-storage/alces-storage-overview
-   clusterware-storage/alces-storage-file-config
-   clusterware-storage/alces-storage-file-usage
-   clusterware-storage/alces-storage-object-config
-   clusterware-storage/alces-storage-object-usage
    environment-usage/alces-storage-examples
 
-.. toctree::
-   :maxdepth: 3
-   :glob:
-   :caption: Alces Flight Roadmap and future Appliances
-   :name: flightappliances
-
-   about/alces-flight-compute
-   about/alces-flight-storage-access
-   about/alces-flight-application-manager
-   about/alces-flight-galaxy-appliance
