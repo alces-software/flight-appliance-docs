@@ -48,5 +48,9 @@ We recommend that users wishing to use Flight Appliances have basic Linux skills
    :name: exampleworkflows
 
    getting-started/environment-usage/gridware-features/*
+   getting-started/environment-usage/using-openfoam-with-alces-flight-compute.rst
    environment-usage/alces-storage-examples
+   environment-usage/alces-storage-examples
+   environment-usage/alces-storage-examples
+   
 
