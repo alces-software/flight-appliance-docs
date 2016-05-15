@@ -1,63 +1,56 @@
-Flight Appliance Documentation
+Flight Appliance Documentation - 2016.2
 ==========================================
 .. figure:: _images/AlcesFlight.png
     :alt: Alces Computing in the Cloud
 
-Guides designed to create a simple research compute environment creation process using many popular public and private cloud platforms together with the Alces Flight Appliances.
+This site holds documentation designed to help users create a simple research compute environment using popular public and private cloud platforms. As well as launching and accessing the environment, guides and tutorials are included to help end-users install software applications, manage their data and run different workloads. 
 
 License
 -------
-See `Creative-Commons: Attribution-ShareAlike 4.0 International <http://creativecommons.org/licenses/by-sa/4.0/>`_
+This documentation is released under the `Creative-Commons: Attribution-ShareAlike 4.0 International <http://creativecommons.org/licenses/by-sa/4.0/>`_ license. The Alces Flight Compute software is released under the terms of the `Alces Flight EULA <https://s3-eu-west-1.amazonaws.com/flight-aws-marketplace/2016.1/EULA.txt>`_. Please read the relevant license text before proceeding to use. 
+
+Prerequisites
+---------------
+We recommend that users wishing to use Flight Appliances have basic Linux skills. The ability to move about in a filesystem, copy and delete files, read and edit files on the command-line will be needed in order to get the best out of the Flight software. 
 
 .. Navigation/TOC
 
 .. toctree::
-   :maxdepth: 3
+   :maxdepth: 1
    :glob:
-   :caption: Alces Flight Appliances
-   :name: flightappliances
+   :caption: Using your Flight Compute cluster
+   :name: using
 
-   about/alces-flight-compute
-   about/alces-flight-storage-access
-   about/alces-flight-application-manager
-   about/alces-flight-galaxy-appliance
-
+   quickstart/*
+   overview/*
+   launch-aws/*   
+   launch-os/*
+   basics/*
+   databasics/*
+   graphicaldesktop/*
+   apps/*
+   mpiapps/*
+   jobschedulers/*
+   sge/*
+   
 .. toctree::
-   :maxdepth: 3
+   :maxdepth: 1
    :glob:
-   :caption: Environment Usage: HPC
-   :name: environmentusage
-
-   getting-started/environment-usage/run-an-interactive-application
-   getting-started/environment-usage/run-a-graphical-application
+   :caption: Customising your cluster
+   :name: customising
+        
+   customisation/*
 
 .. toctree::
    :maxdepth: 1
    :glob:
-   :caption: Application Usage: HPC
-   :name: appusage
+   :caption: Example workflows 
+   :name: exampleworkflows
 
    getting-started/environment-usage/gridware-features/*
-   getting-started/environment-usage/gridware-howto/*
-   getting-started/environment-usage/run-an-mpi-job
-
-.. toctree::
-   :maxdepth: 1
-   :glob:
-   :caption: Application Usage: Galaxy
-   :name: galaxyusage
-
-   getting-started/environment-usage/galaxy/*
-
-.. toctree::
-   :maxdepth: 1
-   :glob:
-   :caption: Working with your storage
-   :name: alcesstorageusage
-
-   clusterware-storage/alces-storage-overview
-   clusterware-storage/alces-storage-file-config
-   clusterware-storage/alces-storage-file-usage
-   clusterware-storage/alces-storage-object-config
-   clusterware-storage/alces-storage-object-usage
+   getting-started/environment-usage/using-openfoam-with-alces-flight-compute.rst
    environment-usage/alces-storage-examples
+   environment-usage/alces-storage-examples
+   environment-usage/alces-storage-examples
+   
+
