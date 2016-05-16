@@ -42,6 +42,13 @@ From within the ``default`` folder - create the configuration folder - this is w
 
 Your AWS account is now ready for use with the Alces customiser tool. 
 
+Using custom S3 buckets
+-----------------------
+
+You may also wish to use a custom S3 bucket rather than the automatically generated Flight bucket name. To do so, simply follow the above steps - by creating a bucket or using an existing bucket of choice, then creating the appropriate folders within the bucket.
+
+To use custom S3 buckets with the Alces Flight Compute ``2016.2`` release, enter your S3 bucket URL in the ``FlightCustomBuckets`` CloudFormation parameter.
+
 Setting up customisation scripts
 ################################
 
@@ -61,3 +68,12 @@ Once the bash script has been created - upload it to your S3 bucket into the ``c
 You can upload multiple customisation scripts to the ``default`` folder - each of the scripts will be run. 
 
 The output of each customiser script run is sent to ``/var/log/clusterware/instance.log`` on each of the nodes. Each subsequently deployed Alces Flight Compute environment will run each of the customise scripts included in the ``default`` folder.
+
+Using alternate customisation profiles
+--------------------------------------
+
+Alternate customisation profiles can be set up and used with the Alces customiser tool. To set up another profile, from your S3 bucket in the ``customizer`` folder - create another profile folder, for example ``foo``
+
+Within the ``foo`` folder - create the ``configure.d`` folder. Place any customisation scripts for the ``foo`` profile within the ``configure.d`` folder. 
+
+To use custom profiles when launching the Alces Flight Compute ``2016.2`` CloudFormation templates, enter the profile name(s) in the ``FlightCustomProfiles`` parameter - the customiser tool will then run each of the scripts in the ``foo`` profile. 
