@@ -1,7 +1,7 @@
 .. _launching_on_aws:
 
-Launching on AWS
-################
+Launching on AWS: CloudFormation
+################################
 
 Alces Flight Compute can be launched on the Amazon Web Services (AWS) public cloud platform to give you instant access to your own, private HPC cluster from anywhere in the world. You can choose what resources your cluster will start with (e.g. number of nodes, amount of memory, etc.), and for how long the cluster will run. 
 
@@ -160,3 +160,89 @@ Over the next few minutes, your cluster login and compute nodes will be terminat
 
 See - :ref:`data_basics` for more information on storing your data. 
 
+Launching on AWS: Command-line
+##############################
+
+
+Prerequisites
+=============
+
+There are some things that you need to get ready before you can launch your own cluster on AWS. They are:
+
+ - **Check client prerequisites** to make sure you have the software you need - see :ref:`whatisit` 
+ - **Get yourself an AWS account**; this might be your personal account, or you may have a sub-account as part of your institution or company
+ - **Create an SSH keypair** for yourself in the region you want to run in. `Follow this guide <http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html>`_ if you've not done this before. 
+ - **AWS command-line tools**; ensure the latest AWS command-line tools are installed on the machine you will be launching from. `Follow the tutorial <https://aws.amazon.com/cli/>`_
+
+Your AWS account must have appropriate permissions to do the following:
+ - Launch instances from Cloud Formation templates
+ - Create a VPC (virtual private cloud)
+ - Create subnets and allocate IP addresses
+ - Create an IAM permission
+ 
+More details on `AWS Identity and Access Management (IAM) are available here <https://aws.amazon.com/iam/>`_.
+
+Launching your cluster
+======================
+
+Getting started
+---------------
+
+From your workstation, navigate to a suitable working directory and download the Alces Flight launcher script. This is a bash script used to launch an Alces Flight Compute environment using the AWS command-line tools. 
+
+From your working directory, download the helper script: 
+
+.. code:: bash
+
+    curl -sL https://git.io/vrntU > flight-compute-launch.bash
+
+Configuring the launcher
+------------------------
+
+Using your favourite editor - open the ``flight-compute-launch.bash`` file, and edit the applicable variables for the environment you wish to deploy. The important variables to configure are: 
+
+ - ``CLUSTERNAME`` - this defines the cluster name
+ - ``KEYPAIR`` - this must be set in order to deploy the CloudFormation stack - enter the name of your AWS keypair
+ - ``INITIALNODES`` - enter the number of nodes, up to a maximum of 8 to deploy
+ - ``COMPUTESPOTPRICE`` - enter the maximum price in USD you wish to pay per compute instance. Enter 0 for on-demand
+
+Once configuration is complete, run the bash script from your command-line session and the stack will begin deploying. Help for gaining status reports and stack outputs is provided, e.g.: 
+
+.. code:: bash
+
+    echo "To view status of your stack, run 'aws cloudformation describe-stacks --stack-name $CLUSTERNAME'"
+    echo "To delete the stack, run 'aws cloudformation delete-stack --stack-name $CLUSTERNAME'"
+
+Accessing your cluster
+======================
+
+Once your cluster has been launched, the login node will be accessible via SSH from the IP address range you entered in the **NetworkCIDR**. If you entered ``0.0.0.0/0`` as the **NetworkCIDR**, your login node will be accessible from any IP address on the Internet. Your login node's public IP address is reported by the AWS Cloud-formation template, along with the username you must use to login with your keypair. 
+
+To access the cluster login node from a Linux or Mac client, use the following command:
+
+ - ``ssh -i mypublickey.pub myusername@52.50.141.144``
+ 
+ Where:
+  - ``mypublickey.pub`` is the name of your public SSH key you selected when launching the cluster
+  - ``myusername`` is the username you entered when launching the cluster
+  - ``52.50.141.144`` is the Access-IP address reported by the AWS console after your cluster has been launched
+  
+  
+If you are accessing from a Windows client using the Putty utility, enter the username and IP address of the cluster login node in the "Host Name" box provided:
+
+.. image:: putty.jpg
+    :alt: Putty login
+    
+The first time you connect to your cluster, you will be prompted to accept a new server SSH hostkey. This happens because you've never logged in to your cluster before - it should only happen the first time you login; click **OK** to accept the warning. Once connected to the cluster, you should be logged in to the cluster login node as your user.
+
+.. image:: firstlogin.jpg
+    :alt: Logging in to the cluster
+
+Terminating your cluster
+========================
+
+From your commmand-line, you can destroy each of your stacks using the provided ``CLUSTERNAME`` - for example to destroy the cluster ``flight-cluster1`` use: 
+
+.. code:: bash
+
+    aws cloudformation delete-stack flight-cluster1
