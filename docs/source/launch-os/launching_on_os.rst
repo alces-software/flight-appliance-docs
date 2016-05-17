@@ -37,11 +37,32 @@ How to answer Heat Stack questions
  - Select the compute node type you wish to deploy from the **Compute node instance type** field
  - In the **Number of compute nodes** field, enter the number of compute nodes you wish to initially deploy. Note - sufficient resource quota must be available in order to launch the nodes
 
-Accessing your environment
-==========================
+Accessing your cluster 
+======================
 
-1.  From the ``Overview`` tab of your stack, make a note of the cluster master node public IP address displayed, e.g. ``10.77.0.100``
-2.  SSH to the public IP address as the administrator user you previously selected, e.g. ``alces`` - together with your previously selected OpenStack keypair, e.g. ``ssh -i ~/.ssh/openstack_key.pem alces@10.77.0.100``
+Once your cluster has been launched, the login node will be accessible via SSH. Your login node’s access IP address is reported by the OpenStack Heat, along with the username you must use to login with your keypair.
+
+From the ``Overview`` tab of your stack, make a note of the cluster master node public IP address displayed, e.g. ``10.77.0.100``
+
+To access the cluster login node from a Linux or Mac client, use the following command:
+
+    ``ssh -i mypublickey.pub myadminusername@10.77.0.100``
+
+**Where**:
+ - ``mypublickey.pub`` is the name of your public SSH key you selected when launching the cluster
+ - ``myadminusername`` is the username you entered when launching the cluster
+ - ``10.77.0.100`` is the IP address displayed in the Outputs tab of your Heat stack
+
+If you are accessing from a Windows client using the Putty utility, enter the username and IP address of the cluster login node in the "Host Name" box provided:
+
+.. image:: putty.jpg
+    :alt: Putty login
+
+The first time you connect to your cluster, you will be prompted to accept a new server SSH hostkey. This happens because you've never logged in to your cluster before - it should only happen the first time you login; click **OK** to accept the warning. Once connected to the cluster, you should be logged in to the cluster login node as your user.
+
+.. image:: firstlogin.jpg
+    :alt: Logging in to the cluster
+
 
 Terminating your environment
 ============================
