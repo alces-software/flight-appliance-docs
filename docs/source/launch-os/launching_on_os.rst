@@ -19,21 +19,23 @@ How to deploy
  1.  Log in to the OpenStack Horizon interface with your site credentials
  2.  Navigate to the Project -> Orchestration -> Stacks page
  3.  Select the Launch Stack button
- 4.  **Template Source**: Select URL and enter the following template URL:
-   * https://raw.githubusercontent.com/alces-software/flight-appliance-support/master/openstack-heat/templates/flight-compute.yaml
- 5.  **Environment Source**: *Not required*
- 6.  Click the Next button
- 7.  **Stack Name**: Enter a stack name, this defines the cluster name
- 8.  **Creation Timeout (minutes)**: Leave default 60
- 9.  **Rollback On Failure**: Enabled
- 10.  **Password for user**: Enter your OpenStack user password
- 11.  **Cluster admin key**: Select your OpenStack keypair to assign to the administrator user account
- 12.  **HPC Image**: Select the Alces Compute image from the list of available images
- 13.  **Instance Type**: Select the instance type to deploy, this defines the number of cores and memory available to each instance
- 14.  **Number of compute nodes**: Enter the number of dedicate compute nodes you wish to deploy
- 15.  Click the Launch button.
- 16.  Once the stack is in Status: Create In Progress - enter the stack and navigate to the Overview tab
- 17.  Once the stack has finished creating, the Overview tab will provide you with the cluster public IP address, used to log in with the administrator user alces
+ 4.  When prompted for the **Template Source**, select URL and enter the following template URL: 
+
+    ``https://raw.githubusercontent.com/alces-software/flight-appliance-support/master/openstack-heat/templates/flight-compute.yaml``
+
+ 5.  Click the ``Next`` button to continue
+
+How to answer Heat Stack questions
+----------------------------------
+
+ - The **Stack Name** should be entered with a suitable stack name, this is a unique name within the OpenStack environment and also defines your cluster name
+ - In the **Creation Timeout** field - a sensible time in minutes should be entered, this stops stack creation after a certain time if the OpenStack environment is too busy to create your resources
+ - In the **Password for user** field - enter your OpenStack password for the user you are currently logged in as
+ - In the **Cluster admin key** - select your previously created OpenStack key pair, this is used to log in to the cluster administrator account
+ - In the **Administrator username** field, enter your chosen administrator username such as ``alces``
+ - In the **Flight Compute image** field, select the Flight Compute image you wish to use - we recommend the latest possible version installed on your system
+ - Select the compute node type you wish to deploy from the **Compute node instance type** field
+ - In the **Number of compute nodes** field, enter the number of compute nodes you wish to initially deploy. Note - sufficient resource quota must be available in order to launch the nodes
 
 Accessing your environment
 ==========================
