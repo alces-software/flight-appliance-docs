@@ -1,7 +1,7 @@
 .. _customisation:
 
-Cluster customisation
-#####################
+Cluster customisation: AWS
+##########################
 
 An Alces Flight Compute environment contains many useful configurations and tools, however there are cases where your environment may require customisation - this may include things such as;
 
