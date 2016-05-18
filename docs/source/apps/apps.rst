@@ -53,16 +53,15 @@ Alces Flight Compute clusters include access to the online **Gridware** reposito
 Application catalogue structure
 ===============================
 
-Software applications are listed in the Alces Gridware repository with the structure ``status/type/name/version[/variant]``, which corresponds to:
+Software applications are listed in the Alces Gridware repository with the structure ``repository/type/name/version``, which corresponds to:
 
- - **status** - packages are listed in the **main** repository if tested/stable, and the **volatile** repository otherwise. 
+ - **repository** - packages are listed in the **main** repository if tested/stable, and the **volatile** repository otherwise. 
  - **type** - packages are listed as **apps** (applications), **libs** (shared libraries), **compilers** or **mpi** (message-passing interface API software for parallel applications)
  - **name** - the name of the software package
  - **version** - the published version of the software package
- - **variant** (optional) - used at installation time to record information about a particular instance of a package, e.g. libraries used to build against, or arbitrary tags describing an installation option
- 
+
 For example, a package listed as ``main/apps/bowtie2/2.2.6`` is version 2.2.6 of the Bowtie2 application, from the stable repository. 
- 
+
 Finding an application to install
 =================================
 
