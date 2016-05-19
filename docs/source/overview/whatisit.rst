@@ -63,7 +63,7 @@ It's worth checking for centrally-managed client systems that you can install th
      - For Windows, try `Putty <http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html>`_ or `SmaTTY <http://smartty.sysprogs.com/>`_
      
  - Web-browser:
-     - Use the built-in Safari browser On Macs
+     - Use the built-in Safari browser on Macs
      - For Linux and Windows, install `Firefox <http://www.mozilla.org/firefox>`_ or `Chrome <https://www.google.com/chrome/browser/desktop/>`_
      
  - VNC (Graphical desktop client):
