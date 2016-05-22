@@ -38,11 +38,10 @@ While RPM packages are useful for system packages, they are not designed to mana
 Shared application storage
 ==========================
 
-For Flight Compute clusters launched from AWS Marketplace, your applications are automatically stored in the shared cluster filesystem, making them available to all login and compute nodes across the cluster. There are three directories used to host applications on your Flight Compute cluster:
+For Flight Compute clusters launched from AWS Marketplace, your applications are automatically stored in the shared cluster filesystem, making them available to all login and compute nodes across the cluster. There are two directories used to host applications on your Flight Compute cluster:
 
  - ``/opt/gridware/`` - Applications managed by Alces Gridware utility
  - ``/opt/apps/`` - An empty directory for user-installed applications
- - ``/opt/clusterware/`` - Flight admin data used to keep your cluster running
 
 
 Installing cluster applications
@@ -428,13 +427,12 @@ Installing any dependencies may allow the software application to be installed a
     Installation complete.
 
 
-Installing packages from binary depots
---------------------------------------
+Installing packages from a depot
+--------------------------------
 
-Alces Flight Compute clusters also support separate application depots which are preconfigured to include specific suites of applications for particular purposes. Depots can be used for the following purposes:
+Alces Flight Compute clusters also support collated application depots which are preconfigured to include specific suites of applications for particular purposes. Depots can be used for the following purposes:
 
  - Creating a set of applications for a particular purpose (e.g. Bioinformatics, Engineering or Chemistry applications)
- - Reducing software installation time by compiling in advance for a particular CPU type
  - Collecting optimised applications together; e.g. those built with specialist accelerated compilers
  - Packaging your frequently used applications in a convenient bundle
  - Distributing your commercial applications (as permissible under the terms of the appropriate software license)
