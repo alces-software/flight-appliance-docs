@@ -7,74 +7,89 @@ The Alces Flight Compute CloudFormation templates include a number of popular AW
 
 .. list-table::
    :header-rows: 1
-   :widths: 2 2 2 2
+   :widths: 2 2 2 2 2
 
    *  -  Description 
-      -  Cores
+      -  Cores [1]_
       -  RAM (GB)
+      -  GB p/core
       -  AWS instance type
    *  -  compute.small 
       -  2 
       -  3.75
+      -  1.87
       -  ``c4.large``
    *  -  compute.medium 
       -  8 
       -  15
+      -  1.87
       -  ``c4.2xlarge``
    *  -  compute.large 
       -  16 
       -  30
+      -  1.87
       -  ``c4.4xlarge``
    *  -  compute.dedicated 
       -  36
       -  60
+      -  1.66
       -  ``c4.8xlarge``
    *  -  balanced.small 
       -  4 
       -  16
+      -  4
       -  ``m4.xlarge``
    *  -  balanced.medium 
       -  8 
       -  32
+      -  4
       -  ``m4.2xlarge``
    *  -  balanced.large 
       -  16 
       -  64
+      -  4
       -  ``m4.4xlarge``
    *  -  balanced.dedicated 
       -  40 
       -  160
+      -  4
       -  ``m4.10xlarge``
    *  -  memory.small 
       -  4
       -  30.5
+      -  7.62
       -  ``r3.xlarge``
    *  -  memory.medium 
       -  8
       -  61
+      -  7.62
       -  ``r3.2xlarge``
    *  -  memory.large 
       -  16
       -  122
+      -  7.62
       -  ``r3.4xlarge``
    *  -  memory.dedicated 
       -  32
       -  244
+      -  7.62
       -  ``r3.8xlarge``
    *  -  gpu.medium 
       -  8 
       -  15
+      -  1.87
       -  ``g2.2xlarge``
    *  -  gpu.dedicated 
       -  32 
       -  60
+      -  1.87
       -  ``g2.8xlarge``
 
 ********************************
 Compute optimised instance types
 ********************************
 
-The following table details each of the compute optimised instance types available for use with the Alces Flight Compute CloudFormation templates. The compute optimised instance types are useful for most compute jobs and general workload processing. Each compute instance provided offers between 1.6-1.85 GB memory per CPU core.
+The following table details each of the compute optimised instance types available for use with the Alces Flight Compute CloudFormation templates. The compute optimised instance types are useful for most compute jobs and general workload processing. Each compute instance provided offers 1.87 GB memory per CPU core.
 
 .. list-table::
    :stub-columns: 1
@@ -136,7 +151,7 @@ The following table details each of the balanced instance types available for us
 Memory optimised instance types
 *******************************
 
-The following table details each of the memory optimised instance types available for use with the Alces Flight Compute CloudFormation templates. The memory optimised instance types include a much higher GB memory per core ratio than any other available EC2 instance type - making them particularly useful for memory-intensive workloads. Each instance type provided offers between 7.6GB memory per CPU core. 
+The following table details each of the memory optimised instance types available for use with the Alces Flight Compute CloudFormation templates. The memory optimised instance types include a much higher GB memory per core ratio than any other available EC2 instance type - making them particularly useful for memory-intensive workloads. Each instance type provided offers 7.6GB memory per CPU core. 
 
 .. list-table::
    :stub-columns: 1
