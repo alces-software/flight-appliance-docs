@@ -12,22 +12,22 @@ The Alces Flight Compute CloudFormation templates include a number of popular AW
    *  -  Description 
       -  Cores [1]_
       -  RAM (GB)
-      -  GB p/core
+      -  GB/core 
       -  AWS instance type
    *  -  compute.small 
       -  2 
       -  3.75
-      -  1.87
+      -  2
       -  ``c4.large``
    *  -  compute.medium 
       -  8 
       -  15
-      -  1.87
+      -  2
       -  ``c4.2xlarge``
    *  -  compute.large 
       -  16 
       -  30
-      -  1.87
+      -  2
       -  ``c4.4xlarge``
    *  -  compute.dedicated 
       -  36
@@ -57,39 +57,39 @@ The Alces Flight Compute CloudFormation templates include a number of popular AW
    *  -  memory.small 
       -  4
       -  30.5
-      -  7.62
+      -  8
       -  ``r3.xlarge``
    *  -  memory.medium 
       -  8
       -  61
-      -  7.62
+      -  8
       -  ``r3.2xlarge``
    *  -  memory.large 
       -  16
       -  122
-      -  7.62
+      -  8
       -  ``r3.4xlarge``
    *  -  memory.dedicated 
       -  32
       -  244
-      -  7.62
+      -  8
       -  ``r3.8xlarge``
    *  -  gpu.medium 
       -  8 
       -  15
-      -  1.87
+      -  2
       -  ``g2.2xlarge``
    *  -  gpu.dedicated 
       -  32 
       -  60
-      -  1.87
+      -  2
       -  ``g2.8xlarge``
 
 ********************************
 Compute optimised instance types
 ********************************
 
-The following table details each of the compute optimised instance types available for use with the Alces Flight Compute CloudFormation templates. The compute optimised instance types are useful for most compute jobs and general workload processing. Each compute instance provided offers 1.87 GB memory per CPU core.
+The following table details each of the compute optimised instance types available for use with the Alces Flight Compute CloudFormation templates. The compute optimised instance types are useful for most compute jobs and general workload processing. Each compute instance provided offers 2 GB memory per CPU core.
 
 .. list-table::
    :stub-columns: 1
@@ -110,6 +110,11 @@ The following table details each of the compute optimised instance types availab
       -  15
       -  30
       -  60
+   *  -  GB/core 
+      -  1.87
+      -  1.87 
+      -  1.87
+      -  1.66
    *  -  Share of 10GbE interface [2]_
       -  Low (10-15%)
       -  Medium (55-60%)
@@ -141,6 +146,11 @@ The following table details each of the balanced instance types available for us
       -  32
       -  64
       -  160
+   *  -  GB/core 
+      -  4
+      -  4
+      -  4
+      -  4
    *  -  Share of 10GbE interface [2]_
       -  Low (25-30%)
       -  Medium (55-60%)
@@ -172,6 +182,11 @@ The following table details each of the memory optimised instance types availabl
       -  61
       -  122
       -  244
+   *  -  GB/core 
+      -  7.62
+      -  7.62
+      -  7.62
+      -  7.62
    *  -  Share of 10GbE interface [2]_
       -  Low (25-30%)
       -  Medium (55-60%)
