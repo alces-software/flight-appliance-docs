@@ -33,6 +33,8 @@ Next - perform the following commands to install and compile OpenFoam on your Al
 
 
 .. note:: If your Alces Flight Compute environment has large compute node instance types, it is typically better to perform installation and compiling from one of the compute hosts. 
+
+.. note:: Each node requires the ``zlib-devel`` package to be installed. You can automate installation of the ``zlib-devel`` package using the Alces customiser tool. For more information see the :ref:`Alces customiser documentation <customisation>`
     
 Running OpenFOAM
 ----------------
