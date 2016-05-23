@@ -8,8 +8,8 @@ The following guide will run through the basics of using OpenFOAM together with 
 Prerequisites
 -------------
 
--  Alces Flight Compute environment deployed with at least 2 compute nodes
-
+-  Alces Flight Compute environment deployed with at least 1 compute node
+-  AutoScaling disabled (disable with ``alces configure autoscaling off``)
 
 Installing OpenFoam
 -------------------
@@ -32,7 +32,7 @@ Next - perform the following commands to install and compile OpenFoam on your Al
     alces gridware install volatile/apps/paraview/4.3.1
 
 
-.. note:: If your Alces Flight Compute environment has large compute node instance types, it is typically better to perform installation and compiling from one of the compute hosts
+.. note:: If your Alces Flight Compute environment has large compute node instance types, it is typically better to perform installation and compiling from one of the compute hosts. 
     
 Running OpenFOAM
 ----------------
