@@ -5,6 +5,71 @@ AWS EC2 Instance Types for Flight Compute
 
 The Alces Flight Compute CloudFormation templates include a number of popular AWS EC2 instance types for different use cases. The following table details each instance type provided for Flight Compute dedicated compute hosts: 
 
+.. list-table::
+   :header-rows: 1
+   :widths: 2 2 2 2
+
+   *  -  Description 
+      -  Cores
+      -  RAM (GB)
+      -  AWS instance type
+   *  -  ``compute.small`` 
+      -  2 
+      -  3.75
+      -  ``c4.large``
+   *  -  ``compute.medium`` 
+      -  8 
+      -  15
+      -  ``c4.2xlarge``
+   *  -  ``compute.large`` 
+      -  16 
+      -  30
+      -  ``c4.4xlarge``
+   *  -  ``compute.dedicated`` 
+      -  36
+      -  60
+      -  ``c4.8xlarge``
+   *  -  ``balanced.small`` 
+      -  4 
+      -  16
+      -  ``m4.xlarge``
+   *  -  ``balanced.medium`` 
+      -  8 
+      -  32
+      -  ``m4.2xlarge``
+   *  -  ``balanced.large`` 
+      -  16 
+      -  64
+      -  ``m4.4xlarge``
+   *  -  ``balanced.dedicated`` 
+      -  40 
+      -  160
+      -  ``m4.10xlarge``
+   *  -  ``memory.small`` 
+      -  4
+      -  30.5
+      -  ``r3.xlarge``
+   *  -  ``memory.medium`` 
+      -  8
+      -  61
+      -  ``r3.2xlarge``
+   *  -  ``memory.large`` 
+      -  16
+      -  122
+      -  ``r3.4xlarge``
+   *  -  ``memory.dedicated`` 
+      -  32
+      -  244
+      -  ``r3.8xlarge``
+   *  -  ``gpu.medium`` 
+      -  8 
+      -  15
+      -  ``g2.2xlarge``
+   *  -  ``gpu.dedicated`` 
+      -  32 
+      -  60
+      -  ``g2.8xlarge``
+
 ********************************
 Compute optimised instance types
 ********************************
@@ -110,6 +175,7 @@ The following table details each of the GPU enabled instance types available for
 
    *  -  CloudFormation identifier
       -  ``gpu.medium-g2.2xlarge``
+      -  ``gpu.dedicated-g2.8xlarge``
    *  -  Cores per instance [1]_ 
       -  8
       -  32
