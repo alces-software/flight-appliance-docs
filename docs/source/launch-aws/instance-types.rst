@@ -13,59 +13,59 @@ The Alces Flight Compute CloudFormation templates include a number of popular AW
       -  Cores
       -  RAM (GB)
       -  AWS instance type
-   *  -  ``compute.small`` 
+   *  -  compute.small 
       -  2 
       -  3.75
       -  ``c4.large``
-   *  -  ``compute.medium`` 
+   *  -  compute.medium 
       -  8 
       -  15
       -  ``c4.2xlarge``
-   *  -  ``compute.large`` 
+   *  -  compute.large 
       -  16 
       -  30
       -  ``c4.4xlarge``
-   *  -  ``compute.dedicated`` 
+   *  -  compute.dedicated 
       -  36
       -  60
       -  ``c4.8xlarge``
-   *  -  ``balanced.small`` 
+   *  -  balanced.small 
       -  4 
       -  16
       -  ``m4.xlarge``
-   *  -  ``balanced.medium`` 
+   *  -  balanced.medium 
       -  8 
       -  32
       -  ``m4.2xlarge``
-   *  -  ``balanced.large`` 
+   *  -  balanced.large 
       -  16 
       -  64
       -  ``m4.4xlarge``
-   *  -  ``balanced.dedicated`` 
+   *  -  balanced.dedicated 
       -  40 
       -  160
       -  ``m4.10xlarge``
-   *  -  ``memory.small`` 
+   *  -  memory.small 
       -  4
       -  30.5
       -  ``r3.xlarge``
-   *  -  ``memory.medium`` 
+   *  -  memory.medium 
       -  8
       -  61
       -  ``r3.2xlarge``
-   *  -  ``memory.large`` 
+   *  -  memory.large 
       -  16
       -  122
       -  ``r3.4xlarge``
-   *  -  ``memory.dedicated`` 
+   *  -  memory.dedicated 
       -  32
       -  244
       -  ``r3.8xlarge``
-   *  -  ``gpu.medium`` 
+   *  -  gpu.medium 
       -  8 
       -  15
       -  ``g2.2xlarge``
-   *  -  ``gpu.dedicated`` 
+   *  -  gpu.dedicated 
       -  32 
       -  60
       -  ``g2.8xlarge``
@@ -188,6 +188,10 @@ The following table details each of the GPU enabled instance types available for
    *  -  GPU cards included
       -  1 X NVIDIA GRID K520 GPU
       -  4 x NVIDIA GRID K520 GPUs
+
+For more information on the available AWS EC2 instance types - please visit the AWS documentation
+
+    - https://aws.amazon.com/ec2/instance-types/
 
 .. [1] Includes Hyper-Threaded cores
 .. [2] When launched into a ``cluster`` Placement Group

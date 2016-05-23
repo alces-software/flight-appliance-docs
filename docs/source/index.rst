@@ -23,7 +23,7 @@ We recommend that users wishing to use Flight Appliances have basic Linux skills
 
    quickstart/*
    overview/*
-   launch-aws/*   
+   launch-aws/launching_on_aws
    launch-os/*
    basics/*
    databasics/*
