@@ -10,44 +10,30 @@ Prerequisites
 
 -  Alces Flight Compute environment deployed with at least 2 compute nodes
 
-Installing the OpenFOAM Gridware Depot
---------------------------------------
 
-The OpenFOAM Gridware depot can be easily installed, providing you instant access to the OpenFOAM application. 
+Installing OpenFoam
+-------------------
 
-As an authorised user, download and enable the OpenFOAM Gridware Depot: 
+The following section details how to install OpenFoam version ``2.1.1`` on your Alces Flight Compute environment. Note - access to the administrator user is required for this section. 
 
-.. code:: bash
+To begin, enable the ``volatile`` Gridware repository - instructions for doing this can be found at the following page: 
 
-    [alces@login1(hpc1) ~]$ alces gridware depot fetch https://s3-eu-west-1.amazonaws.com/packages.alces-software.com/depots/openfoam
-    
-     > Fetching depot
-            Metadata ... OK
-             Content ... OK
-             Extract ... OK
-                Link ... OK
-    
-     > Resolving depot dependencies: openfoam
-    
-    Depot 'openfoam' fetched successfully.
-    [alces@login1(hpc1) ~]$ alces gridware depot enable openfoam
-    
-     > Enabling depot: openfoam
-              Enable ... OK
-    
-Manual installation of OpenFOAM
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ``http://docs.alces-flight.com/en/latest/apps/apps.html#volatile-gridware-repositories``
 
-Alternatively, you may wish to install the Gridware applications yourself - this can be done by installing the following Gridware packages in order: 
+Next - perform the following commands to install and compile OpenFoam on your Alces Flight Compute environment: 
 
 .. code:: bash
 
-    alces gridware install openmpi/1.8.5 qlogic=false torque=false pmi=false pmilib=false sge=true
-    alces gridware install libs/scotch
-    alces gridware install libs/mgridgen
-    alces gridware install openfoam/2.1.1
-    alces gridware install paraview/4.3.1
+    pdsh -g cluster 'sudo yum -y install zlib-devel'
+    alces gridware install --binary main/mpi/openmpi/1.8.5
+    alces gridware install volatile/libs/scotch
+    alces gridware install volatile/libs/mgridgen
+    alces gridware install volatile/apps/openfoam/2.1.1
+    alces gridware install volatile/apps/paraview/4.3.1
 
+
+.. note:: If your Alces Flight Compute environment has large compute node instance types, it is typically better to perform installation and compiling from one of the compute hosts
+    
 Running OpenFOAM
 ----------------
 
