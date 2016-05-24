@@ -32,7 +32,7 @@ Method of Launching
 
 The simplest method of launching a cluster is by using the AWS Marketplace - clusters launch using an AWS Cloud-formation template which asks the users a number of simple questions in order to configure their cluster environment. This method is documented on this page, and is the fastest way to launch your own, personal HPC cluster environment. 
 
-Advanced users may also wish to launch a cluster one instance at a time - follow this guide for information on how to manually configure a cluster by launching individual instances - :ref:`manual_launch`.
+Advanced users may also wish to launch a cluster one instance at a time, or deploy a single login node to be used interactively. Follow this guide for information on how to manually configure a cluster by launching individual instances - :ref:`manual_launch`.
 
 
 How much will it cost?
