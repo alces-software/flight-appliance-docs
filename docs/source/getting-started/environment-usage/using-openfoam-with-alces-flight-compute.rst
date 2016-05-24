@@ -26,7 +26,7 @@ Next - perform the following commands to install and compile OpenFoam on your Al
 
     pdsh -g cluster 'sudo yum -y install zlib-devel'
     alces gridware install --binary main/mpi/openmpi/1.8.5
-    alces gridware install volatile/libs/scotch
+    alces gridware install volatile/libs/scotch/6.0.3
     alces gridware install volatile/libs/mgridgen
     alces gridware install volatile/apps/openfoam/2.1.1
     alces gridware install volatile/apps/paraview/4.3.1
