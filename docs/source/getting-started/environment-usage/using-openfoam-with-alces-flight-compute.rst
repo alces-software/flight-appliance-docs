@@ -32,7 +32,7 @@ Next - perform the following commands to install and compile OpenFoam on your Al
     alces gridware install volatile/apps/paraview/4.3.1
 
 
-.. note:: If your Alces Flight Compute environment has large compute node instance types, it is typically better to perform installation and compiling from one of the compute hosts. 
+.. note:: Compiling from source can take some time to complete, depending on the capability of the instances selected for your cluster.
 
 .. note:: Each node requires the ``zlib-devel`` package to be installed. You can automate installation of the ``zlib-devel`` package using the Alces customiser tool. For more information see the :ref:`Alces customiser documentation <customisation>`
     
