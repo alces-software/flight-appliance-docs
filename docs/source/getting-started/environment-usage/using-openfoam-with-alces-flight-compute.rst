@@ -8,46 +8,34 @@ The following guide will run through the basics of using OpenFOAM together with 
 Prerequisites
 -------------
 
--  Alces Flight Compute environment deployed with at least 2 compute nodes
+-  Alces Flight Compute environment deployed with at least 1 compute node
+-  AutoScaling disabled (disable with ``alces configure autoscaling off``)
 
-Installing the OpenFOAM Gridware Depot
---------------------------------------
+Installing OpenFoam
+-------------------
 
-The OpenFOAM Gridware depot can be easily installed, providing you instant access to the OpenFOAM application. 
+The following section details how to install OpenFoam version ``2.1.1`` on your Alces Flight Compute environment. Note - access to the administrator user is required for this section. 
 
-As an authorised user, download and enable the OpenFOAM Gridware Depot: 
+To begin, enable the ``volatile`` Gridware repository - instructions for doing this can be found at the following page: 
 
-.. code:: bash
+    ``http://docs.alces-flight.com/en/latest/apps/apps.html#volatile-gridware-repositories``
 
-    [alces@login1(hpc1) ~]$ alces gridware depot fetch https://s3-eu-west-1.amazonaws.com/packages.alces-software.com/depots/openfoam
-    
-     > Fetching depot
-            Metadata ... OK
-             Content ... OK
-             Extract ... OK
-                Link ... OK
-    
-     > Resolving depot dependencies: openfoam
-    
-    Depot 'openfoam' fetched successfully.
-    [alces@login1(hpc1) ~]$ alces gridware depot enable openfoam
-    
-     > Enabling depot: openfoam
-              Enable ... OK
-    
-Manual installation of OpenFOAM
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Alternatively, you may wish to install the Gridware applications yourself - this can be done by installing the following Gridware packages in order: 
+Next - perform the following commands to install and compile OpenFoam on your Alces Flight Compute environment: 
 
 .. code:: bash
 
-    alces gridware install openmpi/1.8.5 qlogic=false torque=false pmi=false pmilib=false sge=true
-    alces gridware install libs/scotch
-    alces gridware install libs/mgridgen
-    alces gridware install openfoam/2.1.1
-    alces gridware install paraview/4.3.1
+    pdsh -g cluster 'sudo yum -y install zlib-devel'
+    alces gridware install --binary main/mpi/openmpi/1.8.5
+    alces gridware install volatile/libs/scotch
+    alces gridware install volatile/libs/mgridgen
+    alces gridware install volatile/apps/openfoam/2.1.1
+    alces gridware install volatile/apps/paraview/4.3.1
 
+
+.. note:: Compiling from source can take some time to complete, depending on the capability of the instances selected for your cluster.
+
+.. note:: Each node requires the ``zlib-devel`` package to be installed. You can automate installation of the ``zlib-devel`` package using the Alces customiser tool. For more information see the :ref:`Alces customiser documentation <customisation>`
+    
 Running OpenFOAM
 ----------------
 

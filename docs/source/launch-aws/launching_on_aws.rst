@@ -27,6 +27,14 @@ More details on `AWS Identity and Access Management (IAM) are available here <ht
 Creating your Cluster
 =====================
 
+Method of Launching
+-------------------
+
+The simplest method of launching a cluster is by using the AWS Marketplace - clusters launch using an AWS Cloud-formation template which asks the users a number of simple questions in order to configure their cluster environment. This method is documented on this page, and is the fastest way to launch your own, personal HPC cluster environment. 
+
+Advanced users may also wish to launch a cluster one instance at a time, or deploy a single login node to be used interactively. Follow this guide for information on how to manually configure a cluster by launching individual instances - :ref:`manual_launch`.
+
+
 How much will it cost?
 ----------------------
 
@@ -57,11 +65,13 @@ How to answer Cloud-Formation questions
 
 When you choose to start a Flight Compute cluster from AWS Marketplace, you will be prompted to answer a number of questions about what you want the environment to look like. Flight will automatically launch your desired configuration based on the answers you give. The questions you'll be asked are the following:
 
- - **Stack name**; this is the name that you want to call your cluster. It's fine to enter **"cluster"** here if this is your first time, but entering something descriptive will help you keep track of multiple clusters if you launch more. Naming your cluster after colours (red, blue, orange), your favourite singer (clapton, toriamos, bieber) or Greek legends (apollo, thor, aphrodite) keep things more interesting. Avoid using spaces and punctuation, or names longer than 16 characters.
+ - **Stack name**; this is the name that you want to call your cluster. It's fine to enter **"cluster"** here if this is your first time, but entering something descriptive will help you keep track of multiple clusters if you launch more. Naming your cluster after colours (red, blue, orange), your favourite singer (clapton, toriamos, bieber) or Greek legends (apollo, thor, aphrodite) keeps things more interesting. Avoid using spaces and punctuation, or names longer than 16 characters.
+ 
+ - **ComputeAutoscaling**; enter a **0** (zero) in this box to disable auto-scaling of your cluster compute nodes, or enter a **1** (one) to enable auto-scaling.
  
  - **ComputeSpotPrice**; in this box, enter the maximum amount you agree to pay per compute node instance, in US dollars. Entering **0** (zero) in this box will cause Flight to use **on-demand** instances for compute nodes. See the section below on *On-demand and SPOT* instances for more details.
  
- - **ComputeType**; use the drop-down box to choose what type of compute nodes you want to launch. All compute nodes will launch as the same type. Different types of nodes cost different amounts to run, and have different amounts of CPU-cores and memory - see the `AWS Pricing Guide <https://aws.amazon.com/ec2/pricing/>`_ for more information. Node instances are grouped in the following ways:
+ - **ComputeType**; use the drop-down box to choose what type of compute nodes you want to launch. All compute nodes will launch as the same type. Different types of nodes cost different amounts to run, and have different amounts of CPU-cores and memory - see the :ref:`available instance types <instance-types>` for more information. Node instances are grouped in the following ways:
  
     - **Type** (compute/balanced/memory/gpu): 
     	- Compute instances have 2GB of memory per core, and provide the fastest CPUs
@@ -77,7 +87,7 @@ When you choose to start a Flight Compute cluster from AWS Marketplace, you will
  
  - **FlightCustomProfiles**; enter the names of the customisation profiles to use, separated by spaces. Leave this option blank if you have no existing customisation data, or you are starting a new cluster.
 
- - **InitialNodes**; enter the number of nodes you want to start immediately in this box. Entering any number here will enable auto-scaling of the cluster - Flight Compute will add more nodes when jobs are queued, and shutdown idle nodes when they have no jobs to process. Entering 0 (zero) in this box will disable auto-scaling, and start all cluster nodes immediately. 
+ - **InitialNodes**; enter the number of nodes you want to start immediately in this box in your auto-scaling cluster. Flight Compute will add more nodes when jobs are queued, and shutdown idle nodes when they have no jobs to process. This parameter is ignored if auto-scaling is disabled. 
  
  - **Keypair**; choose an existing AWS keypair to launch your Flight cluster with. If there are no keypairs in the list, check that you've already generated a keypair in the region you're launching in. You must have the private key available for the chosen keypair in order to login to your cluster.
  

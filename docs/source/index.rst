@@ -1,4 +1,4 @@
-Flight Appliance Documentation - 2016.2
+Flight Appliance Documentation - 2016.2r3
 ==========================================
 .. figure:: _images/AlcesFlight.png
     :alt: Alces Computing in the Cloud
@@ -23,7 +23,7 @@ We recommend that users wishing to use Flight Appliances have basic Linux skills
 
    quickstart/*
    overview/*
-   launch-aws/*   
+   launch-aws/launching_on_aws
    launch-os/*
    basics/*
    databasics/*
@@ -40,6 +40,7 @@ We recommend that users wishing to use Flight Appliances have basic Linux skills
    :name: customising
         
    customisation/*
+   launch-aws/manual-launch
 
 .. toctree::
    :maxdepth: 1
@@ -49,8 +50,5 @@ We recommend that users wishing to use Flight Appliances have basic Linux skills
 
    getting-started/environment-usage/gridware-features/*
    getting-started/environment-usage/using-openfoam-with-alces-flight-compute.rst
-   environment-usage/alces-storage-examples
-   environment-usage/alces-storage-examples
-   environment-usage/alces-storage-examples
-   
+
 

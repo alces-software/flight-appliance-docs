@@ -38,11 +38,10 @@ While RPM packages are useful for system packages, they are not designed to mana
 Shared application storage
 ==========================
 
-For Flight Compute clusters launched from AWS Marketplace, your applications are automatically stored in the shared cluster filesystem, making them available to all login and compute nodes across the cluster. There are three directories used to host applications on your Flight Compute cluster:
+For Flight Compute clusters launched from AWS Marketplace, your applications are automatically stored in the shared cluster filesystem, making them available to all login and compute nodes across the cluster. There are two directories used to host applications on your Flight Compute cluster:
 
  - ``/opt/gridware/`` - Applications managed by Alces Gridware utility
  - ``/opt/apps/`` - An empty directory for user-installed applications
- - ``/opt/clusterware/`` - Flight admin data used to keep your cluster running
 
 
 Installing cluster applications
@@ -53,16 +52,15 @@ Alces Flight Compute clusters include access to the online **Gridware** reposito
 Application catalogue structure
 ===============================
 
-Software applications are listed in the Alces Gridware repository with the structure ``status/type/name/version/variant``, which corresponds to:
+Software applications are listed in the Alces Gridware repository with the structure ``repository/type/name/version``, which corresponds to:
 
- - **status** - packages are listed in the **main** repository if tested/stable, and the **volatile** repository otherwise. 
+ - **repository** - packages are listed in the **main** repository if available for auto-scaling clusters, and the **volatile** repository otherwise. 
  - **type** - packages are listed as **apps** (applications), **libs** (shared libraries), **compilers** or **mpi** (message-passing interface API software for parallel applications)
  - **name** - the name of the software package
  - **version** - the published version of the software package
- - **variant** - used at installation time to record information about a particular instance of a package, e.g. libraries used to build against, or arbitrary tags describing an installation option
- 
+
 For example, a package listed as ``main/apps/bowtie2/2.2.6`` is version 2.2.6 of the Bowtie2 application, from the stable repository. 
- 
+
 Finding an application to install
 =================================
 
@@ -104,6 +102,7 @@ Use the command ``alces gridware install <package-name>`` to install a new packa
     Installation complete.
     [alces@login1(scooby) ~]$
 
+.. note:: For Alces Flight Compute clusters launched from AWS Marketplace, Gridware will automatically install pre-compiled binary versions of applications from the **main** repository, if they are available. Users can use the ``--no-binary`` parameter to force packages to be compiled at installation time. 
 
 Where more than one version of the requested application exists in the repository, users will be prompted for more information when attempting to install:
 
@@ -301,7 +300,9 @@ Use the ``module initadd <module-file>`` command to add a software package to th
 Volatile Gridware repositories
 ------------------------------
 
-Applications packaged in the ``main`` repository are tested to install without user interaction on an Alces Flight Compute cluster. For access to a larger catalogue of software, users can additionally enable the ``volatile`` software repository. Once enabled, advanced users can access the full list of available applications by choosing software along with any dependencies to install from the combined package list. 
+Applications packaged in the ``main`` repository are tested to support automatic dependancy resolution, enabling support for auto-scaling clusters where compute nodes may be sourced from the AWS spot market. This allows Linux distribution dependancies to be satisfied dynamically at ``module load`` time, ensuring that software applications execute correctly whenever they are run. For access to a larger catalogue of software, users can additionally enable the ``volatile`` software repository. Once enabled, advanced users can access the full list of available applications by choosing software along with any dependencies to install from the combined package list. 
+
+.. note:: Users installing applications from the ``volatile`` repo should either ensure that auto-scaling is disabled for their user environment, or make use of Flight customization features to ensure that software package dependancies are resolved for new compute nodes joining the cluster after applications have been installed. 
 
 To enable volatile repositories, edit the ``/opt/gridware/etc/gridware.yml`` YAML file and un-comment the volatile repository by removing the ``#`` symbol at the start of line 11. Alternatively, users can enable the repository by using the following command:
 
@@ -429,13 +430,12 @@ Installing any dependencies may allow the software application to be installed a
     Installation complete.
 
 
-Installing packages from binary depots
---------------------------------------
+Installing packages from a depot
+--------------------------------
 
-Alces Flight Compute clusters also support separate application depots which are preconfigured to include specific suites of applications for particular purposes. Depots can be used for the following purposes:
+Alces Flight Compute clusters also support collated application depots which are preconfigured to include specific suites of applications for particular purposes. Depots can be used for the following purposes:
 
  - Creating a set of applications for a particular purpose (e.g. Bioinformatics, Engineering or Chemistry applications)
- - Reducing software installation time by compiling in advance for a particular CPU type
  - Collecting optimised applications together; e.g. those built with specialist accelerated compilers
  - Packaging your frequently used applications in a convenient bundle
  - Distributing your commercial applications (as permissible under the terms of the appropriate software license)
