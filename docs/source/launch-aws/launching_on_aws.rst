@@ -63,7 +63,7 @@ When you choose to start a Flight Compute cluster from AWS Marketplace, you will
  
  - **ComputeSpotPrice**; in this box, enter the maximum amount you agree to pay per compute node instance, in US dollars. Entering **0** (zero) in this box will cause Flight to use **on-demand** instances for compute nodes. See the section below on *On-demand and SPOT* instances for more details.
  
- - **ComputeType**; use the drop-down box to choose what type of compute nodes you want to launch. All compute nodes will launch as the same type. Different types of nodes cost different amounts to run, and have different amounts of CPU-cores and memory - see the `AWS Pricing Guide <https://aws.amazon.com/ec2/pricing/>`_ for more information. Node instances are grouped in the following ways:
+ - **ComputeType**; use the drop-down box to choose what type of compute nodes you want to launch. All compute nodes will launch as the same type. Different types of nodes cost different amounts to run, and have different amounts of CPU-cores and memory - see the :ref:`available instance types <instance-types>` for more information. Node instances are grouped in the following ways:
  
     - **Type** (compute/balanced/memory/gpu): 
     	- Compute instances have 2GB of memory per core, and provide the fastest CPUs
