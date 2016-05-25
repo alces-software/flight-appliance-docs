@@ -54,7 +54,7 @@ Application catalogue structure
 
 Software applications are listed in the Alces Gridware repository with the structure ``repository/type/name/version``, which corresponds to:
 
- - **repository** - packages are listed in the **main** repository if tested/stable, and the **volatile** repository otherwise. 
+ - **repository** - packages are listed in the **main** repository if available for auto-scaling clusters, and the **volatile** repository otherwise. 
  - **type** - packages are listed as **apps** (applications), **libs** (shared libraries), **compilers** or **mpi** (message-passing interface API software for parallel applications)
  - **name** - the name of the software package
  - **version** - the published version of the software package
@@ -102,6 +102,7 @@ Use the command ``alces gridware install <package-name>`` to install a new packa
     Installation complete.
     [alces@login1(scooby) ~]$
 
+.. note:: For Alces Flight Compute clusters launched from AWS Marketplace, Gridware will automatically install pre-compiled binary versions of applications from the **main** repository, if they are available. Users can use the ``--no-binary`` parameter to force packages to be compiled at installation time. 
 
 Where more than one version of the requested application exists in the repository, users will be prompted for more information when attempting to install:
 
@@ -299,7 +300,9 @@ Use the ``module initadd <module-file>`` command to add a software package to th
 Volatile Gridware repositories
 ------------------------------
 
-Applications packaged in the ``main`` repository are tested to install without user interaction on an Alces Flight Compute cluster. For access to a larger catalogue of software, users can additionally enable the ``volatile`` software repository. Once enabled, advanced users can access the full list of available applications by choosing software along with any dependencies to install from the combined package list. 
+Applications packaged in the ``main`` repository are tested to support automatic dependancy resolution, enabling support for auto-scaling clusters where compute nodes may be sourced from the AWS spot market. This allows Linux distribution dependancies to be satisfied dynamically at ``module load`` time, ensuring that software applications execute correctly whenever they are run. For access to a larger catalogue of software, users can additionally enable the ``volatile`` software repository. Once enabled, advanced users can access the full list of available applications by choosing software along with any dependencies to install from the combined package list. 
+
+.. note:: Users installing applications from the ``volatile`` repo should either ensure that auto-scaling is disabled for their user environment, or make use of Flight customization features to ensure that software package dependancies are resolved for new compute nodes joining the cluster after applications have been installed. 
 
 To enable volatile repositories, edit the ``/opt/gridware/etc/gridware.yml`` YAML file and un-comment the volatile repository by removing the ``#`` symbol at the start of line 11. Alternatively, users can enable the repository by using the following command:
 

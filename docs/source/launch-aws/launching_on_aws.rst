@@ -27,6 +27,14 @@ More details on `AWS Identity and Access Management (IAM) are available here <ht
 Creating your Cluster
 =====================
 
+Method of Launching
+-------------------
+
+The simplest method of launching a cluster is by using the AWS Marketplace - clusters launch using an AWS Cloud-formation template which asks the users a number of simple questions in order to configure their cluster environment. This method is documented on this page, and is the fastest way to launch your own, personal HPC cluster environment. 
+
+Advanced users may also wish to launch a cluster one instance at a time, or deploy a single login node to be used interactively. Follow this guide for information on how to manually configure a cluster by launching individual instances - :ref:`manual_launch`.
+
+
 How much will it cost?
 ----------------------
 
@@ -57,7 +65,7 @@ How to answer CloudFormation questions
 
 When you choose to start a Flight Compute cluster from AWS Marketplace, you will be prompted to answer a number of questions about what you want the environment to look like. Flight will automatically launch your desired configuration based on the answers you give. The questions you'll be asked are the following:
 
- - **Stack name**; this is the name that you want to call your cluster. It's fine to enter **"cluster"** here if this is your first time, but entering something descriptive will help you keep track of multiple clusters if you launch more. Naming your cluster after colours (red, blue, orange), your favourite singer (clapton, toriamos, bieber) or Greek legends (apollo, thor, aphrodite) keep things more interesting. Avoid using spaces and punctuation, or names longer than 16 characters.
+ - **Stack name**; this is the name that you want to call your cluster. It's fine to enter **"cluster"** here if this is your first time, but entering something descriptive will help you keep track of multiple clusters if you launch more. Naming your cluster after colours (red, blue, orange), your favourite singer (clapton, toriamos, bieber) or Greek legends (apollo, thor, aphrodite) keeps things more interesting. Avoid using spaces and punctuation, or names longer than 16 characters.
  
  - **ComputeAutoscaling**; enter a **0** (zero) in this box to disable auto-scaling of your cluster compute nodes, or enter a **1** (one) to enable auto-scaling.
  
