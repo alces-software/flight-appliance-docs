@@ -3,7 +3,7 @@
 Launching a single Alces Flight instance on AWS
 ###############################################
 
-Alces Flight Compute is provided as a single multi-purpose Amazon Machine Image (AMI) which can be configured to run as a cluster login or compute node on Amazon Web Services (AWS) public cloud. An Amazon Cloud-formation template can be used to launch a number of instances at the same time, along with relevant infrastructure components (e.g. networks, security groups) to create a compute cluster quickly and easily. The AWS Marketplace provides users with a method to quickly locate the template and launch a cluster, based on a short list of configuration questions answered at launch time. 
+Alces Flight Compute is provided as a single multi-purpose Amazon Machine Image (AMI) which can be configured to run as a cluster login or compute node on Amazon Web Services (AWS) public cloud. An Amazon CloudFormation template can be used to launch a number of instances at the same time, along with relevant infrastructure components (e.g. networks, security groups) to create a compute cluster quickly and easily. The AWS Marketplace provides users with a method to quickly locate the template and launch a cluster, based on a short list of configuration questions answered at launch time. 
 
 For advanced users, or users that only require a single login node for their work, Alces Flight Compute can also be launched as a single instance. Users have access to the full range of Gridware software applications available on a compute cluster, and can choose to optionally add infrastructure and compute nodes to their environment at a later date. 
 
