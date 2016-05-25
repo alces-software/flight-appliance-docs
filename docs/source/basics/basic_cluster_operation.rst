@@ -9,7 +9,7 @@ Logging in
 
 You can access the login node for your private Flight Compute cluster using SSH from the network ranges you permitted at launch time. You will need to use the SSH keypair configured for the cluster in order to access it. 
 
-In cluster launched using the Flight Compute AWS Marketplace Cloud-formation template, compute nodes do not have Internet-addressable IP addresses. In order to access individual compute nodes, you must first login to the cluster login node. 
+In cluster launched using the Flight Compute AWS Marketplace CloudFormation template, compute nodes do not have Internet-addressable IP addresses. In order to access individual compute nodes, you must first login to the cluster login node. 
 
 .. image:: AWS-Marketplace-Diagram.png
     :alt: AWS CFT Diagram

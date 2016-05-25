@@ -16,7 +16,7 @@ There are some things that you need to get ready before you can launch your own 
  - **Create an SSH keypair** for yourself in the region you want to run in. `Follow this guide <http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html>`_ if you've not done this before. 
 
 Your AWS account must have appropriate permissions to do the following:
- - Launch instances from Cloud Formation templates
+ - Launch instances from a CloudFormation templates
  - Create a VPC (virtual private cloud)
  - Create subnets and allocate IP addresses
  - Create an IAM permission
@@ -57,10 +57,10 @@ Finding Alces Flight Compute on AWS
 
 Sign-in to your AWS account, and navigate to the `AWS Marketplace <https://aws.amazon.com/marketplace>`_. Search for **Alces Flight** in the search box provided to find the Flight Compute product. Click on the *Continue* button to view details on how to launch. 
 
-As well as an Amazon Machine Image (AMI), Flight Compute subscribers are provided with a Cloud-Formation template (CFT) that can be used to launch your own cluster rapidly after answering a few setup questions. Advanced users can also use the AMI directly with their own CFTs to provide more customised environments for specialised requirements. This documentation is designed to assist new users when launching with the CFT provided on the AWS Marketplace page. 
+As well as an Amazon Machine Image (AMI), Flight Compute subscribers are provided with a CloudFormation template (CFT) that can be used to launch your own cluster rapidly after answering a few setup questions. Advanced users can also use the AMI directly with their own CFTs to provide more customised environments for specialised requirements. This documentation is designed to assist new users when launching with the CFT provided on the AWS Marketplace page. 
 
 
-How to answer Cloud-Formation questions
+How to answer CloudFormation questions
 ---------------------------------------
 
 When you choose to start a Flight Compute cluster from AWS Marketplace, you will be prompted to answer a number of questions about what you want the environment to look like. Flight will automatically launch your desired configuration based on the answers you give. The questions you'll be asked are the following:
@@ -102,7 +102,7 @@ When you choose to start a Flight Compute cluster from AWS Marketplace, you will
  - **Username**; enter the username you want to use to connect to the cluster. Flight will automatic create this user on the cluster, and add your public SSH key to the user. 
  
 .. image:: aws-launch_CFT_questions.jpg
-    :alt: AWS Marketplace Cloud-formation template questions
+    :alt: AWS Marketplace CloudFormation template questions
    
 When all the questions are answered, click the **Next** button to proceed. Enter any tags you wish to use to identify instances in your environment on the next page, then click the **Next** button again. On the review page, read through the answers you've provided and correct any mistakes - click on the *Capabilities* check-box to authorize creations of an IAM role to report cluster performance back to AWS, and click on the **Create** button.
 
@@ -112,7 +112,7 @@ Your personal compute cluster will then be created. While on-demand instances ty
 On-demand vs SPOT instances
 ---------------------------
 
-The AWS EC2 service supports a number of different charging models for launching instances. The quick-start Cloud-formation template included with Alces Flight Compute in AWS Marketplace allows users to choose between two different models:
+The AWS EC2 service supports a number of different charging models for launching instances. The quick-start CloudFormation template included with Alces Flight Compute in AWS Marketplace allows users to choose between two different models:
 
  - On-demand instances; instances are launched immediately at a fixed hourly price. Once launched, your instance will not normally be terminated unless you choose to stop it.
  
@@ -120,7 +120,7 @@ The AWS EC2 service supports a number of different charging models for launching
  
 SPOT instances are a good way to pay a lower cost for cloud computing for non-urgent workloads. If SPOT compute node instances are terminated in your cluster, any running jobs will be lost - the nodes will also be automatically removed from the queue system to ensure no new jobs attempt to start on them. Once the SPOT price becomes low enough for your instances to start again, your compute nodes will automatically restart and rejoin the cluster. 
 
-The Cloud-formation templates provided for Alces Flight Compute via AWS Marketplace will not launch a login node instance on the SPOT market - **login nodes are always launched as on-demand instances**, and are immune from fluctuating costs in the SPOT market.
+The CloudFormation templates provided for Alces Flight Compute via AWS Marketplace will not launch a login node instance on the SPOT market - **login nodes are always launched as on-demand instances**, and are immune from fluctuating costs in the SPOT market.
  
 
 Using an auto-scaling cluster
@@ -137,7 +137,7 @@ If you are running jobs manually (i.e. not through the job-scheduler), you may w
 Accessing your cluster
 ======================
 
-Once your cluster has been launched, the login node will be accessible via SSH from the IP address range you entered in the **NetworkCIDR**. If you entered ``0.0.0.0/0`` as the **NetworkCIDR**, your login node will be accessible from any IP address on the Internet. Your login node's public IP address is reported by the AWS Cloud-formation template, along with the username you must use to login with your keypair. 
+Once your cluster has been launched, the login node will be accessible via SSH from the IP address range you entered in the **NetworkCIDR**. If you entered ``0.0.0.0/0`` as the **NetworkCIDR**, your login node will be accessible from any IP address on the Internet. Your login node's public IP address is reported by the AWS CloudFormation template, along with the username you must use to login with your keypair. 
 
 To access the cluster login node from a Linux or Mac client, use the following command:
 
@@ -164,7 +164,7 @@ The first time you connect to your cluster, you will be prompted to accept a new
 Terminating the cluster
 =======================
 
-Your cluster login node will continue running until you terminate it via the `AWS web console <https://aws.amazon.com/console/>`_. If you are running an auto-scaling cluster, compute nodes will automatically be added and taken away up to the limits you specified depending on the number of jobs running and queued in the job-scheduler. When you have finished running your workloads, navigate to the `Cloud-formation console <https://console.aws.amazon.com/cloudformation/>`_, select the name of your cluster from the list of running stacks, and click **Delete stack** from the actions menu.
+Your cluster login node will continue running until you terminate it via the `AWS web console <https://aws.amazon.com/console/>`_. If you are running an auto-scaling cluster, compute nodes will automatically be added and taken away up to the limits you specified depending on the number of jobs running and queued in the job-scheduler. When you have finished running your workloads, navigate to the `CloudFormation console <https://console.aws.amazon.com/cloudformation/>`_, select the name of your cluster from the list of running stacks, and click **Delete stack** from the actions menu.
 
 Over the next few minutes, your cluster login and compute nodes will be terminated. Any data held on EBS will be erased, with storage volumes being wiped and returned to the AWS pool. **Ensure that you have downloaded data that you want to keep to your client machine, or stored in safely in an object storage service before terminating your cluster.**
 
