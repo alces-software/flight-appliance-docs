@@ -16,9 +16,9 @@ Example AWS CloudFormation templates
 8-node, 16-node and 32-node fixed-size clusters
 -----------------------------------------------
 
-https://s3.amazonaws.com/alces-flight-templates/2016.2r3/8-node.json
-https://s3.amazonaws.com/alces-flight-templates/2016.2r3/16-node.json
-https://s3.amazonaws.com/alces-flight-templates/2016.2r3/32-node.json
+ - https://s3.amazonaws.com/alces-flight-templates/2016.2r3/8-node.json
+ - https://s3.amazonaws.com/alces-flight-templates/2016.2r3/16-node.json
+ - https://s3.amazonaws.com/alces-flight-templates/2016.2r3/32-node.json
 
 This template is designed to create an 8-node cluster, and provides a choice of compute and login node instance types. The template creates:
 
@@ -30,7 +30,7 @@ This template is designed to create an 8-node cluster, and provides a choice of 
 Variable sized cluster
 ----------------------
 
-https://s3.amazonaws.com/alces-flight-templates/2016.2r3/x-node.json
+ - https://s3.amazonaws.com/alces-flight-templates/2016.2r3/x-node.json
 
 This template is designed to create a cluster of between 1 and 32 nodes, and provides a choice of compute and login node instance types. The template creates:
 
@@ -43,7 +43,7 @@ This template is designed to create a cluster of between 1 and 32 nodes, and pro
 Demonstration cluster
 ---------------------
 
-https://s3.amazonaws.com/alces-flight-templates/2016.2r3/demo.json
+ - https://s3.amazonaws.com/alces-flight-templates/2016.2r3/demo.json
 
 This template is designed to create a cluster of between 1 and 32 nodes, with higher performance SSD-backed EBS storage (sg2) and all software repositories enabled for demonstration purposes. The template creates:
 
