@@ -34,6 +34,8 @@ The simplest method of launching a cluster is by using the AWS Marketplace - clu
 
 Advanced users may also wish to launch a cluster one instance at a time, or deploy a single login node to be used interactively. Follow this guide for information on how to manually configure a cluster by launching individual instances - :ref:`manual_launch`.
 
+Users can also use one the example CloudFormation templates as the basis of their own cluster deployments. This allows more customisation of your cluster, including choosing how many nodes can be launched, configuring different types of EBS backing storage and choosing different availability zones for your compute nodes. For more information, see - :ref:`template_launch`.
+
 
 How much will it cost?
 ----------------------
