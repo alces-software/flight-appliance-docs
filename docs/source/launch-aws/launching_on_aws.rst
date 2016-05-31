@@ -68,7 +68,12 @@ Click on the **Continue** button to view details on how to launch.
 Launching a Personal HPC cluster from AWS Marketplace
 -----------------------------------------------------
 
-After clicking the **Continue** button from the main product page, select the **Custom Launch** tab in your browser. Scroll down the page and select the region you want to launch in in the **Select a Region** section, then choose **Personal HPC compute cluster** from the *Deployment Options* section. Under the *Launch* section, click on the **Launch with CloudFormation Console** button to start deploying your cluster. 
+Follow these instructions to launch your cluster:
+
+ - After clicking the **Continue** button from the main product page, select the **Custom Launch** tab in your browser. 
+ - Scroll down the page and select your local AWS region in the **Select a Region** section
+ - Choose **Personal HPC compute cluster** from the *Deployment Options* section
+ - Under the *Launch* section, click on the **Launch with CloudFormation Console** button to start deploying your cluster. 
 
 .. image:: mp-launch.jpg
     :alt: Alces Flight in AWS Marketplace
