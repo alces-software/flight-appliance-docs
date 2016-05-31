@@ -28,7 +28,7 @@ We recommend that users wishing to use Flight Appliances have basic Linux skills
    basics/*
    databasics/*
    graphicaldesktop/*
-   apps/*
+   apps/apps
    mpiapps/*
    jobschedulers/*
    sge/sge
@@ -43,6 +43,17 @@ We recommend that users wishing to use Flight Appliances have basic Linux skills
    launch-aws/manual-launch
    launch-aws/template_launch
    sge/disable_sge_limits
+
+.. toctree::
+   :maxdepth: 1
+   :glob:
+   :caption: Available software packages
+   :name: gridware
+   
+   apps/gridware
+
+   getting-started/environment-usage/gridware-features/*
+
 
 .. toctree::
    :maxdepth: 1
