@@ -40,13 +40,16 @@ Disabling memory resource limits
 
 Users can follow the process below to disable memory limits for jobs running via the cluster job-scheduler.
 
- 1 - Use the ``sudo -s`` command on the cluster login node to become the root user.
- 2 - Run the command ``EDITOR=nano qconf -mc`` 
- 3 - Using the ``nano`` editor, change the settings for the ``h_vmem`` entry so that:
+ 1. Use the ``sudo -s`` command on the cluster login node to become the root user.
+ 
+ 2. Run the command ``EDITOR=nano qconf -mc`` 
+ 
+ 3. Using the ``nano`` editor, change the settings for the ``h_vmem`` entry so that:
      - requestable is set to **NO**
      - consumable is set to **NO**
      - default is set to **0** (zero)
- 4 - Press ``CTRL+X`` to exit the nano editor
+ 
+ 4. Press ``CTRL+X`` to exit the nano editor
 
 
 Once memory limits are disabled, cluster users can submit jobs without a ``-l h_vmem`` setting, allowing jobs to use as much memory as is available on their cluster compute nodes. 
@@ -61,13 +64,13 @@ Submitted jobs automatically have a default runtime applied, unless overridden w
 
 Users can optionally disable the default runtime limit for their cluster by following these steps:
 
- 1 - Edit the system-wide grid-scheduler defaults file; for example, to use the nano editor, use the command:
+ 1. Edit the system-wide grid-scheduler defaults file; for example, to use the nano editor, use the command:
  
     ``nano $GRIDSCHEDULERDIR/etc/common/sge_request``
     
- 2 - Remove the ``h_rt=24:00:00`` section at the end of the file
+ 2. Remove the ``h_rt=24:00:00`` section at the end of the file
  
- 3 - Save the file by pressing ``CTRL+X``
+ 3. Save the file by pressing ``CTRL+X``
  
  
 Once the default runtime limit is disabled, cluster users can submit jobs without a ``-l h_rt=`` setting, allowing jobs to run forever until they complete or are terminated by the user.

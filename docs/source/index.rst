@@ -31,7 +31,7 @@ We recommend that users wishing to use Flight Appliances have basic Linux skills
    apps/*
    mpiapps/*
    jobschedulers/*
-   sge/*
+   sge/sge
    
 .. toctree::
    :maxdepth: 1
