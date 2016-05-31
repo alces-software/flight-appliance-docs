@@ -42,6 +42,7 @@ We recommend that users wishing to use Flight Appliances have basic Linux skills
    customisation/*
    launch-aws/manual-launch
    launch-aws/template_launch
+   sge/disable_sge_limits
 
 .. toctree::
    :maxdepth: 1
