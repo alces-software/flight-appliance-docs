@@ -53,7 +53,7 @@ Biochemistry
 BioInformatics
 --------------
 
-,, code:: bash
+.. code:: bash
 
   MS Prot Tools   Some hopefully useful tools for mass spectrometry applied to proteomics
   454 Sequencing  454 Sequencing System Off-Instrument Software Applications suite
