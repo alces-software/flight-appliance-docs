@@ -52,9 +52,6 @@ We recommend that users wishing to use Flight Appliances have basic Linux skills
    
    apps/gridware
 
-   getting-started/environment-usage/gridware-features/*
-
-
 .. toctree::
    :maxdepth: 1
    :glob:
