@@ -57,9 +57,23 @@ Most charges are made per unit (e.g. per compute node instance, or per GB of sto
 Finding Alces Flight Compute on AWS
 -----------------------------------
 
-Sign-in to your AWS account, and navigate to the `AWS Marketplace <https://aws.amazon.com/marketplace>`_. Search for **Alces Flight** in the search box provided to find the Flight Compute product. Click on the *Continue* button to view details on how to launch. 
+Sign-in to your AWS account, and navigate to the `AWS Marketplace <https://aws.amazon.com/marketplace>`_. Search for **Alces Flight** in the search box provided to find the Flight Compute product. 
 
-As well as an Amazon Machine Image (AMI), Flight Compute subscribers are provided with a CloudFormation template (CFT) that can be used to launch your own cluster rapidly after answering a few setup questions. Advanced users can also use the AMI directly with their own CFTs to provide more customised environments for specialised requirements. This documentation is designed to assist new users when launching with the CFT provided on the AWS Marketplace page. 
+.. image:: marketplace_2016.2.jpg
+    :alt: Alces Flight in AWS Marketplace
+
+Click on the **Continue** button to view details on how to launch. 
+
+
+Launching a Personal HPC cluster from AWS Marketplace
+-----------------------------------------------------
+
+After clicking the **Continue** button from the main product page, select the **Custom Launch** tab in your browser. Scroll down the page and select the region you want to launch in in the **Select a Region** section, then choose **Personal HPC compute cluster** from the *Deployment Options* section. Under the *Launch* section, click on the **Launch with CloudFormation Console** button to start deploying your cluster. 
+
+.. image:: mp-launch.jpg
+    :alt: Alces Flight in AWS Marketplace
+
+As well as an Amazon Machine Image (AMI), Flight Compute subscribers are provided with a CloudFormation template (CFN template) that can be used to launch your own cluster rapidly after answering a few setup questions. Advanced users can also use the AMI directly with their own CFN templates to provide more customised environments for specialised requirements. This documentation is designed to assist new users when launching with the CFN template provided on the AWS Marketplace page. 
 
 
 How to answer CloudFormation questions
