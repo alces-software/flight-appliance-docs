@@ -47,7 +47,7 @@ For Flight Compute clusters launched from AWS Marketplace, your applications are
 Installing cluster applications
 ===============================
 
-Alces Flight Compute clusters include access to the online **Gridware** repository of software applications. This catalogue includes over 750 application, library, compiler and MPI versions which can be installed and run on your cluster. Software is installed by selecting it from the catalogue, compiling it on the cluster login node along with any software package dependencies, and installing it in the shared cluster application storage space. Once installed, applications can be run on the login and compute nodes interactively, or as part of job-scripts submitted to the cluster scheduler. 
+Alces Flight Compute clusters include access to the online **Gridware** repository of software applications. This catalogue `includes over 750 application, library, compiler and MPI versions <http://tiny.cc/gridware>`_ which can be installed and run on your cluster. Software is installed by selecting it from the catalogue, compiling it on the cluster login node along with any software package dependencies, and installing it in the shared cluster application storage space. Once installed, applications can be run on the login and compute nodes interactively, or as part of job-scripts submitted to the cluster scheduler. 
 
 Application catalogue structure
 ===============================
