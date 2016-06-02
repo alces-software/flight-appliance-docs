@@ -23,15 +23,15 @@ We recommend that users wishing to use Flight Appliances have basic Linux skills
 
    quickstart/*
    overview/*
-   launch-aws/*   
+   launch-aws/launching_on_aws
    launch-os/*
    basics/*
    databasics/*
    graphicaldesktop/*
-   apps/*
+   apps/apps
    mpiapps/*
    jobschedulers/*
-   sge/*
+   sge/sge
    
 .. toctree::
    :maxdepth: 1
@@ -40,6 +40,17 @@ We recommend that users wishing to use Flight Appliances have basic Linux skills
    :name: customising
         
    customisation/*
+   launch-aws/manual-launch
+   launch-aws/template_launch
+   sge/disable_sge_limits
+
+.. toctree::
+   :maxdepth: 1
+   :glob:
+   :caption: Available software packages
+   :name: gridware
+   
+   apps/gridware
 
 .. toctree::
    :maxdepth: 1
@@ -49,8 +60,5 @@ We recommend that users wishing to use Flight Appliances have basic Linux skills
 
    getting-started/environment-usage/gridware-features/*
    getting-started/environment-usage/using-openfoam-with-alces-flight-compute.rst
-   environment-usage/alces-storage-examples
-   environment-usage/alces-storage-examples
-   environment-usage/alces-storage-examples
-   
+
 
