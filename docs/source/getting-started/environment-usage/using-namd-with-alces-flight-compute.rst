@@ -19,6 +19,7 @@ Installation
 From your Alces Flight Compute environment as a valid administrator user, you can begin installing the NAMD Gridware package. The ``tcl-devel`` package must be installed on all hosts, this can be done via ``pdsh`` [4]_ or through the Alces customiser tool [5]_. Using the PDSH command, ``tcl-devel`` can be installed on all hosts in your environment using the following example command:
 
 .. code:: bash
+   
     pdsh -g cluster 'sudo yum -y install tcl-devel'
 
 Once the ``tcl-devel`` package is installed, you can begin installing the Gridware packages required to successfully install NAMD. 
