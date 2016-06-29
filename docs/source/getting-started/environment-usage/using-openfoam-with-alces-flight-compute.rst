@@ -14,27 +14,14 @@ Prerequisites
 Installing OpenFoam
 -------------------
 
-The following section details how to install OpenFoam version ``2.1.1`` on your Alces Flight Compute environment. Note - access to the administrator user is required for this section. 
+The following section details how to install OpenFoam version ``3.0.1`` on your Alces Flight Compute environment. Note - access to the administrator user is required for this section. 
 
-To begin, enable the ``volatile`` Gridware repository - instructions for doing this can be found at the following page: 
-
-    ``http://docs.alces-flight.com/en/latest/apps/apps.html#volatile-gridware-repositories``
-
-Next - perform the following commands to install and compile OpenFoam on your Alces Flight Compute environment: 
+You must first install the Gridware packages required to complete the following tutorial - install the required packages using the following example commands: 
 
 .. code:: bash
 
-    pdsh -g cluster 'sudo yum -y install zlib-devel'
-    alces gridware install --binary main/mpi/openmpi/1.8.5
-    alces gridware install volatile/libs/scotch/6.0.3
-    alces gridware install volatile/libs/mgridgen
-    alces gridware install volatile/apps/openfoam/2.1.1
-    alces gridware install volatile/apps/paraview/4.3.1
-
-
-.. note:: Compiling from source can take some time to complete, depending on the capability of the instances selected for your cluster.
-
-.. note:: Each node requires the ``zlib-devel`` package to be installed. You can automate installation of the ``zlib-devel`` package using the Alces customiser tool. For more information see the :ref:`Alces customiser documentation <customisation>`
+    alces gridware install apps/openfoam
+    alces gridware install apps/paraview
     
 Running OpenFOAM
 ----------------
@@ -188,7 +175,7 @@ Alternatively - the process can be automated through your cluster job scheduler.
 
     paraFoam -builtin
 
-10.  Using the ``Mesh Regions`` box on the bottom left of the interface - enable all of the Mesh regions. 
+10.  Using the ``Mesh Regions`` box on the bottom left of the interface - enable all of the Mesh regions. Once all of the Mesh regions are selected, click the ``Apply`` button. 
 11.  Click the ``Play`` button using the toolbar to run the output.
 
 .. image:: ../../_images/paraFoam.png
