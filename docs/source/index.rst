@@ -1,4 +1,4 @@
-Flight Appliance Documentation - 2016.2r3
+Flight Appliance Documentation - 2016.2r4
 ==========================================
 .. figure:: _images/AlcesFlight.png
     :alt: Alces Computing in the Cloud
