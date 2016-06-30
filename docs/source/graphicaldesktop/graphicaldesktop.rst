@@ -57,6 +57,15 @@ Please note that users are only permitted to connect to your Flight Compute clus
 Resizing the desktop to fit your screen
 ---------------------------------------
 
+Specifying a size with the alces session tool
+*********************************************
+
+When launching a graphical desktop session using the ``alces session`` utility, a session resolution can be specified using the ``--geometry <size>`` option. For example, to launch a ``gnome`` desktop session with a resolution of 1920x1080 pixels, use the command:
+
+.. code:: bash
+   
+    alces session start --geometry 1920x1080 gnome
+
 By default, your graphical desktop session will launch with a compatibility resolution of 1024x768. Users can resize the desktop to fit their screens using the Linux ``xrandr`` command, run from within the graphical desktop session. 
 
 To view the available screen resolutions, start a terminal session on your graphical desktop by navigating to the ``Applications`` menu in the top left-hand corner of the screen, then selecting the ``Terminal`` under the ``System tools`` menu.
