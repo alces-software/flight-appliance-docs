@@ -138,7 +138,7 @@ Once you have connected to the VNC session - the OpenFOAM application will need 
     
     End
 
-6.  You can verify success, and view information such as mesh size, geometrical size and some mesh checks using the ``meshCheck`` command. 
+6.  You can verify success, and view information such as mesh size, geometrical size and some mesh checks using the ``checkMesh`` command. 
 7.  You've now created a case for the solver - which we can run using OpenFOAM. To run the process interactively, perform the following command: 
 
 .. code:: bash
