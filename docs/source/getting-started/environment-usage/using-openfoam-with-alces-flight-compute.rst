@@ -9,7 +9,7 @@ Prerequisites
 -------------
 
 -  Alces Flight Compute environment deployed with at least 1 compute node
--  AutoScaling disabled (disable with ``alces configure autoscaling off``)
+-  AutoScaling disabled (disable with ``alces configure autoscaling disable``)
 
 Installing OpenFoam
 -------------------
