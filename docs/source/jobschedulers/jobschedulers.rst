@@ -65,11 +65,17 @@ Your Alces Flight Compute cluster comes with a job-scheduler pre-installed, read
 Cluster job scheduler support
 -----------------------------
 
-This version of Alces Flight Compute includes support for `Open Grid Scheduler (OGS) <http://gridscheduler.sourceforge.net/>`_ - an open-source job scheduler, built from the codebase of what was originally the `Sun Grid Engine (SGE) <https://en.wikipedia.org/wiki/Oracle_Grid_Engine>`_ job scheduler. The syntax and usage of commands is identical to historical SGE syntax, and users can typically migrate from one to another with no issues.
+This Community version of Alces Flight Compute includes support for `Open Grid Scheduler (OGS) <http://gridscheduler.sourceforge.net/>`_ - an open-source job scheduler, built from the codebase of what was originally the `Sun Grid Engine (SGE) <https://en.wikipedia.org/wiki/Oracle_Grid_Engine>`_ job scheduler. The syntax and usage of commands is identical to historical SGE syntax, and users can typically migrate from one to another with no issues.
+
+The Enterprise version of Alces Flight Compute includes support for the following cluster job schedulers;
+
+ * `Slurm scheduler <http://slurm.schedmd.com/>`_
+ * `OpenLava scheduler <http://www.openlava.org/>`_
+ * `Torque scheduler <http://www.adaptivecomputing.com/products/open-source/torque/>`_
+ * `PBS Pro scheduler <http://www.pbsworks.com/PBSProduct.aspx?n=PBS-Professional&c=Overview-and-Capabilities>`_
+
+The SGE scheduler option is also available in the Enterprise version. 
 
 It is also possible for users to download and install their own job-scheduler across their Flight Compute cluster - any product compatible with RedHat Enterprise Linux 7 and derivatives should be possible to run on your cluster. 
 
 We intend to include support for other job-schedulers in future versions of Alces Flight Compute - please let us know at the `Alces Flight Community Support <http://community.alces-flight.com>`_ site if you have a particular favourite that you'd like us to include, and the reasons why. 
-
-
-

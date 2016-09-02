@@ -32,6 +32,13 @@ We recommend that users wishing to use Flight Appliances have basic Linux skills
    apps/apps
    mpiapps/*
    jobschedulers/*
+
+.. toctree::
+   :maxdepth: 1
+   :glob:
+   :caption: Cluster schedulers
+   :name: schedulers
+
    sge/sge
    vpn/vpn
    
