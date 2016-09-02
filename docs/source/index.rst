@@ -41,6 +41,7 @@ We recommend that users wishing to use Flight Appliances have basic Linux skills
 
    sge/sge
    vpn/vpn
+   slurm/slurm
    
 .. toctree::
    :maxdepth: 1

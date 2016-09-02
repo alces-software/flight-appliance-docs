@@ -146,7 +146,7 @@ The ``sinfo`` output will show (from left-to-right):
  - The scheduler weight
 
 Controlling resources
-=====================
+---------------------
 
 In order to promote efficient usage of the cluster - the job-scheduler is automatically configured with default run-time limits for jobs. These defaults can be overridden by users to help the scheduler understand how you want it to run your job. If we don't include any instructions to the scheduler then the default limits are applied to a job.
 
