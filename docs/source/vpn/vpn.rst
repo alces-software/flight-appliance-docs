@@ -45,4 +45,4 @@ Your Alces Flight Compute cluster automatically packages the VPN configuration f
 
 You can then obtain the VPN configuration packs either through command-line tools such as `scp`, or through the Alces Flight web page as shown in the ``alces about vpn`` output and connect using the steps provided by your VPN client instructions. 
 
-.. info:: The VPN configuration download web page is only available to users running an Alces Flight Compute *Enterprise* edition cluster
+.. note:: The VPN configuration download web page is only available to users running an Alces Flight Compute *Enterprise* edition cluster
