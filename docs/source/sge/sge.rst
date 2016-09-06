@@ -586,6 +586,68 @@ There is a graphical administration interface for the OGS scheduler - to use it,
   
 Be aware that any job-scripts you have already created (including the provided templates) and cluster auto-scaling support (if available) may rely to the default configuration delivered with your Flight Compute cluster. If you reconfigure the scheduler, we recommend that you disable auto-scaling (``alces configuration autoscaling disable``) and review your job-scripts for compatibility. 
 
+Controlling scheduler configuration
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+Your Alces Flight Compute environment allows you to configure your cluster scheduler, controling the job spanning type as well as the job submission strategy.
 
+View current configuration
+``````````````````````````
 
+You can view the current scheduler configuration using the ``alces configure scheduler status`` command: 
+
+.. code:: bash
+
+  [alces@login1(sge) ~]$ alces configure scheduler status
+  ======================================================================
+                              gridscheduler
+                              ======================================================================
+                     Allocation strategy: packing
+                     Submission strategy: master
+
+Scheduler allocation strategy
+`````````````````````````````
+
+Changing the scheduler allocation strategy allows you to choose from a variety of different methods of scheduling jobs across available nodes. The currently available configuration types are as follows:
+
+``packing``
+  Pack as many jobs as possible onto as few nodes as possible
+
+``spanning``
+  Select the least busy nodes for new jobs
+
+View current configuration
+
+Modifying allocation configuration
+''''''''''''''''''''''''''''''''''
+
+To control the scheduler allocation strategy, use the command ``alces configure scheduler allocation <strategy>`` as per the following example: 
+
+.. code:: bash
+
+  [alces@login1(sge) ~]$ alces configure scheduler allocation spanning
+  alces configure scheduler: gridscheduler: allocation strategy set to: spanning
+
+Scheduler submission strategy
+`````````````````````````````
+
+The default scheduler submission strategy allows only jobs submitted from the cluster login node to be accepted. You may wish to change this to allow cluster compute hosts to submit jobs, which can be useful for multi-stage workflows - or disable job submission entirely. The current scheduler submission strategies available are:
+
+``all``
+  Accept job submission from all cluster hosts
+
+``master``
+  Accept job submission from the login/master node only
+
+``none``
+  Disable job submission from all cluster hosts
+
+Modify submission configuration
+'''''''''''''''''''''''''''''''
+
+To control the scheduler submission strategy, use the command ``alces configure scheduler submission <strategy>`` as per the following example:
+
+.. code:: bash
+
+  [alces@login1(sge) ~]$ alces configure scheduler submission all
+  alces configure scheduler: gridscheduler: submission strategy set to: all
