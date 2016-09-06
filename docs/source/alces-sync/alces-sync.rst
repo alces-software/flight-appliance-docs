@@ -44,18 +44,18 @@ You can then verify that the synchronization was successful either using the S3 
 .. code:: bash
 
   s3cmd ls s3://alces-flight-nmi0ztdmyzm3ztm3/sync/alces/default/
-                         DIR   s3://alces-flight-nmi0ztdmyzm3ztm3/sync/alces/default/.config/
-                                                DIR   s3://alces-flight-nmi0ztdmyzm3ztm3/sync/alces/default/.ssh/
-                                                                       DIR   s3://alces-flight-nmi0ztdmyzm3ztm3/sync/alces/default/job-scripts/
-                                                                                              DIR   s3://alces-flight-nmi0ztdmyzm3ztm3/sync/alces/default/outputs/
-                                                                                              2016-09-06 13:52       358   s3://alces-flight-nmi0ztdmyzm3ztm3/sync/alces/default/.bash_history
-                                                                                              2016-09-06 13:47        18   s3://alces-flight-nmi0ztdmyzm3ztm3/sync/alces/default/.bash_logout
-                                                                                              2016-09-06 13:47       193   s3://alces-flight-nmi0ztdmyzm3ztm3/sync/alces/default/.bash_profile
-                                                                                              2016-09-06 13:47       231   s3://alces-flight-nmi0ztdmyzm3ztm3/sync/alces/default/.bashrc
-                                                                                              2016-09-06 13:47       334   s3://alces-flight-nmi0ztdmyzm3ztm3/sync/alces/default/.emacs
-                                                                                              2016-09-06 13:47       887   s3://alces-flight-nmi0ztdmyzm3ztm3/sync/alces/default/.modulerc
-                                                                                              2016-09-06 13:47       740   s3://alces-flight-nmi0ztdmyzm3ztm3/sync/alces/default/.modules
-                                                                                              2016-09-06 13:47       118   s3://alces-flight-nmi0ztdmyzm3ztm3/sync/alces/default/clusterware-setup-sshkey.log
+  DIR   s3://alces-flight-nmi0ztdmyzm3ztm3/sync/alces/default/.config/
+  DIR   s3://alces-flight-nmi0ztdmyzm3ztm3/sync/alces/default/.ssh/
+  DIR   s3://alces-flight-nmi0ztdmyzm3ztm3/sync/alces/default/job-scripts/
+  DIR   s3://alces-flight-nmi0ztdmyzm3ztm3/sync/alces/default/outputs/
+  2016-09-06 13:52       358   s3://alces-flight-nmi0ztdmyzm3ztm3/sync/alces/default/.bash_history
+  2016-09-06 13:47        18   s3://alces-flight-nmi0ztdmyzm3ztm3/sync/alces/default/.bash_logout
+  2016-09-06 13:47       193   s3://alces-flight-nmi0ztdmyzm3ztm3/sync/alces/default/.bash_profile
+  2016-09-06 13:47       231   s3://alces-flight-nmi0ztdmyzm3ztm3/sync/alces/default/.bashrc
+  2016-09-06 13:47       334   s3://alces-flight-nmi0ztdmyzm3ztm3/sync/alces/default/.emacs
+  2016-09-06 13:47       887   s3://alces-flight-nmi0ztdmyzm3ztm3/sync/alces/default/.modulerc
+  2016-09-06 13:47       740   s3://alces-flight-nmi0ztdmyzm3ztm3/sync/alces/default/.modules
+  2016-09-06 13:47       118   s3://alces-flight-nmi0ztdmyzm3ztm3/sync/alces/default/clusterware-setup-sshkey.log
 
 .. hint:: When performing the ``alces sync push`` command - you may choose to set an encryption passphrase for additional protection
 
