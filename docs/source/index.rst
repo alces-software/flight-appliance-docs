@@ -43,6 +43,7 @@ We recommend that users wishing to use Flight Appliances have basic Linux skills
    vpn/vpn
    slurm/slurm
    openlava/openlava
+   torque/torque
    
 .. toctree::
    :maxdepth: 1

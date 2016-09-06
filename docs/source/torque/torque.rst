@@ -269,6 +269,29 @@ By default, jobs are executed from your home-directory on the cluster (i.e. ``/h
 
 .. note:: The directory specified must exist and be accessible by the compute node in order for the job you submitted to run
 
+Setting working directory for your job
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Torque uses the directory that the job was submitted from to define the working directory for a job - no matter the location of the job submission script. For example, on your cluster if you create a new directory in your home directory named ``outputs`` then ``cd`` to the ``outputs`` folder: 
+
+.. code:: bash
+
+  [alces@login1(vlj) ~]$ mkdir outputs && cd outputs
+  [alces@login1(vlj) outputs]$ pwd
+  /home/alces/outputs
+
+You can then submit a job script that exists in any directory, and the job output and working directory will be the current working directory. The dynamic variable ``$PBS_O_WORKDIR`` variable should be used to determine the working directory. The following example job script demonstrates this functionality:
+
+.. code:: bash
+
+  [alces@login1(vlj) outputs]$ cat ../wd.sh
+  #!/bin/bash -l
+  echo "My working directory is $PBS_O_WORKDIR"
+  [alces@login1(vlj) outputs]$ qsub ../wd.sh
+  30.login1.vlj.prv.alces.network
+  [alces@login1(vlj) outputs]$ cat wd.sh.o30
+  My working directory is /home/alces/outputs
+
 Waiting for a previous job before running
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -332,12 +355,84 @@ By default, jobs are constrainted to the default set of resources - users can us
 Running multi-threaded jobs
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-If users want to use multiple cores on a compute node to run a multi-threaded application, they need to inform the scheduler - this allows jobs to be efficiently spread over compute nodes to get the best possible performance. Using multiple CPU cores is achieved by specifying ``-l ppn=[count]`` option in either your submission command or the scheduler directives in your job script. The ``-l ppn=[count]`` option informs the scheduler of the number of cores you wish to reserve for use. If
-the parameter is omitted, a default of 1 core is assumed. You could specify the option ``-l ppn=4`` to request 4 CPU cores for your job.
+If users want to use multiple cores on a compute node to run a multi-threaded application, they need to inform the scheduler - this allows jobs to be efficiently spread over compute nodes to get the best possible performance. Using multiple CPU cores is achieved by specifying ``-l mppwidth=[count]`` option in either your submission command or the scheduler directives in your job script. The ``-l mppwidth=[count]`` option informs the scheduler of the number of cores you wish to reserve for use. If
+the parameter is omitted, a default of 1 core is assumed. You could specify the option ``-l mppwidth=4`` to request 4 CPU cores for your job.
 
 Running Parallel (MPI) jobs
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-If users want to run parallel jobs via a message passing interface (MPI), they need to inform the scheduler - this allows jobs to be efficiently spread over compute nodes to get the best possible performance. Using multiple CPU cores across multiple nodes is achieved by specifying the ``-l nodes=2 -l ppn=1`` option either in your job submission command or your job-script directives. The example option requests 2 compute hosts with 1 compute core on each compute on each requested node. 
+If users want to run parallel jobs via a message passing interface (MPI), they need to inform the scheduler - this allows jobs to be efficiently spread over compute nodes to get the best possible performance. Using multiple CPU cores across multiple nodes is achieved by specifying the ``-l nodes=2:ppn=1`` option either in your job submission command or your job-script directives. The example option requests 2 compute hosts with 1 compute core on each compute on each requested node. 
 
-For example, to use 16 CPU cores on the cluster for a single application
+For example, to use 8 CPU cores on the cluster for a single application - you could use the following scheduler directive: 
+
+    ``-l nodes=4:ppn=2``    Request 4 nodes using 2 cores across each requested node
+
+This application is launched via the OpenMPI ``mpirun`` command. This jobscript loads the ``apps/imb`` module before launching the application, which automatically loads the module for ``openmpi``.
+
+.. code:: bash
+
+  #!/bin/bash -l
+  #PBS -l nodes=4:ppn=2
+  #PBS -N imb
+  #PBS -j oe /home/alces/outputs/imb_mpi.out.$PBS_JOBID
+  module load apps/imb
+  echo "List of nodes to use:"
+  echo "---------------------"
+  cat $PBS_NODEFILE
+  mpirun --prefix $MPI_HOME \
+         --hostfile $PBS_NODEFILE \
+         $(which IMB-MPI1)
+
+We can then submit the IMB job script to the scheduler, which will automatically determine which nodes to use: 
+
+.. code:: bash
+
+  [alces@login1(vlj) outputs]$ qsub ../imb_mpi.sh
+  35.login1.vlj.prv.alces.network
+  [alces@login1(vlj) outputs]$ cat imb.o35
+  List of nodes to use:
+  ---------------------
+  node-x90.vlj.prv.alces.network
+  node-x90.vlj.prv.alces.network
+  node-xd7.vlj.prv.alces.network
+  node-xd7.vlj.prv.alces.network
+  node-x81.vlj.prv.alces.network
+  node-x81.vlj.prv.alces.network
+  node-xc3.vlj.prv.alces.network
+  node-xc3.vlj.prv.alces.network
+  benchmarks to run PingPong
+  #------------------------------------------------------------
+  #    Intel (R) MPI Benchmarks 4.0, MPI-1 part
+  #------------------------------------------------------------
+  # Date                  : Tue Sep  6 10:26:04 2016
+
+.. note:: If you request more CPU cores than your cluster can accommodate, your job will wait in the queue (in case more nodes are added to your cluster at a later date, either manually or through the Alces Flight autoscaling feature).
+
+Requesting more memory
+----------------------
+
+In order to promote best-use of the cluster scheduler - particularly in a shared environment, it is recommended to inform the scheduler the maximum required memory per submitted job. This helps the scheduler appropriately place jobs on the available nodes in the cluster.
+
+You can specify the maximum amount of memory required per submitted job with the ``--l mem=[xxxmb]`` option. This informs the scheduler of the memory required for the submitted job. Optionally - you can also request an amount of memory *per CPU core* rather than a total amount of memory required per job. 
+
+.. note:: When running a job across multiple compute hosts, the ``-l mem=[xxxmb]`` option informs the scheduler of the required memory *per node*
+
+Requesting a longer runtime
+---------------------------
+
+In order to promote best-use of the cluster scheduler, particularly in a shared environment, it is recommended to inform the scheduler of the amount of time the submitted job is expected to take. You can inform the cluster scheduler of the expected runtime using the ``-l walltime=[hh:mm:ss]`` option. For example - to submit a job that runs for a maximum of 2 hours, the following example job script could be used: 
+
+.. code:: bash
+
+  #!/bin/bash -l
+  #PBS -l walltime=02:00:00
+  sleep 120
+
+Further documentation
+---------------------
+
+This guide is a quick overview of some of the many available options of the TORQUE cluster scheduler. For more information on the available options, you may wish to reference some of the following available documentation for the demonstrated TORQUE commands;
+
+ - Use the ``man qstat`` command to see a full list of scheduler queue instructions
+ - Use the ``man qsub`` command to see a full list of scheduler submission instructions
+ - Online documentation for the TORQUE scheduler is `available here <http://www.adaptivecomputing.com/support/documentation-index/>`_
