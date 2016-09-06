@@ -601,7 +601,7 @@ You can view the current scheduler configuration using the ``alces configure sch
   [alces@login1(sge) ~]$ alces configure scheduler status
   ======================================================================
                               gridscheduler
-                              ======================================================================
+  ======================================================================
                      Allocation strategy: packing
                      Submission strategy: master
 
