@@ -3,14 +3,14 @@
 TORQUE Scheduler
 ================
 
-The `Torque <http://www.adaptivecomputing.com/products/open-source/torque/>`_ cluster job scheduler is an open-source scheduler based on the original PBS codebase. TORQUE can be integrated with both the non-commercial Maui cluster scheduler or the commercial Moab workload manager. 
+The `Torque <http://www.adaptivecomputing.com/products/open-source/torque/>`_ cluster job scheduler is an open-source scheduler based on the original PBS codebase. TORQUE can be integrated with both the non-commercial Maui cluster scheduler or the commercial Moab workload manager.
 
 See :ref:`jobschedulers` for a description of the different use-cases of a cluster job-scheduler.
 
 Running an interactive job
 --------------------------
 
-You can start a new interactive job on your Flight Compute cluster by using the ``qsub -I`` command; the scheduler will search for an available compute node, and provide you with an interactive login shell on the node if one is available. 
+You can start a new interactive job on your Flight Compute cluster by using the ``qsub -I`` command; the scheduler will search for an available compute node, and provide you with an interactive login shell on the node if one is available.
 
 .. code:: bash
 
@@ -22,7 +22,7 @@ You can start a new interactive job on your Flight Compute cluster by using the 
   [alces@node-xb3(vlj) ~]$ hostname -f
   node-xb3.vlj.prv.alces.network
 
-In the above command, the ``qsub`` command is used together with the option ``-I`` which informs the cluster scheduler you wish to start an interactive job. 
+In the above command, the ``qsub`` command is used together with the option ``-I`` which informs the cluster scheduler you wish to start an interactive job.
 
 Alternatively, the ``qsub -I`` command can also be executed from an interactive desktop session; the job-scheduler will automatically find an available compute node to launch the job on. Applications launched from within the interactive session are executed on the assigned cluster compute node.
 
@@ -41,7 +41,7 @@ Submitting a batch job
 Batch (or non-interactive) jobs allow users to leverage one of the main benefits of having a cluster scheduler; jobs can be queued up with instructions on how to run them  and then executed across the cluster while the user `does something else <https://www.quora.com/What-do-you-do-while-youre-waiting-for-your-code-to-finish-running>`_. Users  submit jobs as scripts, which include instructions on how to run the job - the output of the job (*stdout* and *stderr* in Linux terminology) is written to a file on disk for review later on. You can write a batch job that does anything that can be typed on  the command-line.
 
 We'll start with a basic example - the following script is written in ``bash`` (the default Linux command-line interpreter). You can create the script yourself using the `Nano <http://www.howtogeek.com/howto/42980/the-beginners-guide-to-nano-the-linux-command-line-text-editor/>`_ command-line editor - use the command ``nano simplejobscript.sh`` to create a new file, then type in the contents below. The script does nothing more than print some messages to the screen (the ``echo``
-lines), and sleeps for 120 seconds. We've saved the script to a file called ``simplejobsscript.sh`` - the ``.sh`` extension helps to remind us that this is a ``shell`` script, but adding a filename extension isn't strictly necessary for Linux. 
+lines), and sleeps for 120 seconds. We've saved the script to a file called ``simplejobsscript.sh`` - the ``.sh`` extension helps to remind us that this is a ``shell`` script, but adding a filename extension isn't strictly necessary for Linux.
 
 .. code:: bash
 
@@ -50,7 +50,7 @@ lines), and sleeps for 120 seconds. We've saved the script to a file called ``si
   sleep 120
   echo "Finished running - goodbye from $HOSTNAME"
 
-.. note:: We use the ``-l`` option to ``bash`` on the first line of the script to request a login session. This ensures that environment modules can be loaded as required as part of your script. 
+.. note:: We use the ``-l`` option to ``bash`` on the first line of the script to request a login session. This ensures that environment modules can be loaded as required as part of your script.
 
 We can execute that script directly on the login node by using the command ``bash simplejobscript.sh`` - after a couple of minutes, we get the following output:
 
@@ -59,7 +59,7 @@ We can execute that script directly on the login node by using the command ``bas
   Started running on host login1
   Finished running - goodbye from login1
 
-To submit your job script to the cluster job scheduler, use the command ``qsub simplejobscript.sh``. The job scheduler should immediately report the job-ID for your job; your job-ID is unique for your current Alces Flight Compute cluster - it will never be repeated once used. 
+To submit your job script to the cluster job scheduler, use the command ``qsub simplejobscript.sh``. The job scheduler should immediately report the job-ID for your job; your job-ID is unique for your current Alces Flight Compute cluster - it will never be repeated once used.
 
 .. code:: bash
 
@@ -72,7 +72,7 @@ To submit your job script to the cluster job scheduler, use the command ``qsub s
 Viewing and controlling queued jobs
 -----------------------------------
 
-Once your job has been submitted, use the ``qstat`` command to view the status of the job queue. If you have available compute nodes, your job should be shown in the ``R`` (running) state; if your compute nodes are busy, or you've launched an auto-scaling cluster and currently have no running nodes, your job may be shown in the ``Q`` (queued) state until compute nodes are available to run it. 
+Once your job has been submitted, use the ``qstat`` command to view the status of the job queue. If you have available compute nodes, your job should be shown in the ``R`` (running) state; if your compute nodes are busy, or you've launched an auto-scaling cluster and currently have no running nodes, your job may be shown in the ``Q`` (queued) state until compute nodes are available to run it.
 
 You can keep running the ``qstat`` command until your job finishes running. The output of your batch job will be stored in a file for you to look at. The default location to store the output file is your home directory. You can use the Linux ``more`` command to view your output file:
 
@@ -82,22 +82,22 @@ You can keep running the ``qstat`` command until your job finishes running. The 
   Running on host node-x4a
   Finished running - goodbye from node-x4a
 
-Your job runs on whatever node the scheduler can find which is available for use - you can try submitting a bunch of jobs at the same time, and using the ``qstat -n`` command, see which node the job is running on.  
+Your job runs on whatever node the scheduler can find which is available for use - you can try submitting a bunch of jobs at the same time, and using the ``qstat -n`` command, see which node the job is running on.
 
 .. code:: bash
 
   [alces@login1(vlj) ~]$ qstat -n
 
   login1.vlj.prv.alces.network:
-                                                                                    Req'd       Req'd       Elap
-                                                                                    Job ID                  Username    Queue    Jobname          SessID  NDS   TSK   Memory      Time    S   Time
-                                                                                    ----------------------- ----------- -------- ---------------- ------ ----- ------ --------- --------- - ---------
-                                                                                    12.login1.vlj.prv.alce  alces       batch    simplejobscript.   7320     1      1       --   01:00:00 R  00:01:46
-                                                                                       node-x4a
-                                                                                       13.login1.vlj.prv.alce  alces       batch    simplejobscript.   9602     1      1       --   01:00:00 R  00:01:48
-                                                                                          node-xb3
-                                                                                          14.login1.vlj.prv.alce  alces       batch    simplejobscript.   4286     1      1       --   01:00:00 R  00:01:49
-                                                                                             node-xd2
+  Req'd       Req'd       Elap
+  Job ID                  Username    Queue    Jobname          SessID  NDS   TSK   Memory      Time    S   Time
+  ----------------------- ----------- -------- ---------------- ------ ----- ------ --------- --------- - ---------
+  12.login1.vlj.prv.alce  alces       batch    simplejobscript.   7320     1      1       --   01:00:00 R  00:01:46
+  node-x4a
+  13.login1.vlj.prv.alce  alces       batch    simplejobscript.   9602     1      1       --   01:00:00 R  00:01:48
+  node-xb3
+  14.login1.vlj.prv.alce  alces       batch    simplejobscript.   4286     1      1       --   01:00:00 R  00:01:49
+  node-xd2
 
 The scheduler is likely to spread them around over different nodes (if you have multiple nodes). The login node is not included in your cluster for scheduling purposes - jobs submitted to the scheduler will only run on your cluster compute nodes. You can use the ``qdel <job-ID>`` command to delete a job you've submitted, whether it's running or still in the queued state.
 
@@ -125,51 +125,51 @@ Viewing compute host status
 
 Users can use the ``pbsnodes -a`` or ``pbsnodes -l 'free'`` options to view cluster node information. Any options other than ``-l`` or ``-a`` require PBS manager or PBS operator privileges.
 
-Users can view compute host status in the following formats: 
+Users can view compute host status in the following formats:
 
 .. code:: bash
 
-[root@login1(vlj) ~]# pbsnodes -l 'up'
-node-xb3.vlj.prv.alc free
-node-x4a.vlj.prv.alc free
-node-xd2.vlj.prv.alc free
-node-x94.vlj.prv.alc free
-[root@login1(vlj) ~]# pbsnodes -a
-  node-xb3.vlj.prv.alces.network
-       state = free
-       power_state = Running
-       np = 2
-       ntype = cluster
-       status = rectime=1473089112,macaddr=0a:d7:ca:29:2a:a7,cpuclock=Fixed,varattr=,jobs=,state=free,netload=123268589,gres=,loadave=0.00,ncpus=2,physmem=3689160kb,availmem=3390616kb,totmem=3689160kb,idletime=3992,nusers=0,nsessions=0,uname=Linux node-xb3 3.10.0-327.18.2.el7.x86_64 #1 SMP Thu May 12 11:03:55 UTC 2016 x86_64,opsys=linux
-       mom_service_port = 15002
-       mom_manager_port = 15003
+  [root@login1(vlj) ~]# pbsnodes -l 'up'
+  node-xb3.vlj.prv.alc free
+  node-x4a.vlj.prv.alc free
+  node-xd2.vlj.prv.alc free
+  node-x94.vlj.prv.alc free
+  [root@login1(vlj) ~]# pbsnodes -a
+    node-xb3.vlj.prv.alces.network
+         state = free
+         power_state = Running
+         np = 2
+         ntype = cluster
+         status = rectime=1473089112,macaddr=0a:d7:ca:29:2a:a7,cpuclock=Fixed,varattr=,jobs=,state=free,netload=123268589,gres=,loadave=0.00,ncpus=2,physmem=3689160kb,availmem=3390616kb,totmem=3689160kb,idletime=3992,nusers=0,nsessions=0,uname=Linux node-xb3 3.10.0-327.18.2.el7.x86_64 #1 SMP Thu May 12 11:03:55 UTC 2016 x86_64,opsys=linux
+         mom_service_port = 15002
+         mom_manager_port = 15003
   
-  node-x4a.vlj.prv.alces.network
-       state = free
-       power_state = Running
-       np = 2
-       ntype = cluster
-       status = rectime=1473089112,macaddr=0a:fd:8b:97:43:f1,cpuclock=Fixed,varattr=,jobs=,state=free,netload=121838538,gres=,loadave=0.00,ncpus=2,physmem=3689160kb,availmem=3402548kb,totmem=3689160kb,idletime=2652,nusers=0,nsessions=0,uname=Linux node-x4a 3.10.0-327.18.2.el7.x86_64 #1 SMP Thu May 12 11:03:55 UTC 2016 x86_64,opsys=linux
-       mom_service_port = 15002
-       mom_manager_port = 15003
+    node-x4a.vlj.prv.alces.network
+         state = free
+         power_state = Running
+         np = 2
+         ntype = cluster
+         status = rectime=1473089112,macaddr=0a:fd:8b:97:43:f1,cpuclock=Fixed,varattr=,jobs=,state=free,netload=121838538,gres=,loadave=0.00,ncpus=2,physmem=3689160kb,availmem=3402548kb,totmem=3689160kb,idletime=2652,nusers=0,nsessions=0,uname=Linux node-x4a 3.10.0-327.18.2.el7.x86_64 #1 SMP Thu May 12 11:03:55 UTC 2016 x86_64,opsys=linux
+         mom_service_port = 15002
+         mom_manager_port = 15003
   
-  node-xd2.vlj.prv.alces.network
-       state = free
-       power_state = Running
-       np = 2
-       ntype = cluster
-       status = rectime=1473089113,macaddr=0a:77:b2:48:26:93,cpuclock=Fixed,varattr=,jobs=,state=free,netload=119609907,gres=,loadave=0.00,ncpus=2,physmem=3689160kb,availmem=3402008kb,totmem=3689160kb,idletime=1443,nusers=0,nsessions=0,uname=Linux node-xd2 3.10.0-327.18.2.el7.x86_64 #1 SMP Thu May 12 11:03:55 UTC 2016 x86_64,opsys=linux
-       mom_service_port = 15002
-       mom_manager_port = 15003
+    node-xd2.vlj.prv.alces.network
+         state = free
+         power_state = Running
+         np = 2
+         ntype = cluster
+         status = rectime=1473089113,macaddr=0a:77:b2:48:26:93,cpuclock=Fixed,varattr=,jobs=,state=free,netload=119609907,gres=,loadave=0.00,ncpus=2,physmem=3689160kb,availmem=3402008kb,totmem=3689160kb,idletime=1443,nusers=0,nsessions=0,uname=Linux node-xd2 3.10.0-327.18.2.el7.x86_64 #1 SMP Thu May 12 11:03:55 UTC 2016 x86_64,opsys=linux
+         mom_service_port = 15002
+         mom_manager_port = 15003
   
-  node-x94.vlj.prv.alces.network
-       state = free
-       power_state = Running
-       np = 2
-       ntype = cluster
-       status = rectime=1473089103,macaddr=0a:82:bd:7d:5d:dd,cpuclock=Fixed,varattr=,jobs=,state=free,netload=118696570,gres=,loadave=0.00,ncpus=2,physmem=3689160kb,availmem=3403592kb,totmem=3689160kb,idletime=1026,nusers=0,nsessions=0,uname=Linux node-x94 3.10.0-327.18.2.el7.x86_64 #1 SMP Thu May 12 11:03:55 UTC 2016 x86_64,opsys=linux
-       mom_service_port = 15002
-       mom_manager_port = 15003
+    node-x94.vlj.prv.alces.network
+         state = free
+         power_state = Running
+         np = 2
+         ntype = cluster
+         status = rectime=1473089103,macaddr=0a:82:bd:7d:5d:dd,cpuclock=Fixed,varattr=,jobs=,state=free,netload=118696570,gres=,loadave=0.00,ncpus=2,physmem=3689160kb,availmem=3403592kb,totmem=3689160kb,idletime=1026,nusers=0,nsessions=0,uname=Linux node-x94 3.10.0-327.18.2.el7.x86_64 #1 SMP Thu May 12 11:03:55 UTC 2016 x86_64,opsys=linux
+         mom_service_port = 15002
+         mom_manager_port = 15003
 
 The ``pbsnodes`` output will display some of the following information about the compute hosts in your cluster:
 
@@ -178,7 +178,7 @@ The ``pbsnodes`` output will display some of the following information about the
  - Current usage of the node - if no jobs are running, the state will be listed as ``free``
  - The detected number of CPUs (including hyper-threaded cores)
  - The amount of memory in KB per node
- - The ammount of disk space available per node
+ - The amount of disk space available per node
 
 Controlling resources
 ---------------------
@@ -198,7 +198,7 @@ Job instructions can be provided in two ways; they are:
   ------------------------- ---------------- --------------- -------- - -----
   49.login1                  mytestjob        alces                  0 R batch
 
-2. **In your job script**, by including the scheduler directives at the top of your job script - you can achieve the same effect as providing options with the ``qsub`` command. Create an example job script or modify your existing script to include a scheduler directive to use a specified job name: 
+2. **In your job script**, by including the scheduler directives at the top of your job script - you can achieve the same effect as providing options with the ``qsub`` command. Create an example job script or modify your existing script to include a scheduler directive to use a specified job name:
 
 .. code:: bash
 
@@ -229,7 +229,7 @@ Including job scheduler instructions in your job-scripts is often the most conve
 Dynamic scheduler variables
 ---------------------------
 
-Your cluster job scheduler automatically creates a number of pseudo environment variables which are available to your job-scripts when they are running on cluster compute nodes, along with standard Linux variables. Useful values include the following: 
+Your cluster job scheduler automatically creates a number of pseudo environment variables which are available to your job-scripts when they are running on cluster compute nodes, along with standard Linux variables. Useful values include the following:
 
  - ``$HOME``                    The location of your home-directory
  - ``$USER``                    The Linux username of the submitting user
@@ -272,7 +272,7 @@ By default, jobs are executed from your home-directory on the cluster (i.e. ``/h
 Setting working directory for your job
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Torque uses the directory that the job was submitted from to define the working directory for a job - no matter the location of the job submission script. For example, on your cluster if you create a new directory in your home directory named ``outputs`` then ``cd`` to the ``outputs`` folder: 
+Torque uses the directory that the job was submitted from to define the working directory for a job - no matter the location of the job submission script. For example, on your cluster if you create a new directory in your home directory named ``outputs`` then ``cd`` to the ``outputs`` folder:
 
 .. code:: bash
 
@@ -310,12 +310,12 @@ You can instruct the scheduler to wait for an existing job to finish before star
   55.login1                  mytestjob        alces                  0 R batch
   56.login1                  mytestjob        alces                  0 H batch
 
-Your job will be held in ``H`` (*hold*) state until the dependency condition is met. 
+Your job will be held in ``H`` (*hold*) state until the dependency condition is met.
 
 Running task array jobs
 ~~~~~~~~~~~~~~~~~~~~~~~
 
-A common workload is having a large number of jobs to run which basically do the same thing, aside perhaps from having different input data. You could generate a job-script for each of them and submit it, but that's not very convenient - especially if you have many hundreds or thousands of tasks to complete. Such jobs are known as **task arrays** - an `embarrasingly parallel <https://en.wikipedia.org/wiki/Embarrassingly_parallel>`_ job will often fit into this category. 
+A common workload is having a large number of jobs to run which basically do the same thing, aside perhaps from having different input data. You could generate a job-script for each of them and submit it, but that's not very convenient - especially if you have many hundreds or thousands of tasks to complete. Such jobs are known as **task arrays** - an `embarrasingly parallel <https://en.wikipedia.org/wiki/Embarrassingly_parallel>`_ job will often fit into this category.
 
 A convenient way to run such jobs on a cluster is to use a task array, using the ``-t [array_spec]`` directive. Your job-script can then use the pseudo environment variables created by the scheduler to refer to data used by each task in the job. The following example job-script uses the ``$PBS_ARRAYID`` variable to echo its current task ID to an output file:
 
@@ -327,7 +327,7 @@ A convenient way to run such jobs on a cluster is to use a task array, using the
   #PBS -t 1-5
   echo "Hello from $PBS_ARRAYID - part of $PBS_JOBID"
 
-The example script will create output files for each of the task array jobs run through the scheduler: 
+The example script will create output files for each of the task array jobs run through the scheduler:
 
 .. code:: bash
 
@@ -350,7 +350,7 @@ Array jobs can easily be cancelled using the ``qdel`` command - the following ex
 Requesting more resources
 -------------------------
 
-By default, jobs are constrainted to the default set of resources - users can use scheduler instructions to request more resources for their jobs. The following documentation shows how these requests can be made.
+By default, jobs are constrained to the default set of resources - users can use scheduler instructions to request more resources for their jobs. The following documentation shows how these requests can be made.
 
 Running multi-threaded jobs
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -361,9 +361,9 @@ the parameter is omitted, a default of 1 core is assumed. You could specify the 
 Running Parallel (MPI) jobs
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-If users want to run parallel jobs via a message passing interface (MPI), they need to inform the scheduler - this allows jobs to be efficiently spread over compute nodes to get the best possible performance. Using multiple CPU cores across multiple nodes is achieved by specifying the ``-l nodes=2:ppn=1`` option either in your job submission command or your job-script directives. The example option requests 2 compute hosts with 1 compute core on each compute on each requested node. 
+If users want to run parallel jobs via a message passing interface (MPI), they need to inform the scheduler - this allows jobs to be efficiently spread over compute nodes to get the best possible performance. Using multiple CPU cores across multiple nodes is achieved by specifying the ``-l nodes=2:ppn=1`` option either in your job submission command or your job-script directives. The example option requests 2 compute hosts with 1 compute core on each compute on each requested node.
 
-For example, to use 8 CPU cores on the cluster for a single application - you could use the following scheduler directive: 
+For example, to use 8 CPU cores on the cluster for a single application - you could use the following scheduler directive:
 
     ``-l nodes=4:ppn=2``    Request 4 nodes using 2 cores across each requested node
 
@@ -383,7 +383,7 @@ This application is launched via the OpenMPI ``mpirun`` command. This jobscript 
          --hostfile $PBS_NODEFILE \
          $(which IMB-MPI1)
 
-We can then submit the IMB job script to the scheduler, which will automatically determine which nodes to use: 
+We can then submit the IMB job script to the scheduler, which will automatically determine which nodes to use:
 
 .. code:: bash
 
@@ -413,14 +413,14 @@ Requesting more memory
 
 In order to promote best-use of the cluster scheduler - particularly in a shared environment, it is recommended to inform the scheduler the maximum required memory per submitted job. This helps the scheduler appropriately place jobs on the available nodes in the cluster.
 
-You can specify the maximum amount of memory required per submitted job with the ``--l mem=[xxxmb]`` option. This informs the scheduler of the memory required for the submitted job. Optionally - you can also request an amount of memory *per CPU core* rather than a total amount of memory required per job. 
+You can specify the maximum amount of memory required per submitted job with the ``--l mem=[xxxmb]`` option. This informs the scheduler of the memory required for the submitted job. Optionally - you can also request an amount of memory *per CPU core* rather than a total amount of memory required per job.
 
 .. note:: When running a job across multiple compute hosts, the ``-l mem=[xxxmb]`` option informs the scheduler of the required memory *per node*
 
 Requesting a longer runtime
 ---------------------------
 
-In order to promote best-use of the cluster scheduler, particularly in a shared environment, it is recommended to inform the scheduler of the amount of time the submitted job is expected to take. You can inform the cluster scheduler of the expected runtime using the ``-l walltime=[hh:mm:ss]`` option. For example - to submit a job that runs for a maximum of 2 hours, the following example job script could be used: 
+In order to promote best-use of the cluster scheduler, particularly in a shared environment, it is recommended to inform the scheduler of the amount of time the submitted job is expected to take. You can inform the cluster scheduler of the expected runtime using the ``-l walltime=[hh:mm:ss]`` option. For example - to submit a job that runs for a maximum of 2 hours, the following example job script could be used:
 
 .. code:: bash
 
