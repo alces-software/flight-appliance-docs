@@ -59,6 +59,33 @@ You can then verify that the synchronization was successful either using the S3 
 
 .. hint:: When performing the ``alces sync push`` command - you may choose to set an encryption passphrase for additional protection
 
+Managing pushed files and data
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+You may not wish to push *all* of the files and data from a local synchronization target, particularly when working with your home directory which contains many one-time-use configuration files which may cause issues with any later deployed environments. 
+
+Your home directory contains a Flight Compute configuration management folder, located at:
+
+    ``~/.config/clusterware/``
+
+Inside the configuration directory - there will be a configuration file for each synchronization target - for example: 
+
+    ``sync.data.yml``       Configuration file for the ``data`` synchronization target
+
+    ``sync.default.yml``    Configuration file for home directory synchronization
+
+Open the ``sync.default.yml`` configuration file to add an example file exclusion. Below the ``:source: :home`` line - include a new section - e.g.: 
+
+.. code:: yaml
+
+  ---
+  :source: :home
+  :exclude:
+  - ".modules"
+  - ".ssh/id_*"
+
+The above example would prevent the ``.modules`` file as well as any file matching the wildcard search ``id_*`` in the ``.ssh`` directory from being pushed to the remote synchronization target.
+
 Pulling files and data
 ----------------------
 
