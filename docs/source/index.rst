@@ -44,6 +44,7 @@ We recommend that users wishing to use Flight Appliances have basic Linux skills
    slurm/slurm
    openlava/openlava
    torque/torque
+   pbspro/pbspro
    
 .. toctree::
    :maxdepth: 1
