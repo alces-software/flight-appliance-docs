@@ -10,7 +10,7 @@ Your cluster is automatically configured with a Virtual Private Network (VPN) - 
 Available VPN clients
 ---------------------
 
-There are many VPN clients available, some our favourite clients for each platform include; 
+There are many VPN clients available, some of our favourite clients for each platform include; 
 
 macOS
 `````
