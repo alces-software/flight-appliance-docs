@@ -16,8 +16,11 @@ You can start a new interactive job on your Flight Compute cluster by using the 
 
 The above command uses the following options in order to create an interactive job, with shell mode support:
 
-    ``-Is``     Submits a batch interactive job and creates a psuedo-terminal when the job starts
-    ``bash``    Choose the shell type to use when creating the interactive job
+``-Is``
+  Submits an interactive job and creates a psuedo-terminal when the job starts
+
+``bash``
+  Choose the shell type to use when creating the interactive job
 
 .. code:: bash
 
@@ -252,9 +255,14 @@ By including the following line, a separate output file for each task of the arr
 
 Array jobs can easily be cancelled using the ``bkill`` command - the following example shows various levels of control over an array job:
 
-    ``bkill 77``            Cancels all array tasks under the job ID ``77``
-    ``bkill "77[1-100]"``   Cancels array tasks ``1-100`` under the job ID ``77``
-    ``bkill "77[22]"``      Cancels array task ``22`` under the job ID ``77``
+``bkill 77``
+  Cancels all array tasks under the job ID ``77``
+
+``bkill "77[1-100]"``
+  Cancels array tasks ``1-100`` under the job ID ``77``
+
+``bkill "77[22]"``
+  Cancels array task `22`` under the job ID ``77``
 
 Requesting more resources
 -------------------------

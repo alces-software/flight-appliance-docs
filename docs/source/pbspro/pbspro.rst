@@ -233,10 +233,6 @@ For example; the following job-script includes a ``-o [file_name]`` instruction 
   sleep 120
   echo "Finished running - goodbye from $HOSTNAME"
 
-By default, jobs are executed from your home-directory on the cluster (i.e. ``/home/<your-user-name>``, ``$HOME`` or ``~``). You can include ``cd`` commands in your job-script to change to different directories; alternatively, you can provide an instruction to the scheduler to change to a different directory to run your job. You can specify a working directory with the following option either in your job submission command or as part of your job script:
-
-    ``-d path/to/working/dir``
-
 .. note:: PBS Pro does not support the use of dynamic environment variables within scheduler directives. You may use the ``$PBS_JOBID`` variable from within your job script, but not as part of the output file name
 
 .. note:: The directory specified must exist and be accessible by the compute node in order for the job you submitted to run
@@ -312,9 +308,14 @@ All tasks in an array job are given a job ID with the format ``job_ID[task_numbe
 
 Array jobs can easily be cancelled using the ``qdel`` command - the following examples show various levels of control over an array job:
 
-        ``qdel 60[]``           Cancels all array tasks under the job ID ``60``
-        ``qdel 60[100-200]``    Cancels array tasks ``100-200`` under the job ID ``60``
-        ``qdel 60[5]``          Cancels array task ``5`` under the job ID ``60``
+``qdel 60[]``
+  Cancels all array tasks under the job ID ``60``
+
+``qdel 60[100-200]``
+  Cancels array tasks ``100-200`` under the job ID ``60``
+
+``qdel 60[5]``
+  Cancels array task ``5`` under the job ID ``60``
 
 .. note:: When cancelling array tasks under an array job, the job ID number must include the two empty brackets ``[]`` as shown after the job ID
 
@@ -348,11 +349,13 @@ The above example would launch an MPI job with a total of 2 CPU cores across 2 s
   Select the number of MPI processes to launch per *chunk*. This should be equal to ``ncpus``
 
 ``place=scatter``
-  The ``place`` option determines where MPI processes will launch. If the ``scatter`` option is chosen - each *chunk* will be launched on a different compute host. Other available options are ``free``, ``pack`` and ``excl``
+  The ``place`` option determines where MPI processes will launch. If the ``scatter`` option
+  is chosen - each *chunk* will be launched on a different compute host. Other available options
+  are ``free``, ``pack`` and ``excl``
 
 This application is launched via the OpenMPI ``mpirun`` command. This jobscript loads the ``apps/imb`` module before launching the application, which automatically loads the module for ``openmpi``.
 
-.. code:: bash
+.. code-block:: bash
 
   #!/bin/bash -l
   #PBS -l select=4:ncpus=1:mpiprocs=1

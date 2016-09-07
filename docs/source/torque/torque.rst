@@ -123,7 +123,7 @@ The scheduler is likely to spread them around over different nodes (if you have 
 Viewing compute host status
 ---------------------------
 
-Users can use the ``pbsnodes -a`` or ``pbsnodes -l 'free'`` options to view cluster node information. Any options other than ``-l`` or ``-a`` require PBS manager or PBS operator privileges.
+Users can use the ``pbsnodes -a`` or ``pbsnodes -l 'up'`` options to view cluster node information. Any options other than ``-l`` or ``-a`` require PBS manager or PBS operator privileges.
 
 Users can view compute host status in the following formats:
 
@@ -263,10 +263,6 @@ For example; the following job-script includes a ``-o [file_name]`` instruction 
 
 In the above example, assuming the job was submitted as the ``alces`` user and was given the job-ID number ``53``, the scheduler will save the output data from the job in the filename ``/home/alces/testjob.52.login1.<clustername>.prv.alces.network``.
 
-By default, jobs are executed from your home-directory on the cluster (i.e. ``/home/<your-user-name>``, ``$HOME`` or ``~``). You can include ``cd`` commands in your job-script to change to different directories; alternatively, you can provide an instruction to the scheduler to change to a different directory to run your job. You can specify a working directory with the following option either in your job submission command or as part of your job script:
-
-    ``-d path/to/working/dir``
-
 .. note:: The directory specified must exist and be accessible by the compute node in order for the job you submitted to run
 
 Setting working directory for your job
@@ -341,9 +337,14 @@ All tasks in an array job are given a job ID with the format ``job_ID[task_numbe
 
 Array jobs can easily be cancelled using the ``qdel`` command - the following examples show various levels of control over an array job:
 
-        ``qdel 60[]``               Cancels all array tasks under the job ID ``60``
-        ``qdel -t 100-200 60[]``    Cancels array tasks ``100-200`` under the job ID ``60``
-        ``qdel -t 5 60[]``          Cancels array task ``5`` under the job ID ``60``
+``qdel 60[]``
+  Cancels all array tasks under the job ID ``60``
+
+``qdel -t 100-200 60[]``
+  Cancels array tasks ``100-200`` under the job ID ``60``
+
+``qdel -t 5 60[]``
+  Cancels array task ``5`` under the job ID ``60``
 
 .. note:: When cancelling array tasks under an array job, the job ID number must include the two empty brackets ``[]`` as shown after the job ID
 
@@ -369,7 +370,7 @@ For example, to use 8 CPU cores on the cluster for a single application - you co
 
 This application is launched via the OpenMPI ``mpirun`` command. This jobscript loads the ``apps/imb`` module before launching the application, which automatically loads the module for ``openmpi``.
 
-.. code:: bash
+.. code-block:: bash
 
   #!/bin/bash -l
   #PBS -l nodes=4:ppn=2
