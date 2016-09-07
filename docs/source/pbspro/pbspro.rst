@@ -332,15 +332,32 @@ the parameter is omitted, a default of 1 core is assumed. You could specify the 
 Running Parallel (MPI) jobs
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-If users want to run parallel jobs via a message passing interface (MPI), they need to inform the scheduler - this allows jobs to be efficiently spread over compute nodes to get the best possible performance. Using multiple CPU cores across multiple nodes is achieved by specifying the ``-l nodes=2:ppn=1`` option either in your job submission command or your job-script directives. The example option requests 2 compute hosts with 1 compute core on each compute on each requested node.
+If users want to run parallel jobs via a message passing interface (MPI), they need to inform the scheduler - this allows jobs to be efficiently spread over compute nodes to get the best possible performance. Using multiple CPU cores across multiple nodes is achieved by specifying the following example option:
+
+    ``-l select=2:ncpus=1:mpiprocs=1 -l place=scatter``
+
+The above example would launch an MPI job with a total of 2 CPU cores across 2 separate compute hosts - each compute host would launch a single MPI task. The command consists of several options: 
+
+``select=2``
+  Select the number of *chunks* - a *chunk* is essentially a task
+
+``ncpus=1``
+  Select the number of CPU cores to use per *chunk*
+
+``mpiprocs``
+  Select the number of MPI processes to launch per *chunk*. This should be equal to ``ncpus``
+
+``place=scatter``
+  The ``place`` option determines where MPI processes will launch. If the ``scatter`` option is chosen - each *chunk* will be launched on a different compute host. Other available options are ``free``, ``pack`` and ``excl``
 
 This application is launched via the OpenMPI ``mpirun`` command. This jobscript loads the ``apps/imb`` module before launching the application, which automatically loads the module for ``openmpi``.
 
 .. code:: bash
 
   #!/bin/bash -l
-  #PBS -l nodes=8:ppn=1
-  #PBS -j oe -N imb_8_node
+  #PBS -l select=4:ncpus=1:mpiprocs=1
+  #PBS -l place=scatter
+  #PBS -j oe 
   module load apps/imb
   mpirun --prefix $MPI_HOME \
          --hostfile $PBS_NODEFILE \
@@ -351,13 +368,15 @@ We can then submit the IMB job script to the scheduler, which will automatically
 .. code:: bash
 
   [alces@login1(pbs-pro) ~]$ qsub imb_mpi.sh
-  62.login1.pbs-pro.prv.alces.[alces@login1(pbs-pro) ~]$ qstat -n
+  77.login1.pbs-pro.prv.alces.network
+  [alces@login1(pbs-pro) ~]$ qstat -n
+  
   login1.pbs-pro.prv.alces.network:
                                                               Req'd  Req'd   Elap
   Job ID          Username Queue    Jobname    SessID NDS TSK Memory Time  S Time
   --------------- -------- -------- ---------- ------ --- --- ------ ----- - -----
-  62.login1.pbs-p alces    workq    imb_mpi.sh   9494   8   8    --    --  R 00:03
-     node-x3a+node-x4d+node-xe3+node-x70+node-xac+node-xa2+node-xf0+node-xc4network
+  77.login1.pbs-p alces    workq    imb_mpi.sh  14129   4   4    --    --  R 00:00
+     node-x3a+node-x4d+node-xe3+node-x70
 
 .. note:: If you request more CPU cores than your cluster can accommodate, your job will wait in the queue (in case more nodes are added to your cluster at a later date, either manually or through the Alces Flight autoscaling feature).
 
