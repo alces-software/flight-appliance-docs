@@ -337,7 +337,8 @@ application, which automatically loads the module for **OpenMPI**.
   #SBATCH -D /home/alces/
   #SBATCH --output=imb.out.%j
   module load apps/imb
-  mpirun IMB-MPI1
+  mpirun --prefix $MPI_HOME \
+         IMB-MPI1
 
 We can then submit the IMB job script to the scheduler, which will automatically determine which nodes to use:
 
