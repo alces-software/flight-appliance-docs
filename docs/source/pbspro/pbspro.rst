@@ -363,8 +363,15 @@ This application is launched via the OpenMPI ``mpirun`` command. This jobscript 
   #PBS -j oe 
   module load apps/imb
   mpirun --prefix $MPI_HOME \
+         -np 4 \
+         -npernode 1 \
          --hostfile $PBS_NODEFILE \
          $(which IMB-MPI1)
+
+.. warning::
+  The version of OpenMPI shipped with your Flight Compute cluster does not include tight integration with the PBS Pro scheduler. Due to the lack of tight integration, you must explicitly provide the number of MPI processes you wish to spawn. Failing to specify the number of processes will cause the ``mpirun`` command to spawn more processes than you have requested.
+
+  The above example job script demonstrates several additionally required options in the ``mpirun`` command - most importantly ``-np <number>`` and ``-npernode <number>``. These options define the total number of MPI processes, as well as the number of MPI processes per node to spawn.
 
 We can then submit the IMB job script to the scheduler, which will automatically determine which nodes to use:
 

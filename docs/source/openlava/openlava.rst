@@ -289,7 +289,7 @@ will be appropriately placed over two or more compute hosts as required.
 For example, to use 16 cores on the cluster for a single application - the instruction ``-n 16`` can be used. The following example shows launching the **Intel Message-passing** MPI benchmark across 16 cores on your cluster. This application is launched via the OpenMPI ``mpirun`` command - the number of threads and list of hosts are automatically assembled by the scheduler and passed to the MPI at runtime. This jobscript loads the ``apps/imb`` module before launching the
 application, which automatically loads the module for **OpenMPI**. Using the scheduler directive ``-R "span[ptile=2]"`` allows you span each the rquested cores in the ``-n 16`` directive over as many nodes as are required, for example ``-n 16 -R "span[ptile=2]`` would spread the job over 8 nodes, using 2 cores across each node - totalling 16 nodes. 
 
-.. code:: bash
+.. code-block:: bash
 
   #!/bin/bash -l
   #BSUB -n 2 # Define the total number of cores to use
@@ -307,6 +307,11 @@ application, which automatically loads the module for **OpenMPI**. Using the sch
   rm -fv $machinefile # remove node list
 
 The job script requests a total of 2 cores, requesting 1 core on each compute host. The ``-R "span[ptile=1]"`` option can be used to specify the number of cores required per compute host.
+
+.. warning::
+  The version of OpenMPI shipped with your Flight Compute cluster does not include tight integration with the Torque scheduler. Due to the lack of tight integration, you must explicitly provide the number of MPI processes you wish to spawn. Failing to specify the number of processes will cause the ``mpirun`` command to spawn more processes than you have requested.
+  
+  The above example job script demonstrates several additionally required options in the ``mpirun`` command - most importantly ``-np <number>`` and ``-npernode <number>``. These options define the total number of MPI processes, as well as the number of MPI processes per node to spawn.
 
 .. note:: If the number of cores specified is more than the total amount of cores available on the cluster, the job will refuse to run and display an error
 
