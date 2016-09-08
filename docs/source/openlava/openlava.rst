@@ -240,12 +240,12 @@ Running task array jobs
 
 A common workload is having a large number of jobs to run which basically do the same thing, aside perhaps from having different input data. You could generate a job-script for each of them and submit it, but that's not very convenient - especially if you have many hundreds or thousands of tasks to complete. Such jobs are known as **task arrays** - an `embarrasingly parallel <https://en.wikipedia.org/wiki/Embarrasingly_parallel>`_ job will often fit into this category.
 
-A convenient way to run such jobs on a cluster is to use a task array, using the ``bsub`` command together with the appropriate array syntax ``[x-y]`` in your job name. Your job-script can then use pseudo environment variables created by the scheduler to refer to data used by each task in the job. For example, the following job-script uses the ``$LSF_JOBINDEX`` variable to echo its current task ID to an output file:
+A convenient way to run such jobs on a cluster is to use a task array, using the ``bsub`` command together with the appropriate array syntax ``-J name[array_spec]`` in your job name. Your job-script can then use pseudo environment variables created by the scheduler to refer to data used by each task in the job. For example, the following job-script uses the ``$LSF_JOBINDEX`` variable to echo its current task ID to an output file:
 
 .. code:: bash
 
   #!/bin/bash -l
-  #BSUB -o /home/alces/outputs/array/output.%J-%I
+  #BSUB -o /home/alces/outputs/array/output.%J.%I
   echo "I am $LSB_JOBINDEX"
 
 You can submit an array job using the syntax ``-J "jobname[array_spec]"`` - for example to submit an array job with the name ``array`` and 20 consecutively numbered tasks - you could use the following job submission line together with the above example jobscript: 
