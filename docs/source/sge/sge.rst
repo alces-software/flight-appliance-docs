@@ -161,7 +161,7 @@ The ``qhost`` output will show (from left-to-right):
 
 
 Default resources
-=================
+-----------------
 
 In order to promote efficient usage of your cluster, the job-scheduler automatically sets a number of default resources to your jobs when you submit them. These defaults must be overridden by users to help the scheduler understand how you want it to run your job - if we don't include any instructions to the scheduler, then our job will take the defaults shown below:
 
@@ -179,7 +179,7 @@ This documentation will explain how to change these limits to suit the jobs that
 
 
 Providing job-scheduler instructions
-====================================
+------------------------------------
 
 Most cluster users will want to provide instructions to the job-scheduler to tell it how to run their jobs. The instructions you want to give will depend on what your job is going to do, but might include:
 
