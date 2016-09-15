@@ -27,6 +27,7 @@ We recommend that users wishing to use Flight Appliances have basic Linux skills
    launch-os/*
    basics/*
    databasics/*
+   alces-sync/*
    graphicaldesktop/*
    apps/apps
    mpiapps/*
