@@ -3,15 +3,16 @@
 Launching on OpenStack
 ######################
 
-Alces Flight Compute can be launched on your local OpenStack private cloud platform to give you access to your own, private HPC cluster using your on-premise infrastructure.
+Alces Flight Compute can be launched on your local OpenStack private cloud platform to give you access to your own, private HPC cluster using your on-premise infrastructure. As different clouds can run different versions and configurations of OpenStack, you may need to build images for Flight Compute that suit your platform - alternatively, please contact Alces to purchase consultancy time to build custom images for you.
 
 Prerequisites
 =============
 
- * Alces OpenStack user account
- * Correctly connected to the cluster DMZ network
- * Appropriate resource quota to create the number of compute nodes you choose
- * OpenStack keypair added
+ * An Alces Flight image for your platform
+ * An OpenStack user account
+ * A client machine, correctly connected to the cluster DMZ network
+ * An appropriate resource quota to create the number of compute nodes you choose
+ * An OpenStack keypair added for your user
 
 How to deploy
 =============
@@ -66,5 +67,7 @@ The first time you connect to your cluster, you will be prompted to accept a new
 
 Terminating your environment
 ============================
+
+When you terminate your environment, your cluster login and compute nodes will be terminated. Any data held on attached storage may be erased, with storage volumes being wiped and returned to the shared pool. **Ensure that you have downloaded data that you want to keep to your client machine, or stored in safely in an object storage service before terminating your cluster.**
 
 1.  From the ``Stacks`` page, select your previously created Alces Flight Compute stack - then select ``Delete Stacks``
