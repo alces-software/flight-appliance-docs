@@ -21,7 +21,7 @@ A number of different MPIs are under active development; for Linux clusters, the
  - `MPICH <https://www.mpich.org/>`_; an older open-source implementation largely superceded by OpenMPI, but still available for compatibility reasons
  - `MVAPICH <http://mvapich.cse.ohio-state.edu/>`_; an open-source MPI supporting verbs transport across Infiniband fabrics
  - `Intel MPI <https://software.intel.com/en-us/intel-mpi-library>`_; a commercial MPI optimised for Intel CPUs and interconnects
- - `IBM Platform MPI <http://www-03.ibm.com/systems/uk/platformcomputing/products/mpi/>`_; a commercial MPI optimised for particular commercial applications and interconnects
+ - `IBM Platform MPI <http://www-03.ibm.com/systems/uk/platformcomputing/products/mpi/>`_, HPMPI; commercial MPIs optimised for particular commercial applications and interconnects
 
 The choice of which MPI to use for any particular use-case can depend on the application you want to run, the hardware you have available to run it on, if you have a license for a commercial application, and many other factors. Discussion and comparison of the available MPIs is outside the scope of this documentation - however, it should be possible to install and run any application that supports your underlying platform type and Linux distribution on an Alces Flight Compute cluster. 
 
