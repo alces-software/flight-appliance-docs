@@ -6,7 +6,7 @@ Software Applications
 Flight Compute operating system
 -------------------------------
 
-The current revision of Alces Flight Compute builds personal, ephemeral clusters based on a 64-bit CentOS 7.2 Linux distribution. The same operating system is installed on all login and compute nodes across the cluster. The Linux distribution includes a range of software tools and utilities, packaged by the CentOS project as RPM files. These packages are available for users to install as required on login and compute nodes using the ``yum`` command. You can also install other RPM packages on your Flight Compute cluster by copying them and installing them using the RPM command. 
+The current revision of Alces Flight Compute builds personal, ephemeral clusters based on a 64-bit CentOS 7.2 Linux distribution. The same operating system is installed on all login and compute nodes across the cluster. The Linux distribution includes a range of software tools and utilities, packaged by the CentOS project as RPM files. These packages are available for users to install as required on login and compute nodes using the ``yum`` command. You can also install other RPM packages on your Flight Compute cluster by copying them and installing them using the ``rpm`` command. 
 
 Installing Linux applications on the login node
 ===============================================
@@ -43,11 +43,12 @@ For Flight Compute clusters launched from AWS Marketplace, your applications are
  - ``/opt/gridware/`` - Applications managed by Alces Gridware utility
  - ``/opt/apps/`` - An empty directory for user-installed applications
 
+.. note:: Depending on the version of Flight Compute you are using, you may have the option to choose capacity and performance characteristics of the shared applications volume at cluster launch time. Ensure that you choose a large enough storage area to suit the applications you want to install.
 
 Installing cluster applications
 ===============================
 
-Alces Flight Compute clusters include access to the online **Gridware** repository of software applications. This catalogue `includes over 750 application, library, compiler and MPI versions <http://tiny.cc/gridware>`_ which can be installed and run on your cluster. Software is installed by selecting it from the catalogue, compiling it on the cluster login node along with any software package dependencies, and installing it in the shared cluster application storage space. Once installed, applications can be run on the login and compute nodes interactively, or as part of job-scripts submitted to the cluster scheduler. 
+Alces Flight Compute clusters include access to the online **Gridware** repository of software applications. This catalogue `includes over 850 application, library, compiler and MPI versions <http://tiny.cc/gridware>`_ which can be installed and run on your cluster. Software is installed by selecting it from the catalogue, optionally compiling it on the cluster login node along with any software package dependencies, and installing it in the shared cluster application storage space. Once installed, applications can be run on the login and compute nodes interactively, or as part of job-scripts submitted to your cluster scheduler. 
 
 Application catalogue structure
 ===============================
@@ -102,7 +103,7 @@ Use the command ``alces gridware install <package-name>`` to install a new packa
     Installation complete.
     [alces@login1(scooby) ~]$
 
-.. note:: For Alces Flight Compute clusters launched from AWS Marketplace, Gridware will automatically install pre-compiled binary versions of applications from the **main** repository, if they are available. Users can use the ``--no-binary`` parameter to force packages to be compiled at installation time. 
+.. note:: Gridware will automatically install pre-compiled binary versions of applications from the **main** repository, if they are available. Users can optionally use the ``--no-binary`` parameter to force packages to be compiled at installation time. 
 
 Where more than one version of the requested application exists in the repository, users will be prompted for more information when attempting to install:
 
@@ -219,6 +220,10 @@ To unload a module file for the current session, use the ``module unload <module
               
 
 Module files can be loaded interactively at the command-line or graphical desktop on both login and compute nodes in your cluster. They can also be loaded as part of a job-script submitted to the cluster job-scheduler. 
+
+Applications that have Linux distribution dependencies will trigger installation of any required packages when their module is loaded on compute nodes for the first time. This allows newly launched nodes (e.g. in an auto-scaling cluster) to automatically resolve and install any dependencies without user intervention. 
+
+.. note:: Automatic dependency installation can occasionally cause a brief delay at module load time when an application is run on a new compute node for the first time. 
 
 
 Application specific variables
