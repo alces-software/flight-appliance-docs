@@ -36,7 +36,7 @@ The cluster job-scheduler is responsible for finding compute nodes in your clust
 Interactive and batch jobs
 --------------------------
 
-Users typically interact with compute clusters by running either **interactive** or **batch** (or **non-interactive**) jobs. 
+Users typically interact with compute clusters by running either **interactive** or **batch** (also known as **non-interactive**) jobs. 
 
   - An interactive job is one that the user directly controls, either via a graphical interface or by typing at the command-prompt. 
   - A batch job is run by writing a list of instructions that are passed to compute nodes to run at some point in the future. 
@@ -62,20 +62,25 @@ However - there are a number of reasons why your own job-scheduler can still be 
 Your Alces Flight Compute cluster comes with a job-scheduler pre-installed, ready for you to start using. The scheduler uses very few resources when idle, so you can choose to use it if you find it useful, or run jobs manually across your cluster if you prefer.
 
 
-Cluster job scheduler support
------------------------------
+Available cluster job schedulers
+--------------------------------
 
-This Community version of Alces Flight Compute includes support for `Open Grid Scheduler (OGS) <http://gridscheduler.sourceforge.net/>`_ - an open-source job scheduler, built from the codebase of what was originally the `Sun Grid Engine (SGE) <https://en.wikipedia.org/wiki/Oracle_Grid_Engine>`_ job scheduler. The syntax and usage of commands is identical to historical SGE syntax, and users can typically migrate from one to another with no issues.
+Alces Flight Compute Community Edition launches with a pre-configured `Open Grid Scheduler (SGE) <http://gridscheduler.sourceforge.net/>`_ environment - an open-source job scheduler, built from the codebase of what was originally the `Sun Grid Engine (SGE) <https://en.wikipedia.org/wiki/Oracle_Grid_Engine>`_ job scheduler. The syntax and usage of commands is identical to historical SGE syntax, and users can typically migrate from one to another with no issues.
 
-The Enterprise version of Alces Flight Compute includes support for the following cluster job schedulers;
+The Enterprise version of Alces Flight Compute can optionally be configured to laucnh the following cluster job schedulers;
 
  * `Slurm scheduler <http://slurm.schedmd.com/>`_
- * `OpenLava scheduler <http://www.openlava.org/>`_
+ * `OpenLava scheduler <http://www.openlava.org/>`_ (similar to IBM LSF)
  * `Torque scheduler <http://www.adaptivecomputing.com/products/open-source/torque/>`_
  * `PBS Pro scheduler <http://www.pbsworks.com/PBSProduct.aspx?n=PBS-Professional&c=Overview-and-Capabilities>`_
 
-The SGE scheduler option is also available in the Enterprise version. 
 
-It is also possible for users to download and install their own job-scheduler across their Flight Compute cluster - any product compatible with RedHat Enterprise Linux 7 and derivatives should be possible to run on your cluster. 
+Job-scheduler configuration and support
+---------------------------------------
 
-We intend to include support for other job-schedulers in future versions of Alces Flight Compute - please let us know at the `Alces Flight Community Support <http://community.alces-flight.com>`_ site if you have a particular favourite that you'd like us to include, and the reasons why. 
+Alces Flight Compute clusters are designed to pre-install your chosen cluster job scheduler, and make it available to use by the single-user configured at launch time. Users are free to ask usage and configuration questions about your chosen job-scheduler on the community support site, with Enterprise customer being provided with dedicated support contacts to help out where needed. For full commercial code-base support for job-schedulers, please contact the vendor of your chosen software product. 
+
+
+It is also possible for users to download and install their own job-scheduler across their Flight Compute cluster - any product compatible with RedHat Enterprise Linux 7 operating system and derivatives should be possible to run on your cluster. 
+
+
