@@ -3,7 +3,7 @@
 TORQUE Scheduler
 ================
 
-The `Torque <http://www.adaptivecomputing.com/products/open-source/torque/>`_ cluster job scheduler is an open-source scheduler based on the original PBS codebase. TORQUE can be integrated with both the non-commercial Maui cluster scheduler or the commercial Moab workload manager.
+The `Torque <http://www.adaptivecomputing.com/products/open-source/torque/>`_ cluster job scheduler is an open-source scheduler based on the original PBS codebase. TORQUE can be integrated with both the open-source Maui cluster scheduler or the commercial Moab workload manager.
 
 See :ref:`jobschedulers` for a description of the different use-cases of a cluster job-scheduler.
 
@@ -14,13 +14,13 @@ You can start a new interactive job on your Flight Compute cluster by using the 
 
 .. code:: bash
 
-  [alces@login1(vlj) ~]$ qsub -I
-  qsub: waiting for job 2.login1.vlj.prv.alces.network to start
-  qsub: job 2.login1.vlj.prv.alces.network ready
+  [alces@login1(scooby) ~]$ qsub -I
+  qsub: waiting for job 2.login1.scooby.prv.alces.network to start
+  qsub: job 2.login1.scooby.prv.alces.network ready
 
   <<< -[ alces flight ]- >>>
-  [alces@node-xb3(vlj) ~]$ hostname -f
-  node-xb3.vlj.prv.alces.network
+  [alces@node-xb3(scooby) ~]$ hostname -f
+  node-xb3.scooby.prv.alces.network
 
 In the above command, the ``qsub`` command is used together with the option ``-I`` which informs the cluster scheduler you wish to start an interactive job.
 
@@ -32,13 +32,13 @@ If the job-scheduler could not satisfy the resource you've requested for your in
 
 .. code:: bash
 
-  [alces@login1(vlj) ~]$ qsub -I
-  qsub: waiting for job 5.login1.vlj.prv.alces.network to start
+  [alces@login1(scooby) ~]$ qsub -I
+  qsub: waiting for job 5.login1.scooby.prv.alces.network to start
 
 Submitting a batch job
 ----------------------
 
-Batch (or non-interactive) jobs allow users to leverage one of the main benefits of having a cluster scheduler; jobs can be queued up with instructions on how to run them  and then executed across the cluster while the user `does something else <https://www.quora.com/What-do-you-do-while-youre-waiting-for-your-code-to-finish-running>`_. Users  submit jobs as scripts, which include instructions on how to run the job - the output of the job (*stdout* and *stderr* in Linux terminology) is written to a file on disk for review later on. You can write a batch job that does anything that can be typed on  the command-line.
+Batch (or non-interactive) jobs allow users to leverage one of the main benefits of having a cluster scheduler; jobs can be queued up with instructions on how to run them  and then executed across the cluster while the user `does something else <https://www.quora.com/What-do-you-do-while-youre-waiting-for-your-code-to-finish-running>`_. Users submit jobs as scripts, which include instructions on how to run the job - the output of the job (*stdout* and *stderr* in Linux terminology) is written to a file on disk for review later on. You can write a batch job that does anything that can be typed on  the command-line.
 
 We'll start with a basic example - the following script is written in ``bash`` (the default Linux command-line interpreter). You can create the script yourself using the `Nano <http://www.howtogeek.com/howto/42980/the-beginners-guide-to-nano-the-linux-command-line-text-editor/>`_ command-line editor - use the command ``nano simplejobscript.sh`` to create a new file, then type in the contents below. The script does nothing more than print some messages to the screen (the ``echo``
 lines), and sleeps for 120 seconds. We've saved the script to a file called ``simplejobsscript.sh`` - the ``.sh`` extension helps to remind us that this is a ``shell`` script, but adding a filename extension isn't strictly necessary for Linux.
@@ -63,56 +63,56 @@ To submit your job script to the cluster job scheduler, use the command ``qsub s
 
 .. code:: bash
 
-  [alces@login1(vlj) ~]$ qsub simplejobscript.sh
-  7.login1.vlj.prv.alces.network
-  [alces@login1(vlj) ~]$ cat simplejobscript.sh.o7
+  [alces@login1(scooby) ~]$ qsub simplejobscript.sh
+  7.login1.scooby.prv.alces.network
+  [alces@login1(scooby) ~]$ cat simplejobscript.sh.o7
   Running on host node-xb3
   Finished running - goodbye from node-xb3
 
 Viewing and controlling queued jobs
 -----------------------------------
 
-Once your job has been submitted, use the ``qstat`` command to view the status of the job queue. If you have available compute nodes, your job should be shown in the ``R`` (running) state; if your compute nodes are busy, or you've launched an auto-scaling cluster and currently have no running nodes, your job may be shown in the ``Q`` (queued) state until compute nodes are available to run it.
+Once your job has been submitted, use the ``qstat`` command to view the status of the job queue. If you have available compute nodes, your job should be shown in the ``R`` (running) state; if your compute nodes are busy, or you've launched an auto-scaling cluster and currently have no running nodes, your job may be shown in the ``Q`` (queued) state until compute nodes are available to run it. Jobs shown in ``C`` state have completed, and are automatically removed from the job queue after a few minutes.
 
 You can keep running the ``qstat`` command until your job finishes running. The output of your batch job will be stored in a file for you to look at. The default location to store the output file is your home directory. You can use the Linux ``more`` command to view your output file:
 
 .. code:: bash
 
-  [alces@login1(vlj) ~]$ more simplejobscript.sh.o26
+  [alces@login1(scooby) ~]$ more simplejobscript.sh.o26
   Running on host node-x4a
   Finished running - goodbye from node-x4a
 
-Your job runs on whatever node the scheduler can find which is available for use - you can try submitting a bunch of jobs at the same time, and using the ``qstat -n`` command, see which node the job is running on.
+Your job runs on whatever node the scheduler can find which is available for use - you can try submitting a bunch of jobs at the same time, and using the ``qstat -n`` command, see which node each job is running on.
 
 .. code:: bash
 
-  [alces@login1(vlj) ~]$ qstat -n
+  [alces@login1(scooby) ~]$ qstat -n
 
-  login1.vlj.prv.alces.network:
+  login1.scooby.prv.alces.network:
   Req'd       Req'd       Elap
   Job ID                  Username    Queue    Jobname          SessID  NDS   TSK   Memory      Time    S   Time
   ----------------------- ----------- -------- ---------------- ------ ----- ------ --------- --------- - ---------
-  12.login1.vlj.prv.alce  alces       batch    simplejobscript.   7320     1      1       --   01:00:00 R  00:01:46
+  12.login1.scooby.prv.alce  alces       batch    simplejobscript.   7320     1      1       --   01:00:00 R  00:01:46
   node-x4a
-  13.login1.vlj.prv.alce  alces       batch    simplejobscript.   9602     1      1       --   01:00:00 R  00:01:48
+  13.login1.scooby.prv.alce  alces       batch    simplejobscript.   9602     1      1       --   01:00:00 R  00:01:48
   node-xb3
-  14.login1.vlj.prv.alce  alces       batch    simplejobscript.   4286     1      1       --   01:00:00 R  00:01:49
+  14.login1.scooby.prv.alce  alces       batch    simplejobscript.   4286     1      1       --   01:00:00 R  00:01:49
   node-xd2
 
-The scheduler is likely to spread them around over different nodes (if you have multiple nodes). The login node is not included in your cluster for scheduling purposes - jobs submitted to the scheduler will only run on your cluster compute nodes. You can use the ``qdel <job-ID>`` command to delete a job you've submitted, whether it's running or still in the queued state.
+The scheduler is likely to spread jobs around over different nodes (if you have multiple nodes). The login node is not included in your cluster for scheduling purposes - jobs submitted to the scheduler will only run on your cluster compute nodes. You can use the ``qdel <job-ID>`` command to delete a job you've submitted, whether it's running or still in the queued state.
 
 .. code:: bash
 
-  [alces@login1(vlj) ~]$ qsub simplejobscript.sh
-  45.login1.vlj.prv.alces.network
-  [alces@login1(vlj) ~]$ qsub simplejobscript.sh
-  46.login1.vlj.prv.alces.network
-  [alces@login1(vlj) ~]$ qsub simplejobscript.sh
-  47.login1.vlj.prv.alces.network
-  [alces@login1(vlj) ~]$ qsub simplejobscript.sh
-  48.login1.vlj.prv.alces.network
-  [alces@login1(vlj) ~]$ qdel 47
-  [alces@login1(vlj) ~]$ qstat
+  [alces@login1(scooby) ~]$ qsub simplejobscript.sh
+  45.login1.scooby.prv.alces.network
+  [alces@login1(scooby) ~]$ qsub simplejobscript.sh
+  46.login1.scooby.prv.alces.network
+  [alces@login1(scooby) ~]$ qsub simplejobscript.sh
+  47.login1.scooby.prv.alces.network
+  [alces@login1(scooby) ~]$ qsub simplejobscript.sh
+  48.login1.scooby.prv.alces.network
+  [alces@login1(scooby) ~]$ qdel 47
+  [alces@login1(scooby) ~]$ qstat
   Job ID                    Name             User            Time Use S Queue
   ------------------------- ---------------- --------------- -------- - -----
   45.login1                  ...ejobscript.sh alces                  0 R batch
@@ -129,13 +129,13 @@ Users can view compute host status in the following formats:
 
 .. code:: bash
 
-  [root@login1(vlj) ~]# pbsnodes -l 'up'
-  node-xb3.vlj.prv.alc free
-  node-x4a.vlj.prv.alc free
-  node-xd2.vlj.prv.alc free
-  node-x94.vlj.prv.alc free
-  [root@login1(vlj) ~]# pbsnodes -a
-    node-xb3.vlj.prv.alces.network
+  [root@login1(scooby) ~]# pbsnodes -l 'up'
+  node-xb3.scooby.prv.alc free
+  node-x4a.scooby.prv.alc free
+  node-xd2.scooby.prv.alc free
+  node-x94.scooby.prv.alc free
+  [root@login1(scooby) ~]# pbsnodes -a
+    node-xb3.scooby.prv.alces.network
          state = free
          power_state = Running
          np = 2
@@ -144,7 +144,7 @@ Users can view compute host status in the following formats:
          mom_service_port = 15002
          mom_manager_port = 15003
   
-    node-x4a.vlj.prv.alces.network
+    node-x4a.scooby.prv.alces.network
          state = free
          power_state = Running
          np = 2
@@ -153,7 +153,7 @@ Users can view compute host status in the following formats:
          mom_service_port = 15002
          mom_manager_port = 15003
   
-    node-xd2.vlj.prv.alces.network
+    node-xd2.scooby.prv.alces.network
          state = free
          power_state = Running
          np = 2
@@ -162,7 +162,7 @@ Users can view compute host status in the following formats:
          mom_service_port = 15002
          mom_manager_port = 15003
   
-    node-x94.vlj.prv.alces.network
+    node-x94.scooby.prv.alces.network
          state = free
          power_state = Running
          np = 2
@@ -191,26 +191,26 @@ Job instructions can be provided in two ways; they are:
 
 .. code:: bash
 
-  [alces@login1(vlj) ~]$ qsub -N mytestjob simplejobscript.sh
-  49.login1.vlj.prv.alces.network
-  [alces@login1(vlj) ~]$ qstat
+  [alces@login1(scooby) ~]$ qsub -N mytestjob simplejobscript.sh
+  49.login1.scooby.prv.alces.network
+  [alces@login1(scooby) ~]$ qstat
   Job ID                    Name             User            Time Use S Queue
   ------------------------- ---------------- --------------- -------- - -----
   49.login1                  mytestjob        alces                  0 R batch
 
-2. **In your job script**, by including the scheduler directives at the top of your job script - you can achieve the same effect as providing options with the ``qsub`` command. Create an example job script or modify your existing script to include a scheduler directive to use a specified job name:
+2. **In your job script**, by including the scheduler directives at the top of your job script - you can achieve the same effect as providing options with the ``qsub`` command. Lines in your script containing scheduler directives must start with ``#PBS`` and be located at the top of your script, after the shell line. Create an example job script or modify your existing script to include a scheduler directive to use a specified job name:
 
 .. code:: bash
 
-  [alces@login1(vlj) ~]$ cat simplejobscript.sh
+  [alces@login1(scooby) ~]$ cat simplejobscript.sh
   #!/bin/bash -l
   #PBS -N mytestjob
   echo "Running on host $HOSTNAME"
   sleep 120
   echo "Finished running - goodbye from $HOSTNAME"
-  [alces@login1(vlj) ~]$ qsub simplejobscript.sh
-  51.login1.vlj.prv.alces.network
-  [alces@login1(vlj) ~]$ qstat
+  [alces@login1(scooby) ~]$ qsub simplejobscript.sh
+  51.login1.scooby.prv.alces.network
+  [alces@login1(scooby) ~]$ qstat
   Job ID                    Name             User            Time Use S Queue
   ------------------------- ---------------- --------------- -------- - -----
   49.login1                  mytestjob        alces           00:00:00 C batch
@@ -220,7 +220,7 @@ Job instructions can be provided in two ways; they are:
 Including job scheduler instructions in your job-scripts is often the most convenient method of working for batch jobs - follow the guidelines below for the best experience:
 
  - Lines in your script that include job-scheduler directives must start with ``#PBS`` at the beginning of the line
- - You can have multiple lines starting with ``#PBS`` in your job-script, with normal script lines in-between
+ - You can have multiple lines starting with ``#PBS`` in your job-script, but they must appear at the top of the script without any lines in-between
  - You can put multiple instructions separated by a space on a single line starting with ``#PBS``
  - The scheduler will parse the script from top to bottom and set instructions in order; if you set the same parameter twice, the second value will be used
  - Instructions are parsed at job submission time, before the job itself has actually run. This means you can't, for example, tell the scheduler to put your job output in a directory that you create in the job-script itself - the directory will not exist when the job starts running, and your job will fail with an error
@@ -234,7 +234,7 @@ Your cluster job scheduler automatically creates a number of pseudo environment 
  - ``$HOME``                    The location of your home-directory
  - ``$USER``                    The Linux username of the submitting user
  - ``$HOSTNAME``                The Linux hostname of the compute node running the job
- - ``PBS_JOBID``                Job allocation number
+ - ``$PBS_JOBID``               Job allocation number
  - ``$PBS_ARRAYID``             Job array ID (index) number
 
 Simple scheduler instruction examples
@@ -263,7 +263,7 @@ For example; the following job-script includes a ``-o [file_name]`` instruction 
 
 In the above example, assuming the job was submitted as the ``alces`` user and was given the job-ID number ``53``, the scheduler will save the output data from the job in the filename ``/home/alces/testjob.52.login1.<clustername>.prv.alces.network``.
 
-.. note:: The directory specified must exist and be accessible by the compute node in order for the job you submitted to run
+.. note:: The directory specified must exist and be accessible by the compute node in order for the job you submitted to run.
 
 Setting working directory for your job
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -272,34 +272,39 @@ Torque uses the directory that the job was submitted from to define the working 
 
 .. code:: bash
 
-  [alces@login1(vlj) ~]$ mkdir outputs && cd outputs
-  [alces@login1(vlj) outputs]$ pwd
+  [alces@login1(scooby) ~]$ mkdir outputs && cd outputs
+  [alces@login1(scooby) outputs]$ pwd
   /home/alces/outputs
 
 You can then submit a job script that exists in any directory, and the job output and working directory will be the current working directory. The dynamic variable ``$PBS_O_WORKDIR`` variable should be used to determine the working directory. The following example job script demonstrates this functionality:
 
 .. code:: bash
 
-  [alces@login1(vlj) outputs]$ cat ../wd.sh
+  [alces@login1(scooby) outputs]$ cat ../wd.sh
   #!/bin/bash -l
   echo "My working directory is $PBS_O_WORKDIR"
-  [alces@login1(vlj) outputs]$ qsub ../wd.sh
-  30.login1.vlj.prv.alces.network
-  [alces@login1(vlj) outputs]$ cat wd.sh.o30
+  
+  [alces@login1(scooby) outputs]$ qsub ../wd.sh
+  30.login1.scooby.prv.alces.network
+  
+  [alces@login1(scooby) outputs]$ cat wd.sh.o30
   My working directory is /home/alces/outputs
+
 
 Waiting for a previous job before running
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-You can instruct the scheduler to wait for an existing job to finish before starting to run the job you are submitting with the ``-W depend=[spec]`` option, for example to wait until the job ID ``55`` has finished *successfully*, the following example command can be used:
+You can instruct the scheduler to wait for an existing job to finish before starting to run the job you are submitting with the ``-W depend=[spec]`` option. For example, to wait until the job ID ``55`` has finished, the following example command can be used:
 
 .. code:: bash
 
-  [alces@login1(vlj) ~]$ qsub simplejobscript.sh
-  55.login1.vlj.prv.alces.network
-  [alces@login1(vlj) ~]$ qsub -W depend=afterok:55 simplejobscript.sh
-  56.login1.vlj.prv.alces.network
-  [alces@login1(vlj) ~]$ qstat
+  [alces@login1(scooby) ~]$ qsub simplejobscript.sh
+  55.login1.scooby.prv.alces.network
+  
+  [alces@login1(scooby) ~]$ qsub -W depend=afterok:55 simplejobscript.sh
+  56.login1.scooby.prv.alces.network
+  
+  [alces@login1(scooby) ~]$ qstat
   Job ID                    Name             User            Time Use S Queue
   ------------------------- ---------------- --------------- -------- - -----
   54.login1                  mytestjob        alces           00:00:00 C batch
@@ -311,7 +316,7 @@ Your job will be held in ``H`` (*hold*) state until the dependency condition is 
 Running task array jobs
 ~~~~~~~~~~~~~~~~~~~~~~~
 
-A common workload is having a large number of jobs to run which basically do the same thing, aside perhaps from having different input data. You could generate a job-script for each of them and submit it, but that's not very convenient - especially if you have many hundreds or thousands of tasks to complete. Such jobs are known as **task arrays** - an `embarrasingly parallel <https://en.wikipedia.org/wiki/Embarrassingly_parallel>`_ job will often fit into this category.
+A common workload is having a large number of jobs to run which basically do the same thing, aside perhaps from having different input data. You could generate a job-script for each of them and submit it, but that's not very convenient - especially if you have many hundreds or thousands of tasks to complete. Such jobs are known as **task arrays** - an `embarrassingly parallel <https://en.wikipedia.org/wiki/Embarrassingly_parallel>`_ job will often fit into this category.
 
 A convenient way to run such jobs on a cluster is to use a task array, using the ``-t [array_spec]`` directive. Your job-script can then use the pseudo environment variables created by the scheduler to refer to data used by each task in the job. The following example job-script uses the ``$PBS_ARRAYID`` variable to echo its current task ID to an output file:
 
@@ -327,11 +332,11 @@ The example script will create output files for each of the task array jobs run 
 
 .. code:: bash
 
-  [alces@login1(vlj) ~]$ ls
+  [alces@login1(scooby) ~]$ ls
   array_job.o59-1  array_job.o59-3  array_job.o59-5  clusterware-setup-sshkey.log
   array_job.o59-2  array_job.o59-4  array_job.sh
-  [alces@login1(vlj) ~]$ cat array_job.o59-2
-  Hello from 2 - part of 59[2].login1.vlj.prv.alces.network
+  [alces@login1(scooby) ~]$ cat array_job.o59-2
+  Hello from 2 - part of 59[2].login1.scooby.prv.alces.network
 
 All tasks in an array job are given a job ID with the format ``job_ID[task_number]``, e.g. ``54[2]`` would be job number ``54``, array task ``2``.
 
@@ -351,29 +356,28 @@ Array jobs can easily be cancelled using the ``qdel`` command - the following ex
 Requesting more resources
 -------------------------
 
-By default, jobs are constrained to the default set of resources - users can use scheduler instructions to request more resources for their jobs. The following documentation shows how these requests can be made.
+By default, jobs are constrained to a default set of resources - users can use scheduler instructions to request more resources for their jobs. The following documentation shows how these requests can be made.
 
 Running multi-threaded jobs
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-If users want to use multiple cores on a compute node to run a multi-threaded application, they need to inform the scheduler - this allows jobs to be efficiently spread over compute nodes to get the best possible performance. Using multiple CPU cores is achieved by specifying ``-l mppwidth=[count]`` option in either your submission command or the scheduler directives in your job script. The ``-l mppwidth=[count]`` option informs the scheduler of the number of cores you wish to reserve for use. If
-the parameter is omitted, a default of 1 core is assumed. You could specify the option ``-l mppwidth=4`` to request 4 CPU cores for your job.
+If users want to use multiple cores on a compute node to run a multi-threaded application, they need to inform the scheduler - this allows jobs to be efficiently spread over compute nodes to get the best possible performance. Using multiple CPU cores is achieved by specifying ``-l mppwidth=[count]`` option in either your submission command or the scheduler directives in your job script. The ``-l mppwidth=[count]`` option informs the scheduler of the number of cores you wish to reserve for use. If the parameter is omitted, a default of 1 core is assumed. You could specify the option ``-l mppwidth=4`` to request 4 CPU cores for your job.
 
 Running Parallel (MPI) jobs
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-If users want to run parallel jobs via a message passing interface (MPI), they need to inform the scheduler - this allows jobs to be efficiently spread over compute nodes to get the best possible performance. Using multiple CPU cores across multiple nodes is achieved by specifying the ``-l nodes=2:ppn=1`` option either in your job submission command or your job-script directives. The example option requests 2 compute hosts with 1 compute core on each compute on each requested node.
+If users want to run parallel jobs via a message passing interface (MPI), they need to inform the scheduler - this allows jobs to be efficiently spread over compute nodes to get the best possible performance. Using multiple CPU cores across multiple nodes is achieved by specifying the ``-l nodes=X:ppn=Y`` option either in your job submission command or your job-script directives, to request **Y** cores on each of **X** nodes.
 
 For example, to use 8 CPU cores on the cluster for a single application - you could use the following scheduler directive:
 
     ``-l nodes=4:ppn=2``    Request 4 nodes using 2 cores across each requested node
 
-This application is launched via the OpenMPI ``mpirun`` command. This jobscript loads the ``apps/imb`` module before launching the application, which automatically loads the module for ``openmpi``.
+The following example shows launching the **Intel Message-passing (IMB)** MPI benchmark across 64 cores on your cluster. This application is launched via the OpenMPI ``mpirun`` command - the number of threads and list of hosts to use are specified as parameters to ``mpirun``. This jobscript loads the ``apps/imb`` module before launching the application, which automatically loads the module for **OpenMPI**. 
 
 .. code-block:: bash
 
   #!/bin/bash -l
-  #PBS -l nodes=4:ppn=2
+  #PBS -l nodes=8:ppn=8
   #PBS -N imb
   #PBS -j oe /home/alces/outputs/imb_mpi.out.$PBS_JOBID
   module load apps/imb
@@ -382,48 +386,47 @@ This application is launched via the OpenMPI ``mpirun`` command. This jobscript 
   cat $PBS_NODEFILE
   mpirun --prefix $MPI_HOME \
          -np 8 \
-         -np 2 \
+         -npernode 2 \
          --hostfile $PBS_NODEFILE \
          $(which IMB-MPI1)
 
-.. warning::
-  The version of OpenMPI shipped with your Flight Compute cluster does not include tight integration with the Torque scheduler. Due to the lack of tight integration, you must explicitly provide the number of MPI processes you wish to spawn. Failing to specify the number of processes will cause the ``mpirun`` command to spawn more processes than you have requested.
+The above example job script demonstrates several additionally required options in the ``mpirun`` command - most importantly ``-np <number>`` and ``-npernode <number>``. These options define the total number of MPI processes, as well as the number of MPI processes per node to spawn.
 
-  The above example job script demonstrates several additionally required options in the ``mpirun`` command - most importantly ``-np <number>`` and ``-npernode <number>``. These options define the total number of MPI processes, as well as the number of MPI processes per node to spawn.
-
-We can then submit the IMB job script to the scheduler, which will automatically determine which nodes to use:
+Once the above job-script is submitted to the job-scheduler, the required number of nodes will be allocated for execution of the workload; e.g.
 
 .. code:: bash
 
-  [alces@login1(vlj) outputs]$ qsub ../imb_mpi.sh
-  35.login1.vlj.prv.alces.network
-  [alces@login1(vlj) outputs]$ cat imb.o35
+  [alces@login1(scooby) outputs]$ qsub ../imb_mpi.sh
+  35.login1.scooby.prv.alces.network
+  
+  [alces@login1(scooby) outputs]$ cat imb.o35
   List of nodes to use:
   ---------------------
-  node-x90.vlj.prv.alces.network
-  node-x90.vlj.prv.alces.network
-  node-xd7.vlj.prv.alces.network
-  node-xd7.vlj.prv.alces.network
-  node-x81.vlj.prv.alces.network
-  node-x81.vlj.prv.alces.network
-  node-xc3.vlj.prv.alces.network
-  node-xc3.vlj.prv.alces.network
+  node-x90.scooby.prv.alces.network
+  node-x90.scooby.prv.alces.network
+  node-xd7.scooby.prv.alces.network
+  node-xd7.scooby.prv.alces.network
+  node-x81.scooby.prv.alces.network
+  node-x81.scooby.prv.alces.network
+  node-xc3.scooby.prv.alces.network
+  node-xc3.scooby.prv.alces.network
   benchmarks to run PingPong
   #------------------------------------------------------------
   #    Intel (R) MPI Benchmarks 4.0, MPI-1 part
   #------------------------------------------------------------
   # Date                  : Tue Sep  6 10:26:04 2016
 
-.. note:: If you request more CPU cores than your cluster can accommodate, your job will wait in the queue (in case more nodes are added to your cluster at a later date, either manually or through the Alces Flight autoscaling feature).
+.. note:: If you request more CPU cores than your cluster can accommodate, your job will wait in the queue. If you are using the Flight Compute auto-scaling feature, your job will start to run once enough new nodes have been launched.
+
 
 Requesting more memory
 ----------------------
 
 In order to promote best-use of the cluster scheduler - particularly in a shared environment, it is recommended to inform the scheduler the maximum required memory per submitted job. This helps the scheduler appropriately place jobs on the available nodes in the cluster.
 
-You can specify the maximum amount of memory required per submitted job with the ``--l mem=[xxxmb]`` option. This informs the scheduler of the memory required for the submitted job. Optionally - you can also request an amount of memory *per CPU core* rather than a total amount of memory required per job.
+You can specify the maximum amount of memory required per submitted job with the ``-l mem=[XXXmb]`` option. This informs the scheduler of the memory required for the submitted job. Optionally - you can also request an amount of memory *per CPU core* rather than a total amount of memory required per job.
 
-.. note:: When running a job across multiple compute hosts, the ``-l mem=[xxxmb]`` option informs the scheduler of the required memory *per node*
+.. note:: When running a job across multiple compute hosts, the ``-l mem=[XXXmb]`` option informs the scheduler of the required memory *per node*
 
 Requesting a longer runtime
 ---------------------------
@@ -434,7 +437,7 @@ In order to promote best-use of the cluster scheduler, particularly in a shared 
 
   #!/bin/bash -l
   #PBS -l walltime=02:00:00
-  sleep 120
+
 
 Further documentation
 ---------------------
