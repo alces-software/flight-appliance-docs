@@ -255,7 +255,7 @@ You can instruct the scheduler to wait for an existing job to finish before star
 Running task array jobs
 ~~~~~~~~~~~~~~~~~~~~~~~
 
-A common workload is having a large number of jobs to run which basically do the same thing, aside perhaps from having different input data. You could generate a job-script for each of them and submit it, but that's not very convenient - especially if you have many hundreds or thousands of tasks to complete. Such jobs are known as **task arrays** - an `embarrasingly parallel <https://en.wikipedia.org/wiki/Embarrassingly_parallel>`_ job will often fit into this category.
+A common workload is having a large number of jobs to run which basically do the same thing, aside perhaps from having different input data. You could generate a job-script for each of them and submit it, but that's not very convenient - especially if you have many hundreds or thousands of tasks to complete. Such jobs are known as **task arrays** - an `embarrassingly parallel <https://en.wikipedia.org/wiki/Embarrassingly_parallel>`_ job will often fit into this category.
 
 A convenient way to run such jobs on a cluster is to use a task array, using the ``-a [array_spec] | --array=[array_spec]`` directive. Your job-script can then use the pseudo environment variables created by the scheduler to refer to data used by each task in the job. The following job-script uses the ``$SLURM_ARRAY_TASK_ID``/``%a`` variable to echo its current task ID to an output file:
 
@@ -330,9 +330,9 @@ You can request multiple cores over multiple nodes using a combination of schedu
   Requests all available cores of 2 compute nodes
 
 ``--ntasks=16``
-  Reuqests 16 cores across any available compute nodes
+  Requests 16 cores across any available compute nodes
 
-For example, to use 64 CPU cores on the cluster for a single application, the instruction ``--ntasks=64`` can be used. The following example shows launching the **Intel Message-passing** MPI benchmark across 64 cores on your cluster. This application is launched via the OpenMPI ``mpirun`` command - the numnber of threads and list of hosts are automatically assembled by the scheduler and passed to the MPI at runtime. This jobscript loads the ``apps/imb`` module before launching the
+For example, to use 64 CPU cores on the cluster for a single application, the instruction ``--ntasks=64`` can be used. The following example shows launching the **Intel Message-passing** MPI benchmark across 64 cores on your cluster. This application is launched via the OpenMPI ``mpirun`` command - the number of threads and list of hosts are automatically assembled by the scheduler and passed to the MPI at runtime. This jobscript loads the ``apps/imb`` module before launching the
 application, which automatically loads the module for **OpenMPI**.
 
 .. code:: bash
@@ -398,12 +398,13 @@ We can then submit the IMB job script to the scheduler, which will automatically
         2097152           20       305.00      6557.31
         4194304           10       675.20      5924.16
 
-.. note:: If you request more CPU cores than your cluster can accommodate, your job will wait in the queue (in case more nodes are added to your cluster at a later date, either manually or through the Alces Flight autoscaling feature).
+.. note:: If you request more CPU cores than your cluster can accommodate, your job will wait in the queue. If you are using the Flight Compute auto-scaling feature, your job will start to run once enough new nodes have been launched.
+
 
 Requesting more memory
 ----------------------
 
-In order to promote best-use of the cluster scheduler - particularly in a shared environment, it is recommended to inform the scheduler the maximum required memory per submitted job. This helps the scheduler appropriately place jobs on the available nodes in the cluster.
+In order to promote best use of the cluster scheduler - particularly in a shared environment, it is recommended to inform the scheduler the maximum required memory per submitted job. This helps the scheduler appropriately place jobs on the available nodes in the cluster.
 
 You can specify the maximum amount of memory required per submitted job with the ``--mem=<MB>`` option. This informs the scheduler of the memory required for the submitted job. Optionally - you can also request an amount of memory *per CPU core* rather than a total amount of memory required per job. To specify an amount of memory to allocate *per core*, use the ``--mem-per-cpu=<MB>`` option.
 
