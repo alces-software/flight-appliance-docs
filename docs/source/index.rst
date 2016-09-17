@@ -1,4 +1,4 @@
-Flight Appliance Documentation - 2016.2r4
+Flight Appliance Documentation - 2016.3r1
 ==========================================
 .. figure:: _images/AlcesFlight.png
     :alt: Alces Computing in the Cloud
@@ -23,24 +23,45 @@ We recommend that users wishing to use Flight Appliances have basic Linux skills
 
    quickstart/*
    overview/*
-   launch-aws/launching_on_aws
-   launch-os/*
-   basics/*
-   databasics/*
-   alces-sync/*
-   graphicaldesktop/*
-   apps/apps
-   mpiapps/*
-   jobschedulers/*
 
 .. toctree::
    :maxdepth: 1
    :glob:
-   :caption: Cluster schedulers
+   :caption: Launching your cluster
+   :name: launching
+
+   launch-aws/launching_on_aws
+   launch-os/*
+
+.. toctree::
+   :maxdepth: 1
+   :glob:
+   :caption: Using your cluster
+   :name: cluster-usage
+
+   basics/*
+   databasics/*
+   alces-sync/*
+   graphicaldesktop/*
+   vpn/vpn
+
+.. toctree::
+   :maxdepth: 1
+   :glob:
+   :caption: Software applications
+   :name: clusterapps
+
+   apps/apps
+   mpiapps/*
+
+.. toctree::
+   :maxdepth: 1
+   :glob:
+   :caption: Cluster job schedulers
    :name: schedulers
 
+   jobschedulers/*
    sge/sge
-   vpn/vpn
    slurm/slurm
    openlava/openlava
    torque/torque
@@ -73,5 +94,3 @@ We recommend that users wishing to use Flight Appliances have basic Linux skills
 
    getting-started/environment-usage/gridware-features/*
    getting-started/environment-usage/using-openfoam-with-alces-flight-compute.rst
-
-
