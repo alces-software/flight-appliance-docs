@@ -557,7 +557,7 @@ Your cluster job-scheduler is capable of running complex workflows, utilising ad
 
 If you do run into problems, the ``qstat -j <job-id>`` command can be useful - as well as showing you the instructions you passed the scheduler with your job, the output of this command will also show you the current environment settings for your job, and list scheduling information. This can provide you with assistance to debug issues, and explain why jobs are still queuing when you think they should be running. 
 
-Be patient with the job-scheduler if you have auto-scaling enabled - queuing jobs cannot start until new compute nodes have succesfully joined the cluster; the speed of scaling-up the cluster is governed by the performance of your Cloud provider, and the amount you've paid for your instance types. 
+Be patient with the job-scheduler if you have auto-scaling enabled - queuing jobs cannot start until new compute nodes have successfully joined the cluster; the speed of scaling-up the cluster is governed by the performance of your Cloud provider, and the amount you've paid for your instance types. 
 
 
 Further documentation
@@ -586,13 +586,14 @@ There is a graphical administration interface for the OGS scheduler - to use it,
   
 Be aware that any job-scripts you have already created (including the provided templates) and cluster auto-scaling support (if available) may rely to the default configuration delivered with your Flight Compute cluster. If you reconfigure the scheduler, we recommend that you disable auto-scaling (``alces configuration autoscaling disable``) and review your job-scripts for compatibility. 
 
+
 Controlling scheduler configuration
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Your Alces Flight Compute environment allows you to configure your cluster scheduler, controling the job spanning type as well as the job submission strategy.
+Your Alces Flight Compute environment provides tools to quickly configure your cluster scheduler, controlling the job spanning type as well as the job submission strategy.
 
-View current configuration
-``````````````````````````
+Viewing the current configuration
+`````````````````````````````````
 
 You can view the current scheduler configuration using the ``alces configure scheduler status`` command: 
 
@@ -605,21 +606,18 @@ You can view the current scheduler configuration using the ``alces configure sch
                      Allocation strategy: packing
                      Submission strategy: master
 
+
 Scheduler allocation strategy
 `````````````````````````````
 
 Changing the scheduler allocation strategy allows you to choose from a variety of different methods of scheduling jobs across available nodes. The currently available configuration types are as follows:
 
 ``packing``
-  Pack as many jobs as possible onto as few nodes as possible
+  Pack as many jobs as possible onto as few compute nodes as possible. This method is useful to minimise the number of separate compute nodes you need in your cluster, and can help to minimise running costs in an environment where users are charged per compute node.
 
 ``spanning``
-  Select the least busy nodes for new jobs
+  Select the least busy nodes for new jobs. This method is useful to help ensure the best possible performance for each job.
 
-View current configuration
-
-Modifying allocation configuration
-''''''''''''''''''''''''''''''''''
 
 To control the scheduler allocation strategy, use the command ``alces configure scheduler allocation <strategy>`` as per the following example: 
 
@@ -642,8 +640,6 @@ The default scheduler submission strategy allows only jobs submitted from the cl
 ``none``
   Disable job submission from all cluster hosts
 
-Modify submission configuration
-'''''''''''''''''''''''''''''''
 
 To control the scheduler submission strategy, use the command ``alces configure scheduler submission <strategy>`` as per the following example:
 
