@@ -88,41 +88,52 @@ When you choose to start a Flight Compute cluster from AWS Marketplace, you will
 
  - **Stack name**; this is the name that you want to call your cluster. It's fine to enter **"cluster"** here if this is your first time, but entering something descriptive will help you keep track of multiple clusters if you launch more. Naming your cluster after colours (red, blue, orange), your favourite singer (clapton, toriamos, bieber) or Greek legends (apollo, thor, aphrodite) keeps things more interesting. Avoid using spaces and punctuation, or names longer than 16 characters.
  
- - **ComputeAutoscaling**; enter a **0** (zero) in this box to disable auto-scaling of your cluster compute nodes, or enter a **1** (one) to enable auto-scaling.
- 
- - **ComputeSpotPrice**; in this box, enter the maximum amount you agree to pay per compute node instance, in US dollars. Entering **0** (zero) in this box will cause Flight to use **on-demand** instances for compute nodes. See the section below on *On-demand and SPOT* instances for more details.
- 
- - **ComputeType**; use the drop-down box to choose what type of compute nodes you want to launch. All compute nodes will launch as the same type. Different types of nodes cost different amounts to run, and have different amounts of CPU-cores and memory - see the :ref:`available instance types <instance-types>` for more information. Node instances are grouped in the following ways:
- 
-    - **Type** (compute/balanced/memory/gpu): 
-    	- Compute instances have 2GB of memory per core, and provide the fastest CPUs
-    	- Balanced instances have 4GB of memory per core, and are good all-round performers
-    	- Memory instances have 8GB of memory per core, and are useful for high-memory jobs
-    	- GPU instances have Nvidia CUDA GPU devices installed
-    	
-    - **Size** (small/medium/large/dedicated):
-        - Small, medium and large instances have 2, 4 or 8 CPU cores, and a fraction of a 10Gb Ethernet network link
-        - Dedicated instances have access to a dedicated 10Gb Ethernet network link
-        
- - **FlightCustomBucket**; enter an S3 bucket containing customisation information for your cluster. Leave this option blank if you have no existing customisation data, or you are starting a new cluster.
- 
- - **FlightCustomProfiles**; enter the names of the customisation profiles to use, separated by spaces. Leave this option blank if you have no existing customisation data, or you are starting a new cluster.
+  - **Access and security**
+    - **Cluster administrator username**; enter the username you want to use to connect to the cluster. Flight will automatic create this user on the cluster, and add your public SSH key to the user.
+    - **Cluster administrator keypair**; choose an existing AWS keypair to launch your Flight cluster with. If there are no keypairs in the list, check that you've already generated a keypair in the region you're launching in. You must have the private key available for the chosen keypair in order to login to your cluster.
+    - **Access network address**; enter a network range that is permitted to access your cluster. This will usually be the IP address of your system on the Internet; ask your system administrator for this value, or `use a web search <https://www.google.com/search?q=whats+my+ip+address&ie=utf-8&oe=utf-8&gws_rd=cr&ei=tVIvV5_dKsHagAath7OYCw>`_ to find out. If you want to be able to access your cluster from anywhere on the Internet, enter "0.0.0.0/0" in this box.
 
- - **InitialNodes**; enter the number of nodes you want to start immediately in this box in your auto-scaling cluster. Flight Compute will add more nodes when jobs are queued, and shutdown idle nodes when they have no jobs to process. This parameter is ignored if auto-scaling is disabled. 
- 
- - **Keypair**; choose an existing AWS keypair to launch your Flight cluster with. If there are no keypairs in the list, check that you've already generated a keypair in the region you're launching in. You must have the private key available for the chosen keypair in order to login to your cluster.
- 
- - **LoginSystemDiskSize**; choose the size of your login node disk, which acts as the shared filesystem for your cluster. Requesting a larger size will give you more space for your data, but will cost more to run.
- 
- - **LoginType**; use the drop-down box to choose the AWS instance type for your login node. Larger sizes will perform better, while smaller sizes will be less expensive to run. Your login node is always created as an on-demand instance. 
- 
- - **MaxNodes**; enter the maximum size that your cluster will scale to, up to a maximum of 32 nodes. 
- 
- - **NetworkCIDR**; enter a network range that is permitted to access your cluster. This will usually be the IP address of your system on the Internet; ask your system administrator for this value, or `use a web search <https://www.google.com/search?q=whats+my+ip+address&ie=utf-8&oe=utf-8&gws_rd=cr&ei=tVIvV5_dKsHagAath7OYCw>`_ to find out. If you want to be able to access your cluster from anywhere on the Internet, enter "0.0.0.0/0" in this box. 
- 
- - **Username**; enter the username you want to use to connect to the cluster. Flight will automatic create this user on the cluster, and add your public SSH key to the user. 
- 
-.. image:: aws-launch_CFT_questions.jpg
+  - **Alces Flight configuration and customization**
+    - **HPC job scheduler**; select from a range of popular batch job schedulers to install and configure for use with your Alces Flight Compute environment
+    - **Preload software**; select an `Alces Gridware Depot <https://github.com/alces-software/gridware-depots>`_  to install - Alces Gridware Depots are groups of packages, libraries and compilers commonly used by different disciplines
+    - **Additional features to enable**; optionally select from available `Alces Flight features <https://github.com/alces-software/flight-profiles/tree/master/features>`_ including job schedulers and other useful customisations
+    - **S3 bucket for customization profiles**; enter the names of customisation profiles to use, separated by spaces. Leave this option blank if you have no existing customisation data, or you are starting a new cluster.
+    - **Customization profiles to enable**; enter the names of the customisation profiles to use, separated by spaces. Leave this option blank if you have no existing customisation data, or you are starting a new cluster. 
+
+  - **Login node**
+    - **Login node instance type**; use the drop-down box to choose the AWS instance type for your login node. Larger sizes will perform better, while smaller sizes will be less expensive to run. Your login node is always created as an on-demand instance.
+    - **Specific login node instance type**; if you did not choose a login instance type from the available instance types and chose ``other`` - you may select from a list of all of the currently available AWS instance types
+
+  - **Compute estate**
+    - **Compute instance type**; use the drop-down box to choose what type of compute nodes you want to launch. All compute nodes will launch as the same type. Different types of nodes cost different amounts to run, and have different amounts of CPU-cores and memory - see the :ref:`available instance types <instance-types>` for more information. Node instances are grouped in the following ways:
+
+      - **Type** (compute/balanced/memory/gpu):
+        - Compute instances have 2GB of memory per core, and provide the fastest CPUs
+        - Balanced instances have 4GB of memory per core, and are good all-round performers
+        - Memory instances have 8GB of memory per core, and are useful for high-memory jobs
+        - GPU instances have Nvidia CUDA GPU devices installed
+
+      - **Size** (small/medium/large/dedicated):
+        - Small, medium and large instances have 2, 4 or 8 CPU cores and a fraction of a 10Gb Ethernet network link
+        - Dedicated instances have access to a dedicated 10Gb Ethernet network link
+
+    - **Specific compute instance type**; if you did not choose a compute instance type from the available instance types above, and chose ``other`` - you may select from a lift of all of the currently available AWS instance types
+    - **Spot price**; in this box; enter the maximum amount you agree to pay per compute node instance, in US dollars. Entering **0** (zero) in this box will cause Flight to use **on-demand** instances for compute nodes. See the section below on *On-demand and SPOT* instances for more details.
+    - **Autoscaling policy**; select from either ``enabled`` or ``disabled`` in this box to enable or disable auto-scaling of your cluster compute nodes
+    - **Initial compute nodes**; enter the number of nodes you want to start immediately in this box in your auto-scaling cluster. Flight Compute will add more nodes when jobs are queued, and shutdown idle nodes when they have no jobs to process. This parameter is ignored if auto-scaling is disabled. 
+  
+  - **Disks and storage**
+    - **Data volume layout**; select from a range of data volume layouts. Selecting ``standard`` will configure the home directory share and application directory share using the login nodes system disk. Selecting ``discrete.home`` will configure the home directory share on a dedicated EBS volume and application directory share using the login nodes system disk. Selecting ``discrete.apps`` will configure the home directory share using the login nodes system disk and the application directory share using a dedicated EBS volume. Selecting ``discrete.home-discrete.apps`` will configure both the home directory share and application directory share using separate, dedicated EBS volumes
+    - **Data volume encryption policy**; if any of the ``discrete`` options were selected, you may optionally set an encryption policy for the dedicated EBS volumes
+    - **Login node system disk size**; choose the size of your login node disk, which acts as the shared filesystem for your cluster when using the ``standard`` data voume layout
+    - **Login node system volume disk type**; select the `type of EBS volume <http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSVolumeTypes.html>`_ best suited to your workload requirements
+    - **Home volume disk size**; if the appropriate data volume layout was chosen to deploy a dedicated home directory EBS volume, you may select the size of volume to deploy
+    - **Application volume disk size**; if the appropriate data volume layout was chosen to deploy a dedicated application directory EBS volume, you may select the size of the volume to deploy
+    - **Home volume disk type**; if the appropriate data volume layout was chosen to deploy a dedicated home directory EBS volume, you may choose from a range of EBS volume types for the home directory volume
+    - **Application volume disk type**; if the appropriate data volume layout was chosen to deploy a dedicated application directory EBS volume, you may choose from a range of EBS volume types for the application directory volume
+    - **Compute node system disk type**; you may optionally select a system disk type for any deployed compute hosts, allowing you to optimise compute hosts' local ephemeral storage to your workload requirements
+      
+.. image:: aws-launch_CFT_questions.png
     :alt: AWS Marketplace CloudFormation template questions
    
 When all the questions are answered, click the **Next** button to proceed. Enter any tags you wish to use to identify instances in your environment on the next page, then click the **Next** button again. On the review page, read through the answers you've provided and correct any mistakes - click on the *Capabilities* check-box to authorize creations of an IAM role to report cluster performance back to AWS, and click on the **Create** button.
