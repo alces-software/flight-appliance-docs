@@ -33,19 +33,17 @@ Windows
 Obtaining VPN configuration
 ---------------------------
 
-Your Alces Flight Compute cluster automatically packages the VPN configuration for a number of VPN clients including OpenVPN and TunnelBlick. To view information including download paths for configuration packs, use the ``alces about vpn`` command as per the following example:
+VPN configuration packs for different VPN clients are available through the Alces Flight web page. You can find your Alces Flight web page access information by:
 
-.. code:: bash
+ - Viewing the ``Outputs`` tab of your AWS CloudFormation Flight Compute stack - which displays the ``http`` access address
+ - Logging on to your Flight Compute environment and running the command ``alces about www`` which displays access information
 
-  [alces@login1(sge) ~]$ alces about vpn
-       VPN configuration path: /opt/clusterware/etc/openvpn/client/clusterware
-         Tarred configuration: /opt/clusterware/etc/openvpn/client/clusterware-openvpn.tgz
-         Zipped configuration: /opt/clusterware/etc/openvpn/client/clusterware-openvpn.zip
-    Tunnelblick configuration: /opt/clusterware/etc/openvpn/client/clusterware-tunnelblick.zip
-            Download web page: https://sge-0a8de07e.cloud.alces.network/vpn/
-     Download access username: vpn
-     Download access password: **********
+Once you have navigated to your Alces Flight Compute web page - you can click on the **VPN** button, which will allow you to visit the VPN configuration page. From the VPN configuration page, you will be offered a range of VPN configuration file packs for different VPN client types as well as brief instructions on how to connect to the VPN using your downloaded configuration packs: 
 
-You can then obtain the VPN configuration packs either through command-line tools such as `scp`, or through the Alces Flight web page as shown in the ``alces about vpn`` output and connect using the steps provided by your VPN client instructions. 
+.. image:: index_vpn.png
+     :alt: Alces Flight WWW home - VPN
 
-.. note:: The VPN configuration download web page is only available to users running an Alces Flight Compute *Enterprise* edition cluster. The VPN configuration page available to Alces Flight Compute *Enterprise* edition clusters also includes handy instructions on how to connect using various clients.
+.. image:: vpn.png
+     :alt: Alces Flight WWW VPN page
+
+.. note:: You can also use command-line tools such as ``scp`` to download your VPN configuration packs. Use the command ``alces about vpn`` on your Flight Compute environment to view the locations of the VPN configuration packs before transferring to your local workstation
