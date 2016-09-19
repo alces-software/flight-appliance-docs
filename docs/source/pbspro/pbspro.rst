@@ -25,6 +25,11 @@ In the above command, the ``qsub`` command is used together with the option ``-I
 
 Alternatively, the ``qsub -I`` command can also be executed from an interactive desktop session; the job-scheduler will automatically find an available compute node to launch the job on. Applications launched from within the interactive session are executed on the assigned cluster compute node.
 
+.. image: interactivejob.png
+     :alt: Running an interactive graphical job
+
+.. note:: The PBS Pro scheduler does not automatically set up your session to allow you to run graphical applications inside an interactive session. Once your interactive session has started, you must run the following command before running a graphical application: ``export DISPLAY=login1:1``
+
 When you've finished running your application in your interactive session, simply type ``logout``, or press **Ctrl+D** to exit the interactive job.
 
 If the job-scheduler could not satisfy the resource you've requested for your interactive job (e.g. all your available compute nodes are busy running other jobs), the job will queue until resources are available:

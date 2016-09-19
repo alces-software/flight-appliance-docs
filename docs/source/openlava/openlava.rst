@@ -40,6 +40,9 @@ The above command uses the following options in order to create an interactive j
 
 Alternatively, an interactive session can also be executed from a graphical desktop session; the job-scheduler will automatically find an available compute node to launch the job on. Applications launched from within the interactive job session are executed on the assigned cluster compute node.
 
+.. image:: interactivejob.png
+     :alt: Running an interactive graphical job
+
 When you've finished running your application, simply type ``logout``, or press **Ctrl+D** to exit the interactive job.
 
 Submitting a batch job
