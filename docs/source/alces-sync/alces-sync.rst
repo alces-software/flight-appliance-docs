@@ -88,6 +88,28 @@ Open the ``sync.default.yml`` configuration file to add an example file exclusio
 
 The above example would prevent the ``.modules`` file as well as any file matching the wildcard search ``id_*`` in the ``.ssh`` directory from being pushed to the remote synchronization target.
 
+Encrypting data
+~~~~~~~~~~~~~~~
+
+The ``alces sync`` tool offers the choice to optionally set an encryption key on any uploaded data. This provides an extra layer of security for the data stored in your S3 buckets. A secure and most importantly memorable passphrase should be used - failing to remember your passphrase will prevent you from obtaining or using the data later on. 
+
+When performing the ``alces sync push`` command - you will be prompted for an encryption passphrase, or optionally given the choice to skip using a passphrase by pressing **Ctrl+C**. 
+
+A passphrase can contain any form of characters, just ensure the passphrase is either remembered or stored in a secure location for retrieval and access later on. 
+
+The following example shows the ``alces sync push`` command being used, setting an encryption passphrase on the uploaded data: 
+
+.. code:: bash
+
+  [alces@login1(vlj) ~]$ alces sync push
+  
+   > Synchronizing directory '/home/alces' to s3://alces-flight-nmi0ztdmyzm3ztm3
+       Permissions ... OK
+   Encryption passphrase (CTRL+C to skip):
+              Sync ... OK
+
+When the ``alces sync`` tool retrieves data, either automatically on first login or manually via the ``alces sync pull`` command - you will be prompted to enter your encryption passphrase if one was previously set. Without the encryption passphrase, you will not be able to obtain or use your stored data.
+
 Pulling files and data
 ----------------------
 
