@@ -185,10 +185,34 @@ The ``pbsnodes`` output will display some of the following information about the
  - The amount of memory in KB per node
  - The amount of disk space available per node
 
-Controlling resources
----------------------
+Default resources
+-----------------
 
-In order to promote efficient usage of the cluster - the job-scheduler is automatically configured with default run-time limits for jobs. These defaults can be overridden by users to help the scheduler understand how you want it to run your job. If we don't include any instructions to the scheduler then the default limits are applied to a job.
+In order to promote efficient usage of your cluster, the job-scheduler automatically sets a number of default resources to your jobs when you submit them. These defaults must be overridden by users to help the scheduler understand how you want it to run your job - if we don't include any instructions to the scheduler, then our job will take the defaults shown below. If there is no default limit in place, the limit will be unlimited or not defined - it is important to inform the cluster scheduler how much of each resource you require.
+
+ - Maximum job runtime (in hours): ``1``
+ - Default number of nodes: ``1``
+
+You can view any default limits in place on the default ``batch`` queue with the following command:
+
+.. code:: bash
+
+  [root@login1(torque) ~]# qmgr -c 'list queue batch'
+  Queue batch
+        	queue_type = Execution
+        	total_jobs = 1
+        	state_count = Transit:0 Queued:0 Held:0 Waiting:0 Running:1 Exiting:0 Complete:0
+        	resources_default.nodes = 1
+        	resources_default.walltime = 01:00:00
+        	mtime = Mon Sep 19 09:18:33 2016
+        	resources_assigned.nodect = 1
+         	enabled = True
+         	started = True
+
+Providing job-scheduler instructions
+------------------------------------
+
+Users can help the scheduler to understand how you want it to run your job by providing instructions - job instructions can be provided in two ways; they are:
 
 Job instructions can be provided in two ways; they are:
 

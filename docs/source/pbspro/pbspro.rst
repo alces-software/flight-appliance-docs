@@ -162,7 +162,7 @@ The ``pbsnodes`` output will display the following information about the compute
 Controlling resources
 ---------------------
 
-In order to promote efficient usage of the cluster - the job-scheduler is automatically configured with default run-time limits for jobs. These defaults can be overridden by users to help the scheduler understand how you want it to run your job. If we don't include any instructions to the scheduler then the default limits are applied to a job.
+In order to promote efficient usage of the cluster - the job-scheduler should be informed of any resource requirements of your submitted jobs in order to effectively fill the available compute hosts. By default, each of the available resource types are set to "unlimited". Scheduling each of your jobs with "unlimited" definitions will mean it is harder to effectively schedule jobs. Defining the required resources means that the scheduler can better work out where a job should be placed to fully optimise the available compute estate. 
 
 Job instructions can be provided in two ways; they are:
 

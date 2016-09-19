@@ -122,6 +122,12 @@ Users can use the ``bhosts`` command to view the status of compute node hosts in
 
 The ``bhosts`` output shows information about the jobs running on each cluster scheduler host. You may also use the ``-l`` option to displayed more detailed information about each cluster execution host.
 
+Default resources
+-----------------
+
+By default, the OpenLava scheduler sets the default resource limits to "unlimited" if the resource is not specified in your job submission script or command. To promote efficient usage of the cluster scheduler, it is recommended to make use of the scheduler submission directives, which allow you to inform the scheduler how much of each resource a job may require. Informing the scheduler of the required resources will help you to better schedule and backfill jobs. 
+The sections below detail how to inform the scheduler how much of various resource your job may require.
+
 Providing job-scheduler instructions
 ------------------------------------
 
