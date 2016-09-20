@@ -418,4 +418,4 @@ This guide is a quick overview of some of the many available options of the PBS 
 
  - Use the ``man qstat`` command to see a full list of scheduler queue instructions
  - Use the ``man qsub`` command to see a full list of scheduler submission instructions
- - Online documentation for the PBS Pro scheduler is `available here <http://www.adaptivecomputing.com/support/documentation-index/>`_
+ - Online documentation for the PBS Pro scheduler is `available here <http://www.pbsworks.com/pdfs/PBSProUserGuide13.1.pdf>`_
