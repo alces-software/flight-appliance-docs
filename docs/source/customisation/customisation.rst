@@ -57,7 +57,7 @@ To use custom S3 buckets with the Alces Flight Compute ``2016.3`` release, enter
   ``FlightCustomBuckets: alces-flight-a1i0ytdmvzv3ztv3/customiser/default``
 
 Setting up customisation scripts
-################################
+--------------------------------
 
 Customisation scripts are run on each node in your environment upon joining the cluster network - example customisation scripts include distribution package installations and external storage mounts. The Alces customiser supports any Linux executable file type. 
 
