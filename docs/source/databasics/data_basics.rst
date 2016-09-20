@@ -255,6 +255,8 @@ Users can also recursively transfer entire buckets (including any buckets contai
 
     [alces@login1(scooby) ~]$
 
+.. note:: As well as being able to recursively ``put`` entire directories from a local path into the remote storage target, users can also ``get`` and ``rm`` directories recursively, again using the ``-r`` or ``-R`` option with their ``alces storage`` command.
+
 Saving data before terminating your cluster
 -------------------------------------------
 
