@@ -47,10 +47,10 @@ After a few seconds, the instance will be configured in the target role requeste
 
 After configuration is complete, you can use the ``alces about node`` and ``alces about identity`` commands to recall the configuration information about your instance to allow further compute nodes to be added to an existing cluster:
 
-.. image:: alcesaboutnode.jpg
+.. image:: alces_about_identity.jpg
     :alt: Recalling configuration information
 
-.. _manual-launch-add-nodes:
+You can find the cluster secret token in ``/opt/clusterware/etc/config.yml`` - you will need the secret token to configure any additional hosts.
 
 Adding more nodes to your cluster
 ---------------------------------
