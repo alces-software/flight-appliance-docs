@@ -24,7 +24,7 @@ In the above example, the ``srun`` command is used together with two options: ``
 
 Alternatively, the ``srun`` command can also be executed from an interactive desktop session; the job-scheduler will automatically find an available compute node to launch the job on. Applications launched from within the ``srun`` session are executed on the assigned cluster compute node.
 
-.. image:: interactivejob.png
+.. image:: interactivejob.jpg
      :alt: Running an interactive graphical job
 
 .. note:: The Slurm scheduler does not automatically set up your session to allow you to run graphical applications inside an interactive session. Once your interactive session has started, you must run the following command before running a graphical application: ``export DISPLAY=login1$DISPLAY``
