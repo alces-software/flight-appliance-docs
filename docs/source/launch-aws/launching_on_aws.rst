@@ -40,10 +40,7 @@ Users can also use one the example CloudFormation templates as the basis of thei
 How much will it cost?
 ----------------------
 
-Unlicensed
-~~~~~~~~~~
-
-The Alces Flight software appliance itself is free; however, you're likely to incur costs when running a cluster on AWS resources. Charges typically fall into the following categories:
+The Alces Flight Compute product incurs a monthly subscription fee of $1000 USD - this provides access to the latest features as well as dedicated software support. The monthly subscription fee allows you to launch as many Alces Flight Compute instances as you wish. As well as the monthly subscription fee, you will also incur costs when running a cluster on AWS for the use of various resources. Charges typically fall into the following categories:
 
  - `EC2 <https://aws.amazon.com/ec2/>`_ charges for running instances (your login and compute nodes) 
  - `EBS <https://aws.amazon.com/ebs/>`_ charges for shared cluster filesystem capacity
@@ -55,16 +52,6 @@ Most charges are made per unit (e.g. per compute node instance, or per GB of sto
 
  - `AWS Simple Monthly Calculator <https://calculator.s3.amazonaws.com/index.html>`_
  - `AWS TCO Calculator <https://awstcocalculator.com/>`_
-
-Licensed
-~~~~~~~~
-
-The Licensed edition of Alces Flight Compute provides additional features as well as an enhanced level of support - the Licensed edition incurs a monthly subscription fee of $1000 USD. You are charged $1000 USD per month no matter how many instances you launch after subscribing to the Licensed product. 
-
-As well as the monthly subscription fee, you will also incur any running costs as described above in the Unlicensed usage fee section.
-
-For more information on the Alces Flight Compute Licensed edition - please visit the AWS Marketplace.
-
 
 Finding Alces Flight Compute on AWS
 -----------------------------------
