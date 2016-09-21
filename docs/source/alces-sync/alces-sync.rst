@@ -101,7 +101,7 @@ The following example shows the ``alces sync push`` command being used, setting 
 
 .. code:: bash
 
-  [alces@login1(vlj) ~]$ alces sync push
+  [alces@login1(scooby) ~]$ alces sync push
   
    > Synchronizing directory '/home/alces' to s3://alces-flight-nmi0ztdmyzm3ztm3
        Permissions ... OK
