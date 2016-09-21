@@ -132,6 +132,7 @@ When you choose to start a Flight Compute cluster from AWS Marketplace, you will
   - **Spot price**; in this box; enter the maximum amount you agree to pay per compute node instance, in US dollars. Entering **0** (zero) in this box will cause Flight to use **on-demand** instances for compute nodes. See the section below on *On-demand and SPOT* instances for more details.
   - **Autoscaling policy**; select from either ``enabled`` or ``disabled`` in this box to enable or disable auto-scaling of your cluster compute nodes
   - **Initial compute nodes**; enter the number of nodes you want to start immediately in this box in your auto-scaling cluster. Flight Compute will add more nodes when jobs are queued, and shutdown idle nodes when they have no jobs to process. This parameter is ignored if auto-scaling is disabled. 
+  - **Maximum compute nodes**; enter the maximum number of compute nodes to scale up to when autoscaling is ``enabled``, up to a maximum of 32 nodes. When autoscaling is set to ``disabled`` - this field is used to define the number of nodes to create
   
 **Disks and storage**
   - **Data volume layout**; select from a range of data volume layouts - the data volume layouts available are as follows; 
