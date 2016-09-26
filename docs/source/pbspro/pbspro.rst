@@ -25,7 +25,7 @@ In the above command, the ``qsub`` command is used together with the option ``-I
 
 Alternatively, the ``qsub -I`` command can also be executed from an interactive desktop session; the job-scheduler will automatically find an available compute node to launch the job on. Applications launched from within the interactive session are executed on the assigned cluster compute node.
 
-.. image: interactivejob.jpb
+.. image: interactivejob.jpg
      :alt: Running an interactive graphical job
 
 .. note:: In order to run graphical applications within an interactive session, you muts launch your interactive session with the ``-X`` option, which enables X forwarding. Launch an interactive session with X forwarding using the following command: ``qsub -I -X``
