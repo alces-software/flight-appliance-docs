@@ -24,21 +24,21 @@ Who is it for?
 What doesn't it do?
 -------------------
 
-**An important part of having ultimate power to control your environment is taking responsibility for it.** While no one is going to tell you how you should configure your cluster, you need to remember good security practice, and look after both your personal and research data. Flight provides you with a personal, single-user cluster - please use responsibility. Flight is not indended as a replacement for your national super-computer centre.
+**An important part of having ultimate power to control your environment is taking responsibility for it.** While no one is going to tell you how you should configure your cluster, you need to remember good security practice, and look after both your personal and research data. Flight provides you with a personal, single-user cluster - please use responsibility. Flight Compute is not indended as a replacement for your national super-computer centre.
 
 If you're running Flight on AWS, then there are some great tutorials written by the Amazon team on how to secure your environment. Just because you're running on public cloud, doesn't mean that your cluster is any less secure than a cluster running in your basement. Start at the `AWS Security Pages <https://aws.amazon.com/security>`_, and talk to a security expert if you're still unsure.
 
-For Flight clusters running on OpenStack, you need to contact the administration team who gave you your OpenStack account. They are usually helpful and friendly people, so try and explain what you want to do as clearly and concisely as possible. If you are having problems accessing the cluster once it's launched, remember that you can always do a few trials runs on AWS first, just to make sure you've got the hang of it - the Flight software is the same, whatever platform it's running on.
+For Flight clusters running on OpenStack, you need to contact the administration team who gave you your OpenStack account. They are usually helpful and friendly people, so try and explain what you want to do as clearly and concisely as possible. If you are having problems accessing the cluster once it's launched, remember that you can always do a few trial runs on AWS first, just to make sure you've got the hang of it - the Flight software is the same, whatever platform it's running on.
 
 
 How much does it cost?
 ----------------------
 
-Alces Flight Compute is an open-source software appliance and is freely available to users, released under the General Public License (GPL). Please see the `Alces Flight EULA <https://s3-eu-west-1.amazonaws.com/flight-aws-marketplace/2016.1/EULA.txt>`_ for details. 
+Alces Flight Compute is an open-source software appliance and is freely available to users, released under the General Public License (GPL) - please see the Alces Flight EULA for details. The team at Alces package both a community supported version which is free to use, and a commercially supported version which customers can buy to get access to more features and professional assistance. Alces also provide multi-user clusters based on Flight for both on-premise and public-cloud platforms - if you enjoy using Flight Compute, contact Alces for more information on how you can buy your own multi-user environment.
 
-You are likely to incur infrastructure costs from your platform provider (i.e. AWS, or your local OpenStack team) if you are using their compute resources. This documentation will highlight the configuration points that can effect how much you might be charged, but a full cost estimate for your work is outside the scope of Flight documentation. 
+You are likely to incur infrastructure costs from your platform provider (i.e. AWS, or your local OpenStack team) if you are running your cluster using their compute resources. This documentation will highlight the configuration points that can effect how much you might be charged, but a full cost estimate for your work is outside the scope of Flight documentation. 
 
-Your platform providers are there to help though - if in doubt, start small (e.g. a handful of nodes for a few hours) and review the costs before scaling your workload up. It's worth spending some time reviewing your costs over the longer term as well, as you may be able to reduce the bill if you run jobs at a different time of day, on different types of resources, or even in a different geographic region if your datasets allow. 
+Your platform providers are there to help - if in doubt, start small (e.g. a handful of nodes for a few hours) and review the costs before scaling your workload up. It's worth spending some time reviewing your costs over the longer term as well, as you may be able to reduce the bill if you run jobs at a different time of day, on different types of resources, or even in a different geographic region if your datasets allow. 
 
 
 .. _clientprereqs:

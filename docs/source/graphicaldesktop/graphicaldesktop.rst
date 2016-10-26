@@ -3,7 +3,7 @@
 Graphical desktop access to your login node
 ###########################################
 
-Your Alces Flight Compute login node can also run graphical desktop sessions to support users who want to run interactive applications across the cluster. The system can support a number of different sessions simultaneously, and allow multiple remote participants to connect to the same session to support training and collaborative activities. 
+Your Alces Flight Compute login node can run graphical desktop sessions to support users who want to run interactive applications across the cluster. The system can support a number of different sessions simultaneously, and allow multiple remote participants to connect to the same session to support training and collaborative activities. 
 
 
 Launching a desktop session

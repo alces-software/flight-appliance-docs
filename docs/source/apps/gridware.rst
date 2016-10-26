@@ -223,6 +223,7 @@ BioInformatics
   oases	  	  De novo transcriptome assembler for very short reads
   velvet	  Sequence assembler for very short reads
   hgsc	   	  SNP discovery tool developed for next generation sequencing platforms
+  illuminautils	  File utilities for Illumina sequencers
   htslib	  Provides various utilities for manipulating alignments in the SAM format, including sorting, merging, indexing and generating alignments in a per-position format
   bam2fastq	  Extract raw sequences (with qualities)
   mothur	  Provides microbial ecologists with the functionality of dotur, sons, treeclimber, s-libshuff, unifrac and more.
@@ -388,8 +389,10 @@ Bio-physics
 .. code:: bash
 
   vmd	  	  Molecular visualization program for displaying, animating, and analyzing large biomolecular systems
+  molscript	  MolScript is a program for displaying molecular 3D structures 
   NAMD 	  	  A parallel molecular dynamics code designed for high-performance simulation of large biomolecular systems
-
+  PyMOL		  PyMOL is a Python-enhanced molecular graphics tool 
+  RasMOL	  RasMol is a program for molecular graphics visualisation 
 
 Chemistry
 ---------
@@ -490,7 +493,7 @@ Languages
   python	  A remarkably powerful dynamic programming language
   R	  	  Language and environment for statistical computing and graphics
   ruby	  	  A dynamic, open source programming language with a focus on simplicity and productivity
-  IPython 	  Rich architecture for interactive computing
+  IPython 	  Rich architecture for interactive computing, supporting Project Jupyter
   Mono 	  	  A software platform designed to allow developers to easily create cross platform applications
   Oracle Java(TM) Java Programing Language
   R 	  	  Language and environment for statistical computing and graphics
@@ -552,6 +555,7 @@ Libraries
   PCRE2 	  Perl Compatible Regular Expressions
   Protocol Buff	  Protocol Buffers are a way of encoding structured data in an efficient yet extensible format. Google uses Protocol Buffers for almost all of its internal RPC protocols and file formats.
   pybedtools 	  Wrapper around BEDTools for bioinformatics work
+  pythonlevenshtein Python extension for computing string edit distances and similarities
   PyGTK Libraries GTK+ for Python
   PyQt4 	  Python v2 and v3 bindings for Digia's Qt application framework
   PyQwt 	  PyQwt plots data with Numerical Python and PyQt
@@ -565,6 +569,7 @@ Libraries
   Seaborn 	  Seaborn is a Python visualization library based on matplotlib.
   SLICOT 	  Subroutine Library in Systems and Control Theory
   Snappy Java 	  Snappy compressor/decompressor for Java
+  snpsites	  Rapidly extract SNPs from a multi-FASTA alignment 
   SparseHash 	  An extremely memory-efficient hash_map implementation
   SPIOL		  Staden Package I/O Libraries - I/O libraries developed as part of the Staden Project
   Theano 	  Define, optimize, and evaluate mathematical expressions involving multi-dimensional arrays efficiently
@@ -590,6 +595,7 @@ Mathematics
   suitesparse	  A suite of sparse matrix packages
   octave	  High-level interpreted language, primarily intended for numerical computations
   qhull	  	  General dimension code for computing convex hulls
+  GCAL		  Computational Geometry Algorithms Library 
   METIS 	  Serial Graph Partitioning and Fill-reducing Matrix Ordering
   MGRIDGEN 	  Obtain a sequence of successive coarse grids that are well-suited for geometric multigrid methods
   qrupdate 	  Fortran library for fast updates of QR and Cholesky decompositions
@@ -639,6 +645,8 @@ Statistics
 .. code:: bash
 
   biogeme 	  Estimation of discrete choice models
+  fastlowess	  An improved version of statsmodel's lowess
+  GGPlot	  An implementation of the grammar of graphics in R
 
 
 Tools

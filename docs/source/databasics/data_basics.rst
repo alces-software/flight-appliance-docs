@@ -139,9 +139,10 @@ Object storage is particularly useful for archiving data, as it typically provid
 Using alces storage commands
 ----------------------------
 
-Your Flight Compute cluster includes command-line tools which can be used to enable access to existing **AWS S3** and **Dropbox** accounts. A Ceph storage platform with a compatible **RADOS-gateway** can also be accessed using S3 support. To enable access to these services, users must first enable them with the following commands:
+Your Flight Compute cluster includes command-line tools which can be used to enable access to existing **AWS S3**, **Swift** and **Dropbox** accounts. Object storage services which are compatible with S3 or Swift can also be configured. For example - a Ceph storage platform with a compatible **RADOS-gateway** can be accessed using S3 support. To enable access to these services, users must first enable them with the following commands:
 
  - ``alces storage enable s3`` - enables **AWS S3** service
+ - ``alces storage enable swift`` - enables **Swift** service
  - ``alces storage enable dropbox`` - enables **Dropbox** service
  
 Once enabled, a user can configure one or more storage services for use on the command-line, giving each one a friendly name to identify it. The syntax of the command is shown below:
@@ -160,6 +161,20 @@ For example; to configure access to an AWS S3 account using the access and secre
     alces storage configure: storage configuration complete
 
 .. note:: If using a Ceph filesystem with a RADOS-gateway, enter the hostname of your gateway service as the ``Service address`` configuration item. For Amazon S3 based storage, choose the default service address.
+
+To configure access to a Swift compatible storage service, enter your username, API key and endpoint URL for the service. Please contact your storage service administrator to obtain these values; e.g.
+
+.. code:: bash
+
+    [alces@login1(scooby) ~]$ alces storage configure my-swift swift
+    Display name [my-swift]:
+    Username: SLOS9275161
+    API key: ********************
+    Authentication endpoint: https://lon02.objectstorage.softlayer.net/auth/v1.0/
+    alces storage configure: storage configuration complete
+
+.. note:: If using a Ceph filesystem with a RADOS-gateway, enter the hostname of your gateway service as the ``Service address`` configuration item. For Amazon S3 based storage, choose the default service address.
+
   
 When configuring a Dropbox account, the user is provided with a URL that must be copied and pasted into a browser session on their local client machine:
 
@@ -239,6 +254,8 @@ Users can also recursively transfer entire buckets (including any buckets contai
     alces storage put: datadir/datafile6 -> datadir2/datafile6
 
     [alces@login1(scooby) ~]$
+
+.. note:: As well as being able to recursively ``put`` entire directories from a local path into the remote storage target, users can also ``get`` and ``rm`` directories recursively, again using the ``-r`` or ``-R`` option with their ``alces storage`` command.
 
 Saving data before terminating your cluster
 -------------------------------------------

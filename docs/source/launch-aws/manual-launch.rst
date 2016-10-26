@@ -17,7 +17,7 @@ To launch a single-instance of Alces Flight Compute use the AWS Marketplace to s
 
 Click on the button marked **Launch with EC2 console** to start a single-instance of Alces Flight Compute in the region of your choice. Alternatively, you can note the AMI-ID and use this to manually configure your AMI in the EC2 console. Launch your instance with the settings you require, choosing the instance type, disk size and security group settings suitable for your environment. Note - your security group needs to allow ``port 22`` (SSH) to be accessed from your client system to allow you to login and configure the instance for use.
 
-.. note:: We recommend that instances launching Alces Flight Compute are provided with a root EBS volume of at least 16GB in size to allow for storage of application data. 
+.. note:: We recommend that instances launching Alces Flight Compute are provided with a root EBS volume of at least 20GB in size to allow for storage of application data. 
 
 
 Accessing and configuring your instance
@@ -47,10 +47,10 @@ After a few seconds, the instance will be configured in the target role requeste
 
 After configuration is complete, you can use the ``alces about node`` and ``alces about identity`` commands to recall the configuration information about your instance to allow further compute nodes to be added to an existing cluster:
 
-.. image:: alcesaboutnode.jpg
+.. image:: alces_about_identity.jpg
     :alt: Recalling configuration information
 
-.. _manual-launch-add-nodes:
+You can find the cluster secret token in ``/opt/clusterware/etc/config.yml`` - you will need the secret token to configure any additional hosts.
 
 Adding more nodes to your cluster
 ---------------------------------
