@@ -6,7 +6,7 @@ Software Applications
 Flight Compute operating system
 -------------------------------
 
-The current revision of Alces Flight Compute builds personal, ephemeral clusters based on a 64-bit CentOS 7.2 Linux distribution. The same operating system is installed on all login and compute nodes across the cluster. The Linux distribution includes a range of software tools and utilities, packaged by the CentOS project as RPM files. These packages are available for users to install as required on login and compute nodes using the ``yum`` command. You can also install other RPM packages on your Flight Compute cluster by copying them and installing them using the ``rpm`` command. 
+The current revision of Alces Flight Compute builds personal, ephemeral clusters based on a 64-bit CentOS 7.3 Linux distribution. The same operating system is installed on all login and compute nodes across the cluster. The Linux distribution includes a range of software tools and utilities, packaged by the CentOS project as RPM files. These packages are available for users to install as required on login and compute nodes using the ``yum`` command. You can also install other RPM packages on your Flight Compute cluster by copying them and installing them using the ``rpm`` command. 
 
 Installing Linux applications on the login node
 ===============================================
@@ -82,26 +82,28 @@ Use the command ``alces gridware install <package-name>`` to install a new packa
 
 .. code:: bash
 
-    [alces@login1(scooby) ~]$ alces gridware install apps/memtester
-    Preparing to install main/apps/memtester/4.3.0
-    Installing main/apps/memtester/4.3.0
-    
-     > Preparing package sources
-            Download --> memtester-4.3.0.tar.gz ... OK
-              Verify --> memtester-4.3.0.tar.gz ... OK
-    
-     > Preparing for installation
-               Mkdir ... OK (/var/cache/gridware/src/apps/memtester/4.3.0/gcc-4.8.5)
-             Extract ... OK
-    
-     > Proceeding with installation
-             Compile ... OK
-               Mkdir ... OK (/opt/gridware/depots/b7e5f115/el7/pkg/apps/memtester/4.3.0/gcc-4.8.5)
-             Install ... OK
-              Module ... OK
-    
-    Installation complete.
-    [alces@login1(scooby) ~]$
+	[alces@login1(scooby) ~]$ alces gridware install apps/memtester
+	Preparing to install main/apps/memtester/4.3.0
+	Installing main/apps/memtester/4.3.0
+	Importing apps-memtester-4.3.0-el7.tar.gz
+	
+	 > Fetching archive
+	        Download ... OK
+	
+	 > Preparing import
+	         Extract ... OK
+	          Verify ... OK
+	
+	 > Processing apps/memtester/4.3.0/gcc-4.8.5
+	       Preparing ... OK
+	       Importing ... OK
+	     Permissions ... OK
+	
+	 > Finalizing import
+	          Update ... OK
+	    Dependencies ... OK
+	
+	Installation complete.
 
 .. note:: Gridware will automatically install pre-compiled binary versions of applications from the **main** repository, if they are available. Users can optionally use the ``--no-binary`` parameter to force packages to be compiled at installation time. 
 
@@ -113,24 +115,25 @@ Where more than one version of the requested application exists in the repositor
     More than one matching package found, please choose one of:
     main/apps/samtools/0.1.18  main/apps/samtools/0.1.19  main/apps/samtools/1.3
     
-    [alces@login1(scooby) ~]$ alces gridware install apps/samtools/1.3
-    Preparing to install main/apps/samtools/1.3
-    Installing main/apps/samtools/1.3
+    [alces@login1(scooby) ~]$ alces gridware install apps/samtools/0.1.19
+    Preparing to install main/apps/samtools/0.1.19
+    Installing main/apps/samtools/0.1.19
+    Importing apps-samtools-0.1.19-el7.tar.gz
+        
+     > Fetching archive
+            Download ... OK
     
-     > Preparing package sources
-            Download --> samtools-1.3.tar.bz2 ... OK
-              Verify --> samtools-1.3.tar.bz2 ... OK
-    
-     > Preparing for installation
-               Mkdir ... OK (/var/cache/gridware/src/apps/samtools/1.3/gcc-4.8.5)
+     > Preparing import
              Extract ... OK
-        Dependencies ... OK
+              Verify ... OK
     
-     > Proceeding with installation
-             Compile ... OK
-               Mkdir ... OK (/opt/gridware/depots/b7e5f115/el7/pkg/apps/samtools/1.3/gcc-4.8.5)
-             Install ... OK
-              Module ... OK
+     > Processing apps/samtools/0.1.19/gcc-4.8.5
+           Preparing ... OK
+           Importing ... OK
+         Permissions ... OK
+    
+     > Finalizing import
+              Update ... OK
         Dependencies ... OK
     
     Installation complete.
