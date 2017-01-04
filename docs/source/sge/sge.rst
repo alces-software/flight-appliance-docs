@@ -16,15 +16,15 @@ You can start a new interactive job on your Flight Compute cluster by using the 
 .. code:: bash
 
     [alces@login1(scooby) ~]$ qrsh
-    Warning: Permanently added '[ip-10-75-0-21.eu-west-1.compute.internal]:53024,[10.75.0.21]:53024' (ECDSA) to the list of known hosts.
+    Warning: Permanently added '[flight-121.scooby.prv.alces.network]:53024,[10.75.0.21]:53024' (ECDSA) to the list of known hosts.
 
     <<< -[ alces flight ]- >>>
-    [alces@ip-10-75-0-21(scooby) ~]$ hostname -f
-    ip-10-75-0-21.eu-west-1.compute.internal
+    [alces@flight-121(scooby) ~]$ hostname -f
+    flight-121.scooby.prv.alces.network
     
-    [alces@ip-10-75-0-21(scooby) ~]$ module load apps/R
+    [alces@flight-121(scooby) ~]$ module load apps/R
     
-    [alces@ip-10-75-0-21(scooby) ~]$ R
+    [alces@flight-121(scooby) ~]$ R
     
     R version 3.2.3 (2015-12-10) -- "Wooden Christmas-Tree"
     Copyright (C) 2015 The R Foundation for Statistical Computing
@@ -90,7 +90,7 @@ Once your job has been submitted, use the ``qstat`` command to view the status o
     [alces@login1(scooby) ~]$ qstat
     job-ID  prior   name       user         state submit/start at     queue                          slots ja-task-ID
     -----------------------------------------------------------------------------------------------------------------
-         3 11.02734 simplejobs alces        r     05/15/2016 09:32:54 byslot.q@ip-10-75-0-131.eu-wes     1       
+         3 11.02734 simplejobs alces        r     05/15/2016 09:32:54 byslot.q@flight-131.scooby.prv     1       
 
 
 You can keep running the ``qstat`` command until your job finishes running and disappears from the queue. The output of your batch job will be stored in a file for you to look at. The default location to store the output file is your home-directory - the output file will be named in the format ``<jobscript-name>.o<job-ID>``. So - in the example above, our jobscript was called ``simplejobscript.sh`` and the job-ID was ``3``, so our output file is located at ``~/simplejobscript.sh.o3``. You can use the Linux ``more`` command to view your output file:
@@ -98,8 +98,8 @@ You can keep running the ``qstat`` command until your job finishes running and d
 .. code:: bash
   
     [alces@login1(scooby) ~]$ more ~/simplejobscript.sh.o3
-    Starting running on host ip-10-75-0-131.eu-west-1.compute.internal
-    Finished running - goodbye from ip-10-75-0-131.eu-west-1.compute.internal
+    Starting running on host flight-131.scooby.prv
+    Finished running - goodbye from flight-131.scooby.prv
 
 
 Your job runs on whatever node the scheduler can find which is available for use - you can try submitting a bunch of jobs at the same time, and using the ``qstat`` command to see where they run. The scheduler is likely to spread them around over different nodes in your cluster (if you have multiple nodes). The login node is not included in your cluster for scheduling purposes - jobs submitted to the scheduler will only be run on your cluster compute nodes. You can use the ``qdel <job-ID>`` command to delete a job you've submitted, whether it's running or still in queued state.
@@ -119,11 +119,11 @@ Your job runs on whatever node the scheduler can find which is available for use
     [alces@login1(scooby) ~]$ qstat
     job-ID  prior   name       user         state submit/start at     queue                          slots ja-task-ID
     -----------------------------------------------------------------------------------------------------------------
-          4 11.15234 simplejobs alces        r     05/15/2016 09:43:48 byslot.q@ip-10-75-0-117.eu-wes     1       
-          5 11.02734 simplejobs alces        r     05/15/2016 09:43:49 byslot.q@ip-10-75-0-126.eu-wes     1       
-          6 11.02734 simplejobs alces        r     05/15/2016 09:43:49 byslot.q@ip-10-75-0-131.eu-wes     1       
-          7 11.02734 simplejobs alces        r     05/15/2016 09:43:49 byslot.q@ip-10-75-0-154.eu-wes     1       
-          8 11.02734 simplejobs alces        r     05/15/2016 09:43:49 byslot.q@ip-10-75-0-199.eu-wes     1       
+          4 11.15234 simplejobs alces        r     05/15/2016 09:43:48 byslot.q@flight-117.scooby.prv     1       
+          5 11.02734 simplejobs alces        r     05/15/2016 09:43:49 byslot.q@flight-126.scooby.prv     1       
+          6 11.02734 simplejobs alces        r     05/15/2016 09:43:49 byslot.q@flight-131.scooby.prv     1       
+          7 11.02734 simplejobs alces        r     05/15/2016 09:43:49 byslot.q@flight-154.scooby.prv     1       
+          8 11.02734 simplejobs alces        r     05/15/2016 09:43:49 byslot.q@flight-199.scooby.prv     1       
  
     [alces@login1(scooby) ~]$ qdel 8
     alces has registered the job 8 for deletion
@@ -140,14 +140,14 @@ Users can use the ``qhost`` command to view the status of compute node hosts in 
     HOSTNAME                ARCH         NCPU  LOAD  MEMTOT  MEMUSE  SWAPTO  SWAPUS
     -------------------------------------------------------------------------------
     global                  -               -     -       -       -       -       -
-    ip-10-75-0-117          linux-x64      36  0.01   58.6G  602.7M    2.0G     0.0
-    ip-10-75-0-126          linux-x64      36  0.01   58.6G  593.6M    2.0G     0.0
-    ip-10-75-0-131          linux-x64      36  0.01   58.6G  601.9M    2.0G     0.0
-    ip-10-75-0-132          linux-x64      36  0.01   58.6G  589.5M    2.0G     0.0
-    ip-10-75-0-154          linux-x64      36  0.01   58.6G  603.7M    2.0G     0.0
-    ip-10-75-0-199          linux-x64      36  0.01   58.6G  604.9M    2.0G     0.0
-    ip-10-75-0-202          linux-x64      36  0.01   58.6G  591.4M    2.0G     0.0
-    ip-10-75-0-211          linux-x64      36  0.01   58.6G  586.8M    2.0G     0.0
+    flight-117              linux-x64      36  0.01   58.6G  602.7M    2.0G     0.0
+    flight-126              linux-x64      36  0.01   58.6G  593.6M    2.0G     0.0
+    flight-131              linux-x64      36  0.01   58.6G  601.9M    2.0G     0.0
+    flight-132              linux-x64      36  0.01   58.6G  589.5M    2.0G     0.0
+    flight-154              linux-x64      36  0.01   58.6G  603.7M    2.0G     0.0
+    flight-199              linux-x64      36  0.01   58.6G  604.9M    2.0G     0.0
+    flight-202              linux-x64      36  0.01   58.6G  591.4M    2.0G     0.0
+    flight-211              linux-x64      36  0.01   58.6G  586.8M    2.0G     0.0
 
 
 The ``qhost`` output will show (from left-to-right):
@@ -203,7 +203,7 @@ Job instructions can be provided in two ways; they are:
     [alces@login1(scooby) ~]$ qstat
     job-ID  prior   name       user         state submit/start at     queue                          slots ja-task-ID
     -----------------------------------------------------------------------------------------------------------------
-         16 11.02734 newname    alces        r     05/15/2016 10:09:13 byslot.q@ip-10-75-0-211.eu-wes     1       
+         16 11.02734 newname    alces        r     05/15/2016 10:09:13 byslot.q@flight-211.scooby.prv     1       
 
 
 2. For batch jobs, job scheduler instructions can also **included in your job-script** on a line starting with the special identifier ``#$``. 
@@ -320,11 +320,11 @@ All tasks in a job are given the same job-ID, with the task number indicated aft
     [alces@login1(scooby) ~]$ qstat
     job-ID  prior   name       user         state submit/start at     queue                          slots ja-task-ID
     -----------------------------------------------------------------------------------------------------------------
-         27 11.0273 arrayjob      alces        r     05/15/2016 11:24:29 byslot.q@ip-10-75-0-211.eu-wes     1 1
-         27 6.02734 arrayjob      alces        r     05/15/2016 11:24:29 byslot.q@ip-10-75-0-227.eu-wes     1 3
-         27 4.36068 arrayjob      alces        r     05/15/2016 11:24:29 byslot.q@ip-10-75-0-201.eu-wes     1 5
-         27 3.52734 arrayjob      alces        r     05/15/2016 11:24:29 byslot.q@ip-10-75-0-178.eu-wes     1 7
-         27 3.02734 arrayjob      alces        r     05/15/2016 11:24:29 byslot.q@ip-10-75-0-42.eu-west     1 9
+         27 11.0273 arrayjob      alces        r     05/15/2016 11:24:29 byslot.q@flight-211.scooby.prv     1 1
+         27 6.02734 arrayjob      alces        r     05/15/2016 11:24:29 byslot.q@flight-227.scooby.prv     1 3
+         27 4.36068 arrayjob      alces        r     05/15/2016 11:24:29 byslot.q@flight-201.scooby.prv     1 5
+         27 3.52734 arrayjob      alces        r     05/15/2016 11:24:29 byslot.q@flight-178.scooby.prv     1 7
+         27 3.02734 arrayjob      alces        r     05/15/2016 11:24:29 byslot.q@flight-142.scooby.prv     1 9
 
 
 Individual tasks may be deleted by referring to them using ``<job-ID>.<task-ID>`` - e.g. to delete task 7 in the above example, you could use the command ``qdel 27.7``. Deleting the job-ID itself will delete all tasks in the job. 
@@ -467,7 +467,7 @@ If you need more than the default amount of memory for your job, use the ``-l h_
     [alces@login1(scooby) ~]$ qrsh -l h_vmem=32G
     
     <<< -[ alces flight ]- >>>
-    [alces@ip-10-75-0-128(scooby) ~]$
+    [alces@flight-128(scooby) ~]$
     
 
 Memory allocations are performed **per scheduler slot** - i.e. per CPU core. So - if you want to request to run an 8-CPU-core multi-threaded job with a total of 64GB of memory, you would request ``-pe smp 8 -l h_vmem=8G`` (as 64GB / 8-cores = **8GB per core**). 
@@ -545,7 +545,7 @@ To create a new job-script based on a template, use the ``alces template copy <t
     [alces@login1(scooby) ~]$ qstat
     job-ID  prior   name       user         state submit/start at     queue                          slots ja-task-ID
     -----------------------------------------------------------------------------------------------------------------
-         41 2.40234 mysmpjob.s alces        r     05/15/2016 13:39:34 byslot.q@ip-10-75-0-114.eu-wes     2
+         41 2.40234 mysmpjob.s alces        r     05/15/2016 13:39:34 byslot.q@flight-114.scooby.prv     2
     
 
 
