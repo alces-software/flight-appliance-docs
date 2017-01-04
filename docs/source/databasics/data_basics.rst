@@ -123,7 +123,7 @@ The amount of time taken to copy data to and from your cluster will depend on a 
 Object storage for archiving data
 ---------------------------------
 
-As an alternative to copying data back to your client machine, users may prefer to upload their data to a cloud-based object storage service instead. Flight Compute clusters include tools for accessing data stored in the `AWS S3 <https://aws.amazon.com/s3/>`_ object storage service, as well as the `Dropbox <https://www.dropbox.com/>`_ cloud storage service and SWIFT compatible services. Benefits of using an cloud-based storage service include:
+As an alternative to copying data back to your client machine, users may prefer to upload their data to a cloud-based object storage service instead. Flight Compute clusters include tools for accessing data stored in the `AWS S3 <https://aws.amazon.com/s3/>`_ object storage service, as well as the `Dropbox <https://www.dropbox.com/>`_ cloud storage service and `SWIFT <https://wiki.openstack.org/wiki/Swift>`_ compatible services. Benefits of using an object-based storage service include:
 
 
  - Data is kept safe and does not have to be independantly backed-up
