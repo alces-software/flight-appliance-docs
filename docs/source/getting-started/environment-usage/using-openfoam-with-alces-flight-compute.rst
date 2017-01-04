@@ -14,7 +14,7 @@ Prerequisites
 Installing OpenFoam
 -------------------
 
-The following section details how to install OpenFoam version ``3.0.1`` on your Alces Flight Compute environment. Note - access to the administrator user is required for this section. 
+The following section details how to install OpenFoam version 4 on your Alces Flight Compute environment. Note - access to the administrator user is required for this section. 
 
 You must first install the Gridware packages required to complete the following tutorial - install the required packages using the following example commands: 
 
