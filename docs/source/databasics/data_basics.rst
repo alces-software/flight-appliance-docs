@@ -175,9 +175,6 @@ To configure access to a Swift compatible storage service, enter your username, 
     Authentication endpoint: https://lon02.objectstorage.softlayer.net/auth/v1.0/
     alces storage configure: storage configuration complete
 
-.. note:: If using a Ceph filesystem with a RADOS-gateway, enter the hostname of your gateway service as the ``Service address`` configuration item. For Amazon S3 based storage, choose the default service address.
-
-  
 When configuring a Dropbox account, the user is provided with a URL that must be copied and pasted into a browser session on their local client machine:
 
 .. code:: bash
