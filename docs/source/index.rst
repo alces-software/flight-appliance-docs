@@ -94,3 +94,5 @@ We recommend that users wishing to use Flight Appliances have basic Linux skills
 
    getting-started/environment-usage/gridware-features/*
    getting-started/environment-usage/using-openfoam-with-alces-flight-compute.rst
+   getting-started/environment-usage/namd_on_flight.rst
+
