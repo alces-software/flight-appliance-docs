@@ -371,6 +371,7 @@ Installing any dependencies may allow the software application to be installed a
 
 .. code:: bash
 
+    [alces@login1(scooby) ~]$ module load services/pdsh
     [alces@login1(scooby) ~]$ pdsh -g cluster 'sudo yum -y -e0 install java-1.8.0-openjdk-devel'
     Resolving Dependencies
     --> Running transaction check

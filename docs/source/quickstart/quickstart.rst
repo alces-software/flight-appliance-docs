@@ -12,7 +12,7 @@ This documentation is designed to provide a quick-start guide to your personal F
 
  3. Start a graphical desktop session with the command ``alces session start gnome``. Connect using a VNC client, with the one-time password shown when you started the session. Multiple users can connect to the same session for collaborative projects. Use the ``xrandr`` command to change the screen resolution in a running desktop session. 
 
- 4. Your user has full ``sudo`` access, and ``yum`` is configured to install Linux packages. Use the ``nodeattr -n nodes`` command to see your list of compute node hostnames, and ``pdsh -g nodes <command>`` to run commands across all nodes in your cluster. The Flight Compute Solo product is designed to support a single user, although multiple users can login using the same account. 
+ 4. Your user has full ``sudo`` access, and ``yum`` is configured to install Linux packages. Load the PDSH module with the command ``module load services/pdsh``, then use the ``nodeattr -n nodes`` command to see your list of compute node hostnames, and ``pdsh -g nodes <command>`` to run commands across all nodes in your cluster. The Flight Compute Solo product is designed to support a single user, although multiple users can login using the same account. 
 
  5. Your cluster has an NFS shared filesystem mounted across all nodes, which your home-directory is part of. Copy data to and from the cluster using SCP/SFTP. The ``alces storage`` commands provide access to object storage services including S3, Swift and Dropbox. Clusters can also be configured to use other storage types including parallel filesystems and shared filers, depending on your cloud platform.
 
