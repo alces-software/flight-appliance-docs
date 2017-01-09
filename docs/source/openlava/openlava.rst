@@ -205,7 +205,7 @@ For example; the following job-script includes a ``-o`` instruction to set the o
 .. code:: bash
 
   #!/bin/bash -l
-  #BSUB -o /home/alces/outputs/test_jobs/sleep.$LSF_JOBID.out
+  #BSUB -o $HOME/outputs/test_jobs/sleep.$LSF_JOBID.out
   echo "Hello from $HOSTNAME"
   sleep 60
   echo "Goodbye from $HOSTNAME"
@@ -255,7 +255,7 @@ A convenient way to run such jobs on a cluster is to use a task array, using the
 .. code:: bash
 
   #!/bin/bash -l
-  #BSUB -o /home/alces/outputs/array/output.%J.%I
+  #BSUB -o $HOME/outputs/array/output.%J.%I
   echo "I am $LSB_JOBINDEX"
 
 You can submit an array job using the syntax ``-J "jobname[array_spec]"`` - for example to submit an array job with the name ``array`` and 20 consecutively numbered tasks - you could use the following job submission line together with the above example jobscript: 
@@ -264,7 +264,7 @@ You can submit an array job using the syntax ``-J "jobname[array_spec]"`` - for 
 
 By including the following line, a separate output file for each task of the array job, for example task 22 of job ID 77 would generate the output file ``output.74.22`` in the specified directory.
 
-   ``#BSUB -o /home/alces/outputs/array/output.%J-%I``
+   ``#BSUB -o $HOME/outputs/array/output.%J-%I``
 
 Array jobs can easily be cancelled using the ``bkill`` command - the following example shows various levels of control over an array job:
 
