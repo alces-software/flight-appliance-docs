@@ -19,7 +19,7 @@ How to deploy
 
 The following whitepaper documents the process of configuring and installing a Flight Solo cluster using your IBM SoftLayer resources. 
 
-    ``https://s3-eu-west-1.amazonaws.com/alces-flight/Marketing/whitepapers/Alces+Flight+Solo+on+IBM+SoftLayer.pdf``
+    ``http://tiny.cc/alcesflight-softlayer``
 
 
 Next Steps
