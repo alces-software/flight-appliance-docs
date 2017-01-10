@@ -32,6 +32,8 @@ We recommend that users wishing to use Flight Appliances have basic Linux skills
 
    launch-aws/launching_on_aws
    launch-os/*
+   launch-softlayer/launching_on_softlayer
+
 
 .. toctree::
    :maxdepth: 1
