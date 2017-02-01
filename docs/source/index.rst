@@ -1,4 +1,4 @@
-Flight Appliance Documentation - 2016.3r1
+Flight Appliance Documentation - 2016.4r1
 ==========================================
 .. figure:: _images/AlcesFlight.png
     :alt: Alces Computing in the Cloud
@@ -7,7 +7,7 @@ This site holds documentation designed to help users create a simple research co
 
 License
 -------
-This documentation is released under the `Creative-Commons: Attribution-ShareAlike 4.0 International <http://creativecommons.org/licenses/by-sa/4.0/>`_ license. The Alces Flight Compute software is released under the terms of the `Alces Flight EULA <https://s3-eu-west-1.amazonaws.com/flight-aws-marketplace/2016.1/EULA.txt>`_. Please read the relevant license text before proceeding to use. 
+This documentation is released under the `Creative-Commons: Attribution-ShareAlike 4.0 International <http://creativecommons.org/licenses/by-sa/4.0/>`_ license. The Alces Flight Compute software is released under the terms of the `Alces Flight EULA <https://s3-eu-west-1.amazonaws.com/flight-aws-marketplace/2016.4/AlcesFlight_2016.4_EULA.txt>`_. Please read the relevant license text before proceeding to use. 
 
 Prerequisites
 ---------------
@@ -32,6 +32,8 @@ We recommend that users wishing to use Flight Appliances have basic Linux skills
 
    launch-aws/launching_on_aws
    launch-os/*
+   launch-softlayer/launching_on_softlayer
+
 
 .. toctree::
    :maxdepth: 1
@@ -94,3 +96,5 @@ We recommend that users wishing to use Flight Appliances have basic Linux skills
 
    getting-started/environment-usage/gridware-features/*
    getting-started/environment-usage/using-openfoam-with-alces-flight-compute.rst
+   getting-started/environment-usage/namd_on_flight.rst
+

@@ -15,7 +15,7 @@ You can check whether a node has Hyperthreading enabled or disabled by running t
   [alces@node-xf5(scooby) ~]$ alces configure hyperthreading
   alces configure hyperthreading: hyperthreading is enabled
   
-.. note:: Hyperthreading status should be checked, disabled or enabled on a per-node basis. Users can check all nodes in their cluster using pdsh - e.g. ``pdsh -g cluster alces configure hyperthreading``.
+.. note:: Hyperthreading status should be checked, disabled or enabled on a per-node basis. Users can check all nodes in their cluster by loading the PDSH module and using the pdsh command - e.g. ``module load services/pdsh; pdsh -g cluster alces configure hyperthreading``.
 
 
 Disabling Hyperthreading

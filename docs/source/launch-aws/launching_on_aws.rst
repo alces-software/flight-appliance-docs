@@ -3,7 +3,7 @@
 Launching on AWS
 ################
 
-Alces Flight Compute can be launched on the Amazon Web Services (AWS) public cloud platform to give you instant access to your own, private HPC cluster from anywhere in the world. You can choose what resources your cluster will start with (e.g. number of nodes, amount of memory, etc.), and for how long the cluster will run. 
+Alces Flight Compute Solo can be launched on the Amazon Web Services (AWS) public cloud platform to give you instant access to your own, private HPC cluster from anywhere in the world. You can choose what resources your cluster will start with (e.g. number of nodes, amount of memory, etc.), and for how long the cluster will run. 
 
 
 Prerequisites
@@ -30,7 +30,7 @@ Creating your Cluster
 Method of Launching
 -------------------
 
-The simplest method of launching a cluster is by using the AWS Marketplace - clusters launch using an AWS CloudFormation template which asks the users a number of simple questions in order to configure their cluster environment. This method is documented on this page, and is the fastest way to launch your own, personal HPC cluster environment. 
+The simplest method of launching a cluster is by using the AWS Marketplace - clusters launch using an AWS CloudFormation template which asks the user a number of simple questions in order to configure their cluster environment. This method is documented on this page, and is the fastest way to launch your own, personal HPC cluster environment. 
 
 Advanced users may also wish to launch a cluster one instance at a time, or deploy a single login node to be used interactively. Follow this guide for information on how to manually configure a cluster by launching individual instances - :ref:`manual_launch`.
 
@@ -59,7 +59,7 @@ Finding Alces Flight Compute on AWS
 
 Sign-in to your AWS account, and navigate to the `AWS Marketplace <https://aws.amazon.com/marketplace>`_. Search for **Alces Flight** in the search box provided to find the Flight Compute product. 
 
-.. image:: marketplace_2016.2.jpg
+.. image:: marketplace_2016.4.jpg
     :alt: Alces Flight in AWS Marketplace
 
 Click on the **Continue** button to view details on how to launch. 
@@ -70,7 +70,7 @@ Launching a Personal HPC cluster from AWS Marketplace
 
 Follow these instructions to launch your cluster:
 
- - After clicking the **Continue** button from the main product page, select the **Custom Launch** tab in your browser. 
+ - After clicking the **Continue** button from the main product page, select the **Manual Launch** tab in your browser. 
  - Scroll down the page and select your local AWS region in the **Select a Region** section
  - Choose **Personal HPC compute cluster** from the *Deployment Options* section
  - Under the *Launch* section, click on the **Launch with CloudFormation Console** button to start deploying your cluster. 
@@ -207,6 +207,15 @@ The first time you connect to your cluster, you will be prompted to accept a new
     :alt: Logging in to the cluster
     
 
+
+Accessing your cluster web interface
+====================================
+
+Your cloud service provider will report a web-access URL that points to the management interface for your cluster once it is launched. This interface collects together all support and documentation services under a single page, helping users to access their cluster and request assistance if required. 
+
+.. image:: alces_solo_UI.jpg
+    :alt: Alces Flight Solo web interface
+    
 
 Terminating the cluster
 =======================

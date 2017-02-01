@@ -20,7 +20,7 @@ To begin setting up the Alces customiser tool - log in to your Alces Flight Comp
 .. code:: bash
 
     [alces@login1(scooby) ~]$ alces about node
-    Clusterware release: 2016.3
+    Clusterware release: 2016.4.1
     Customiser bucket prefix: s3://alces-flight-a1i0ytdmvzv3ztv3/customiser/default
     Platform host name: ec2-52-51-77-141.eu-west-1.compute.amazonaws.com
     Public IP address: 52.51.77.141
@@ -52,7 +52,7 @@ You may also wish to use a custom S3 bucket rather than the automatically genera
   ``s3://alces-flight-bluecluster/customiser/default``
   
 
-To use custom S3 buckets with the Alces Flight Compute ``2016.3`` release, enter your S3 bucket URL in the ``FlightCustomBuckets`` CloudFormation parameter, without the S3 prefix. For example, to launch a cluster using customisation scripts from the bucket in the above example, a user could specify the following value at launch time:
+To use custom S3 buckets with Alces Flight Compute, enter your S3 bucket URL in the ``FlightCustomBuckets`` CloudFormation parameter, without the S3 prefix. For example, to launch a cluster using customisation scripts from the bucket in the above example, a user could specify the following value at launch time:
 
   ``FlightCustomBuckets: alces-flight-a1i0ytdmvzv3ztv3/customiser/default``
 
@@ -85,4 +85,4 @@ Alternate customisation profiles can be set up and used with the Alces customise
 
 Within the ``foo`` folder - create the ``configure.d`` folder. Place any customisation scripts for the ``foo`` profile within the ``configure.d`` folder. 
 
-To use custom profiles when launching the Alces Flight Compute ``2016.3`` CloudFormation templates, enter the profile name(s) in the ``FlightCustomProfiles`` parameter - the customiser tool will then run each of the scripts in the ``foo`` profile. 
+To use custom profiles when launching the Alces Flight Compute CloudFormation templates, enter the profile name(s) in the ``FlightCustomProfiles`` parameter - the customiser tool will then run each of the scripts in the ``foo`` profile. 

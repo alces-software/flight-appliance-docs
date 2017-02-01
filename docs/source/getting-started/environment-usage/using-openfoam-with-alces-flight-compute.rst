@@ -14,14 +14,13 @@ Prerequisites
 Installing OpenFoam
 -------------------
 
-The following section details how to install OpenFoam version ``3.0.1`` on your Alces Flight Compute environment. Note - access to the administrator user is required for this section. 
+The following section details how to install OpenFoam version 4 on your Alces Flight Compute environment. Note - access to the administrator user is required for this section. 
 
 You must first install the Gridware packages required to complete the following tutorial - install the required packages using the following example commands: 
 
 .. code:: bash
 
-    alces gridware install apps/openfoam
-    alces gridware install apps/paraview
+    alces gridware install apps/openfoam/4.0.0
     
 Running OpenFOAM
 ----------------
@@ -30,7 +29,7 @@ The following tutorial makes use of the OpenFOAM graphical interface. To use the
 
 .. code:: bash
 
-    [alces@login1(hpc1) ~]$ alces session start gnome
+    [alces@login1(scooby) ~]$ alces session start gnome
     VNC server started:
         Identity: 36a814b0-dc84-11e5-bcf2-fa163e8729ee
             Type: gnome
@@ -64,8 +63,8 @@ Once you have connected to the VNC session - the OpenFOAM application will need 
 
 .. code:: bash
 
-    [alces@login1(hpc1) ~]$ cd $FOAM_TUTORIALS
-    [alces@login1(hpc1) tutorials]$ ls
+    [alces@login1(scooby) ~]$ cd $FOAM_TUTORIALS
+    [alces@login1(scooby) tutorials]$ ls
     Allclean  basic         discreteMethods   financial       lagrangian  resources
     Allrun    combustion    DNS               heatTransfer    mesh        stressAnalysis
     Alltest   compressible  electromagnetics  incompressible  multiphase
@@ -74,13 +73,14 @@ Once you have connected to the VNC session - the OpenFOAM application will need 
 
 .. code:: bash
 
-    cp -r $FOAM_TUTORIALS/incompressible/icoFoam/cavity $HOME/cavity
+    cp -r $FOAM_TUTORIALS/incompressible/icoFoam/cavity/cavity $HOME/.
 
 5.  Navigate to the ``cavity`` directory in your home folder. From here we can create the mesh using the available OpenFOAM tools. From the ``cavity`` directory, run the ``blockMesh`` command - this will generate a mesh in OpenFOAM format: 
 
 .. code:: bash
 
-    [alces@login1(hpc1) cavity]$ blockMesh
+    [alces@login1(scooby) cavity]$ cd ~/cavity
+    [alces@login1(scooby) cavity]$ blockMesh
     Build  : 2.2.1-57f3c3617a2d
     Exec   : blockMesh
     Date   : Feb 26 2016
@@ -143,18 +143,22 @@ Once you have connected to the VNC session - the OpenFOAM application will need 
 
 .. code:: bash
 
-    icoFoam
-    Build  : 2.2.1-57f3c3617a2d
+    [alces@login1(scooby) cavity]$ icoFoam
+    /*---------------------------------------------------------------------------*\
+    | =========                 |                                                 |
+    | \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+    |  \\    /   O peration     | Version:  4.0                                   |
+    |   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
+    |    \\/     M anipulation  |                                                 |
+    \*---------------------------------------------------------------------------*/
+    Build  : 4.0
     Exec   : icoFoam
-    Date   : Feb 26 2016
-    Time   : 15:04:13
+    Date   : Jan 04 2017
+    Time   : 14:04:02
     Host   : "login1"
-    PID    : 13173
+    PID    : 24607
     Case   : /home/alces/cavity
     nProcs : 1
-    fileModificationChecking : Monitoring run-time modified files using timeStampMaster
-    allowSystemOperations : Disallowing user-supplied system call operations
-    
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
     Create time
     
@@ -163,19 +167,21 @@ Once you have connected to the VNC session - the OpenFOAM application will need 
 
 Alternatively - the process can be automated through your cluster job scheduler.
 
-8.  Now that you have completed your solve, you may wish to view the post-processing results. From your Terminal session, load the ``paraview`` application: 
+8.  Now that you have completed your solve, you may wish to view the post-processing results. From a terminal window on your graphical desktop session, load the module files for the application: 
 
 .. code:: bash
 
-    module load apps/paraview
+    [alces@login1(scooby) ~]$ module load apps/openfoam
 
 9.  From the ``cavity`` directory in your home folder, run the viewer - this will open up the paraFoam viewer interface:
 
 .. code:: bash 
 
-    paraFoam -builtin
+    [alces@login1(scooby) ~]$ cd ~/cavity
+    [alces@login1(scooby) cavity]$ paraFoam
 
 10.  Using the ``Mesh Regions`` box on the bottom left of the interface - enable all of the Mesh regions. Once all of the Mesh regions are selected, click the ``Apply`` button. 
-11.  Click the ``Play`` button using the toolbar to run the output.
+11.  Click and drag on the blue image of the simulation to rotate the display. 
+12.  Click the ``Play`` button using the toolbar to run the output.
 
 .. image:: ../../_images/paraFoam.png
