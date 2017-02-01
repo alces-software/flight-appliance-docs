@@ -21,7 +21,6 @@ You must first install the Gridware packages required to complete the following 
 .. code:: bash
 
     alces gridware install apps/openfoam/4.0.0
-    alces gridware install apps/paraview
     
 Running OpenFOAM
 ----------------
@@ -172,14 +171,14 @@ Alternatively - the process can be automated through your cluster job scheduler.
 
 .. code:: bash
 
-    [alces@login1(scooby) ~]$ module load apps/openfoam apps/paraview
+    [alces@login1(scooby) ~]$ module load apps/openfoam
 
 9.  From the ``cavity`` directory in your home folder, run the viewer - this will open up the paraFoam viewer interface:
 
 .. code:: bash 
 
     [alces@login1(scooby) ~]$ cd ~/cavity
-    [alces@login1(scooby) cavity]$ paraFoam -builtin
+    [alces@login1(scooby) cavity]$ paraFoam
 
 10.  Using the ``Mesh Regions`` box on the bottom left of the interface - enable all of the Mesh regions. Once all of the Mesh regions are selected, click the ``Apply`` button. 
 11.  Click and drag on the blue image of the simulation to rotate the display. 
