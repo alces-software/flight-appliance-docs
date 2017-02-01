@@ -12,7 +12,7 @@ Many different versions of Perl are available through the Alces Gridware utility
 
 .. code:: bash
 
-    [alces@login1(hpc1) ~]$ alces gridware search --name perl
+    [alces@login1(scooby) ~]$ alces gridware search --name perl
     base/apps/perl/5.10.1          base/apps/perl/5.12.4
     base/apps/perl/5.14.2          base/apps/perl/5.16.1
     base/apps/perl/5.16.3          base/apps/perl/5.18.0
@@ -25,56 +25,59 @@ To install, for example - Perl version 5.20.2; run the following command:
 
 .. code:: bash
 
-    [alces@login1(hpc1) ~]$ alces gridware install perl/5.20.2
-    Installing base/apps/perl/5.20.2
+    [alces@login1(scooby) ~]$ alces gridware install apps/perl/5.20.2
+    Preparing to install main/apps/perl/5.20.2
+    Installing main/apps/perl/5.20.2
+    Importing apps-perl-5.20.2-el7.tar.gz
     
-     > Preparing package sources
-            Download --> perl-5.20.2.tar.gz ... OK
-              Verify --> perl-5.20.2.tar.gz ... OK
-            Packaged --> CPAN-Config.pm     ... OK
-            Packaged --> CPAN-MyConfig.pm   ... OK
+     > Fetching archive
+            Download ... OK
     
-     > Preparing for installation
-               Mkdir ... OK (/var/cache/gridware/src/apps/perl/5.20.2/gcc-4.8.5)
+     > Preparing import
              Extract ... OK
+              Verify ... OK
     
-     > Proceeding with installation
-             Compile ... OK
-               Mkdir ... OK (/opt/gridware/depots/2b8a9f1c/el7/pkg/apps/perl/5.20.2/gcc-4.8.5)
-             Install ... OK
-              Module ... OK
+     > Processing apps/perl/5.20.2/gcc-4.8.5
+           Preparing ... OK
+           Importing ... OK
+         Permissions ... OK
+    
+     > Finalizing import
+              Update ... OK
+        Dependencies ... OK
     
     Installation complete.
 
-Once the compilation has finished - the Perl 5.20.2 Gridware package will be available for use, check its availability and load using: 
+
+Once the compilation has finished - the Perl 5.20.2 Gridware package will be available for use; check its availability and load using: 
 
 .. code:: bash
 
-    [alces@login1(hpc1) ~]$ module avail
+    [alces@login1(scooby) ~]$ module avail
     ---  /opt/gridware/local/el7/etc/modules  ---
       apps/perl/5.20.2/gcc-4.8.5
-    [alces@login1(hpc1) ~]$ module load apps/perl
+    [alces@login1(scooby) ~]$ module load apps/perl
     apps/perl/5.20.2/gcc-4.8.5
      | -- libs/gcc/system ... SKIPPED (already loaded)
      |
      OK
-    [alces@login1(hpc1) ~]$ perl --version
-    This is perl 5, version 20, subversion 2 (v5.20.2) built for x86_64-linux versions of Python can be installed at once using Gridware and Modules - for example: 
-
-Multiple versions of a package can exist at one time, however only one version of a particular application can be loaded at any one time - to load a different version of Perl: 
+    [alces@login1(scooby) ~]$ perl --version
+    This is perl 5, version 16, subversion 3 (v5.16.3) built for x86_64-linux-thread-multi 
+    
+Multiple versions of a package can exist at one time, however only one version of a particular application module can be loaded at any one time. To load a different version of Perl: 
 
 .. code:: bash
 
-    [alces@login1(hpc1) ~]$ alces module load apps/perl/5.18.0/gcc-4.8.5
+    [alces@login1(scooby) ~]$ alces module load apps/perl/5.18.0/gcc-4.8.5
     apps/perl/5.18.0/gcc-4.8.5 ... VARIANT (have alternative: apps/perl/5.20.2/gcc-4.8.5)
-    [alces@login1(hpc1) ~]$ alces module unload apps/perl/5.20.2/gcc-4.8.5
+    [alces@login1(scooby) ~]$ alces module unload apps/perl/5.20.2/gcc-4.8.5
                   apps/perl/5.20.2/gcc-4.8.5 ... UNLOADING --> OK
-    [alces@login1(hpc1) ~]$ alces module load apps/perl/5.18.0/gcc-4.8.5
+    [alces@login1(scooby) ~]$ alces module load apps/perl/5.18.0/gcc-4.8.5
     apps/perl/5.18.0/gcc-4.8.5
      | -- libs/gcc/system ... SKIPPED (already loaded)
      |
      OK
-    [alces@login1(hpc1) ~]$ perl --version
+    [alces@login1(scooby) ~]$ perl --version
     This is perl 5, version 18, subversion 0 (v5.18.0) built for x86_64-linux
 
 Installation of language libraries
@@ -91,7 +94,7 @@ Next, load the version of Perl you wish to add language libraries to - for examp
 
 .. code:: bash
 
-    [root@login1(hpc1) ~]# module load apps/perl/5.20.2
+    [root@login1(scooby) ~]# module load apps/perl/5.20.2
     apps/perl/5.20.2/gcc-4.8.5
      | -- libs/gcc/system
      |    * --> OK
@@ -102,7 +105,7 @@ Next - use the ``cpan`` utility to install the Perl libraries you, or additional
 
 .. code:: bash
 
-    [root@login1(hpc1) ~]# cpan Date::Simple
+    [root@login1(scooby) ~]# cpan Date::Simple
     Fetching with Net::FTP:
     ftp://cpan.etla.org/pub/CPAN/authors/01mailrc.txt.gz
     Reading '/opt/gridware/share/perl/5.20.2/cpan/sources/authors/01mailrc.txt.gz'
@@ -110,18 +113,19 @@ Next - use the ``cpan`` utility to install the Perl libraries you, or additional
 
 The ``Date::Simple`` module will now be available to any system user loading the ``Perl 5.20.2`` Gridware package. 
 
-To verify successful installation, switch to a non-root user; for example ``barney`` will now be able to see and use the ``Date::Simple`` module: 
+To verify successful installation, switch to a non-root user; for example ``alces`` will now be able to see and use the ``Date::Simple`` module: 
 
 .. code:: bash
 
-    [barney@login1(hpc1) ~]$ module load apps/perl/5.20.2
+    [alces@login1(scooby) ~]$ module load apps/perl/5.20.2
     apps/perl/5.20.2/gcc-4.8.5
      | -- libs/gcc/system
      |    * --> OK
      |
      OK
-    [barney@login1(hpc1) ~]$ cpan -l 2>&1 | grep Date::Simple | head -n1
+    [alces@login1(scooby) ~]$ cpan -l 2>&1 | grep Date::Simple | head -n1
     Date::Simple	3.03
+
 
 User-specific language libraries: Perl
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -132,22 +136,22 @@ As the user you wish to install a Perl module for, load the ``perl`` Gridware ap
 
 .. code:: bash
 
-    [barney@login1(hpc1) ~]$ cpan File::Slurp
+    [alces@login1(scooby) ~]$ cpan File::Slurp
     Fetching with Net::FTP:
     ftp://cpan.etla.org/pub/CPAN/authors/01mailrc.txt.gz
     Reading '/home/barney/gridware/share/perl/5.20.2/cpan/sources/authors/01mailrc.txt.gz'
     <-- snip -->
-    [barney@login1(hpc1) ~]$ cpan File::Slurp
+    [alces@login1(scooby) ~]$ cpan File::Slurp
     Reading '/home/barney/gridware/share/perl/5.20.2/cpan/Metadata'
       Database was generated on Fri, 19 Feb 2016 02:41:02 GMT
     File::Slurp is up to date (9999.19).
 
-The ``File::Slurp`` installation was successful - and we can now use it as the ``barney`` user. Switching to another user will confirm the user-level installation success, the ``alces`` user will not be able to use the ``File::Slurp`` Perl module, and instead try to make them install the ``File::Slurp`` module: 
+The ``File::Slurp`` installation was successful - and we can now use it as the ``alces`` user. Switching to another user will confirm the user-level installation success; the ``root`` user will not be able to use the ``File::Slurp`` Perl module, requiring the module be installed again: 
 
 .. code:: bash
 
-    [alces@login1(hpc1) ~]$ alces module load apps/perl/5.20.2
-    [alces@login1(hpc1) ~]$ cpan File::Slurp
+    [root@login1(scooby) ~]# alces module load apps/perl/5.20.2
+    [root@login1(scooby) ~]# cpan File::Slurp
     Fetching with Net::FTP:
     ftp://cpan.etla.org/pub/CPAN/authors/01mailrc.txt.gz
     Reading '/home/alces/gridware/share/perl/5.20.2/cpan/sources/authors/01mailrc.txt.gz'

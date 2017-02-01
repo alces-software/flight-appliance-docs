@@ -62,8 +62,6 @@ We'll start with a basic example - the following script is written in ``bash`` (
 
 .. note:: We use the ``-l`` option to bash on the first line of the script to request a long session. This ensures that environment modules can be loaded as required as part of your script.
 
-.. note:: By default, if no output directory is specified - OpenLava will write all output files to the directory that the job script was submitted from. For example, if you submit the job script from the ``/home/alces/job-scripts/example/`` directory - all output files will attempt (if the compute hosts have access to that directory) to write all output files to the ``/home/alces/job-scripts/example/`` directory.
-
 .. warning:: When submitting a batch job script through the ``bsub`` command - your job script should be redirected through ``stdin``, for example ``bsub < myscript.sh``. Failing to do so will cause your job to fail.
 
 We can execute the job-script directly on the login node by using the command ``bash simplejobscript.sh`` - after a couple of minutes, we get the following output:
@@ -73,17 +71,24 @@ We can execute the job-script directly on the login node by using the command ``
   Starting running on host login1
   Finished running - goodbye from login1
 
-To submit your jobscript to the cluster job scheduler, use the command ``bsub < simplejobscript.sh``. The job scheduler should immediately report the job-ID for your job; your job-ID is unique for your current Alces Flight Compute cluster - it will never be repeated once used.
+To submit your jobscript to the cluster job scheduler, use the command ``bsub -o $HOME/jobout.txt < simplejobscript.sh``. The job scheduler should immediately report the job-ID for your job; your job-ID is unique for your current Alces Flight Compute cluster - it will never be repeated once used.
 
 .. code:: bash
 
-  [alces@login1(scooby) ~]$ bsub < simplejobscript.sh
+  [alces@login1(scooby) ~]$ bsub -o $HOME/jobout.txt < simplejobscript.sh
   Job <151> is submitted to default queue <normal>.
+
+
+.. note:: The ``-o $HOME/jobout.txt`` parameter instructs OpenLava to save the output of your job in a file. For example - if you submit a job as the user named ``alces``, your job output will be written to the file ``/home/alces/jobout.txt``. 
+
+.. warning:: If you do not specify a location to save your job output file using the ``-o`` option, it will not be not be saved to disk. You can also get a copy of your job output via email by using the parameters ``-N -u myuser@email-address.com``.
+
+
 
 Viewing and controlling queued jobs
 -----------------------------------
 
-Once your job has been submitted, use the ``bjobs`` command to see where they run. view the status of the job queue. If you have available compute nodes, your job should be shown in ``RUN`` (running) state; if your compute nodes are busy, or you've launched an auto-scaling cluster and currently have no running nodes, your job may be shown in ``PEND`` (pending) state until compute nodes are available to run it.
+Once your job has been submitted, use the ``bjobs`` command to view the status of the job queue. If you have available compute nodes, your job should be shown in ``RUN`` (running) state; if your compute nodes are busy, or you've launched an auto-scaling cluster and currently have no running nodes, your job may be shown in ``PEND`` (pending) state until compute nodes are available to run it.
 
 The scheduler is likely to spread them around over different nodes in your cluster (if you have multiple nodes). The login node is not included in your cluster for scheduling purposes - jobs submitted to the scheduler will only be run on your cluster compute nodes. You can use the ``bkill <job-ID>`` command to delete a job you've submitted, whether it's running or still in queued state.
 
@@ -99,8 +104,8 @@ The scheduler is likely to spread them around over different nodes in your clust
   Job <165> is being terminated
   [alces@login1(scooby) ~]$ bjobs
   JOBID   USER    STAT  QUEUE      FROM_HOST   EXEC_HOST   JOB_NAME   SUBMIT_TIME
-  162     alces   RUN   normal     login1      ip-10-75-1- sleep      Aug 30 16:15
-  163     alces   RUN   normal     login1      ip-10-75-1- sleep      Aug 30 16:15
+  162     alces   RUN   normal     login1      flight-203  sleep      Aug 30 16:15
+  163     alces   RUN   normal     login1      flight-251  sleep      Aug 30 16:15
   164     alces   PEND  normal     login1                  sleep      Aug 30 16:15
   166     alces   PEND  normal     login1                  sleep      Aug 30 16:15
 
@@ -113,11 +118,11 @@ Users can use the ``bhosts`` command to view the status of compute node hosts in
 
   [alces@login1(scooby) ~]$ bhosts
   HOST_NAME          STATUS       JL/U    MAX  NJOBS    RUN  SSUSP  USUSP    RSV
-  ip-10-75-1-57      ok              -      2      0      0      0      0      0
-  ip-10-75-1-58      ok              -      2      0      0      0      0      0
-  ip-10-75-1-6       ok              -      2      0      0      0      0      0
-  ip-10-75-1-61      ok              -      2      0      0      0      0      0
-  ip-10-75-1-68      closed          -      2      2      2      0      0      0
+  flight-203         ok              -      2      0      0      0      0      0
+  flight-222         ok              -      2      0      0      0      0      0
+  flight-225         ok              -      2      0      0      0      0      0
+  flight-251         ok              -      2      0      0      0      0      0
+  flight-255         closed          -      2      2      2      0      0      0
   login1             closed          -      0      0      0      0      0      0
 
 The ``bhosts`` output shows information about the jobs running on each cluster scheduler host. You may also use the ``-l`` option to displayed more detailed information about each cluster execution host.
@@ -146,12 +151,12 @@ Job instructions can be provided in two ways; they are:
 
 .. code:: bash
 
-  [alces@login1(scooby) ~]$ bsub -J sleep < simplejobscript.sh
+  [alces@login1(scooby) ~]$ bsub -J sleepjob < simplejobscript.sh
   Job <167> is submitted to default queue <normal>.
   
   [alces@login1(scooby) ~]$ bjobs
   JOBID   USER    STAT  QUEUE      FROM_HOST   EXEC_HOST   JOB_NAME   SUBMIT_TIME
-  167     alces   PEND  normal     login1                  sleep      Aug 30 16:36
+  167     alces   PEND  normal     login1                  sleepjob   Aug 30 16:36
 
 2. For batch jobs, job scheduler instructions can also be **included in your job-script** on a line starting with the special identifier ``#BSUB``.
 
@@ -180,11 +185,9 @@ Dynamic scheduler variables
 
 Your cluster job scheduler automatically creates a number of pseudo environment variables which are available to your job-scripts when they are running on cluster compute nodes, along with standard Linux variables. Useful values include the following:
 
- - ``$HOME``            The location of your home-directory
- - ``$USER``            The Linux username of the submitting user
  - ``$HOSTNAME``        The Linux hostname of the compute node running the job
- - ``$LSF_JOBID``       The job-ID number for the job
- - ``$LSB_JOBINDEX``    For task array jobs, this variable indicates the task number. This variable is not defined for non-task-array jobs.
+ - ``%J``       	The job-ID number for the job
+ - ``$I``    		For task array jobs, this variable indicates the task number; for normal jobs, the variable is set to zero.
 
 Simple scheduler instruction examples
 -------------------------------------
@@ -194,23 +197,25 @@ Here are some commonly used scheduler instructions, along with some examples of 
 Setting output file location
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-To set the output file location for your job, use the ``-o <filename>`` option - both standard-out and standard-error from your job-script, including any output generated by applications launched by your script, will be saved in the filename you specify. If no job output directory is specified in your scheduler directives, the files will attempt to write to the directory the job script was submitted from.
+To set the output file location for your job, use the ``-o <filename>`` option - both standard-out and standard-error from your job-script, including any output generated by applications launched by your script, will be saved in the filename you specify. If no job output directory is specified in your scheduler directives, the files will attempt to write to the directory the job script was submitted from. By default, output files will be saved in the same directory as your job was submitted from - use the ``pwd`` command to check on the directory name before submitting your job-script.
 
 By default, the scheduler stores data relative to the job submission directory - but to avoid confusion, we recommend **specifying a full path to the filename** to be used. Although Linux can support several jobs writing to the same output file, the result is likely to be garbled - it's common practice to include something unique about the job (e.g. it's job-ID) in the output filename to make sure your job's output is clear and easy to read.
 
-.. note:: The directory used to store your job output file must exist and be writeable **before** you submit your job to the scheduler. Your job may fail to run if the scheduler cannot create the output file in the directory requested.
+.. note:: The directory used to store your job output file must exist and be writeable **before** you submit your job to the scheduler. Your job may fail to run if the scheduler cannot create the output file in the directory requested. 
+
+.. warning:: OpenLava does not support using the **$HOME** or **~** shortcuts when specifying your job output file. Use the full path to your home directory instead - e.g. if you are logged into your cluster as the ``alces`` user, you could store the output file of your job in your home-directory by using the scheduler instruction ``#BSUB -o /home/alces/myjoboutput.%J.txt``
 
 For example; the following job-script includes a ``-o`` instruction to set the output file location:
 
 .. code:: bash
 
   #!/bin/bash -l
-  #BSUB -o /home/alces/outputs/test_jobs/sleep.$LSF_JOBID.out
+  #BSUB -o sleepjob_output.%J.out
   echo "Hello from $HOSTNAME"
   sleep 60
   echo "Goodbye from $HOSTNAME"
 
-In the above example, assuming the job was submitted as user ``alces`` and was given job-ID number ``24``, the scheduler will save output data from the job in the filename ``/home/alces/outputs/test_jobs/sleep.24.out``.
+In the above example, assuming the job was submitted as user ``alces`` and was given job-ID number ``24``, the scheduler will save output data from the job in the filename ``/home/alces/sleepjob_output.24.out``.
 
 Waiting for a previous job before running
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -250,21 +255,21 @@ Running task array jobs
 
 A common workload is having a large number of jobs to run which basically do the same thing, aside perhaps from having different input data. You could generate a job-script for each of them and submit it, but that's not very convenient - especially if you have many hundreds or thousands of tasks to complete. Such jobs are known as **task arrays** - an `embarrassingly parallel <https://en.wikipedia.org/wiki/Embarrasingly_parallel>`_ job will often fit into this category.
 
-A convenient way to run such jobs on a cluster is to use a task array, using the ``bsub`` command together with the appropriate array syntax ``-J name[array_spec]`` in your job name. Your job-script can then use pseudo environment variables created by the scheduler to refer to data used by each task in the job. For example, the following job-script uses the ``$LSF_JOBINDEX`` variable to echo its current task ID to an output file. The job script also uses the scheduler directive ``-o <output>`` to specify an output file location. Using the variable substitutions ``%J`` and ``%I`` in the output specification allows the scheduler to generate a dynamic filename based on the job ID (``%J``) and array job index (``%I``) - generating the example output file ``/home/alces/outputs/array/output.24.2`` for job ID 24, array task 2.  
+A convenient way to run such jobs on a cluster is to use a task array, using the ``bsub`` command together with the appropriate array syntax ``-J name[array_spec]`` in your job name. Your job-script can then use pseudo environment variables created by the scheduler to refer to data used by each task in the job. For example, the following job-script uses the ``$LSF_JOBINDEX`` variable to echo its current task ID to an output file. The job script also uses the scheduler directive ``-o <output>`` to specify an output file location. Using the variable substitutions ``%J`` and ``%I`` in the output specification allows the scheduler to generate a dynamic filename based on the job ID (``%J``) and array job index (``%I``) - generating the example output file ``/home/alces/output.24.2`` for job ID 24, array task 2.  
 
 .. code:: bash
 
   #!/bin/bash -l
-  #BSUB -o /home/alces/outputs/array/output.%J.%I
+  #BSUB -o /home/alces/output.%J.%I
   echo "I am $LSB_JOBINDEX"
 
 You can submit an array job using the syntax ``-J "jobname[array_spec]"`` - for example to submit an array job with the name ``array`` and 20 consecutively numbered tasks - you could use the following job submission line together with the above example jobscript: 
 
     ``bsub -J "array[1-20]" < array_job.sh``
 
-By including the following line, a separate output file for each task of the array job, for example task 22 of job ID 77 would generate the output file ``output.74.22`` in the specified directory.
+By including the following line, a separate output file for each task of the array job, for example task 22 of job ID 77 would generate the output file ``output.74.22`` in the submission directory.
 
-   ``#BSUB -o /home/alces/outputs/array/output.%J-%I``
+   ``#BSUB -o output.%J-%I``
 
 Array jobs can easily be cancelled using the ``bkill`` command - the following example shows various levels of control over an array job:
 

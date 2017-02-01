@@ -408,7 +408,7 @@ The following example shows launching the **Intel Message-passing (IMB)** MPI be
   #!/bin/bash -l
   #PBS -l nodes=8:ppn=8
   #PBS -N imb
-  #PBS -j oe /home/alces/outputs/imb_mpi.out.$PBS_JOBID
+  #PBS -j oe $HOME/outputs/imb_mpi.out.$PBS_JOBID
   module load apps/imb
   echo "List of nodes to use:"
   echo "---------------------"

@@ -3,14 +3,14 @@
 Launching on OpenStack
 ######################
 
-Alces Flight Compute can be launched on your local OpenStack private cloud platform to give you access to your own, private HPC cluster using your on-premise infrastructure. As different clouds can run different versions and configurations of OpenStack, you may need to build images for Flight Compute that suit your platform - alternatively, please contact Alces to purchase consultancy time to build custom images for you.
+Alces Flight Compute Solo can be launched on your local OpenStack private cloud platform to give you access to your own, private HPC cluster using your on-premise infrastructure. As different clouds can run different configurations of OpenStack modules, you may need to build images for Flight Compute that suit your platform. A number of OpenStack services are required in order to support a Flight Compute environemnt - please contact Alces to purchase consultancy time to prepare your OpenStack platform and build Flight images for you.
 
 Prerequisites
 =============
 
  * An Alces Flight image for your platform
  * An OpenStack user account
- * A client machine, correctly connected to the cluster DMZ network
+ * A client machine from which to access your compute cluster
  * An appropriate resource quota to create the number of compute nodes you choose
  * An OpenStack keypair added for your user
 
@@ -20,7 +20,7 @@ How to deploy
  1.  Log in to the OpenStack Horizon interface with your site credentials
  2.  Navigate to the Project -> Orchestration -> Stacks page
  3.  Select the Launch Stack button
- 4.  When prompted for the **Template Source**, select URL and enter the following template URL: 
+ 4.  When prompted for the **Template Source**, select **URL** and enter the link provided by Alces during your OpenStack environment setup. An example configuration template is available at the following URL:
 
     ``https://raw.githubusercontent.com/alces-software/flight-appliance-support/master/openstack-heat/templates/flight-compute.yaml``
 

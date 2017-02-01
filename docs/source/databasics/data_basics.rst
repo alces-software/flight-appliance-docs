@@ -123,7 +123,7 @@ The amount of time taken to copy data to and from your cluster will depend on a 
 Object storage for archiving data
 ---------------------------------
 
-As an alternative to copying data back to your client machine, users may prefer to upload their data to a cloud-based object storage service instead. Flight Compute clusters include tools for accessing data stored in the `AWS S3 <https://aws.amazon.com/s3/>`_ object storage service, as well as the `Dropbox <https://www.dropbox.com/>`_ cloud storage service. Benefits of using an cloud-based storage service include:
+As an alternative to copying data back to your client machine, users may prefer to upload their data to a cloud-based object storage service instead. Flight Compute clusters include tools for accessing data stored in the `AWS S3 <https://aws.amazon.com/s3/>`_ object storage service, as well as the `Dropbox <https://www.dropbox.com/>`_ cloud storage service and `SWIFT <https://wiki.openstack.org/wiki/Swift>`_ compatible services. Benefits of using an object-based storage service include:
 
 
  - Data is kept safe and does not have to be independantly backed-up
@@ -134,6 +134,8 @@ As an alternative to copying data back to your client machine, users may prefer 
  - Your company, institution or facility may receive some storage capacity for free which you could use
  
 Object storage is particularly useful for archiving data, as it typically provides a convenient, accessible method of storing data which may need to be shared with a wide group of individuals. 
+
+.. hint:: Storage services that are compatible with standard protocols such as ``S3`` and ``SWIFT`` should be compatible with the tools provided on an Alces Flight cluster. Configure the ``service address`` or ``Authentication Endpoint`` appropriately for your chosen storage provider in order to use third-party services. 
 
 
 Using alces storage commands
@@ -173,9 +175,6 @@ To configure access to a Swift compatible storage service, enter your username, 
     Authentication endpoint: https://lon02.objectstorage.softlayer.net/auth/v1.0/
     alces storage configure: storage configuration complete
 
-.. note:: If using a Ceph filesystem with a RADOS-gateway, enter the hostname of your gateway service as the ``Service address`` configuration item. For Amazon S3 based storage, choose the default service address.
-
-  
 When configuring a Dropbox account, the user is provided with a URL that must be copied and pasted into a browser session on their local client machine:
 
 .. code:: bash

@@ -34,8 +34,9 @@ Finding the names of your compute nodes
 
 An Alces Flight Compute cluster may contain any number of compute nodes which may be automatically started and stopped in response to the workloads being processed. The hostnames of compute nodes are set automatically at launch time - your set of compute nodes may change during the life span of your cluster login node. Flight Compute automatically updates a list of compute node names in response to the changing size of your cluster, and uses them to populate a *genders* group called **nodes**. 
 
-Users can find the names of their compute nodes by using the ``nodeattr`` command; e.g.
+Users can find the names of their compute nodes by using the ``nodeattr`` command, after loading the module file for ``pdsh``; e.g.
 
+  - ``module load services/pdsh``
   - ``nodeattr -s nodes`` - shows a space-separated list of current compute node hostnames
   - ``nodeattr -c nodes`` - shows a comma-separated list of current compute node hostnames
   - ``nodeattr -n nodes`` - shows a new-line-separated list of current compute node hostnames
@@ -55,8 +56,10 @@ Use the ``logout`` command (or press **CTRL+D**) to exit the compute node and re
 Using PDSH
 ----------
 
-Users can run a command across all compute nodes at once using the ``pdsh`` command. This can be useful if users want to make a change to all nodes in the cluster - for example, installing a new software package. The ``pdsh`` command can take a number of parameters that control how commands are processed; for example:
+Users can run a command across all compute nodes at once using the ``pdsh`` command. This can be useful if users want to make a change to all nodes in the cluster - for example, installing a new software package. Users must load the ``services/pdsh`` module to enable the command. The ``pdsh`` command can take a number of parameters that control how commands are processed; for example:
 
+  - ``module load services/pdsh``
+     - loads the module for the ``pdsh`` and ``nodeattr`` commands
   - ``pdsh -g cluster uptime`` 
      - executes the ``uptime`` command on all available compute and login nodes in the cluster
   - ``pdsh -g nodes 'sudo yum -y install screen'`` 

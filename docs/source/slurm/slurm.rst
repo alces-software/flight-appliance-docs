@@ -288,7 +288,7 @@ A convenient way to run such jobs on a cluster is to use a task array, using the
 
   #!/bin/bash -l
   #SBATCH --job-name=array
-  #SBATCH -D /home/alces/
+  #SBATCH -D $HOME/
   #SBATCH --output=output.array.%A.%a
   #SBATCH --array=1-1000
   echo "I am $SLURM_ARRAY_TASK_ID from job $SLURM_ARRAY_JOB_ID"
@@ -365,7 +365,7 @@ application, which automatically loads the module for **OpenMPI**.
   #!/bin/bash -l
   #SBATCH -n 64
   #SBATCH --job-name=imb
-  #SBATCH -D /home/alces/
+  #SBATCH -D $HOME/
   #SBATCH --output=imb.out.%j
   module load apps/imb
   mpirun --prefix $MPI_HOME \
@@ -444,7 +444,7 @@ In order to promote best-use of the cluster scheduler, particularly in a shared 
 
   #!/bin/bash -l
   #SBATCH --job-name=sleep
-  #SBATCH -D /home/alces/
+  #SBATCH -D $HOME/
   #SBATCH --time=0-2:00
   sleep 7200
 

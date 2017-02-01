@@ -157,3 +157,35 @@ To display connection information for an existing session, use the command ``alc
     URL:          vnc://alces:JqQJWkA5@52.49.121.188:5901
 
 Users can terminate a running session by ending their graphical application (e.g. by logging out of a Gnome session, or exiting a terminal session), or by using the ``alces session kill <session-ID>`` command. A terminated session will be immediately stopped, disconnecting any users. 
+
+
+
+Securing your graphical desktop session
+=======================================
+
+As the VNC protocol does not natively provide support for security protocols such as SSL, you may wish to take steps to secure access to your VNC sessions. For Flight Solo cluster users, access to your VNC desktop will be restricted to the ``CIDR`` entry provided a launch time - i.e. only users accessing from an authorized IP address will be able to connect to a remote desktop launched on your cluster.
+
+
+Alces Clusterware VPN
+---------------------
+
+Alces Flight Professional clusters are automatically launched with an OpenVPN service, complete with SSL encryption to secure your VNC desktop connection. Refer to the `alces about vpn` command to locate the configuration files for your platform.  You can find OpenVPN downloads and documentation for your client system `here <https://openvpn.net/>`_.
+
+
+Alces Flight Access service
+---------------------------
+
+Delivered via the web, Alces Flight Access provides an easy-access overview of the interactive sessions your are running across your clusters. As well as allowing you to start and terminate sessions, Alces Flight Access shows you connection details along with an image of the current state of the session and provides secure, encrypted
+access to your interactive sessions directly from within your web browser.
+
+If you are using an Enterprise edition of Alces Flight Compute, please contact us at <support@alces-flight.com> to find out how to provision an Alces Flight Access appliance.
+
+
+Other solutions
+---------------
+
+Several third party tools exist to help you secure your VNC connections.  One option is `ssvnc`, available `here <http://www.karlrunge.com/x11vnc/ssvnc.html>`_.
+
+Alternatively, you could use an SSH tunnel to access your session. `Refer to online guides for setup instructions <http://www.cl.cam.ac.uk/research/dtg/attarchive/vnc/sshvnc.html>`_.
+
+
