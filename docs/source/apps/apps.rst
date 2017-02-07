@@ -232,7 +232,7 @@ Applications that have Linux distribution dependencies will trigger installation
 Application specific variables
 ==============================
 
-As well as the default environment variables (``$PATH, $LD_LIBRARY_PATH, $MANPATH``), modules included with Alces Flight Compute clusters also provide a number of additional Linux environment variables which are specific to the application being loaded. For example, to help users locate the application installation directory, the following variables are set automatically after laoding a named module file:
+As well as the default environment variables (``$PATH, $LD_LIBRARY_PATH, $MANPATH``), modules included with Alces Flight Compute clusters also provide a number of additional Linux environment variables which are specific to the application being loaded. For example, to help users locate the application installation directory, the following variables are set automatically after loading a named module file:
 
  - ``{APP-NAME}DIR`` - the location of the base application directory
      e.g. for the **HPL** application, the variable ``$HPLDIR`` contains the base location of the HPL application
@@ -308,7 +308,7 @@ Use the ``module initadd <module-file>`` command to add a software package to th
 Volatile Gridware repositories
 ------------------------------
 
-Applications packaged in the ``main`` repository are tested to support automatic dependancy resolution, enabling support for auto-scaling clusters where compute nodes may be sourced from the AWS spot market. This allows Linux distribution dependancies to be satisfied dynamically at ``module load`` time, ensuring that software applications execute correctly whenever they are run. For access to a larger catalogue of software, users can additionally enable the ``volatile`` software repository. Once enabled, advanced users can access the full list of available applications by choosing software along with any dependencies to install from the combined package list. 
+Applications packaged in the ``main`` repository are tested to support automatic dependency resolution, enabling support for auto-scaling clusters where compute nodes may be sourced from the AWS spot market. This allows Linux distribution dependencies to be satisfied dynamically at ``module load`` time, ensuring that software applications execute correctly whenever they are run. For access to a larger catalogue of software, users can additionally enable the ``volatile`` software repository. Once enabled, advanced users can access the full list of available applications by choosing software along with any dependencies to install from the combined package list. 
 
 .. note:: Users installing applications from the ``volatile`` repo should either ensure that auto-scaling is disabled for their user environment, or make use of Flight customization features to ensure that software package dependancies are resolved for new compute nodes joining the cluster after applications have been installed. 
 

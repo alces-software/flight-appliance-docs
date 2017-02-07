@@ -21,7 +21,7 @@ To begin setting up the Alces customiser tool - log in to your Alces Flight Comp
 
     [alces@login1(scooby) ~]$ alces about node
     Clusterware release: 2016.4.1
-    Customiser bucket prefix: s3://alces-flight-a1i0ytdmvzv3ztv3/customiser/default
+    Customizer bucket prefix: s3://alces-flight-a1i0ytdmvzv3ztv3/customizer/default
     Platform host name: ec2-52-51-77-141.eu-west-1.compute.amazonaws.com
     Public IP address: 52.51.77.141
     Account hash: a1i0ytdmvzv3ztv3
@@ -32,9 +32,9 @@ A new S3 bucket must be created using the prefix provided in the information abo
 
 Once the bucket is created - create a "folder" within the bucket named: 
 
-    ``customiser``
+    ``customizer``
 
-Now, from within the ``customiser`` folder - create another folder named ``default``, this sets up the ``default`` customiser profile. 
+Now, from within the ``customizer`` folder - create another folder named ``default``, this sets up the ``default`` customiser profile. 
 
 From within the ``default`` folder, we must create a folder where all customisation scripts should be placed. Create a new folder within the ``default`` folder named:
 
@@ -49,12 +49,12 @@ Using custom S3 buckets
 
 You may also wish to use a custom S3 bucket rather than the automatically generated Flight bucket name. To do so, simply follow the above steps to create a bucket in the same location, changing ``default`` for a different identifier. For example, the following location could be created to hold customisation scripts for a specific environment:
 
-  ``s3://alces-flight-bluecluster/customiser/default``
+  ``s3://alces-flight-bluecluster/customizer/default``
   
 
 To use custom S3 buckets with Alces Flight Compute, enter your S3 bucket URL in the ``FlightCustomBuckets`` CloudFormation parameter, without the S3 prefix. For example, to launch a cluster using customisation scripts from the bucket in the above example, a user could specify the following value at launch time:
 
-  ``FlightCustomBuckets: alces-flight-a1i0ytdmvzv3ztv3/customiser/default``
+  ``FlightCustomBuckets: alces-flight-a1i0ytdmvzv3ztv3/customizer/default``
 
 Setting up customisation scripts
 --------------------------------
@@ -72,7 +72,7 @@ The following simple example customisation shell script would install the ``emac
 
 Once the bash script has been created - upload it to your S3 bucket into the ``configure.d`` folder previously created, for example: 
 
-    ``s3://alces-flight-<account hash>/customiser/default/configure.d/emacs.sh``
+    ``s3://alces-flight-<account hash>/customizer/default/configure.d/emacs.sh``
 
 You can upload multiple customisation scripts to the ``default`` folder - each of the scripts will be run. 
 
@@ -81,7 +81,7 @@ The output of each customiser script run is sent to the file ``/var/log/clusterw
 Using alternate customisation profiles
 --------------------------------------
 
-Alternate customisation profiles can be set up and used with the Alces customiser tool. To set up another profile, from your S3 bucket in the ``customiser`` folder - create another profile folder, for example ``foo``
+Alternate customisation profiles can be set up and used with the Alces customiser tool. To set up another profile, from your S3 bucket in the ``customizer`` folder - create another profile folder, for example ``foo``
 
 Within the ``foo`` folder - create the ``configure.d`` folder. Place any customisation scripts for the ``foo`` profile within the ``configure.d`` folder. 
 
