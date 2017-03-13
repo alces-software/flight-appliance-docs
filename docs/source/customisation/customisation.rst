@@ -68,7 +68,7 @@ The following simple example customisation shell script would install the ``emac
     #!/bin/bash
     yum -y install emacs
 
-.. note:: Customisation scripts are run in unattended mode, and should be written to complete with interactive input. 
+.. note:: Customisation scripts are run in unattended mode, and should be written to complete without interactive input.
 
 Once the bash script has been created - upload it to your S3 bucket into the ``configure.d`` folder previously created, for example: 
 
