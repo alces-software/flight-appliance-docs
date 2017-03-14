@@ -84,6 +84,26 @@ The output of each customiser script run is sent to the file ``/var/log/clusterw
 
 .. _customisation-events:
 
+Customisation script environment
+--------------------------------
+
+Customisation scripts are run in the standard environment for whichever interpreter they are specified to be executed with, without loading any additional configuration. In particular this means that, in the case of customisation scripts intended to be run using Bash, configuration files for login shells are not loaded.
+
+One consequence of this is that the ``alces`` command, which is defined as a shell function for cluster node login shells, is not available by default within customisation scripts. However, you can still run ``alces`` commands within your customisation scripts in either of the following ways:
+
+1. Run the ``alces`` binary directly, which can be done like this:
+
+.. code:: bash
+
+  /opt/clusterware/bin/alces gridware depot install benchmark
+
+2. Alternatively you can make the ``alces`` command available on your ``PATH``, which you may prefer if you want to run several ``alces`` commands. This can be done like this:
+
+.. code:: bash
+
+  PATH="/opt/clusterware/bin/:$PATH"
+  alces gridware depot install benchmark
+
 Customisation events
 --------------------
 
