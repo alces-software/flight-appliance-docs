@@ -12,6 +12,8 @@ An Alces Flight Compute environment contains many useful tool and utilities desi
 
 The Alces customiser tool requires some setup tasks in order to appropriately work with your AWS account and deployed Alces Flight Compute environments. Follow the steps below to enable the customiser for your AWS account. 
 
+.. _customisation-setup-tasks:
+
 Setup tasks
 -----------
 
@@ -36,7 +38,9 @@ Once the bucket is created - create a "folder" within the bucket named:
 
 Now, from within the ``customizer`` folder - create another folder named ``default``, this sets up the ``default`` customiser profile. 
 
-From within the ``default`` folder, we must create a folder where all customisation scripts should be placed. Create a new folder within the ``default`` folder named:
+From within the ``default`` folder, you must create a folder for each customisation event you would like to add customisation scripts for; customisation scripts for this event will then be placed in this folder. See :ref:`customisation-events` for the different events available.
+
+If you are unsure which event you should use, for most simple customisations such as installing additional system packages or creating new users you will probably want the ``configure`` event. In this case you would create a new folder within the ``default`` folder named:
 
     ``configure.d``
 
@@ -59,7 +63,7 @@ To use custom S3 buckets with Alces Flight Compute, enter your S3 bucket URL in 
 Setting up customisation scripts
 --------------------------------
 
-Customisation scripts are run on each node in your environment upon joining the cluster network - example customisation scripts include distribution package installations and external storage mounts. The Alces customiser supports any Linux executable file type. 
+Customisation scripts are run on each node in your environment when the particular customisation event occurs - example customisation scripts include distribution package installations and external storage mounts. The Alces customiser supports any Linux executable file type.
 
 The following simple example customisation shell script would install the ``emacs`` editor on each node within your environment: 
 
@@ -74,15 +78,60 @@ Once the bash script has been created - upload it to your S3 bucket into the ``c
 
     ``s3://alces-flight-<account hash>/customizer/default/configure.d/emacs.sh``
 
-You can upload multiple customisation scripts to the ``default`` folder - each of the scripts will be run. 
+You can upload multiple customisation scripts to each event folder within the profile folder - each of the scripts will be run whenever the given event occurs.
 
-The output of each customiser script run is sent to the file ``/var/log/clusterware/instance.log`` on each of the nodes. Each subsequently deployed Alces Flight Compute environment will run each of the customise scripts included in the ``default`` folder.
+The output of each customiser script run is sent to the file ``/var/log/clusterware/instance.log`` on each of the nodes; each output line will be prefixed with ``[cluster-customizer:<event>]``, identifying the event which produced it.
+
+.. _customisation-events:
+
+Customisation events
+--------------------
+
+A number of different customisation hooks are available to Flight Compute nodes when different events occur:
+
+- ``initialize``: occurs at boot;
+- ``configure``: occurs once the cluster configuration file ``/opt/clusterware/etc/config.yml`` file is detected (this is usually immediately available unless you are manually launching a cluster without using an Alces Flight CloudFormation template);
+- ``start``: occurs once configure phase has completed (this event often starts services);
+- ``node-started``: occurs once start complete (the node is ready);
+- ``fail``: occurs should the cluster configuration file not be detected after 300 seconds;
+- ``member-join``: occurs when a new node has joined the cluster (note: this event will also occur on the joining node itself);
+- ``member-leave``: occurs when a node has left the cluster.
+
+Customisation scripts can be added for each of these events by placing scripts within an appropriately named folder for the event (e.g. ``configure.d``, for scripts to run on the ``configure`` event), within a profile folder (e.g. ``default``, or see :ref:`customisation-alternate-profiles`), within the ``customizer`` folder of your S3 customisation bucket. See :ref:`customisation-setup-tasks` for full details of setting up customisation scripts.
+
+Customisation script parameters
+--------------------------------
+
+Customisation scripts for each of the customisation events receive particular additional parameters, providing more information on the event and node, so that you can modify your script's behaviour based on these. These are as follows:
+
+``initialize``
+^^^^^^^^^^^^^^
+
+If the node has not yet been configured (i.e. it is a clean boot, not a reboot), then the only parameter received is a literal ``once``. Otherwise no parameters are supplied.
+
+``configure``, ``start``, ``fail``, ``node-started``
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+- 1: The name of the event being run (allowing a single script to be reused for multiple events), e.g. ``configure``.
+- 2: The role of the instance, i.e. ``master`` (login/head node) or ``slave`` (compute node).
+- 3: The name of the cluster (allowing a single script to behave differently for particularly named clusters).
+
+``member-join``, ``member-leave``
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+As above, plus:
+
+- 4: Path to a file that contains information about the member.
+- 5: Hostname of the member.
+- 6: IP address of the member.
+
+.. _customisation-alternate-profiles:
 
 Using alternate customisation profiles
 --------------------------------------
 
 Alternate customisation profiles can be set up and used with the Alces customiser tool. To set up another profile, from your S3 bucket in the ``customizer`` folder - create another profile folder, for example ``foo``
 
-Within the ``foo`` folder - create the ``configure.d`` folder. Place any customisation scripts for the ``foo`` profile within the ``configure.d`` folder. 
+Within the ``foo`` folder - create folders for the customisation events you want to handle, e.g. create a ``configure.d`` folder. Place any ``configure`` customisation scripts for the ``foo`` profile within the ``configure.d`` folder.
 
 To use custom profiles when launching the Alces Flight Compute CloudFormation templates, enter the profile name(s) in the ``FlightCustomProfiles`` parameter - the customiser tool will then run each of the scripts in the ``foo`` profile. 
