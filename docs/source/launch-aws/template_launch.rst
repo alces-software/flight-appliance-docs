@@ -20,7 +20,7 @@ This AWS CloudFormation template is designed to create a Flight Solo cluster in 
  - A configurable number and type of compute node instances
  - A choice of compute nodes of on-demand or spot type in an autoscaling group
  
- https://s3-eu-west-1.amazonaws.com/flight-aws-marketplace/2016.4/FlightSolo_2016.4_community_x-node.json
+ https://s3-eu-west-1.amazonaws.com/flight-aws-marketplace/2017.1/FlightSolo_2017.1_community_x-node.json
  
 .. note:: The CFN templates referenced utilise the Amazon Machine Images (AMI) available on AWS Marketplace. Before using the templates, users must subscribe to the community edition of Alces Flight on AWS Marketplace in order to get permission to use these AMIs. Follow the URL below to visit the product page to subscribe:
 

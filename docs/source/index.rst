@@ -1,4 +1,4 @@
-Flight Appliance Documentation - 2016.4r1
+Flight Appliance Documentation - 2017.1r1
 ==========================================
 .. figure:: _images/AlcesFlight.png
     :alt: Alces Computing in the Cloud
@@ -7,7 +7,7 @@ This site holds documentation designed to help users create a simple research co
 
 License
 -------
-This documentation is released under the `Creative-Commons: Attribution-ShareAlike 4.0 International <http://creativecommons.org/licenses/by-sa/4.0/>`_ license. The Alces Flight Compute software is released under the terms of the `Alces Flight EULA <https://s3-eu-west-1.amazonaws.com/flight-aws-marketplace/2016.4/AlcesFlight_2016.4_EULA.txt>`_. Please read the relevant license text before proceeding to use. 
+This documentation is released under the `Creative-Commons: Attribution-ShareAlike 4.0 International <http://creativecommons.org/licenses/by-sa/4.0/>`_ license. The Alces Flight Compute software is released under the terms of the `Alces Flight EULA <https://s3-eu-west-1.amazonaws.com/flight-aws-marketplace/2017.1/AlcesFlight_2017.1_EULA.txt>`_. Please read the relevant license text before proceeding to use. 
 
 Prerequisites
 ---------------

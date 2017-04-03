@@ -22,7 +22,7 @@ To begin setting up the Alces customiser tool - log in to your Alces Flight Comp
 .. code:: bash
 
     [alces@login1(scooby) ~]$ alces about node
-    Clusterware release: 2016.4.1
+    Clusterware release: 2017.1.1
     Customizer bucket prefix: s3://alces-flight-a1i0ytdmvzv3ztv3/customizer/default
     Platform host name: ec2-52-51-77-141.eu-west-1.compute.amazonaws.com
     Public IP address: 52.51.77.141
