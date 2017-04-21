@@ -126,7 +126,7 @@ Object storage for archiving data
 As an alternative to copying data back to your client machine, users may prefer to upload their data to a cloud-based object storage service instead. Flight Compute clusters include tools for accessing data stored in the `AWS S3 <https://aws.amazon.com/s3/>`_ object storage service, as well as the `Dropbox <https://www.dropbox.com/>`_ cloud storage service and `SWIFT <https://wiki.openstack.org/wiki/Swift>`_ compatible services. Benefits of using an object-based storage service include:
 
 
- - Data is kept safe and does not have to be independantly backed-up
+ - Data is kept safe and does not have to be independently backed-up
  - Storage is easily scalable, with the ability for data to grow to practically any size
  - You only pay for what you use; you do not need to buy expansion room in advance
  - Storage service providers often have multiple tiers available, helping to reduce the cost of storing data
