@@ -186,21 +186,46 @@ Accessing your cluster
 
 Once your cluster has been launched, the login node will be accessible via SSH from the IP address range you entered in the **NetworkCIDR**. If you entered ``0.0.0.0/0`` as the **NetworkCIDR**, your login node will be accessible from any IP address on the Internet. Your login node's public IP address is reported by the AWS CloudFormation template, along with the username you must use to login with your keypair. 
 
+Linux/Mac
+---------
+
 To access the cluster login node from a Linux or Mac client, use the following command:
 
- - ``ssh -i mypublickey.pub myusername@52.50.141.144``
+ - ``ssh -i mypublickey.pem myusername@52.50.141.144``
  
  Where:
-  - ``mypublickey.pub`` is the name of your public SSH key you selected when launching the cluster
+  - ``mypublickey.pem`` is the name of your public SSH key you selected when launching the cluster
   - ``myusername`` is the username you entered when launching the cluster
   - ``52.50.141.144`` is the Access-IP address reported by the AWS console after your cluster has been launched
   
+
+Windows
+-------
   
-If you are accessing from a Windows client using the Putty utility, enter the username and IP address of the cluster login node in the "Host Name" box provided:
+If you are accessing from a Windows client using the Putty utility, the private key associated with the account will need to be converted to ppk format from pem to be compatible with Putty. This can be done as follows:
+
+- Open PuTTYgen (this will already be installed on your system if Putty was installed using .msi and not launched from the .exe - if you do not think you have this, download it here http://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html)
+- Select `Conversions -> Import Key`
+- Locate `.pem` file and click `open`
+- Click `Save Private Key`
+- Answer `Yes` to saving without a passphrase
+- Input the name for the newly generated ppk to be saved as
+
+To load the key in Putty, select `Connection -> SSH -> Auth`, click `Browse` and select the ppk that was generated from the above steps.
+
+.. image:: PuttyKey.png
+    :alt: Putty Key
+
+Next, enter the username and IP address of the cluster login node in the "Host Name" box provided (in the `Session` section):
 
 .. image:: putty.jpg
     :alt: Putty login
     
+Additionally, 
+
+
+
+
 The first time you connect to your cluster, you will be prompted to accept a new server SSH hostkey. This happens because you've never logged in to your cluster before - it should only happen the first time you login; click **OK** to accept the warning. Once connected to the cluster, you should be logged in to the cluster login node as your user.
 
 .. image:: firstlogin.jpg
