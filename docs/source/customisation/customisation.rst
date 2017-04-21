@@ -17,12 +17,17 @@ The Alces customiser tool requires some setup tasks in order to appropriately wo
 Setup tasks
 ===========
 
+.. _customisation-storage-config:
+
+Storage Configuration
+---------------------
+
 To begin setting up the Alces customiser tool - log in to your Alces Flight Compute environment as the administrator user. From there, run the ``alces about customizer`` command - this will display information about your environment; e.g.
 
 .. code:: bash
 
     [alces@login1(scooby) ~]$ alces about customizer
-     Customizer bucket prefix: s3://alces-flight-a1i0ytdmvzv3ztv3/customizer/default
+     Customizer bucket prefix: s3://alces-flight-a1i0ytdmvzv3ztv3/customizer
 
 A new S3 bucket must be created using the prefix provided in the information above. Using one of the available tools, such as ``alces storage``, ``s3cmd`` or the S3 web console - create a new bucket with an appropriate name; for instance, in the example above the bucket would be called: 
 
@@ -42,22 +47,10 @@ If you are unsure which event you should use, for most simple customisations suc
 
 .. note:: It is important that the bucket and folders are created with the correct names - failing to create the bucket and folders with the correct names will mean that the Alces customiser will not be able to locate customisation information. 
 
-Your AWS account is now ready for use with the Alces customiser tool. 
+Your AWS account is now ready for use with the Alces customiser tool.
 
-Using custom S3 buckets
-=======================
-
-You may also wish to use a custom S3 bucket rather than the automatically generated Flight bucket name. To do so, simply follow the above steps to create a bucket in the same location, changing ``default`` for a different identifier. For example, the following location could be created to hold customisation scripts for a specific environment:
-
-  ``s3://alces-flight-bluecluster/customizer/default``
-  
-
-To use custom S3 buckets with Alces Flight Compute, enter your S3 bucket URL in the ``S3 bucket for customization profiles`` CloudFormation parameter, without the S3 prefix. For example, to launch a cluster using customisation scripts from the bucket in the above example, a user could specify the following value at launch time:
-
-  ``S3 bucket for customization profiles: alces-flight-a1i0ytdmvzv3ztv3``
-
-Setting up customisation scripts
-================================
+Setting up Customisation Scripts
+--------------------------------
 
 Customisation scripts are run on each node in your environment when the particular customisation event occurs - example customisation scripts include distribution package installations and external storage mounts. The Alces customiser supports any Linux executable file type.
 
@@ -80,8 +73,8 @@ The output of each customiser script run is sent to the file ``/var/log/clusterw
 
 .. _customisation-events:
 
-Customisation script environment
-================================
+Customisation Script Environment
+--------------------------------
 
 Customisation scripts are run in the standard environment for whichever interpreter they are specified to be executed with, without loading any additional configuration. In particular this means that, in the case of customisation scripts intended to be run using Bash, configuration files for login shells are not loaded.
 
@@ -100,8 +93,11 @@ One consequence of this is that the ``alces`` command, which is defined as a she
   PATH="/opt/clusterware/bin/:$PATH"
   alces gridware depot install benchmark
 
-Customisation events
-====================
+Script Events & Parameters
+==========================
+
+Customisation Events
+--------------------
 
 A number of different customisation hooks are available to Flight Compute nodes when different events occur:
 
@@ -115,31 +111,43 @@ A number of different customisation hooks are available to Flight Compute nodes 
 
 Customisation scripts can be added for each of these events by placing scripts within an appropriately named folder for the event (e.g. ``configure.d``, for scripts to run on the ``configure`` event), within a profile folder (e.g. ``default``, or see :ref:`customisation-alternate-profiles`), within the ``customizer`` folder of your S3 customisation bucket. See :ref:`customisation-setup-tasks` for full details of setting up customisation scripts.
 
-Customisation script parameters
-===============================
+Customisation Script Parameters
+-------------------------------
 
 Customisation scripts for each of the customisation events receive particular additional parameters, providing more information on the event and node, so that you can modify your script's behaviour based on these. These are as follows:
 
 ``initialize``
---------------
+^^^^^^^^^^^^^^
 
 If the node has not yet been configured (i.e. it is a clean boot, not a reboot), then the only parameter received is a literal ``once``. Otherwise no parameters are supplied.
 
 ``configure``, ``start``, ``fail``, ``node-started``
-----------------------------------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 - 1: The name of the event being run (allowing a single script to be reused for multiple events), e.g. ``configure``.
 - 2: The role of the instance, i.e. ``master`` (login/head node) or ``slave`` (compute node).
 - 3: The name of the cluster (allowing a single script to behave differently for particularly named clusters).
 
 ``member-join``, ``member-leave``
----------------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 As above, plus:
 
 - 4: Path to a file that contains information about the member.
 - 5: Hostname of the member.
 - 6: IP address of the member.
+
+Using Custom S3 Buckets
+=======================
+
+You may also wish to use a custom S3 bucket rather than the automatically generated Flight bucket name. To do so, simply follow the steps at  :ref:`customisation-storage-config` to create a bucket in the same location, changing the bucket name for a different identifier. For example, the following location could be created to hold customisation scripts for a specific environment:
+
+  ``s3://alces-flight-bluecluster/customizer/default``
+  
+
+To use custom S3 buckets with Alces Flight Compute, enter your S3 bucket URL in the ``S3 bucket for customization profiles`` CloudFormation parameter, without the S3 prefix. For example, to launch a cluster using customisation scripts from the bucket in the above example, a user could specify the following value at launch time:
+
+  ``S3 bucket for customization profiles: alces-flight-a1i0ytdmvzv3ztv3``
 
 .. _customisation-alternate-profiles:
 
@@ -160,7 +168,7 @@ Within the ``foo`` folder:
 
 - Create folders for the customisation events you want to handle (e.g. create a ``configure.d`` folder. Place any ``configure`` customisation scripts for the ``foo`` profile within the ``configure.d`` folder)
 
-- Create a file called ``manifest.txt`` which lists all scripts like the below::
+- Create a file called ``manifest.txt`` (in the ``foo`` directory) which lists all of your customisation scripts as below::
 
     start.d/script.sh
     configure.d/emacs.sh
@@ -183,7 +191,7 @@ There are few bits of trickery needed to configure a new profile from the comman
 
     alces customize apply account/foo
 
-- Add new scripts & make changes to the profile in `s3://alces-flight-<account hash>/customizer/foo/` through AWS (for more info on different stages see :ref:`customisation-events`)
+- Add new scripts & make changes to the profile in ``s3://alces-flight-<account hash>/customizer/foo/`` through AWS (for more info on different stages see :ref:`customisation-events`)
 
 - Download new scripts from the repo and run them::
 
@@ -199,8 +207,12 @@ Cloud Formation
 
 To use custom profiles when launching the Alces Flight Compute CloudFormation templates, enter the profile name(s) in the ``Customization profiles to enable`` parameter - the customiser tool will then run each of the scripts in the ``foo`` profile. 
 
+.. note:: In order to use multiple profiles, separate them with a space in the ``Customization profiles to enable`` parameter. (e.g. ``foo default``)
+
 Live System
 ^^^^^^^^^^^
 
-The profile can be applied to live systems with ``alces customize apply account/foo``. To do this for all nodes run ``module load services/pdsh && pdsh -g nodes "alces customize apply account/foo"``
+The profile can be applied to live systems with ``alces customize apply account/foo`` which will execute the profile on the current machine. Any systems that come up after that command will execute the profile scripts, however, other systems that are already up will not execute the profile until they are rebooted.
+
+To apply the profile to all nodes run ``module load services/pdsh && pdsh -g nodes "alces customize apply account/foo"``
 
