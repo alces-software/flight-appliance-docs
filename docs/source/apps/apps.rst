@@ -169,7 +169,7 @@ Environment modules work by configuring three existing Linux environment variabl
     $LD_LIBRARY_PATH
     $MANPATH
 
-By manipulating these variables, the modules system can application binaries in your path, ensure that compatible library files are in your library path, and setup manual pages for applications. A library of module files is included with your Flight Compute cluster, and is automatically managed by the **Alces Gridware** software packager. 
+By manipulating these variables, the modules system can put application binaries in your path, ensure that compatible library files are in your library path, and setup manual pages for applications. A library of module files is included with your Flight Compute cluster, and is automatically managed by the **Alces Gridware** software packager. 
 
 
 Using environment modules
