@@ -137,6 +137,8 @@ As above, plus:
 - 5: Hostname of the member.
 - 6: IP address of the member.
 
+.. _customisation-custom-bucket:
+
 Using Custom S3 Buckets
 =======================
 
@@ -206,6 +208,8 @@ Cloud Formation
 ^^^^^^^^^^^^^^^
 
 To use custom profiles when launching the Alces Flight Compute CloudFormation templates, enter the profile name(s) in the ``Customization profiles to enable`` parameter - the customiser tool will then run each of the scripts in the ``foo`` profile. 
+
+If the custom profile you wish to use is in a different storage container than the default, see :ref:`customisation-custom-bucket`.
 
 .. note:: In order to use multiple profiles, separate them with a space in the ``Customization profiles to enable`` parameter. (e.g. ``foo default``)
 
