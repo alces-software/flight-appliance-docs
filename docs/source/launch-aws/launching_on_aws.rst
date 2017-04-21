@@ -220,11 +220,6 @@ Next, enter the username and IP address of the cluster login node in the "Host N
 
 .. image:: putty.jpg
     :alt: Putty login
-    
-Additionally, 
-
-
-
 
 The first time you connect to your cluster, you will be prompted to accept a new server SSH hostkey. This happens because you've never logged in to your cluster before - it should only happen the first time you login; click **OK** to accept the warning. Once connected to the cluster, you should be logged in to the cluster login node as your user.
 
