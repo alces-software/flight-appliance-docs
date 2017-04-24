@@ -31,14 +31,16 @@ All Flight Compute clusters come pre-installed with a Gnome desktop environment 
     If prompted, you should supply the following password: JqQJWkA5
 
 
-Users need a VNC client to connect to the graphical desktop session - for a list of tested clients, see see :ref:`whatisit`. 
+Users need a VNC client to connect to the graphical desktop session - for a list of tested clients, see :ref:`whatisit`. 
 
-Users with Mac clients can use the URL provided in the command output to connect to the session; e.g. from the above example, simply enter ``vnc://alces:JqQJWkA5@52.49.121.188:5901``. Linux and Windows users should enter the IP address and port number shown into their VNC client in the format ``IP:port``. For example - for the output above, Linux and Windows client users would enter ``52.49.121.188:5901`` into their VNC client:
+Users with Mac clients can use the URL provided in the command output to connect to the session; e.g. from the above example, simply enter ``vnc://alces:JqQJWkA5@52.49.121.188:5901`` into the Safari address bar. Linux and Windows users should enter the IP address and port number shown into their VNC client in the format ``IP:port``. For example - for the output above, Linux and Windows client users would enter ``52.49.121.188:5901`` into their VNC client:
 
 .. image:: vncclient.jpg
     :alt: VNC client configuration
     
 A one-time randomized password is automatically generated automatically by Flight Compute when a new session is started. Linux and Windows users may be prompted to enter this password when they connect to the desktop session. 
+
+.. note:: If the desktop has been started on a compute node then you will need to :ref:`connect to the VPN <vpn>` and access the VNC session using the internal IP address (Login Node: `Master node IP address` from ``alces about identity``. Compute Node: `Primary IP address` from ``alces about node`` when logged into the node)
 
 Once connected to the graphical desktop, users can use the environment as they would a local Linux machine:
 
@@ -169,7 +171,7 @@ As the VNC protocol does not natively provide support for security protocols suc
 Alces Clusterware VPN
 ---------------------
 
-Alces Flight Professional clusters are automatically launched with an OpenVPN service, complete with SSL encryption to secure your VNC desktop connection. Refer to the `alces about vpn` command to locate the configuration files for your platform.  You can find OpenVPN downloads and documentation for your client system `here <https://openvpn.net/>`_.
+Alces Flight Professional clusters are automatically launched with an OpenVPN service, complete with SSL encryption to secure your VNC desktop connection. Refer to the `alces about vpn` command to locate the configuration files for your platform.  You can find OpenVPN downloads and documentation for your client system `here <https://openvpn.net/>`__.
 
 
 Alces Flight Access service
@@ -184,7 +186,7 @@ If you are using an Enterprise edition of Alces Flight Compute, please contact u
 Other solutions
 ---------------
 
-Several third party tools exist to help you secure your VNC connections.  One option is `ssvnc`, available `here <http://www.karlrunge.com/x11vnc/ssvnc.html>`_.
+Several third party tools exist to help you secure your VNC connections.  One option is `ssvnc`, available `here <http://www.karlrunge.com/x11vnc/ssvnc.html>`__.
 
 Alternatively, you could use an SSH tunnel to access your session. `Refer to online guides for setup instructions <http://www.cl.cam.ac.uk/research/dtg/attarchive/vnc/sshvnc.html>`_.
 
