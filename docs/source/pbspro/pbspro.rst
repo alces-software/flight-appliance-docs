@@ -1,7 +1,7 @@
 .. pbspro:
 
 PBS Pro Scheduler
-================
+=================
 
 The `PBS Pro <http://www.pbsworks.com/PBSProduct.aspx?n=PBS-Professional&c=Overview-and-Capabilities>`_ cluster job scheduler is an open-source scheduler based on the original PBS codebase. PBS was originally developed by NASA - Altair Engineering now owns and maintains the PBS Pro cluster scheduler.
 
@@ -13,6 +13,7 @@ Running an interactive job
 You can start a new interactive job on your Flight Compute cluster by using the ``qsub -I`` command; the scheduler will search for an available compute node, and provide you with an interactive login shell on the node if one is available.
 
 .. code:: bash
+
   [alces@login1(scooby) ~]$ qsub -I
   qsub: waiting for job 0.login1.scooby.prv.alces.network to start
   qsub: job 0.login1.scooby.prv.alces.network ready
