@@ -52,6 +52,8 @@ After configuration is complete, you can use the ``alces about node`` and ``alce
 
 You can find the cluster secret token in ``/opt/clusterware/etc/config.yml`` - you will need the secret token to configure any additional hosts.
 
+.. _manual-launch-add-nodes:
+
 Adding more nodes to your cluster
 ---------------------------------
 
