@@ -12,7 +12,7 @@ This page documents the software which is currently available via the Alces Grid
 
 For example, a package listed as ``main/apps/bowtie2/2.2.6`` is version 2.2.6 of the Bowtie2 application, from the stable repository. 
 
-The following list is updated periodically as new software is added to the repositories. For clarity, multiple versions of the same application are not shown, unless there are significant functional differences between versions. Software categories are provided as a guide only - many packages are multi-discipline and have a range of appropriate uses. 
+The following list is updated periodically as new software is added to the repositories. For clarity, multiple versions of the same application are not shown, unless there are significant functional differences between versions. Software categories are provided as a guide only - many packages are multi-discipline and have a range of appropriate uses.
 
 
 Tools and Utilities
@@ -409,7 +409,7 @@ Chemistry
   gromacs	  Perform molecular dynamics; simulate the Newtonian equations of motion for systems with hundreds to millions of particles
   nwchem	  Methods for computing the properties of molecular and periodic systems
   OpenMD 	  Open source molecular dynamics engine
-  Maestro 	  Schrödinger Maestro - a powerful, all-purpose molecular modelling envirotnment
+  Maestro 	  Schrodinger Maestro - a powerful, all-purpose molecular modelling environment
 
 
 Compilers
