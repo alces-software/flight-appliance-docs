@@ -488,12 +488,12 @@ It can be difficult for new users to know how much memory their job needs to run
         - Submit a single-CPU job with the instruction ``-l h_vmem=58G``
         - Submit a 4-CPU core multi-threaded job with the instruction ``-l h_vmem=14.5G``
         - Submit an 8-CPU core multi-threaded job with the instruction ``-l h_vmem=7.25G``
-        etc.
         
+        etc.
+  
   3. Note the job-ID number of your job while it is running, and allow your job to finish normally. 
   4. Use the ``qacct -j <job-ID>`` command to view the scheduler accounting database entry for your job
   5. Look for the entry in the ``qacct`` output that starts **maxvmem** - this will display how much memory your job used when running
-  
 
 The next time you submit your job, you can use a smaller memory request for your job, based on the information you gathered from the ``qacct`` output. 
 
