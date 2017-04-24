@@ -196,7 +196,7 @@ To access the cluster login node from a Linux or Mac client, use the following c
  Where:
   - ``mypublickey.pem`` is the name of your public SSH key you selected when launching the cluster
   - ``myusername`` is the username you entered when launching the cluster
-  - ``52.50.141.144`` is the Access-IP address reported by the AWS console after your cluster has been launched
+  - ``52.50.141.144`` is the Access-IP address reported by the AWS console after your cluster has been launched (in the `Outputs` tab in the field labelled `Access IP`)
   
 
 Windows
@@ -204,7 +204,7 @@ Windows
   
 If you are accessing from a Windows client using the Putty utility, the private key associated with the account will need to be converted to ppk format from pem to be compatible with Putty. This can be done as follows:
 
-- Open PuTTYgen (this will already be installed on your system if Putty was installed using .msi and not launched from the .exe - if you do not think you have this, download it here http://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html)
+- Open PuTTYgen (this will already be installed on your system if Putty was installed using .msi and not launched from the .exe - if you do not think you have this, download putty-installer from here http://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html)
 - Select `Conversions -> Import Key`
 - Locate `.pem` file and click `open`
 - Click `Save Private Key`
