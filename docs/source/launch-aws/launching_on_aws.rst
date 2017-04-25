@@ -223,6 +223,7 @@ To access the cluster login node from a Linux or Mac client, use the following c
   - ``myusername`` is the username you entered when launching the cluster
   - ``52.50.141.144`` is the Access-IP address reported by the AWS console after your cluster has been launched (in the `Outputs` tab in the field labelled `Access IP`)
   
+.. _windows-putty-access:
 
 Windows
 -------
