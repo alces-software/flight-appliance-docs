@@ -7,6 +7,8 @@ Alces Flight Compute is provided as a single multi-purpose Amazon Machine Image 
 
 For advanced users, or users that only require a single login node for their work, Alces Flight Compute can also be launched as a single instance. Users have access to the full range of Gridware software applications available on a compute cluster and can choose to optionally :ref:`add infrastructure and compute nodes <manual-launch-add-nodes>` to their environment at a later date. 
 
+.. note:: If you wish to use CloudFormation to create a single Alces Flight instance on AWS (e.g. just a login node) instead of using :ref:`the AMI method <manual-launch>`, follow the documentation for :ref:`launching_on_aws` and set **Autoscaling policy** to ``enabled`` and **Initial compute nodes (autoscaling)** to ``0``.
+
 Finding and Launching the Alces Flight AMI
 ------------------------------------------
 

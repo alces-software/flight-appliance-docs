@@ -34,6 +34,8 @@ The simplest method of launching a cluster is by using the AWS Marketplace - clu
 
 Advanced users may also wish to launch a cluster one instance at a time, or deploy a single login node to be used interactively. Follow this guide for information on how to manually configure a cluster by launching individual instances - :ref:`manual_launch`.
 
+.. note:: If you wish to use CloudFormation to create a single Alces Flight instance on AWS (e.g. just a login node) instead of using :ref:`the AMI method <manual-launch>`, set **Autoscaling policy** to ``enabled`` and **Initial compute nodes (autoscaling)** to ``0``.
+
 Users can also use one of the example CloudFormation templates as the basis of their own cluster deployments. This allows more customisation of your cluster, including choosing how many nodes can be launched, configuring different types of EBS backing storage and choosing different availability zones for your compute nodes. For more information, see - :ref:`template_launch`.
 
 
