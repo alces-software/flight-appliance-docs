@@ -123,6 +123,7 @@ Your Alces Flight Compute cluster can also support other types of graphical sess
 
 Application types that are not marked with a star (``*``) need to be enabled before they can be started. To enable a new session type, use the command ``alces session enable <type>``. Enabling a new session type will automatically install any required application and support files. Once enabled, users can start a new session using the command ``alces session start <type>``.
 
+.. note:: Enabling a new session type only enables it for the machine that you run the command from, any other nodes will need to have the type enabled too.
 
 Viewing and terminating running sessions
 ----------------------------------------
@@ -171,7 +172,7 @@ As the VNC protocol does not natively provide support for security protocols suc
 Alces Clusterware VPN
 ---------------------
 
-Alces Flight Professional clusters are automatically launched with an OpenVPN service, complete with SSL encryption to secure your VNC desktop connection. Refer to the `alces about vpn` command to locate the configuration files for your platform.  You can find OpenVPN downloads and documentation for your client system `here <https://openvpn.net/>`__.
+Alces Flight Professional clusters are automatically launched with an OpenVPN service, complete with SSL encryption to secure your VNC desktop connection. Refer to the ``alces about vpn`` command to locate the configuration files for your platform.  You can find OpenVPN downloads and documentation for your client system `here <https://openvpn.net/>`__.
 
 
 Alces Flight Access service
