@@ -63,8 +63,8 @@ We recommend that users wishing to use Flight Appliances have basic Linux skills
    :name: schedulers
 
    jobschedulers/*
-   sge/sge
    slurm/slurm
+   sge/sge
    openlava/openlava
    torque/torque
    pbspro/pbspro
