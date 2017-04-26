@@ -285,7 +285,7 @@ By default, jobs are executed from your home-directory on the cluster (i.e. ``/h
 Waiting for a previous job before running
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-You can instruct the scheduler to wait for an existing job to finish before starting to run the job you are submitting with the ``-hold_jid <job-ID`` instruction. This allows you to build up multi-stage jobs by ensuring jobs are executed sequentially, even if enough resources are available to run them in parallel. For example, to submit a new job that will only start running once job number 15352 has completed, use the following command:
+You can instruct the scheduler to wait for an existing job to finish before starting to run the job you are submitting with the ``-hold_jid <job-ID>`` instruction. This allows you to build up multi-stage jobs by ensuring jobs are executed sequentially, even if enough resources are available to run them in parallel. For example, to submit a new job that will only start running once job number 15352 has completed, use the following command:
 
    ``qsub -hold_jid 15352 myjobscript.sh``
 
