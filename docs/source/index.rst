@@ -84,7 +84,7 @@ We recommend that users wishing to use Flight Appliances have basic Linux skills
    :maxdepth: 1
    :glob:
    :caption: Available software packages
-   :name: gridware
+   :name: apps-gridware
    
    apps/gridware
 
