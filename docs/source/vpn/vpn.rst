@@ -52,3 +52,6 @@ Connecting to VPN
 -----------------
 
 Instructions for connecting to VPN from Windows, Mac & Linux platforms can be found at `Platform Instructions` beneath the `Downloads` & `About` sections of the Alces Flight VPN web page.
+
+.. image:: VPNconnect.png
+    :alt: VPN Connect
