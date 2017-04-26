@@ -14,9 +14,12 @@ Installing Linux applications on the login node
 Users who are new to Linux may find it convenient to install applications on the login node only via a graphical session from the Linux application catalogue. Follow the steps below to enable the graphical Linux package installer:
 
  - Start a new graphical session if you don't already have one; e.g. 
-     ``alces session start gnome``
+ 
+  ``alces session start gnome``
  - Set a password for your user, using the sudo command. For example, if your Flight Compute cluster was launched with the username "jane", enter the command:
-     ``sudo passwd jane``
+ 
+  ``sudo passwd jane``
+  
  - Connect to the session from your VNC client, using the details provided.
  - Click on the **Applications** menu in the top-right-hand corner of the desktop session, navigate to **System Tools**, and select the **Application Installer** option.
  
@@ -28,7 +31,7 @@ Users who are new to Linux may find it convenient to install applications on the
  .. image:: appinstaller.jpg
      :alt: Launch software packager
 
-.. note:: Applications installed via the Linux packager are installed on the cluster login node only. We recommend using the **Alces Gridware** packaging system for installing applications to be used across multiple cluster nodes. 
+.. note:: Applications installed via the Linux packager are installed on the cluster login node only. We recommend using the **Alces Gridware** packaging system for installing applications to be used across multiple cluster nodes (see below sections for resolving this). 
 
 
 Shared cluster applications
@@ -48,7 +51,7 @@ For Flight Compute clusters launched from AWS Marketplace, your applications are
 Installing cluster applications
 ===============================
 
-Alces Flight Compute clusters include access to the online **Gridware** repository of software applications. This catalogue `includes over 850 application, library, compiler and MPI versions <http://tiny.cc/gridware>`_ which can be installed and run on your cluster. Software is installed by selecting it from the catalogue, optionally compiling it on the cluster login node along with any software package dependencies, and installing it in the shared cluster application storage space. Once installed, applications can be run on the login and compute nodes interactively, or as part of job-scripts submitted to your cluster scheduler. 
+Alces Flight Compute clusters include access to the online **Gridware** repository of software applications. This catalogue :ref:`includes over 850 application, library, compiler and MPI versions <gridware>` which can be installed and run on your cluster. Software is installed by selecting it from the catalogue, optionally compiling it on the cluster login node along with any software package dependencies, and installing it in the shared cluster application storage space. Once installed, applications can be run on the login and compute nodes interactively, or as part of job-scripts submitted to your cluster scheduler. 
 
 Application catalogue structure
 ===============================
@@ -72,7 +75,7 @@ From the login node of your Alces Flight Compute cluster, use the command ``alce
     [alces@login1(scooby) ~]$ alces gridware search bowtie
     main/apps/bowtie/1.1.0   main/apps/bowtie2/2.2.6  main/apps/tophat/2.1.0
 
-.. note:: By default, only the ``main`` repository is enabled; please read the instructions below to enable and use packages from the ``volatile`` repository. 
+.. note:: By default, only the ``main`` repository is enabled; please :ref:`read the instructions below<volatile-gridware-repositories>` to enable and use packages from the ``volatile`` repository. 
 
 
 Installing a Gridware application
@@ -303,14 +306,14 @@ Use the ``module initadd <module-file>`` command to add a software package to th
 .. note:: Commands to submit jobs to your cluster job-scheduler are automatically included in your users' **$PATH** via a ``services/`` module. If you unload this module or remove it from your list of automatically-loaded modules, you may not be able to submit jobs to the cluster scheduler.
 
 
-
+.. _volatile-gridware-repositories:
 
 Volatile Gridware repositories
 ------------------------------
 
 Applications packaged in the ``main`` repository are tested to support automatic dependency resolution, enabling support for auto-scaling clusters where compute nodes may be sourced from the AWS spot market. This allows Linux distribution dependencies to be satisfied dynamically at ``module load`` time, ensuring that software applications execute correctly whenever they are run. For access to a larger catalogue of software, users can additionally enable the ``volatile`` software repository. Once enabled, advanced users can access the full list of available applications by choosing software along with any dependencies to install from the combined package list. 
 
-.. note:: Users installing applications from the ``volatile`` repo should either ensure that auto-scaling is disabled for their user environment, or make use of Flight customization features to ensure that software package dependancies are resolved for new compute nodes joining the cluster after applications have been installed. 
+.. note:: Users installing applications from the ``volatile`` repo should either ensure that auto-scaling is disabled for their user environment, or make use of Flight customization features to ensure that software package dependencies are resolved for new compute nodes joining the cluster after applications have been installed. 
 
 To enable volatile repositories, edit the ``/opt/gridware/etc/gridware.yml`` YAML file and un-comment the volatile repository by removing the ``#`` symbol at the start of line 11. Alternatively, users can enable the repository by using the following command:
 
