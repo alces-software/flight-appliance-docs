@@ -161,21 +161,6 @@ Creating Alternate Profile
 
 Below are 2 different methods for setting up a custom profile. The first details the steps taken to setup a custom profile before bringing up a Flight stack, the second details creating the profile locally from within a live stack and pushing it to the storage repository.
 
-Before CloudFormation
-^^^^^^^^^^^^^^^^^^^^^
-
-Alternate customisation profiles can be set up from the S3 customizer bucket (e.g. ``s3://alces-flight-a1i0ytdmvzv3ztv3/customizer/``). To set up another profile, from your S3 bucket in the ``customizer`` folder - create another profile folder, for example ``foo``.
-
-Within the ``foo`` folder:
-
-- Create folders for the customisation events you want to handle (e.g. create a ``configure.d`` folder. Place any ``configure`` customisation scripts for the ``foo`` profile within the ``configure.d`` folder)
-
-- Create a file called ``manifest.txt`` (in the ``foo`` directory) which lists all of your customisation scripts as below::
-
-    start.d/script.sh
-    configure.d/emacs.sh
-    configure.d/test.sh
-
 From Live System
 ^^^^^^^^^^^^^^^^
 
@@ -199,10 +184,32 @@ There are few bits of trickery needed to configure a new profile from the comman
 
     alces customize apply account/foo
 
+Before CloudFormation
+^^^^^^^^^^^^^^^^^^^^^
+
+Alternate customisation profiles can be set up from the S3 customizer bucket (e.g. ``s3://alces-flight-a1i0ytdmvzv3ztv3/customizer/``). To set up another profile, from your S3 bucket in the ``customizer`` folder - create another profile folder, for example ``foo``.
+
+Within the ``foo`` folder:
+
+- Create folders for the customisation events you want to handle (e.g. create a ``configure.d`` folder. Place any ``configure`` customisation scripts for the ``foo`` profile within the ``configure.d`` folder)
+
+- Create a file called ``manifest.txt`` (in the ``foo`` directory) which lists all of your customisation scripts as below::
+
+    start.d/script.sh
+    configure.d/emacs.sh
+    configure.d/test.sh
+
 Using Alternate Profile
 -----------------------
 
 Below are the methods for using the custom profile either at the time of stack creation or applying it to a running system.
+
+Live System
+^^^^^^^^^^^
+
+The profile can be applied to live systems with ``alces customize apply account/foo`` which will execute the profile on the current machine. Any systems that come up after that command will execute the profile scripts, however, other systems that are already up will not execute the profile until they are rebooted.
+
+To apply the profile to all nodes run ``module load services/pdsh && pdsh -g nodes "alces customize apply account/foo"``
 
 Cloud Formation
 ^^^^^^^^^^^^^^^
@@ -212,11 +219,3 @@ To use custom profiles when launching the Alces Flight Compute CloudFormation te
 If the custom profile you wish to use is in a different storage container than the default, see :ref:`customisation-custom-bucket`.
 
 .. note:: In order to use multiple profiles, separate them with a space in the ``Customization profiles to enable`` parameter. (e.g. ``foo default``)
-
-Live System
-^^^^^^^^^^^
-
-The profile can be applied to live systems with ``alces customize apply account/foo`` which will execute the profile on the current machine. Any systems that come up after that command will execute the profile scripts, however, other systems that are already up will not execute the profile until they are rebooted.
-
-To apply the profile to all nodes run ``module load services/pdsh && pdsh -g nodes "alces customize apply account/foo"``
-
