@@ -62,7 +62,7 @@ We recommend that users wishing to use Flight Appliances have basic Linux skills
    :caption: Cluster job schedulers
    :name: schedulers
 
-   jobschedulers/*
+   jobschedulers/jobschedulers
    slurm/slurm
    sge/sge
    openlava/openlava
@@ -78,7 +78,7 @@ We recommend that users wishing to use Flight Appliances have basic Linux skills
    customisation/*
    launch-aws/manual-launch
    launch-aws/template_launch
-   sge/disable_sge_limits
+   jobschedulers/disable_limits
 
 .. toctree::
    :maxdepth: 1

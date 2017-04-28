@@ -54,26 +54,31 @@ Next, navigate to the previously unpacked tutorials directory then navigate to t
 
 Next, run the simulation - this should take about 20 minutes to complete. You can either run this through an interactive scheduler session on a dedicated compute node or create a job script and run through the cluster scheduler. 
 
-To run the NAMD simulation in an interactive session using the SGE scheduler - run the following commands: 
+To run the NAMD simulation in an interactive session using the SLURM scheduler - run the following commands: 
 
 .. code:: bash
 
-    qrsh -pe smp-verbose 2 -l h_vmem=1G
-    cd namd-tutorial-files/1-2-sphere
+    srun -n2 --mem-per-cpu=1024 --pty /bin/bash
+    cd ~/namd-tutorial-files/1-2-sphere
     module load apps/namd_mpi
     mpirun -np 2 namd2 ubq_ws_eq.conf > ubq_ws_eq.log &
 
-Or to run through the job scheduler, you could use the following example job script for the SGE scheduler: 
+Or to run through the job scheduler, you could use the following example job script for the SLURM scheduler: 
 
 .. code:: bash
 
     #!/bin/bash -l
-    #$ -pe mpislots-verbose 4
-    #$ -l h_vmem=1G
-    #$ -N NAMD -o $HOME/namd.$JOB_ID.out
+    #SBATCH -n 4
+    #SBATCH --mem-per-cpu=1024
+    #SBATCH -J NAMD
+    #SBATCH -o /home/%u/namd.%j.out
     module load apps/namd_mpi
     cd $HOME/namd-tutorial-files/1-2-sphere
     mpirun namd2 ubq_ws_eq.conf
+
+.. note:: If you are using an autoscaling cluster and see the message ``sbatch: error: Batch job submission failed: Requested node configuration is not available`` this is because the current number of available nodes does not satisfy the memory request. This can be sorted by removing the ``#SBATCH --mem-per-cpu`` line from the script, submitting and then queuing the job with the memory constraints added back in after additional nodes have been brought up.
+
+.. note:: The output directory is set to ``/home/%u/`` instead of ``$HOME`` due to the SLURM script terminating before launch when using shell variables in ``#SBATCH`` arguments.
 
 Once the task has finished, your output file will contain lots of output data. The end of your output file should contain the following if the job has successfully completed: 
 
