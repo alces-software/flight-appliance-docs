@@ -173,7 +173,7 @@ In order to promote efficient usage of your cluster, the job-scheduler automatic
       ``total memory per node / total cores per node``
       e.g. with 36 core nodes that have 60GB of RAM, the default memory per job is set to around 1.5GB
       
-This documentation will explain how to change these limits to suit the jobs that you want to run. You can also disable these limits if you prefer to control resource allocation manually by yourself - see :ref:`disable_sge_limits` for instructions. 
+This documentation will explain how to change these limits to suit the jobs that you want to run. You can also disable these limits if you prefer to control resource allocation manually by yourself - see :ref:`disable_limits` for instructions. 
 
 .. note:: Scheduler limits are automatically enforced - e.g. if your job exceeds the requested runtime or memory allocation, it will automatically be stopped. 
 

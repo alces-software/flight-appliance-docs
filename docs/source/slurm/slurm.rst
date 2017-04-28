@@ -153,6 +153,8 @@ The ``sinfo`` output will show (from left-to-right):
  - The amount of disk space in MB available to the `/tmp` partition per node
  - The scheduler weighting 
 
+.. _slurm-default-resources:
+
 Default resources
 -----------------
 
