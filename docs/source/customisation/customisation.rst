@@ -219,3 +219,78 @@ To use custom profiles when launching the Alces Flight Compute CloudFormation te
 If the custom profile you wish to use is in a different storage container than the default, see :ref:`customisation-custom-bucket`.
 
 .. note:: In order to use multiple profiles, separate them with a space in the ``Customization profiles to enable`` parameter. (e.g. ``foo default``)
+
+Feature Profiles
+================
+
+Feature profiles are available to add further functionality to a Flight environment. These features can be schedulers, applications or environment tweaks. One of the main benefits of feature profiles is that it allows for the automatic installation of commercial software that cannot be distributed with Alces Flight & gridware. Feature profiles also allow for the automation of complex installations which are out of the scope of gridware.
+
+To show available features profiles::
+
+    [alces@login1(scooby) ~]$ alces customize avail
+    feature/ansys-fluent-v170          software
+    feature/configure-beegfs           software
+    feature/configure-docker           software
+    feature/configure-ephemeral-disks  config
+    feature/configure-users            config
+    feature/disable-hyperthreading     config
+    feature/ellexusmistral             software
+    feature/enginframe-2015.1          software
+    feature/enginframe-2017.0          software
+
+.. note:: The above output has been shortened to save space on the documentation, there are many more features available on a running Flight instance
+
+Installing a Feature Profile
+----------------------------
+
+Installing a new feature profile is done in much the same way as applying an alternate customisation profile. 
+
+Apply customisation feature::
+
+    alces customize apply feature/ansys-fluent-v170
+    
+If any of the files for the installation are missing then an error message similar to the following will be displayed::
+
+    Running event hooks for ansys-fluent-v170
+    Running configure hook: /opt/clusterware/var/lib/customizer/feature-ansys-fluent-v170/configure.d/install.sh
+    download: 's3://alces-flight-<account hash>/apps/ansys-fluent/FLUIDS_170_LINX64.tar' -> '/tmp/FLUIDS_170_LINX64.tar'  [1 of 1]
+    download: 's3://alces-flight-<account hash>/apps/ansys-fluent/FLUIDS_170_LINX64.tar' -> '/tmp/FLUIDS_170_LINX64.tar'  [1 of 1]
+    ERROR: S3 error: 404 (Not Found)
+    download: 's3://alces-flight-<account hash>/apps/ansys-fluent/fluent-license.lic' -> '/tmp/fluent-license.lic'  [1 of 1]
+    download: 's3://alces-flight-<account hash>/apps/ansys-fluent/fluent-license.lic' -> '/tmp/fluent-license.lic'  [1 of 1]
+    ERROR: S3 error: 404 (Not Found)
+    ******************************************************************************
+
+      Please download the Fluent installation file(s) from the
+      download link provided by Ansys.
+
+      If you do not have a download link, please contact Ansys support at
+      info@ansys.com.
+
+      Copy the installation archive and license file to /tmp on
+      this machine:
+
+        /tmp/FLUIDS_170_LINX64.tar
+        /tmp/fluent-license.lic
+
+      For repeatable installation, upload to your Alces Flight S3
+      customization bucket:
+
+        s3://alces-flight-<account hash>/apps/ansys-fluent/FLUIDS_170_LINX64.tar
+        s3://alces-flight-<account hash>/apps/ansys-fluent/fluent-license.lic
+
+      Once you have placed the files in one of these locations, run the
+      following command:
+
+        alces customize trigger configure feature-ansys-fluent
+
+      Installation will then continue.
+
+    ******************************************************************************
+    No start hooks found in /opt/clusterware/var/lib/customizer/feature-ansys-fluent-v170
+    No node-started hooks found in /opt/clusterware/var/lib/customizer/feature-ansys-fluent-v170
+    No member-join hooks found in /opt/clusterware/var/lib/customizer/feature-ansys-fluent-v170
+    No member-join hooks found in /opt/clusterware/var/lib/customizer/feature-ansys-fluent-v170
+
+.. tip:: To make the installation files available for any Flight instances on the same AWS account - save them to ``s3://alces-flight-<account hash>/apps/app-name/`` instead of ``/tmp``. Where ``alces-flight-<account-hash>`` is the name of the bucket in ``alces about customizer`` and ``app-name`` is the name of the app feature minus the version number (in the example above, ``ansys-fluent-v170`` would become ``ansys-fluent``). The names of the files should match those mentioned in the error output.
+
