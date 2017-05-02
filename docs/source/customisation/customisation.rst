@@ -220,6 +220,8 @@ If the custom profile you wish to use is in a different storage container than t
 
 .. note:: In order to use multiple profiles, separate them with a space in the ``Customization profiles to enable`` parameter. (e.g. ``foo default``)
 
+.. _feature-profiles:
+
 Feature Profiles
 ================
 
@@ -294,3 +296,25 @@ If any of the files for the installation are missing then an error message simil
 
 .. tip:: To make the installation files available for any Flight instances on the same AWS account - save them to ``s3://alces-flight-<account hash>/apps/app-name/`` instead of ``/tmp``. Where ``alces-flight-<account-hash>`` is the name of the bucket in ``alces about customizer`` and ``app-name`` is the name of the app feature minus the version number (in the example above, ``ansys-fluent-v170`` would become ``ansys-fluent``). The names of the files should match those mentioned in the error output.
 
+Once the required files are in place the installation will run through (this example shows the feature profile being applied after the files have been added to S3)::
+
+    Running event hooks for ansys-fluent-v170
+    Running configure hook: /opt/clusterware/var/lib/customizer/feature-ansys-fluent-v170/configure.d/install.sh
+    download: 's3://alces-flight-<account-hash>/apps/ansys-fluent/FLUIDS_170_LINX64.tar' -> '/tmp/FLUIDS_170_LINX64.tar'  [1 of 1]
+    download: 's3://alces-flight-<account-hash>/apps/ansys-fluent/FLUIDS_170_LINX64.tar' -> '/tmp/FLUIDS_170_LINX64.tar'  [1 of 1]
+     7125760000 of 7125760000   100% in   82s    82.21 MB/s  done
+    download: 's3://alces-flight-<account-hash>/apps/ansys-fluent/fluent-license.lic' -> '/tmp/fluent-license.lic'  [1 of 1]
+    download: 's3://alces-flight-<account-hash>/apps/ansys-fluent/fluent-license.lic' -> '/tmp/fluent-license.lic'  [1 of 1]
+     26 of 26   100% in    0s   925.40 B/s  done
+    Unpacking tarball FLUIDS_170_LINX64.tar ...
+    Starting Ansys Fluent installer...
+    cp: cannot stat ‘/tmp/fluent-license.lic’: No such file or directory
+    Installing and Configuring modulefiles...
+    Ansys Fluent installation completed.
+
+    No start hooks found in /opt/clusterware/var/lib/customizer/feature-ansys-fluent-v170
+    No node-started hooks found in /opt/clusterware/var/lib/customizer/feature-ansys-fluent-v170
+    No member-join hooks found in /opt/clusterware/var/lib/customizer/feature-ansys-fluent-v170
+    No member-join hooks found in /opt/clusterware/var/lib/customizer/feature-ansys-fluent-v170
+
+.. note:: If the required files have only been uploaded to S3 then the installation will take a little longer while it copies the data locally to the login node
