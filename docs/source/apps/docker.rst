@@ -9,3 +9,4 @@ To install docker support, apply the feature profile (for more info on features 
 
     alces customize apply feature/configure-docker
 
+.. note:: The feature profile will install the required docker dependencies
