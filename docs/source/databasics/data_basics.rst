@@ -153,6 +153,8 @@ Your Flight Compute cluster includes command-line tools which can be used to ena
  - ``alces storage enable s3`` - enables **AWS S3** service
  - ``alces storage enable swift`` - enables **Swift** service
  - ``alces storage enable dropbox`` - enables **Dropbox** service
+
+.. note:: The enabled & available storage types can be viewed with ``alces storage show`` & ``alces storage avail`` respectively.
  
 Once enabled, a user can configure one or more storage services for use on the command-line, giving each one a friendly name to identify it. The syntax of the command is shown below:
 
