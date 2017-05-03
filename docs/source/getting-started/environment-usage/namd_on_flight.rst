@@ -76,8 +76,6 @@ Or to run through the job scheduler, you could use the following example job scr
     cd $HOME/namd-tutorial-files/1-2-sphere
     mpirun namd2 ubq_ws_eq.conf
 
-.. note:: If you are using an autoscaling cluster and see the message ``sbatch: error: Batch job submission failed: Requested node configuration is not available`` this is because the current number of available nodes does not satisfy the memory request. This can be sorted by removing the ``#SBATCH --mem-per-cpu`` line from the script, submitting and then queuing the job with the memory constraints added back in after additional nodes have been brought up.
-
 .. note:: The output directory is set to ``/home/%u/`` instead of ``$HOME`` due to the SLURM script terminating before launch when using shell variables in ``#SBATCH`` arguments.
 
 Once the task has finished, your output file will contain lots of output data. The end of your output file should contain the following if the job has successfully completed: 
