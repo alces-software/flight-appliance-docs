@@ -159,7 +159,7 @@ Alternate Customisation Profiles
 Creating Alternate Profile
 --------------------------
 
-Below are 2 different methods for setting up a custom profile. The first details the steps taken to setup a custom profile before bringing up a Flight stack, the second details creating the profile locally from within a live stack and pushing it to the storage repository.
+Below are 2 different methods for setting up a custom profile. The first details the steps taken to setup a custom profile from within a live stack and pushing it to the storage repository, the second details creating the profile before bringing up a Flight stack.
 
 From Live System
 ^^^^^^^^^^^^^^^^
@@ -202,7 +202,7 @@ Within the ``foo`` folder:
 Using Alternate Profile
 -----------------------
 
-Below are the methods for using the custom profile either at the time of stack creation or applying it to a running system.
+Below are the methods for using the custom profile either on a running system or at the time of stack creation.
 
 Live System
 ^^^^^^^^^^^
