@@ -12,7 +12,7 @@ For advanced users, or users that only require a single login node for their wor
 Finding and Launching the Alces Flight AMI
 ------------------------------------------
 
-To launch a single-instance of Alces Flight Compute use the AWS Marketplace to search for the latest version of Alces Flight Compute and subscribe to the product. Click on the "Custom Launch" tab and a list of AMI-IDs will be provided that instances can be launched from:
+To launch a single-instance of Alces Flight Compute use the AWS Marketplace to search for the latest version of Alces Flight Compute and subscribe to the product. Click on the "Manual Launch" tab and a list of AMI-IDs will be provided that instances can be launched from:
 
 .. image:: marketplace_ami-id.png
     :alt: AWS Marketplace AMI-IDs
