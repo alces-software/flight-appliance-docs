@@ -75,7 +75,7 @@ Local scripts can be passed through to the container which allows for multiple c
 
 This can be passed to a container using docker run as follows::
 
-    [alces@login1(Say-Node-To-Drugs) ~]$ alces gridware docker run apps-paraview-4.3.1 --script script.sh 
+    [alces@login1(scooby) ~]$ alces gridware docker run apps-paraview-4.3.1 --script script.sh 
     Executing script 'script.sh' in 'alces/gridware-apps-paraview-4.3.1'...
 
       >>>  16:02:02 up  1:56,  0 users,  load average: 3.11, 2.40, 1.39
