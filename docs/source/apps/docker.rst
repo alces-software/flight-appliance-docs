@@ -62,6 +62,8 @@ Provide a single command as an argument to the run command after specifying the 
       total 0
       drwx------ 2 alces alces  6 May  2 15:45 .
       drwx------ 3 alces alces 36 May  2 15:45 ..
+      
+.. note:: Any input files will need to be copied to ``~/app-memtester-4.3.0/input/`` to appear at ``/job/`` within the container. (Replace app-memtester-4.3.0 with the name of the container that gridware created)
 
 Running a Script
 ----------------
