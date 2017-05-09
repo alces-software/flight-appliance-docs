@@ -376,6 +376,8 @@ If you need to use an application that isn't already part of the Alces Gridware 
  2. `Request the addition of an application via the community support site <http://community.alces-flight.com>`_. Please include as much information about the application as possible in your request to help new users of the package. There is no fee for requesting software via the community support site - this service is provided to benefit users worldwide by providing convenient access to the best open-source software packages available.
  3. If you have an urgent need for a new software package, users can fund consultancy time to have packages added to Gridware repository. Please add details of your funding offer to your enhancement request ticket on the `community support site <http://community.alces-flight.com>`_, and a software engineer will contact you with more details.
 
+.. _modules-environment-management:
+
 Modules environment management
 ==============================
 

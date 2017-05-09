@@ -96,4 +96,4 @@ Once the task has finished, your output file will contain lots of output data. T
 .. [1] http://www.ks.uiuc.edu/Research/namd/
 .. [2] :ref:`Launch an Alces Flight Compute environment <launching_on_aws>`
 .. [3] :ref:`Starting desktop sessions <graphicaldesktop>`
-.. [4] `Loading environment modules <http://docs.alces-flight.com/en/latest/apps/apps.html#modules-environment-management>`_
+.. [4] :ref:`Loading environment modules <modules-environment-management>`
