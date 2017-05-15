@@ -93,6 +93,53 @@ One consequence of this is that the ``alces`` command, which is defined as a she
   PATH="/opt/clusterware/bin/:$PATH"
   alces gridware depot install benchmark
 
+.. _customisation-apply-methods:
+
+Applying Customization Profile
+==============================
+
+There are 3 ways in which a feature profile can be applied to a system. Each method applies the profile in a slightly different way.
+
+At Formation
+------------
+
+To apply profiles when launching the Alces Flight Compute CloudFormation templates, enter the profile name(s) in the ``Customization profiles to enable`` parameter - the customiser tool will then run each of the scripts in the ``foo`` profile. This will apply the profile to run on all systems (both the login & compute nodes) when they boot up.
+
+If the profile(s) you wish to use are in a different storage container than the default, see :ref:`customisation-custom-bucket`.
+
+.. note:: In order to use multiple profiles, separate them with a space in the ``Customization profiles to enable`` parameter. (e.g. ``foo default``)
+
+.. _customisation-apply-manual:
+
+Using Customize Apply
+---------------------
+
+The profile can be applied to live systems with ``alces customize apply account/foo`` which will execute the profile on the current machine.
+
+To apply the profile to all nodes run:
+
+    module load services/pdsh && pdsh -g nodes "alces customize apply account/foo"
+    
+.. note:: This profile will not be added to any default location so any nodes brought up with autoscaling will *not* have the profile applied
+
+Using Customize Slave Apply
+---------------------------
+
+To set a profile to be run on all compute nodes when brought up (with autoscaling), add the profile to the slave list from the login node with: 
+
+    alces customize slave add account/foo
+
+The profile can then be seen by running the `list` command from the headnode: 
+
+    [alces@login1(scooby) ~]$ alces customize slave list
+    account/foo
+
+This profile can be removed from the slave list with:
+
+    alces customize slave remove account/foo
+
+.. note:: This will *not* apply the profile to any currently running compute nodes. To apply it to any running nodes see ref:`customisation-apply-manual`
+
 Script Events & Parameters
 ==========================
 
@@ -145,7 +192,6 @@ Using Custom S3 Buckets
 You may also wish to use a custom S3 bucket rather than the automatically generated Flight bucket name. To do so, simply follow the steps at  :ref:`customisation-storage-config` to create a bucket in the same location, changing the bucket name for a different identifier. For example, the following location could be created to hold customisation scripts for a specific environment:
 
   ``s3://alces-flight-bluecluster/customizer/default``
-  
 
 To use custom S3 buckets with Alces Flight Compute, enter your S3 bucket URL in the ``S3 bucket for customization profiles`` CloudFormation parameter, without the S3 prefix. For example, to launch a cluster using customisation scripts from the bucket in the above example, a user could specify the following value at launch time:
 
@@ -202,23 +248,7 @@ Within the ``foo`` folder:
 Using Alternate Profile
 -----------------------
 
-Below are the methods for using the custom profile either on a running system or at the time of stack creation.
-
-Live System
-^^^^^^^^^^^
-
-The profile can be applied to live systems with ``alces customize apply account/foo`` which will execute the profile on the current machine. Any systems that come up after that command will execute the profile scripts, however, other systems that are already up will not execute the profile until they are rebooted.
-
-To apply the profile to all nodes run ``module load services/pdsh && pdsh -g nodes "alces customize apply account/foo"``
-
-Cloud Formation
-^^^^^^^^^^^^^^^
-
-To use custom profiles when launching the Alces Flight Compute CloudFormation templates, enter the profile name(s) in the ``Customization profiles to enable`` parameter - the customiser tool will then run each of the scripts in the ``foo`` profile. 
-
-If the custom profile you wish to use is in a different storage container than the default, see :ref:`customisation-custom-bucket`.
-
-.. note:: In order to use multiple profiles, separate them with a space in the ``Customization profiles to enable`` parameter. (e.g. ``foo default``)
+See ref:`customisation-apply-methods`
 
 .. _feature-profiles:
 
