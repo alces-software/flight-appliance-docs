@@ -216,7 +216,7 @@ There are few bits of trickery needed to configure a new profile from the comman
 
     touch foo.sh
 
-- Create profile in the accounts repository (this will generate the ``manifest.txt`` file & ``foo/configure.d/jane.sh`` filesystem structure within the default customizer location [`s3://alces-flight-<account hash>/customizer/`])::
+- Create profile in the accounts repository (this will generate the ``manifest.txt`` file & ``foo/configure.d/foo.sh`` filesystem structure within the default customizer location [`s3://alces-flight-<account hash>/customizer/`])::
 
     alces customize push foo.sh account
 
