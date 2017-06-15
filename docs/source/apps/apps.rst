@@ -362,6 +362,71 @@ Once installed, enable a new depot using the ``alces gridware depot enable <depo
      > Enabling depot: benchmark
               Enable ... OK
 
+Adding Your Own Application to Gridware
+---------------------------------------
+
+It is possible to create a local repository on a Flight system that can be used to install packages which aren't part of Gridware.
+
+.. note: Gridware specialises in building applications from source so usually the file will be a tar file. This guide assumes that the software comes packaged in a tar file for extraction and compilation. 
+
+Create repository for the software application (in this example, testrepo underneath the user's home directory is created)::
+
+    mkdir -p ~/testrepo/pkg
+   
+The above repository can have multiple applications and versions of these applications inside, simply create the ``application/version`` directory inside the ``pkg`` directory::
+
+   mkdir -p ~/testrepo/pkg/myapplication/1.0/
+   
+Inside the newly created, the following files will need to be created:
+
+ - ``metadata.yml`` - This contains the application information and installation procedure
+ - ``myapplication-1.0.tar.gz.fetch`` - This file contains the URL to the file to be downloaded
+ - ``myapplication-1.0.tar.gz.md5sum`` - This file contains the output of ``md5sum myapplication-1.0.tar.gz`` in the format ``dbc02b17f15680c294c1ec9e4d8384h6  myapplication-1.0.tar.gz``
+
+Add the repository to ``/opt/gridware/etc/gridware.yml`` under the ``:repo_paths:`` header ::
+
+    :repo_paths:
+    - /opt/gridware/var/lib/gridware/repos/main
+    - /home/alces/testrepo
+
+The package will now be available in gridware, check that it's in the output of ``alces gridware list`` before installing it with ``alces gridware install testrepo/myapplication/1.0``.
+
+Below is a metadata.yml template file with some notes for writing it.
+
+.. code:: bash
+
+    :schema: 1
+    :title: My Application
+    :license: The license for the application (could be BSD or some other open source license)
+    :summary: My application runs the calculations I need to get results
+    :url: http://myapplication.com/
+    :description: |
+      My application is used to run the calculations I need to get results. The description of
+      the application can be rather long in attempts to fully describe the purpose of the 
+      application.
+    :group: Application Group (could be Tools, Fluid Dynamics, Bioinformatics, etc)
+    :changelog: |
+      * Tue Jun 06 2017 - Your Name <your.email@address.com>
+        - First created
+    :src: myapplication-1.0.tar.gz  (Name of the file that is downloaded, something like application-version.tar.gz to match the .fetch & .md5sum files)
+    :src_dir: myapplication-1.0  (Name of the directory created after extracting the above source file)
+    :type: apps
+    :version: '1.0'
+    :compilers:
+      gcc:
+    :compile: |
+      ./configure --prefix=<%= dest_dir %> <%= redirect(:configure) %>
+      make <%= redirect(:make) %>
+    :install: |
+      make install <%= redirect(:install) %>
+    :module: |
+      setenv ${appcaps}DIR ${appdir}
+      setenv ${appcaps}BIN ${appdir}/bin/
+      setenv ${appcaps}LIB ${appdir}/lib/
+      setenv ${appcaps}SHARE ${appdir}/share/
+
+      prepend-path PATH ${appdir}/bin/
+      prepend-path LD_LIBRARY_PATH ${appdir}/lib/
 
 Requesting new applications in Gridware
 ---------------------------------------
