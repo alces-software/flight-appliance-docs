@@ -153,6 +153,8 @@ The ``sinfo`` output will show (from left-to-right):
  - The amount of disk space in MB available to the `/tmp` partition per node
  - The scheduler weighting 
 
+.. _slurm-default-resources:
+
 Default resources
 -----------------
 
@@ -336,8 +338,7 @@ By default, jobs are constrained to the default set of resources - users can use
 Running multi-threaded jobs
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-If users want to use multiple cores on a compute node to run a multi-threaded application, they need to inform the scheduler - this allows jobs to be efficiently spread over compute nodes to get the best possible performance. Using multiple CPU cores is achieved by specifying the ``-n, --ntasks=<number>`` option in either your submission command or the scheduler directives in your job script. The ``--ntasks`` option informs the scheduler of the number of cores you wish to reserve for use. If
-the parameter is omitted, the default ``--ntasks=1`` is assumed. You could specify the option ``-n 4`` to request 4 CPU cores for your job.
+If users want to use multiple cores on a compute node to run a multi-threaded application, they need to inform the scheduler - this allows jobs to use multiple cores without needing to rely on any interconnect. Using multiple CPU cores is achieved by specifying the ``-n, --ntasks=<number>`` option in either your submission command or the scheduler directives in your job script. The ``--ntasks`` option informs the scheduler of the number of cores you wish to reserve for use. If the parameter is omitted, the default ``--ntasks=1`` is assumed. You could specify the option ``-n 4`` to request 4 CPU cores for your job. Besides the number of tasks, you will need to add ``--nodes=1`` to your scheduler command or at the top of your job script with ``#SBATCH --nodes=1``, this will set the maximum number of nodes to be used to 1 and prevent the job selecting cores from multiple nodes.
 
 .. note:: If you request more cores than are available on a node in your cluster, the job will not run until a node capable of fulfilling your request becomes available. The scheduler will display the error in the output of the ``squeue`` command
 

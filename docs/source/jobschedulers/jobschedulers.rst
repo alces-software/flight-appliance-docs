@@ -65,11 +65,11 @@ Your Alces Flight Compute cluster comes with a job-scheduler pre-installed, read
 Available cluster job schedulers
 --------------------------------
 
-Alces Flight Compute Community Edition launches with a pre-configured `Open Grid Scheduler (SGE) <http://gridscheduler.sourceforge.net/>`_ environment - an open-source job scheduler, built from the codebase of what was originally the `Sun Grid Engine (SGE) <https://en.wikipedia.org/wiki/Oracle_Grid_Engine>`_ job scheduler. The syntax and usage of commands is identical to historical SGE syntax, and users can typically migrate from one to another with no issues.
+Alces Flight Compute Community Edition launches with a pre-configured `SLURM <https://slurm.schedmd.com/>`_ environment - an open-source job scheduler. The syntax and usage of commands is available as part of the `SLURM overview <https://slurm.schedmd.com/quickstart.html>`_.
 
 Alces Flight Compute can optionally be configured to launch the following cluster job schedulers;
 
- * `Slurm scheduler <http://slurm.schedmd.com/>`_
+ * `Open Grid Scheduler (SGE) <http://gridscheduler.sourceforge.net/>`_ - an open-source job scheduler, built from the codebase of what was originally the `Sun Grid Engine (SGE) <https://en.wikipedia.org/wiki/Oracle_Grid_Engine>`_
  * `OpenLava scheduler <http://www.openlava.org/>`_ (similar to IBM LSF)
  * `Torque scheduler <http://www.adaptivecomputing.com/products/open-source/torque/>`_
  * `PBS Pro scheduler <http://www.pbsworks.com/PBSProduct.aspx?n=PBS-Professional&c=Overview-and-Capabilities>`_
@@ -78,7 +78,7 @@ Alces Flight Compute can optionally be configured to launch the following cluste
 Job-scheduler configuration and support
 ---------------------------------------
 
-Alces Flight Compute clusters are designed to pre-install your chosen cluster job scheduler, and make it available to use by the single-user configured at launch time.Customers are provided with dedicated support contacts to help out where needed. For full commercial code-base support for job-schedulers, please contact the vendor of your chosen software product. 
+Alces Flight Compute clusters are designed to pre-install your chosen cluster job scheduler, and make it available to use by the single-user configured at launch time. Customers are provided with dedicated support contacts to help out where needed. For full commercial code-base support for job-schedulers, please contact the vendor of your chosen software product. 
 
 It is also possible for users to download and install their own job-scheduler across their Flight Compute cluster - any product compatible with RedHat Enterprise Linux 7 operating system and derivatives should be possible to run on your cluster. 
 

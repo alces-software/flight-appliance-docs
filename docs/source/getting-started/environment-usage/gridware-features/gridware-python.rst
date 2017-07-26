@@ -86,7 +86,7 @@ Only one version of a particular application can be loaded at any one time - to 
 Installation of language libraries
 ----------------------------------
 
-Through the Alces Gridware utility, installation of lanaguage libraries is possible both on a system-wide level, and also on a per-user basis. The following section details both system-wide language library installation, as well as user-level language library installation.
+Through the Alces Gridware utility, installation of language libraries is possible both on a system-wide level, and also on a per-user basis. The following section details both system-wide language library installation, as well as user-level language library installation.
 
 System-wide language libraries: Python
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

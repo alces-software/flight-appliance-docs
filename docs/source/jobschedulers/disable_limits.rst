@@ -1,4 +1,4 @@
-.. _disable_sge_limits:
+.. _disable_limits:
 
 Disabling resource limits for your job-scheduler
 ################################################
@@ -8,6 +8,30 @@ By default, an Alces Flight Compute cluster enables limits on the resources your
 Experienced HPC cluster users working on a personal Alces Flight Compute cluster may prefer to disable the job-scheduler resource limits and manage compute node resources themselves. These instructions provide a guide to disabling the default limits for your compute cluster job scheduler. 
 
 .. note:: Once scheduler resource limits are disabled, users must manually ensure that the compute node instances selected have enough resources to run the jobs submitted to the job-scheduler queue. 
+
+SLURM
+=====
+
+Requesting more CPU cores for your job
+--------------------------------------
+
+There is a default CPU allocation of 1 core for a job. To override this, specify the number of cores to be used either;
+
+- *On the command line* when submitting the job script with the ``-n X`` flag (where X is the number of cores to be used). For example, ``sbatch -n 8 myjobscript.sh`` to submit myjobscript.sh requesting 8 cores.
+- *In the job script* by adding ``#SBATCH -n X`` underneath the shebang (``#!``) line, replacing X with the number of cores to be requested.
+
+Disabling memory resource limits
+--------------------------------
+
+By default, SLURM has no limit on the amount of memory a user can request per core (it is set to UNLIMITED as can be seen with ``scontrol show config | grep Mem``).
+
+Disabling the default runtime limit
+-----------------------------------
+
+The default configuration for a job's runtime on any partition in SLURM is unlimited. This can be checked from the command-line with the command ``scontrol show part all |grep MaxTime``. 
+
+
+For more information, see :ref:`SLURM default resources<slurm-default-resources>`.
 
 Open-grid scheduler
 ===================

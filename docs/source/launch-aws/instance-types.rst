@@ -1,3 +1,4 @@
+:orphan:
  .. _instance-types:
 
 AWS EC2 Instance Types for Flight Compute

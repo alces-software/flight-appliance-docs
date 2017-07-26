@@ -5,7 +5,7 @@ Cluster VPN
 
 Your Flight Compute cluster is configured with a Virtual Private Network (VPN) - allowing you to connect your workstation to the cluster network. The cluster VPN provides your machine with an IP address that is part of the environment's network, allowing direct communication with compute nodes for high-performance graphical application access and data transfer. All communications exchanged over a VPN are automatically encrypted using a certificate unique to your cluster.
 
-The Alces Flight Compute VPN uses `OpenVPN <https://openvpn.net/>`_ - so you may wish to use a client that is capable of connecting using OpenVPN configurations. 
+The Alces Flight Compute VPN uses `OpenVPN <https://openvpn.net/>`__ - so you may wish to use a client that is capable of connecting using OpenVPN configurations. 
 
 .. note:: For best security practice, each Alces Flight Compute cluster you deploy is configured with a unique VPN configuration. If you run multiple clusters, users need to create a profile on your client machine for each Alces Flight Compute environment you want to connect to.
 
@@ -27,7 +27,7 @@ Linux
 Windows
 ```````
 
-* `OpenVPN <https://openvpn.net/index.php/open-source/downloads.html>`_
+* `OpenVPN <https://openvpn.net/index.php/open-source/downloads.html>`__
 
 
 Obtaining VPN configuration
@@ -47,3 +47,11 @@ Once you have navigated to your Alces Flight Compute web page - you can click on
      :alt: Alces Flight WWW VPN page
 
 .. note:: You can also use command-line tools such as ``scp`` to download your VPN configuration packs. Use the command ``alces about vpn`` on your Flight Compute environment to view the locations of the VPN configuration packs before transferring to your local workstation
+
+Connecting to VPN
+-----------------
+
+Instructions for connecting to VPN from Windows, Mac & Linux platforms can be found at `Platform Instructions` beneath the `Downloads` & `About` sections of the Alces Flight VPN web page.
+
+.. image:: VPNconnect.png
+    :alt: VPN Connect
