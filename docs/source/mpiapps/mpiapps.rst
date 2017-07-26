@@ -7,7 +7,7 @@ Parallel (MPI) Applications
 What is an MPI?
 ---------------
 
-High-performance compute clusters are often used to run *Parallel Applications* - i.e. software applications which simultaneously use resources from two or more computers at the same time. This can allow software programs to run bigger jobs, run them faster, and to work with larger data-sets than can be processed on a single computer. Parallel programming is hard - developing software to run on a single computer is difficult enough, but extending applications to run across multiple computers at the same means doing many more internal checks while your program is running to make sure your software runs correctly, and to deal with any errors that occur. 
+High-performance compute clusters are often used to run *Parallel Applications* - i.e. software applications which simultaneously use resources from two or more computers at the same time. This can allow software programs to run bigger jobs, run them faster, and to work with larger data-sets than can be processed on a single computer. Parallel programming is hard - developing software to run on a single computer is difficult enough, but extending applications to run across multiple computers at the same time means doing many more internal checks while your program is running to make sure your software runs correctly, and to deal with any errors that occur. 
 
 A number of standards for parallel programming have been produced to assist software developers in this task. These published standards are often accompanied by an implementation of a software application programming interface (API) which presents a number of standard methods for parallel communication to software developers. By writing their software to be compatible with a published API, software developers can save time by relying on the API to deal with the parallel communications themselves (e.g. transmitting messages, dealing with errors and timeouts, interfacing with different hardware, etc.). The APIs for parallel processing are commonly known as message-passing interfaces (MPIs). 
 
@@ -21,7 +21,7 @@ A number of different MPIs are under active development; for Linux clusters, the
  - `MPICH <https://www.mpich.org/>`_; an older open-source implementation largely superceded by OpenMPI, but still available for compatibility reasons
  - `MVAPICH <http://mvapich.cse.ohio-state.edu/>`_; an open-source MPI supporting verbs transport across Infiniband fabrics
  - `Intel MPI <https://software.intel.com/en-us/intel-mpi-library>`_; a commercial MPI optimised for Intel CPUs and interconnects
- - `IBM Platform MPI <http://www-03.ibm.com/systems/uk/platformcomputing/products/mpi/>`_, HPMPI; commercial MPIs optimised for particular commercial applications and interconnects
+ - `IBM Platform MPI <https://www.ibm.com/developerworks/downloads/im/mpi/>`_, HPMPI; commercial MPIs optimised for particular commercial applications and interconnects
 
 The choice of which MPI to use for any particular use-case can depend on the application you want to run, the hardware you have available to run it on, if you have a license for a commercial application, and many other factors. Discussion and comparison of the available MPIs is outside the scope of this documentation - however, it should be possible to install and run any application that supports your underlying platform type and Linux distribution on an Alces Flight Compute cluster. 
 
@@ -61,7 +61,7 @@ The example below demonstrates how to manually run the **Intel Message-passing B
      - ``alces gridware depot enable benchmark``
 
      
-  2. Create a list of compute nodes to run the job on. The following command will use your **genders** group to create a hostfile with one hostname per line:
+  2. Create a list of compute nodes to run the job on. The following command will use your **genders** group to create a hostfile with one hostname per line (the pdsh module will need to be loaded if it hasn't already with ``module load services/pdsh``):
  
      - ``cd ; nodeattr -n nodes > mynodesfile``
 

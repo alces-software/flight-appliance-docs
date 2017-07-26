@@ -34,7 +34,9 @@ The simplest method of launching a cluster is by using the AWS Marketplace - clu
 
 Advanced users may also wish to launch a cluster one instance at a time, or deploy a single login node to be used interactively. Follow this guide for information on how to manually configure a cluster by launching individual instances - :ref:`manual_launch`.
 
-Users can also use one the example CloudFormation templates as the basis of their own cluster deployments. This allows more customisation of your cluster, including choosing how many nodes can be launched, configuring different types of EBS backing storage and choosing different availability zones for your compute nodes. For more information, see - :ref:`template_launch`.
+.. note:: If you wish to use CloudFormation to create a single Alces Flight instance on AWS (e.g. just a login node) instead of using :ref:`the AMI method <manual_launch>`, set **Autoscaling policy** to ``enabled`` and **Initial compute nodes (autoscaling)** to ``0``.
+
+Users can also use one of the example CloudFormation templates as the basis of their own cluster deployments. This allows more customisation of your cluster, including choosing how many nodes can be launched, configuring different types of EBS backing storage and choosing different availability zones for your compute nodes. For more information, see - :ref:`template_launch`.
 
 
 How much will it cost?
@@ -89,13 +91,14 @@ When you choose to start a Flight Compute cluster from AWS Marketplace, you will
  - **Stack name**; this is the name that you want to call your cluster. It's fine to enter **"cluster"** here if this is your first time, but entering something descriptive will help you keep track of multiple clusters if you launch more. Naming your cluster after colours (red, blue, orange), your favourite singer (clapton, toriamos, bieber) or Greek legends (apollo, thor, aphrodite) keeps things more interesting. Avoid using spaces and punctuation, or names longer than 16 characters.
  
 **Access and security**
+
   - **Cluster administrator username**; enter the username you want to use to connect to the cluster. Flight will automatically create this user on the cluster, and add your public SSH key to the user.
   - **Cluster administrator keypair**; choose an existing AWS keypair to launch your Flight cluster with. If there are no keypairs in the list, check that you've already generated a keypair in the region you're launching in. You must have the private key available for the chosen keypair in order to login to your cluster.
   - **Access network address**; enter a network range that is permitted to access your cluster. This will usually be the IP address of your system on the Internet; ask your system administrator for this value, or `use a web search <https://www.google.com/search?q=whats+my+ip+address&ie=utf-8&oe=utf-8&gws_rd=cr&ei=tVIvV5_dKsHagAath7OYCw>`_ to find out. If you want to be able to access your cluster from anywhere on the Internet, enter "0.0.0.0/0" in this box.
 
 **Alces Flight configuration and customization**
-  - **HPC job scheduler**; select from a range of popular batch job schedulers to install and configure for use with your Alces Flight Compute environment
-  - **Preload software**; select an `Alces Gridware Depot <https://github.com/alces-software/gridware-depots>`_  to install - Alces Gridware Depots are groups of packages, libraries and compilers commonly used by different disciplines
+  - **HPC job scheduler** (`Professional Only`) ; select from a range of popular batch job schedulers to install and configure for use with your Alces Flight Compute environment
+  - **Preload software** (`Professional Only`) ; select an `Alces Gridware Depot <https://github.com/alces-software/gridware-depots>`_  to install - Alces Gridware Depots are groups of packages, libraries and compilers commonly used by different disciplines
   - **Additional features to enable**; optionally select from available `Alces Flight features <https://github.com/alces-software/flight-profiles/tree/master/features>`_ including job schedulers and other useful customisations
   - **S3 bucket for customization profiles**; enter the names of :ref:`customisation profiles <customisation>` to use, separated by spaces. Leave this option blank if you have no existing customisation data, or you are starting a standard cluster.
   - **Customization profiles to enable**; enter the names of the customisation profiles to use, separated by spaces. Leave this option blank if you have no existing customisation data, or you are starting a new cluster. 
@@ -123,7 +126,7 @@ When you choose to start a Flight Compute cluster from AWS Marketplace, you will
   - **Initial/maximum compute nodes**; enter the maximum number of compute nodes you wish to make available to your Flight Compute cluster when autoscaling is enabled - the autoscaling feature will never create more than the maximum number specified. If the autoscaling feature is disabled, enter the total number of compute nodes you wish to create at launch time
   
 **Disks and storage**
-  - **Data volume layout**; select from a range of data volume layouts - the data volume layouts available are as follows; 
+  - **Data volume layout** (`Professional Only`) ; select from a range of data volume layouts - the data volume layouts available are as follows; 
 
 ``standard``
   Configures the home directory share and application directory share using the login node system disk
@@ -139,14 +142,38 @@ When you choose to start a Flight Compute cluster from AWS Marketplace, you will
 ``discrete.home-discrete.apps``
   Configures both the home directory share and application directory share using separate, dedicated EBS volumes
 
-  - **Data volume encryption policy**; if any of the ``discrete`` options were selected, you may optionally set an encryption policy for the dedicated EBS volumes
-  - **Login node system disk size**; choose the size of your login node disk, which acts as the shared filesystem for your cluster when using the ``standard`` data voume layout
-  - **Login node system volume disk type**; select the `type of EBS volume <http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSVolumeTypes.html>`_ best suited to your workload requirements - choosing an SSD type will be considerably faster, but choosing a HDD type will incur less running cost
-  - **Home volume disk size**; if the appropriate data volume layout was chosen to deploy a dedicated home directory EBS volume, you may select the size of volume to deploy
-  - **Application volume disk size**; if the appropriate data volume layout was chosen to deploy a dedicated application directory EBS volume, you may select the size of the volume to deploy
-  - **Home volume disk type**; if the appropriate data volume layout was chosen to deploy a dedicated home directory EBS volume, you may choose from a range of EBS volume types for the home directory volume
-  - **Application volume disk type**; if the appropriate data volume layout was chosen to deploy a dedicated application directory EBS volume, you may choose from a range of EBS volume types for the application directory volume
-  - **Compute node system disk type**; you may optionally select a system disk type for any deployed compute hosts, allowing you to optimise compute hosts' local ephemeral storage to your workload requirements
+  - **Data volume encryption policy** (`Professional Only`) ; if any of the ``discrete`` options were selected, you may optionally set an encryption policy for the dedicated EBS volumes
+  - **Scratch configuration**; select from a range of filesystem types for the ephemeral filesystems in the instances - the available filesystems are as follows;
+  
+``enabled.xfs``
+  Local scratch space is configured using the XFS filesystem
+  
+``enabled.ext4``
+  Local scratch space is configured using the EXT4 filesystem
+  
+``disabled``
+  Disable the provision of local scratch space (this can then be formatted at a later point)
+
+  - **Swap configuration**; select the way in which swap should be configured for the instance - select from the following;
+  
+``enabled.ephemeral``
+  Configure swap space if ephemeral storage disks are available (see `Scratch configuration` above)
+
+``enabled.always``
+  Configure swap space if EBS (Elastic Block Store) is available
+  
+``disabled``
+  Do not configure swap even if storage is available
+  
+  - **Swap size (KiB)**; The size (in kibibytes) of the swap space to be configured for ephemeral storage. Setting this value to 0 will result in automatic configuration (either swap space equal to the node memory capacity or to the maximum swap size set by `Swap size max (KiB)` below, whichever is the smallest value)
+  - **Swap size max (KiB)**; The maximum size (in kibibytes) that the swap size can be
+  - **Login node system volume size (GB)**; choose the size of your login node disk (in gigabytes), which acts as the shared filesystem for your cluster when using the ``standard`` data voume layout (this side cannot exceed 1024GB with the standard layout)
+  - **Login node system volume disk type** (`Professional Only`) ; select the `type of EBS volume <http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSVolumeTypes.html>`_ best suited to your workload requirements - choosing an SSD type will be considerably faster, but choosing a HDD type will incur less running cost
+  - **Home volume disk size** (`Professional Only`) ; if the appropriate data volume layout was chosen to deploy a dedicated home directory EBS volume (`Data volume layout:` ``discrete.home`` or ``discrete.home-discrete.apps``), you may select the size of volume to deploy
+  - **Application volume disk size** (`Professional Only`) ; if the appropriate data volume layout was chosen to deploy a dedicated application directory EBS volume (`Data volume layout:` ``discrete.apps`` or ``discrete.home-discrete.apps``), you may select the size of the volume to deploy
+  - **Home volume disk type** (`Professional Only`) ; if the appropriate data volume layout was chosen to deploy a dedicated home directory EBS volume (``discrete.home`` or ``discrete.home-discrete.apps``), you may choose from a range of EBS volume types for the home directory volume
+  - **Application volume disk type** (`Professional Only`) ; if the appropriate data volume layout was chosen to deploy a dedicated application directory EBS volume(``discrete.apps`` or ``discrete.home-discrete.apps``), you may choose from a range of EBS volume types for the application directory volume
+  - **Compute node system disk type** (`Professional Only`) ; you may optionally select a system disk type for any deployed compute hosts, allowing you to optimise compute hosts' local ephemeral storage to your workload requirements
       
 .. image:: aws-launch_CFT_questions.jpg
     :alt: AWS Marketplace CloudFormation template questions
@@ -163,7 +190,7 @@ The AWS EC2 service supports a number of different charging models for launching
 
  - On-demand instances; instances are launched immediately at a fixed hourly price. Once launched, your instance will not normally be terminated unless you choose to stop it.
  
- - `SPOT instances <https://aws.amazon.com/ec2/spot/>`_; instances are requested with a bid-price entered by the end-user which represents the maximum amount they want to pay for them per hour. If public demand for this instance type allows, instances will be launched at the current SPOT price, which is typically much lower than the equivalent on-demand price. As demand increases for the instance type increases, so the cost per hour charged to users also increases. AWS will automatically stop any instances (or delay starting new ones) if the current SPOT price is higher than the maximum amount users want to pay for them. 
+ - `SPOT instances <https://aws.amazon.com/ec2/spot/>`_; instances are requested with a bid-price entered by the end-user which represents the maximum amount they want to pay for them per hour. If public demand for this instance type allows, instances will be launched at the current SPOT price, which is typically much lower than the equivalent on-demand price. As demand increases for the instance type, so does the cost per hour charged to the users. AWS will automatically stop any instances (or delay starting new ones) if the current SPOT price is higher than the maximum amount users want to pay for them. 
  
 SPOT instances are a good way to pay a lower cost for cloud computing for non-urgent workloads. If SPOT compute node instances are terminated in your cluster, any running jobs will be lost - the nodes will also be automatically removed from the queue system to ensure no new jobs attempt to start on them. Once the SPOT price becomes low enough for your instances to start again, your compute nodes will automatically restart and rejoin the cluster. 
 
@@ -186,21 +213,42 @@ Accessing your cluster
 
 Once your cluster has been launched, the login node will be accessible via SSH from the IP address range you entered in the **NetworkCIDR**. If you entered ``0.0.0.0/0`` as the **NetworkCIDR**, your login node will be accessible from any IP address on the Internet. Your login node's public IP address is reported by the AWS CloudFormation template, along with the username you must use to login with your keypair. 
 
+Linux/Mac
+---------
+
 To access the cluster login node from a Linux or Mac client, use the following command:
 
- - ``ssh -i mypublickey.pub myusername@52.50.141.144``
+ - ``ssh -i mypublickey.pem myusername@52.50.141.144``
  
  Where:
-  - ``mypublickey.pub`` is the name of your public SSH key you selected when launching the cluster
+  - ``mypublickey.pem`` is the name of your public SSH key you selected when launching the cluster
   - ``myusername`` is the username you entered when launching the cluster
-  - ``52.50.141.144`` is the Access-IP address reported by the AWS console after your cluster has been launched
+  - ``52.50.141.144`` is the Access-IP address reported by the AWS console after your cluster has been launched (in the `Outputs` tab in the field labelled `Access IP`)
   
+.. _windows-putty-access:
+
+Windows
+-------
   
-If you are accessing from a Windows client using the Putty utility, enter the username and IP address of the cluster login node in the "Host Name" box provided:
+If you are accessing from a Windows client using the Putty utility, the private key associated with the account will need to be converted to ppk format from pem to be compatible with Putty. This can be done as follows:
+
+- Open PuTTYgen (this will already be installed on your system if Putty was installed using .msi and not launched from the .exe - if you do not think you have this, download putty-installer from here http://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html)
+- Select `Conversions -> Import Key`
+- Locate `.pem` file and click `open`
+- Click `Save Private Key`
+- Answer `Yes` to saving without a passphrase
+- Input the name for the newly generated ppk to be saved as
+
+To load the key in Putty, select `Connection -> SSH -> Auth`, click `Browse` and select the ppk that was generated from the above steps.
+
+.. image:: PuttyKey.png
+    :alt: Putty Key
+
+Next, enter the username and IP address of the cluster login node in the "Host Name" box provided (in the `Session` section):
 
 .. image:: putty.jpg
     :alt: Putty login
-    
+
 The first time you connect to your cluster, you will be prompted to accept a new server SSH hostkey. This happens because you've never logged in to your cluster before - it should only happen the first time you login; click **OK** to accept the warning. Once connected to the cluster, you should be logged in to the cluster login node as your user.
 
 .. image:: firstlogin.jpg

@@ -173,7 +173,7 @@ In order to promote efficient usage of your cluster, the job-scheduler automatic
       ``total memory per node / total cores per node``
       e.g. with 36 core nodes that have 60GB of RAM, the default memory per job is set to around 1.5GB
       
-This documentation will explain how to change these limits to suit the jobs that you want to run. You can also disable these limits if you prefer to control resource allocation manually by yourself - see :ref:`disable_sge_limits` for instructions. 
+This documentation will explain how to change these limits to suit the jobs that you want to run. You can also disable these limits if you prefer to control resource allocation manually by yourself - see :ref:`disable_limits` for instructions. 
 
 .. note:: Scheduler limits are automatically enforced - e.g. if your job exceeds the requested runtime or memory allocation, it will automatically be stopped. 
 
@@ -285,7 +285,7 @@ By default, jobs are executed from your home-directory on the cluster (i.e. ``/h
 Waiting for a previous job before running
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-You can instruct the scheduler to wait for an existing job to finish before starting to run the job you are submitting with the ``-hold_jid <job-ID`` instruction. This allows you to build up multi-stage jobs by ensuring jobs are executed sequentially, even if enough resources are available to run them in parallel. For example, to submit a new job that will only start running once job number 15352 has completed, use the following command:
+You can instruct the scheduler to wait for an existing job to finish before starting to run the job you are submitting with the ``-hold_jid <job-ID>`` instruction. This allows you to build up multi-stage jobs by ensuring jobs are executed sequentially, even if enough resources are available to run them in parallel. For example, to submit a new job that will only start running once job number 15352 has completed, use the following command:
 
    ``qsub -hold_jid 15352 myjobscript.sh``
 
@@ -488,12 +488,12 @@ It can be difficult for new users to know how much memory their job needs to run
         - Submit a single-CPU job with the instruction ``-l h_vmem=58G``
         - Submit a 4-CPU core multi-threaded job with the instruction ``-l h_vmem=14.5G``
         - Submit an 8-CPU core multi-threaded job with the instruction ``-l h_vmem=7.25G``
-        etc.
         
+        etc.
+  
   3. Note the job-ID number of your job while it is running, and allow your job to finish normally. 
   4. Use the ``qacct -j <job-ID>`` command to view the scheduler accounting database entry for your job
   5. Look for the entry in the ``qacct`` output that starts **maxvmem** - this will display how much memory your job used when running
-  
 
 The next time you submit your job, you can use a smaller memory request for your job, based on the information you gathered from the ``qacct`` output. 
 

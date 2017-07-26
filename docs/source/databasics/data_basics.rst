@@ -32,7 +32,7 @@ The **root** user in Linux has special meaning as a privileged user, and does no
 Local scratch storage
 --------------------- 
 
-Your compute nodes have an amount of disk space available to store temporary data under the ``/tmp`` mount-point. The size of this area will depend on the type and size of instance you selected at the time your cluster was launched. This area is intended for temporary data created during compute jobs, and shouldn't be used for long-term data storage. Compute nodes are configured to automatically clear up temporary space automatically, removing orphan data left behind by jobs. In addition, an auto-scaling cluster may automatically terminate idle nodes, resulting in the loss of any files stored in local scratch space. 
+Your compute nodes have an amount of disk space available to store temporary data under the ``/tmp`` mount-point. The size of this area will depend on the type and size of instance you selected at the time your cluster was launched. This area is intended for temporary data created during compute jobs, and shouldn't be used for long-term data storage. Compute nodes are configured to clear up temporary space automatically, removing orphan data left behind by jobs. In addition, an auto-scaling cluster may automatically terminate idle nodes, resulting in the loss of any files stored in local scratch space. 
 
 Users must make sure that they copy data they want to keep back to the shared filesystem after compute jobs have been completed. 
 
@@ -64,25 +64,32 @@ Many compute workloads involve processing data on the cluster - users often need
 Using command-line tools to copy data
 -------------------------------------
 
-The cluster login node is accessible via SSH, allowing use of the ``scp`` and ``sftp`` commands to transfer data from your local client machine. Linux and Mac users can use in-built SSH support to copy files; e.g.
+The cluster login node is accessible via SSH, allowing use of the ``scp`` and ``sftp`` commands to transfer data from your local client machine.
 
- - To copy file **mydata.zip** to your cluster on IP address 52.48.62.34, use the command:
-    ``scp -i mykeyfile.pub mydata.zip jane@52.48.62.34:.``
+**Linux/Mac**
+
+Linux and Mac users can use in-built SSH support to copy files. To copy file **mydata.zip** to your cluster on IP address 52.48.62.34, use the command:
+
+  ``scp -i mykeyfile.pem mydata.zip jane@52.48.62.34:.``
     
-    - replace ``mykeyfile.pub`` with the name of your SSH public key
-    - replace ``jane`` with your username on the cluster
+- replace ``mykeyfile.pem`` with the name of your SSH public key
+- replace ``jane`` with your username on the cluster
+
+**Windows**
+
+Windows users can download and install the `pscp <http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html>`_ command to perform the same operation (for this you will need your .pem key in .ppk format, see :ref:`connecting from Windows with Putty<windows-putty-access>`):
+
+  ``pscp -i mykeyfile.ppk mydata.zip jane@52.48.62.34:/home/jane/.``
     
-    
-Windows users can download and install the `pscp <http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html>`_ command to perform the same operation:
-    ``pscp -i mykeyfile.ppk mydata.zip jane@52.48.62.34:/home/jane/.``
-    
-    
+**SCP/PSCP**
+
 Both the ``scp`` and the ``pscp`` commands take the parameter ``-r`` to recursively copy entire directories of files to the cluster. 
 
 To retrieve files from the cluster, simply specify the location of the remote file first in the ``scp`` command, followed by the location on the local system to put the file; e.g.
 
- - To copy file **myresults.zip** from your cluster on IP address 52.48.62.34 to your local Linux or Mac client:
-    ``scp -i mykeyfile.pub jane@52.48.62.34:/home/jane/myresults.zip .``
+To copy file **myresults.zip** from your cluster on IP address 52.48.62.34 to your local Linux or Mac client:
+
+  ``scp -i mykeyfile.pem jane@52.48.62.34:/home/jane/myresults.zip .``
 
 
 Using a graphical client to copy data
@@ -116,7 +123,7 @@ There are also a number of graphical file-management interfaces available that s
 The amount of time taken to copy data to and from your cluster will depend on a number of factors, including:
 
  - The size of the data being copied
- - The speed of your Internet link to the cluster; if you are copying large amounts of data, try to connect using using a wired connection rather than wireless
+ - The speed of your Internet link to the cluster; if you are copying large amounts of data, try to connect using a wired connection rather than wireless
  - The type and location of your cluster login node instance
  
 
@@ -126,7 +133,7 @@ Object storage for archiving data
 As an alternative to copying data back to your client machine, users may prefer to upload their data to a cloud-based object storage service instead. Flight Compute clusters include tools for accessing data stored in the `AWS S3 <https://aws.amazon.com/s3/>`_ object storage service, as well as the `Dropbox <https://www.dropbox.com/>`_ cloud storage service and `SWIFT <https://wiki.openstack.org/wiki/Swift>`_ compatible services. Benefits of using an object-based storage service include:
 
 
- - Data is kept safe and does not have to be independantly backed-up
+ - Data is kept safe and does not have to be independently backed-up
  - Storage is easily scalable, with the ability for data to grow to practically any size
  - You only pay for what you use; you do not need to buy expansion room in advance
  - Storage service providers often have multiple tiers available, helping to reduce the cost of storing data
@@ -146,6 +153,8 @@ Your Flight Compute cluster includes command-line tools which can be used to ena
  - ``alces storage enable s3`` - enables **AWS S3** service
  - ``alces storage enable swift`` - enables **Swift** service
  - ``alces storage enable dropbox`` - enables **Dropbox** service
+
+.. note:: The enabled & available storage types can be viewed with ``alces storage show`` & ``alces storage avail`` respectively.
  
 Once enabled, a user can configure one or more storage services for use on the command-line, giving each one a friendly name to identify it. The syntax of the command is shown below:
 

@@ -1,4 +1,4 @@
-.. alces-sync:
+.. _alces-sync:
 
 Home Directory Synchronization
 ==============================

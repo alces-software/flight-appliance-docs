@@ -18,7 +18,7 @@ This documentation is designed to provide a quick-start guide to your personal F
 
  6. Use the ``alces gridware`` command to view and install software. The ``main`` repository lists stable packages, with a larger list of applications available as part of the ``volatile`` repository. 
 
- 7. Your cluster comes with an installation of a batch job scheduler; the default is Open Grid Scheduler (SGE), and a range of other schedulers are also available. Use the ``alces template`` command for a list of template job-scripts to get you started. 
+ 7. Your cluster comes with an installation of a batch job scheduler; the default is SLURM, and a range of other schedulers are also available. Use the ``alces template`` command for a list of template job-scripts to get you started. 
 
  8. Terminate the cluster stack via your cloud provider when you've finished working. Remember to copy any data you want to keep off the cluster to secure storage before terminating it. 
 
