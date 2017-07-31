@@ -1,4 +1,4 @@
-Flight Appliance Documentation - 2016.4r1
+Flight Appliance Documentation - 2017.1r1
 ==========================================
 .. figure:: _images/AlcesFlight.png
     :alt: Alces Computing in the Cloud
@@ -7,7 +7,7 @@ This site holds documentation designed to help users create a simple research co
 
 License
 -------
-This documentation is released under the `Creative-Commons: Attribution-ShareAlike 4.0 International <http://creativecommons.org/licenses/by-sa/4.0/>`_ license. The Alces Flight Compute software is released under the terms of the `Alces Flight EULA <https://s3-eu-west-1.amazonaws.com/flight-aws-marketplace/2016.4/AlcesFlight_2016.4_EULA.txt>`_. Please read the relevant license text before proceeding to use. 
+This documentation is released under the `Creative-Commons: Attribution-ShareAlike 4.0 International <http://creativecommons.org/licenses/by-sa/4.0/>`_ license. The Alces Flight Compute software is released under the terms of the `Alces Flight EULA <https://s3-eu-west-1.amazonaws.com/flight-aws-marketplace/2017.1/AlcesFlight_2017.1_EULA.txt>`_. Please read the relevant license text before proceeding to use. 
 
 Prerequisites
 ---------------
@@ -55,6 +55,7 @@ We recommend that users wishing to use Flight Appliances have basic Linux skills
 
    apps/apps
    mpiapps/*
+   apps/docker
 
 .. toctree::
    :maxdepth: 1
@@ -62,9 +63,9 @@ We recommend that users wishing to use Flight Appliances have basic Linux skills
    :caption: Cluster job schedulers
    :name: schedulers
 
-   jobschedulers/*
-   sge/sge
+   jobschedulers/jobschedulers
    slurm/slurm
+   sge/sge
    openlava/openlava
    torque/torque
    pbspro/pbspro
@@ -78,13 +79,13 @@ We recommend that users wishing to use Flight Appliances have basic Linux skills
    customisation/*
    launch-aws/manual-launch
    launch-aws/template_launch
-   sge/disable_sge_limits
+   jobschedulers/disable_limits
 
 .. toctree::
    :maxdepth: 1
    :glob:
    :caption: Available software packages
-   :name: gridware
+   :name: apps-gridware
    
    apps/gridware
 

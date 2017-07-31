@@ -7,15 +7,19 @@ Alces Flight Compute is provided as a single multi-purpose Amazon Machine Image 
 
 For advanced users, or users that only require a single login node for their work, Alces Flight Compute can also be launched as a single instance. Users have access to the full range of Gridware software applications available on a compute cluster and can choose to optionally :ref:`add infrastructure and compute nodes <manual-launch-add-nodes>` to their environment at a later date. 
 
+.. note:: If you wish to use CloudFormation to create a single Alces Flight instance on AWS (e.g. just a login node) instead of using :ref:`the AMI method <manual_launch>`, follow the documentation for :ref:`launching_on_aws` and set **Autoscaling policy** to ``enabled`` and **Initial compute nodes (autoscaling)** to ``0``.
+
 Finding and Launching the Alces Flight AMI
 ------------------------------------------
 
-To launch a single-instance of Alces Flight Compute use the AWS Marketplace to search for the latest version of Alces Flight Compute and subscribe to the product. Click on the "Custom Launch" tab and a list of AMI-IDs will be provided that instances can be launched from:
+To launch a single-instance of Alces Flight Compute use the AWS Marketplace to search for the latest version of Alces Flight Compute and subscribe to the product. Click on the "Manual Launch" tab and a list of AMI-IDs will be provided that instances can be launched from:
 
 .. image:: marketplace_ami-id.png
     :alt: AWS Marketplace AMI-IDs
 
-Click on the button marked **Launch with EC2 console** to start a single-instance of Alces Flight Compute in the region of your choice. Alternatively, you can note the AMI-ID and use this to manually configure your AMI in the EC2 console. Launch your instance with the settings you require, choosing the instance type, disk size and security group settings suitable for your environment. Note - your security group needs to allow ``port 22`` (SSH) to be accessed from your client system to allow you to login and configure the instance for use.
+Click on the button marked **Launch with EC2 console** to start a single-instance of Alces Flight Compute in the region of your choice. Alternatively, you can note the AMI-ID and use this to manually configure your AMI in the EC2 console. Launch your instance with the settings you require, choosing the instance type, disk size and security group settings suitable for your environment.
+
+.. note:: Your security group needs to allow "All traffic" inbound from the nodes within your selected subnet. Further to this, allow ``port 22`` (SSH) to be accessed from your client system to allow you to login and configure the instance for use.
 
 .. note:: We recommend that instances launching Alces Flight Compute are provided with a root EBS volume of at least 20GB in size to allow for storage of application data. 
 
@@ -52,6 +56,8 @@ After configuration is complete, you can use the ``alces about node`` and ``alce
 
 You can find the cluster secret token in ``/opt/clusterware/etc/config.yml`` - you will need the secret token to configure any additional hosts.
 
+.. _manual-launch-add-nodes:
+
 Adding more nodes to your cluster
 ---------------------------------
 
@@ -59,6 +65,6 @@ Once you have configured a master node using the method above (i.e. a login node
 
 To proceed with adding compute nodes to your cluster, launch further instances through the EC2 console and configure them as slave nodes (i.e. compute nodes) by using the ``alces configure node`` command and specifying the ``slave`` node role.
 
-.. note:: When configuring a slave node, you must supply the same **Cluster UUID** and **Cluster secret** values specified for other nodes in the cluster or the instance will be unable to communicate with the rest of the cluster.
+.. note:: When configuring a slave node, you must supply the same **Cluster name**, **Cluster UUID** and **Cluster secret** values specified for other nodes in the cluster or the instance will be unable to communicate with the rest of the cluster. The **Master node IP address** from ``alces about identity`` on the master node will also need to be specified.
 
-Note that you may use your own autoscaling group configuration or simply manually launch individual instances.
+.. tip:: You may use your own autoscaling group configuration or simply manually launch individual instances.

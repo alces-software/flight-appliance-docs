@@ -3,7 +3,7 @@
 OpenLava Scheduler
 ==================
 
-The `OpenLava <http://www.openlava.org>`_ cluster job-scheduler is an open-source IBM Platform LSF compatible job-scheduler. The syntax and usage of commands is identical to the IBM Platform LSF scheduler, and users can typically migrate from one to another with no issues. This documentation provides a guide to using OpenLava on your Alces Flight Compute cluster to run different types of jobs.
+The `OpenLava <http://www.openlava.org>`__ cluster job-scheduler is an open-source IBM Platform LSF compatible job-scheduler. The syntax and usage of commands is identical to the IBM Platform LSF scheduler, and users can typically migrate from one to another with no issues. This documentation provides a guide to using OpenLava on your Alces Flight Compute cluster to run different types of jobs.
 
 See :ref:`jobschedulers` for a description of the different use-cases of a cluster job-scheduler.
 
@@ -373,4 +373,4 @@ This guide is a quick overview of some of the many available options of the Open
 
  - Use the ``man bjobs`` command to see a full list of scheduler queue instructions
  - Use the ``man bsub`` command to see a full list of scheduler submission instructions
- - Online documentation for the OpenLava scheduler is `available here <http://www.openlava.org/documentation/guide/index.html>`_
+ - Online documentation for the OpenLava scheduler is `available here <http://www.openlava.org/documentation/guide/index.html>`__
