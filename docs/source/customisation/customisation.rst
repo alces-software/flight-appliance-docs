@@ -195,7 +195,7 @@ You may also wish to use a custom S3 bucket rather than the automatically genera
 
 To use custom S3 buckets with Alces Flight Compute, enter your S3 bucket URL in the ``S3 bucket for customization profiles`` CloudFormation parameter, without the S3 prefix. For example, to launch a cluster using customisation scripts from the bucket in the above example, a user could specify the following value at launch time:
 
-  ``S3 bucket for customization profiles: alces-flight-a1i0ytdmvzv3ztv3/customizer``
+  ``S3 bucket for customization profiles: alces-flight-a1i0ytdmvzv3ztv3``
 
 .. _customisation-alternate-profiles:
 
