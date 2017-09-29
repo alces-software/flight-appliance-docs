@@ -1,5 +1,8 @@
 .. _graphicaldesktop:
 
+.. warning:: The documentation here may not directly apply to your version of Flight, locate your version of Flight :ref:`here <index>`
+
+
 Graphical desktop access to your login node
 ###########################################
 

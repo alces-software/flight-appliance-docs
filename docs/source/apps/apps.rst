@@ -1,5 +1,8 @@
 .. _apps:
 
+.. warning:: The documentation here may not directly apply to your version of Flight, locate your version of Flight :ref:`here <index>`
+
+
 Software Applications
 #####################
 

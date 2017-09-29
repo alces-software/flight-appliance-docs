@@ -1,5 +1,8 @@
  .. _manual_launch:
 
+.. warning:: The documentation here may not directly apply to your version of Flight, locate your version of Flight :ref:`here <index>`
+
+
 Launching a single Alces Flight instance on AWS
 ###############################################
 

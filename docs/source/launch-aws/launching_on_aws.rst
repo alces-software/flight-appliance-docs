@@ -1,5 +1,8 @@
 .. _launching_on_aws:
 
+.. warning:: The documentation here may not directly apply to your version of Flight, locate your version of Flight :ref:`here <index>`
+
+
 Launching on AWS
 ################
 
