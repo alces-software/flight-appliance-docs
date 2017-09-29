@@ -1,3 +1,5 @@
+.. _index:
+
 Flight Appliance Documentation - Latest
 ==========================================
 
