@@ -42,9 +42,10 @@ While RPM packages are useful for system packages, they are not designed to mana
 Shared application storage
 --------------------------
 
-For Flight Compute clusters launched from AWS Marketplace, your applications are automatically stored in the shared cluster filesystem, making them available to all login and compute nodes across the cluster. There are two directories used to host applications on your Flight Compute cluster:
+For Flight Compute clusters launched from AWS Marketplace, your applications are automatically stored in the shared cluster filesystem, making them available to all login and compute nodes across the cluster. There are three locations used to host applications on your Flight Compute cluster:
 
  - ``/opt/gridware/`` - Applications managed by Alces Gridware utility
+ - ``~/gridware/`` - Per-user applications managed by Alces Gridware utility
  - ``/opt/apps/`` - An empty directory for user-installed applications
 
 .. note:: Depending on the version of Flight Compute you are using, you may have the option to choose capacity and performance characteristics of the shared applications volume at cluster launch time. Ensure that you choose a large enough storage area to suit the applications you want to install.
@@ -157,6 +158,97 @@ For more complex applications, Alces Gridware may need to additionally build oth
     Install these dependencies first?
     
     Proceed (Y/N)?
+
+Installing packages with distribution package dependencies
+----------------------------------------------------------
+
+Many Gridware applications have a dependency on packages supplied by the operating system's package manager. Gridware has facilities for managing such dependencies, allowing non-administrator users to maintain their own installed Gridware packages.
+
+For non-administrator users
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Any user may install Gridware packages to their own installation directory within their home directory. If the user tries to install a Gridware package that has a dependency on an operating system package, then Gridware will try to install the package using the following rules:
+
+ - If the system package is already installed, no further action is taken.
+ - If the system administrator has whitelisted the user, then Gridware will install the system package.
+ - If the system administrator has whitelisted the Gridware repository from which the Gridware package is being installed, then Gridware will install the system package.
+ - If the system administrator has whitelisted, or already approved installation of, the system package (perhaps elsewhere in the cluster), then Gridware will install the system package.
+ - If none of the above conditions are met, then Gridware will raise a package installation request with the system administrator and display an error message to the user. The administrator can choose to install the package or reject the request.
+
+ The error message will be similar to the following:
+
+ .. code::
+
+   > Permission denied when trying to install tbb-devel
+   > Some packages failed to install. A request has been filed with your system administrator.
+
+ Users can be notified by email when their package requests are granted, by setting the value of ``:user_email`` in ``~/gridware/etc/gridware.yml`` to their email address:
+
+.. code:: yaml
+
+  ################################################################################
+  ##
+  ## Alces Clusterware - Gridware packager configuration
+  ## Copyright (c) 2017 Alces Software Ltd
+  ##
+  ################################################################################
+  ---
+  :repo_paths:
+  # - /home/alces/gridware/repos/example
+  :user_email: someone@example.com
+
+Once the requested packages have been installed, users can load its module and use the software, as described below.
+
+
+For administrator users
+^^^^^^^^^^^^^^^^^^^^^^^
+
+Administrator (root) users are able to view, action or reject package installation requests using the ``alces gridware requests`` commands.
+
+``alces gridware requests list`` shows a table of all pending requests, including the user who made the request, the Gridware package they are installing and the repository from which it comes, and the operating system package required.
+
+.. code::
+
+  [root@login1(scooby) ~]# alces gridware requests list
+  +--------+------------------+----------------+----------------------------------------------+---------------------------+
+  |                                             Pending installation requests                                             |
+  +--------+------------------+----------------+----------------------------------------------+---------------------------+
+  | User   | Gridware package | Distro package | Repo path                                    | Date                      |
+  +--------+------------------+----------------+----------------------------------------------+---------------------------+
+  | fn2187 | bowtie2          | tbb-devel      | /opt/clusterware/var/lib/gridware/repos/main | 2017-10-10 11:45:52 +0000 |
+  +--------+------------------+----------------+----------------------------------------------+---------------------------+
+
+``alces gridware requests install`` will iterate through each pending request and prompt the administrator to install, skip or delete each. Using the ``--yes`` option will automatically approve and install all pending requests.
+
+.. code:: bash
+
+  [root@login1(scooby) ~]# alces gridware requests install
+  > Processing 1 installation request
+  User fn2187 wants to install package tbb-devel. (I)nstall, install (A)ll, (S)kip, (D)elete?
+  i
+    (1/1) Installing tbb-devel on behalf of fn2187 ... Done
+
+Email notifications of pending requests will be sent to the email address configured as ``cw_GRIDWARE_admin_email`` in the configuration file at ``/opt/clusterware/etc/gridware.rc``, if an address is given.
+
+Whitelisting
+^^^^^^^^^^^^
+
+Gridware allows administrators to pre-approve, or whitelist, certain users, packages and repos, so that operating system package installation can happen automatically. The whitelist is stored in a YAML file ``/opt/gridware/etc/whitelist.yml`` and is shared across the cluster.
+
+.. code:: yaml
+
+  ---
+  :users:
+  - alces
+  :packages:
+  - tbb-devel
+  :repos: []
+
+Adding a user to the list under ``:users`` will give that user permission to install any operating system package that is a dependency of a Gridware package.
+
+Adding the name of an operating system package to the list under ``:packages`` will mean that any user can install that package if it is a dependency of a Gridware package. When an administrator manually approves installation of a package, it is also added to this list. In this way, users are able to request approval once and then install the prerequisites for their software on any node in the cluster.
+
+Adding the filesystem path to a Gridware repository to the ``:repos`` list will mean that *all* dependencies of *any* Gridware package in that repo can be installed by *any* user. Adding the path to the main Gridware repository here (usually ``/opt/clusterware/var/lib/gridware/repos/main``) will mean that permission to install operating system packages will automatically be granted to all users when installing Gridware packages from that repository.
 
 .. _volatile-gridware-repositories:
 
