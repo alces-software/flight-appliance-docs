@@ -42,9 +42,10 @@ While RPM packages are useful for system packages, they are not designed to mana
 Shared application storage
 --------------------------
 
-For Flight Compute clusters launched from AWS Marketplace, your applications are automatically stored in the shared cluster filesystem, making them available to all login and compute nodes across the cluster. There are two directories used to host applications on your Flight Compute cluster:
+For Flight Compute clusters launched from AWS Marketplace, your applications are automatically stored in the shared cluster filesystem, making them available to all login and compute nodes across the cluster. There are three locations used to host applications on your Flight Compute cluster:
 
  - ``/opt/gridware/`` - Applications managed by Alces Gridware utility
+ - ``~/gridware/`` - Per-user applications managed by Alces Gridware utility
  - ``/opt/apps/`` - An empty directory for user-installed applications
 
 .. note:: Depending on the version of Flight Compute you are using, you may have the option to choose capacity and performance characteristics of the shared applications volume at cluster launch time. Ensure that you choose a large enough storage area to suit the applications you want to install.
