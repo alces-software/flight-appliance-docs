@@ -109,7 +109,7 @@ Additionally, the following files are created within the container:
   - ``/job/work/hosts`` - This contains a hosts file with entries for each slave container that is running as part of the job.
   - ``/job/work/hostlist`` - As above but containing the IP addresses of the slave containers.
 
-The MPI argument _can only_ be used from the master (login) node. It will then act as the master and allocate cores on any client nodes that have the 'configure-docker' feature installed. 
+The MPI argument *can only* be used from the master (login) node. It will then act as the master and allocate cores on any client nodes that have the 'configure-docker' feature installed. 
 
 .. _docker-share-images:
 
