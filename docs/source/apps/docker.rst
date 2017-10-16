@@ -22,6 +22,8 @@ To show available docker images::
 
 On a fresh build there won't be any ``Local`` images - but the ``Remote`` should display the ``docker.io/alces`` remote image repo which has the gridware base image as well as some application images that have already been built by Alces.
 
+.. _docker-build-images:
+
 Building Images
 ===============
 
@@ -95,12 +97,30 @@ This can be passed to a container using docker run as follows::
       drwx------ 2 alces alces  6 May  2 16:01 .
       drwx------ 3 alces alces 54 May  2 16:01 ..
 
+Running in Parallel
+-------------------
+
+The argument ``--mpi=X`` can be appended to the run command to distribute the container across X processors. A 4 core example script is below::
+
+    [alces@login1(scooby) ~]$ alces gridware docker run --mpi=4 apps-memtester-4.3.0 memtester 1G 1
+
+Additionally, the following files are created within the container:
+
+  - ``/job/work/hosts`` - This contains a hosts file with entries for each slave container that is running as part of the job.
+  - ``/job/work/hostlist`` - As above but containing the IP addresses of the slave containers.
+
+The MPI argument _can only_ be used from the master (login) node. It will then act as the master and allocate cores on any client nodes that have the 'configure-docker' feature installed. 
+
+.. _docker-share-images:
+
 Sharing Images
 ==============
 
-.. important:: Sharing of images is not yet implemented in the 2017.1 Flight release!
-
 In order for nodes to be able to use the same container that was built on the login node it will need to be shared.
+
+Firstly, the local registry will need to be started, this can be setup on any node but is recommended to be started on the login node::
+
+    alces gridware docker start-registry
 
 Run the following command to add the local image to an NFS share that can be seen by the nodes::
 
