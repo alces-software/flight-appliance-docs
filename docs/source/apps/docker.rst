@@ -9,7 +9,7 @@ To install docker support, apply the feature profile (for more info on features 
 
     alces customize apply feature/configure-docker
 
-.. note:: The feature profile will install the required docker dependencies and perform Flight specific configuration changes
+.. note:: The feature profile will install the required docker dependencies and perform Flight specific configuration changes. Any systems within the cluster that are to use docker will need to apply the profile as well
 
 Viewing Images
 ==============
@@ -20,7 +20,7 @@ To show available docker images::
 
     alces gridware docker list
 
-On a fresh build there won't be any ``Local`` images - but the ``Remote`` should display the ``docker.io/alces`` remote image repo which has the gridware base image as well as some application images that have already been built by Alces.
+On a fresh build there won't be any ``Local`` images but once the first build is run, the ``base`` image along with whatever apps have been built into containers will appear in the list. 
 
 .. _docker-build-images:
 
@@ -40,6 +40,15 @@ This will download the base image & run the additional commands required to inst
     Local:
       apps-memtester-4.3.0
       base
+
+Multiple Apps in Image
+----------------------
+
+Multiple gridware apps can be packaged into a docker image, this is done by simply appending the rest of the apps to the build command (``--name`` is specified to reduce the length and complexity of the output image name)::
+
+    alces gridware docker build --name my-super-apps apps/memtester/4.3.0 mpi/openmpi/1.10.2 apps/gnuplot/5.0.2
+
+The resulting image can be interacted with in the same way as a single app gridware container.
 
 Running Containers
 ==================
