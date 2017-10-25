@@ -120,6 +120,47 @@ Additionally, the following files are created within the container:
 
 The MPI argument *can only* be used from the master (login) node. It will then act as the master and allocate cores on any client nodes that have the 'configure-docker' feature installed. 
 
+Other Running Options
+---------------------
+
+Without Gridware Entrypoint
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The Gridware entrypoint is used as a standard for executing commands inside the container. The script loads the modules for the applications installed within the container and handles running the applications. In the event of wanting to run a command without using the Gridware launched, run it as follows::
+
+    alces gridware docker run apps-memtester-4.3.0 --command uptime
+
+Interactively
+^^^^^^^^^^^^^
+
+Instead of running the container ephemerally for a single command/script, an interactive session can be launched::
+
+    alces gridware docker run apps-memtester-4.3.0 --interactive
+
+Data Storage and Images
+=======================
+
+Gridware docker creates ``~/CONTAINER-NAME/`` when a container is launched with ``alces gridware docker run``, this directory contains:
+
+  - ``input/`` - Any files in here are mapped to ``/job/input/`` in the container instance
+  - ``work.CONTAINER-UUID`` - This directory is unique to the container instance and contains:
+
+    - ``Dockerfile`` - The recipe file used to build the container
+    - ``docker.log`` - Output from the building of the container
+    - ``output/`` - Any files saved to ``/job/output/`` within the container will appear here
+    - Any files written to ``/job/work/`` will appear in this directory
+
+The working directory can be changed from ``~/CONTAINER-NAME`` to a user-specified directory with the ``workdir`` flag when launching the container. The directory will be created if not present and the hierarchy of the directory will be the same as listed above::
+
+    alces gridware docker run --workdir ~/my_container_directory/ apps-memtester-4.3.0 touch /job/output/testfile
+
+Adding Extra Mountpoints
+------------------------
+
+Directories from the host system can be mounted within the container by using the ``mount`` option when running a container::
+
+    alces gridware docker run apps-memtester-4.3.0 --mount ~/my_local_directory/:/container_mnt ls /container_mnt
+
 .. _docker-share-images:
 
 Sharing Images
