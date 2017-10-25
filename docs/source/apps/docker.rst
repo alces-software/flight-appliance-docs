@@ -125,14 +125,26 @@ The MPI argument *can only* be used from the master (login) node. It will then a
 Sharing Images
 ==============
 
-In order for nodes to be able to use the same container that was built on the login node it will need to be shared.
+In order for nodes to be able to use the same container that was built on the login node it will need to be shared, this can be done either through the share feature or a local registry.
 
-Firstly, the local registry will need to be started, this can be setup on any node but is recommended to be started on the login node::
-
-    alces gridware docker start-registry
+Share Feature
+-------------
 
 Run the following command to add the local image to an NFS share that can be seen by the nodes::
 
     alces gridware docker share apps-memtester-4.3.0
+
+Once shared, the nodes will automatically make the image available locally.
+
+.. note:: It can take a few minutes for the image to be available on the nodes
+
+Local Registry
+--------------
+
+A local docker registry allows for the pushing and pulling of docker images. Much like docker.io images but without the requirement of upstream connections for sharing. To start the local registry::
+
+    alces gridware docker start-registry
+
+Once the registry is running it can then be interacted with with ``docker push`` and ``docker pull`` as per the `docker documentation <https://docs.docker.com/registry/deploying/#copy-an-image-from-docker-hub-to-your-registry>`_
 
 .. note:: Any other systems that are to use the docker containers will need the docker feature enabled with ``alces customize apply feature/configure-docker``
