@@ -29,11 +29,11 @@ To begin setting up the Alces customiser tool - log in to your Alces Flight Comp
     [alces@login1(scooby) ~]$ alces about customizer
      Customizer bucket prefix: s3://alces-flight-a1i0ytdmvzv3ztv3/customizer
 
-A new S3 bucket must be created using the prefix provided in the information above. Using one of the available tools, such as ``alces storage``, ``s3cmd`` or the S3 web console - create a new bucket with an appropriate name; for instance, in the example above the bucket would be called::: 
+A new S3 bucket must be created using the prefix provided in the information above. Using one of the available tools, such as ``alces storage``, ``s3cmd`` or the S3 web console - create a new bucket with an appropriate name; for instance, in the example above the bucket would be called:: 
 
     alces-flight-a1i0ytdmvzv3ztv3
 
-Once the bucket is created - create a "folder" within the bucket named::: 
+Once the bucket is created - create a "folder" within the bucket named:: 
 
     customizer
 
@@ -41,7 +41,7 @@ Now, from within the ``customizer`` folder - create another folder named ``defau
 
 From within the ``default`` folder, you must create a folder for each customisation event you would like to add customisation scripts for; customisation scripts for this event will then be placed in this folder. See :ref:`customisation-events` for the different events available.
 
-If you are unsure which event you should use, for most simple customisations such as installing additional system packages or creating new users you will probably want the ``configure`` event. In this case you would create a new folder within the ``default`` folder named:::
+If you are unsure which event you should use, for most simple customisations such as installing additional system packages or creating new users you will probably want the ``configure`` event. In this case you would create a new folder within the ``default`` folder named::
 
     configure.d
 
@@ -63,15 +63,13 @@ The following simple example customisation shell script would install the ``emac
 
 .. note:: Customisation scripts are run in unattended mode, and should be written to complete without interactive input.
 
-Once the bash script has been created - upload it to your S3 bucket into the ``configure.d`` folder previously created, for example::: 
+Once the bash script has been created - upload it to your S3 bucket into the ``configure.d`` folder previously created, for example:: 
 
     s3://alces-flight-<account hash>/customizer/default/configure.d/emacs.sh
 
 You can upload multiple customisation scripts to each event folder within the profile folder - each of the scripts will be run whenever the given event occurs.
 
 The output of each customiser script run is sent to the file ``/var/log/clusterware/instance.log`` on each of the nodes; each output line will be prefixed with ``[cluster-customizer:<event>]``, identifying the event which produced it.
-
-.. _customisation-events:
 
 Customisation Script Environment
 --------------------------------
@@ -142,6 +140,8 @@ This profile can be removed from the slave list with: ::
 
 Script Events & Parameters
 ==========================
+
+.. _customisation-events:
 
 Customisation Events
 --------------------
@@ -248,7 +248,7 @@ Within the ``foo`` folder:
 Using Alternate Profile
 -----------------------
 
-See ref:`customisation-apply-methods`
+See :ref:`customisation-apply-methods`
 
 .. _feature-profiles:
 
