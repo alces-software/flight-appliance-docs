@@ -39,7 +39,7 @@ h6, .rst-content .toctree-wrapper p.caption {
 
 .wy-nav-side {
     top: 100px;
-    padding-bottom: 150px;
+    padding-bottom: 175px !important;
     background-color: black;
 }
 
