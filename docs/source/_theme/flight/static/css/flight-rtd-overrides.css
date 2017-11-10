@@ -1,0 +1,82 @@
+body {
+  font-family: 'Lato', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  overflow-x: hidden;
+  font-size: 16px;
+}
+a,
+a:hover,
+a:focus,
+a:active,
+a.active {
+  color: #2794d8;
+  outline: none;
+}
+*[id]:before {
+    display: block;
+    content: " ";
+    margin-top: -105px;
+    height: 105px;
+    visibility: hidden;
+    position: relative;
+    z-index: -1;
+}
+form[id]:before {
+    display: none;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6, .rst-content .toctree-wrapper p.caption {
+  font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 700;
+}
+
+.flight-body {
+    margin-top: 100px;
+}
+
+.wy-nav-side {
+    top: 100px;
+    padding-bottom: 150px;
+    background-color: black;
+}
+
+input {
+    color: initial;
+}
+.wy-side-nav-search {
+  background: #2794d8;
+}
+
+#brand-header img {
+    max-width: initial;
+}
+
+#brand-footer {
+    position: relative;
+    z-index: 1000;
+}
+
+#brand-footer h6 {
+    margin-bottom: 0.5rem;
+}
+
+.wy-side-scroll {
+    padding-bottom: 320px;
+}
+
+.wy-nav-content-wrap {
+    background: #fffdf6;
+}
+
+.rst-versions {
+    z-index: 1080;
+    border-top-color: black;
+    background: #2C3E50;
+}
+
+.wy-menu-vertical header, .wy-menu-vertical p.caption {
+    color: #777777;
+}
