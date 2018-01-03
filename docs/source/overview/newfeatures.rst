@@ -6,6 +6,15 @@ What's New
 2017.2
 ------
 
+- Choose the job scheduler to be configured on your cluster (SLURM, Grid Engine, OpenLava, TORQUE or PBS)
+- Preselect Gridware depots to install on the cluster - your software is ready to use from the word go
+- Additional options for formatting and structuring the storage layout of the cluster, including:
+
+    - EBS storage volume type
+    - Separating partitions for home and applications directories
+    - Seting encryption policies on volumes
+    - Configuring local scratch space
+
 - Extended Alces Gridware Docker features - including
 
     - Image sharing
@@ -14,6 +23,7 @@ What's New
     - Custom volume mounts
 
 - The new c5, h1, p3, m5 & x1e AWS instances are now available for selection
+- Flight can be launched in the new AWS region eu-west-3 (Paris)
 - Personal Gridware - install any of the Gridware apps to your user directory
 - New cluster dashboard - `Flight Launch <https://launch.alces-flight.com/default>`_ - replaces the previous dashboard
 
