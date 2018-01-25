@@ -27,8 +27,6 @@ What's New
 - Personal Gridware - install any of the Gridware apps to your user directory
 - New cluster dashboard - `Flight Launch <https://launch.alces-flight.com/default>`_ - replaces the previous dashboard
 
-For more information, see LINK_TO_FORUM_POST
-
 2017.1
 ------
 
