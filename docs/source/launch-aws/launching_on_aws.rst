@@ -97,8 +97,8 @@ When you choose to start a Flight Compute cluster from AWS Marketplace, you will
   - **Access network address**; enter a network range that is permitted to access your cluster. This will usually be the IP address of your system on the Internet; ask your system administrator for this value, or `use a web search <https://www.google.com/search?q=whats+my+ip+address&ie=utf-8&oe=utf-8&gws_rd=cr&ei=tVIvV5_dKsHagAath7OYCw>`_ to find out. If you want to be able to access your cluster from anywhere on the Internet, enter "0.0.0.0/0" in this box.
 
 **Alces Flight configuration and customization**
-  - **HPC job scheduler** (`Professional Only`) ; select from a range of popular batch job schedulers to install and configure for use with your Alces Flight Compute environment
-  - **Preload software** (`Professional Only`) ; select an `Alces Gridware Depot <https://github.com/alces-software/gridware-depots>`_  to install - Alces Gridware Depots are groups of packages, libraries and compilers commonly used by different disciplines
+  - **HPC job scheduler** ; select from a range of popular batch job schedulers to install and configure for use with your Alces Flight Compute environment
+  - **Preload software** ; select an `Alces Gridware Depot <https://github.com/alces-software/gridware-depots>`_  to install - Alces Gridware Depots are groups of packages, libraries and compilers commonly used by different disciplines
   - **Additional features to enable**; optionally select from available `Alces Flight features <https://github.com/alces-software/flight-profiles/tree/master/features>`_ including job schedulers and other useful customisations
   - **S3 bucket for customization profiles**; enter the names of :ref:`customisation profiles <customisation>` to use, separated by spaces. Leave this option blank if you have no existing customisation data, or you are starting a standard cluster.
   - **Customization profiles to enable**; enter the names of the customisation profiles to use, separated by spaces. Leave this option blank if you have no existing customisation data, or you are starting a new cluster. 
@@ -126,7 +126,7 @@ When you choose to start a Flight Compute cluster from AWS Marketplace, you will
   - **Initial/maximum compute nodes**; enter the maximum number of compute nodes you wish to make available to your Flight Compute cluster when autoscaling is enabled - the autoscaling feature will never create more than the maximum number specified. If the autoscaling feature is disabled, enter the total number of compute nodes you wish to create at launch time
   
 **Disks and storage**
-  - **Data volume layout** (`Professional Only`) ; select from a range of data volume layouts - the data volume layouts available are as follows; 
+  - **Data volume layout** ; select from a range of data volume layouts - the data volume layouts available are as follows; 
 
 ``standard``
   Configures the home directory share and application directory share using the login node system disk
@@ -142,7 +142,7 @@ When you choose to start a Flight Compute cluster from AWS Marketplace, you will
 ``discrete.home-discrete.apps``
   Configures both the home directory share and application directory share using separate, dedicated EBS volumes
 
-  - **Data volume encryption policy** (`Professional Only`) ; if any of the ``discrete`` options were selected, you may optionally set an encryption policy for the dedicated EBS volumes
+  - **Data volume encryption policy** ; if any of the ``discrete`` options were selected, you may optionally set an encryption policy for the dedicated EBS volumes
   - **Scratch configuration**; select from a range of filesystem types for the ephemeral filesystems in the instances - the available filesystems are as follows;
   
 ``enabled.xfs``
@@ -168,12 +168,12 @@ When you choose to start a Flight Compute cluster from AWS Marketplace, you will
   - **Swap size (KiB)**; The size (in kibibytes) of the swap space to be configured for ephemeral storage. Setting this value to 0 will result in automatic configuration (either swap space equal to the node memory capacity or to the maximum swap size set by `Swap size max (KiB)` below, whichever is the smallest value)
   - **Swap size max (KiB)**; The maximum size (in kibibytes) that the swap size can be
   - **Login node system volume size (GB)**; choose the size of your login node disk (in gigabytes), which acts as the shared filesystem for your cluster when using the ``standard`` data voume layout (this side cannot exceed 1024GB with the standard layout)
-  - **Login node system volume disk type** (`Professional Only`) ; select the `type of EBS volume <http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSVolumeTypes.html>`_ best suited to your workload requirements - choosing an SSD type will be considerably faster, but choosing a HDD type will incur less running cost
-  - **Home volume disk size** (`Professional Only`) ; if the appropriate data volume layout was chosen to deploy a dedicated home directory EBS volume (`Data volume layout:` ``discrete.home`` or ``discrete.home-discrete.apps``), you may select the size of volume to deploy
-  - **Application volume disk size** (`Professional Only`) ; if the appropriate data volume layout was chosen to deploy a dedicated application directory EBS volume (`Data volume layout:` ``discrete.apps`` or ``discrete.home-discrete.apps``), you may select the size of the volume to deploy
-  - **Home volume disk type** (`Professional Only`) ; if the appropriate data volume layout was chosen to deploy a dedicated home directory EBS volume (``discrete.home`` or ``discrete.home-discrete.apps``), you may choose from a range of EBS volume types for the home directory volume
-  - **Application volume disk type** (`Professional Only`) ; if the appropriate data volume layout was chosen to deploy a dedicated application directory EBS volume(``discrete.apps`` or ``discrete.home-discrete.apps``), you may choose from a range of EBS volume types for the application directory volume
-  - **Compute node system disk type** (`Professional Only`) ; you may optionally select a system disk type for any deployed compute hosts, allowing you to optimise compute hosts' local ephemeral storage to your workload requirements
+  - **Login node system volume disk type** ; select the `type of EBS volume <http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSVolumeTypes.html>`_ best suited to your workload requirements - choosing an SSD type will be considerably faster, but choosing a HDD type will incur less running cost
+  - **Home volume disk size** ; if the appropriate data volume layout was chosen to deploy a dedicated home directory EBS volume (`Data volume layout:` ``discrete.home`` or ``discrete.home-discrete.apps``), you may select the size of volume to deploy
+  - **Application volume disk size** ; if the appropriate data volume layout was chosen to deploy a dedicated application directory EBS volume (`Data volume layout:` ``discrete.apps`` or ``discrete.home-discrete.apps``), you may select the size of the volume to deploy
+  - **Home volume disk type** ; if the appropriate data volume layout was chosen to deploy a dedicated home directory EBS volume (``discrete.home`` or ``discrete.home-discrete.apps``), you may choose from a range of EBS volume types for the home directory volume
+  - **Application volume disk type** ; if the appropriate data volume layout was chosen to deploy a dedicated application directory EBS volume(``discrete.apps`` or ``discrete.home-discrete.apps``), you may choose from a range of EBS volume types for the application directory volume
+  - **Compute node system disk type** ; you may optionally select a system disk type for any deployed compute hosts, allowing you to optimise compute hosts' local ephemeral storage to your workload requirements
       
 .. image:: aws-launch_CFT_questions.jpg
     :alt: AWS Marketplace CloudFormation template questions

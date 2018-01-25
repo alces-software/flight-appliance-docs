@@ -9,7 +9,7 @@ To install docker support, apply the feature profile (for more info on features 
 
     alces customize apply feature/configure-docker
 
-.. note:: The feature profile will install the required docker dependencies and perform Flight specific configuration changes
+.. note:: The feature profile will install the required docker dependencies and perform Flight specific configuration changes. Any systems within the cluster that are to use docker will need to apply the profile as well
 
 Viewing Images
 ==============
@@ -20,7 +20,9 @@ To show available docker images::
 
     alces gridware docker list
 
-On a fresh build there won't be any ``Local`` images - but the ``Remote`` should display the ``docker.io/alces`` remote image repo which has the gridware base image as well as some application images that have already been built by Alces.
+On a fresh build there won't be any ``Local`` images but once the first build is run, the ``base`` image along with whatever apps have been built into containers will appear in the list. 
+
+.. _docker-build-images:
 
 Building Images
 ===============
@@ -38,6 +40,15 @@ This will download the base image & run the additional commands required to inst
     Local:
       apps-memtester-4.3.0
       base
+
+Multiple Apps in Image
+----------------------
+
+Multiple gridware apps can be packaged into a docker image, this is done by simply appending the rest of the apps to the build command (``--name`` is specified to reduce the length and complexity of the output image name)::
+
+    alces gridware docker build --name my-super-apps apps/memtester/4.3.0 mpi/openmpi/1.10.2 apps/gnuplot/5.0.2
+
+The resulting image can be interacted with in the same way as a single app gridware container.
 
 Running Containers
 ==================
@@ -95,15 +106,86 @@ This can be passed to a container using docker run as follows::
       drwx------ 2 alces alces  6 May  2 16:01 .
       drwx------ 3 alces alces 54 May  2 16:01 ..
 
+Running in Parallel
+-------------------
+
+The argument ``--mpi=X`` can be appended to the run command to distribute the container across X processors. A 4 core example script is below::
+
+    [alces@login1(scooby) ~]$ alces gridware docker run --mpi=4 apps-memtester-4.3.0 memtester 1G 1
+
+Additionally, the following files are created within the container:
+
+  - ``/job/work/hosts`` - This contains a hosts file with entries for each slave container that is running as part of the job.
+  - ``/job/work/hostlist`` - As above but containing the IP addresses of the slave containers.
+
+The MPI argument *can only* be used from the master (login) node. It will then act as the master and allocate cores on any client nodes that have the 'configure-docker' feature installed. 
+
+Other Running Options
+---------------------
+
+Without Gridware Entrypoint
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The Gridware entrypoint is used as a standard for executing commands inside the container. The script loads the modules for the applications installed within the container and handles running the applications. In the event of wanting to run a command without using the Gridware launched, run it as follows::
+
+    alces gridware docker run apps-memtester-4.3.0 --command uptime
+
+Interactively
+^^^^^^^^^^^^^
+
+Instead of running the container ephemerally for a single command/script, an interactive session can be launched::
+
+    alces gridware docker run apps-memtester-4.3.0 --interactive
+
+Data Storage and Images
+=======================
+
+Gridware docker creates ``~/CONTAINER-NAME/`` when a container is launched with ``alces gridware docker run``, this directory contains:
+
+  - ``input/`` - Any files in here are mapped to ``/job/input/`` in the container instance
+  - ``work.CONTAINER-UUID`` - This directory is unique to the container instance and contains:
+
+    - ``Dockerfile`` - The recipe file used to build the container
+    - ``docker.log`` - Output from the building of the container
+    - ``output/`` - Any files saved to ``/job/output/`` within the container will appear here
+    - Any files written to ``/job/work/`` will appear in this directory
+
+The working directory can be changed from ``~/CONTAINER-NAME`` to a user-specified directory with the ``workdir`` flag when launching the container. The directory will be created if not present and the hierarchy of the directory will be the same as listed above::
+
+    alces gridware docker run --workdir ~/my_container_directory/ apps-memtester-4.3.0 touch /job/output/testfile
+
+Adding Extra Mountpoints
+------------------------
+
+Directories from the host system can be mounted within the container by using the ``mount`` option when running a container::
+
+    alces gridware docker run apps-memtester-4.3.0 --mount ~/my_local_directory/:/container_mnt ls /container_mnt
+
+.. _docker-share-images:
+
 Sharing Images
 ==============
 
-.. important:: Sharing of images is not yet implemented in the 2017.1 Flight release!
+In order for nodes to be able to use the same container that was built on the login node it will need to be shared, this can be done either through the share feature or a local registry.
 
-In order for nodes to be able to use the same container that was built on the login node it will need to be shared.
+Share Feature
+-------------
 
 Run the following command to add the local image to an NFS share that can be seen by the nodes::
 
     alces gridware docker share apps-memtester-4.3.0
+
+Once shared, the nodes will automatically make the image available locally.
+
+.. note:: It can take a few minutes for the image to be available on the nodes
+
+Local Registry
+--------------
+
+A local docker registry allows for the pushing and pulling of docker images. Much like docker.io images but without the requirement of upstream connections for sharing. To start the local registry::
+
+    alces gridware docker start-registry
+
+Once the registry is running it can then be interacted with with ``docker push`` and ``docker pull`` as per the `docker documentation <https://docs.docker.com/registry/deploying/#copy-an-image-from-docker-hub-to-your-registry>`_
 
 .. note:: Any other systems that are to use the docker containers will need the docker feature enabled with ``alces customize apply feature/configure-docker``

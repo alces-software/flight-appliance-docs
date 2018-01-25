@@ -172,7 +172,7 @@ As the VNC protocol does not natively provide support for security protocols suc
 Alces Clusterware VPN
 ---------------------
 
-Alces Flight Professional clusters are automatically launched with an OpenVPN service, complete with SSL encryption to secure your VNC desktop connection. Refer to the ``alces about vpn`` command to locate the configuration files for your platform.  You can find OpenVPN downloads and documentation for your client system `here <https://openvpn.net/>`__.
+Alces Flight clusters are automatically launched with an OpenVPN service, complete with SSL encryption to secure your VNC desktop connection. Refer to the ``alces about vpn`` command to locate the configuration files for your platform.  You can find OpenVPN downloads and documentation for your client system `here <https://openvpn.net/>`__.
 
 
 Alces Flight Access service

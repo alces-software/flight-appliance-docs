@@ -56,6 +56,7 @@ We recommend that users wishing to use Flight Appliances have basic Linux skills
    apps/apps
    mpiapps/*
    apps/docker
+   apps/singularity
 
 .. toctree::
    :maxdepth: 1
