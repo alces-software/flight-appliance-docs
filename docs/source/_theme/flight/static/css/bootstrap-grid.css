@@ -1,4 +1,4 @@
-#brand-footer {
+#brand-footer, div[data-reactroot] {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   -ms-overflow-style: scrollbar;
@@ -6,12 +6,16 @@
 
 #brand-footer *,
 #brand-footer *::before,
-#brand-footer *::after {
+#brand-footer *::after,
+div[data-reactroot] *,
+div[data-reactroot] *::before,
+div[data-reactroot] *::after {
   -webkit-box-sizing: inherit;
           box-sizing: inherit;
 }
 
-#brand-footer .container {
+#brand-footer .container,
+div[data-reactroot] .container {
   position: relative;
   margin-left: auto;
   margin-right: auto;
@@ -20,62 +24,71 @@
 }
 
 @media (min-width: 576px) {
-  #brand-footer .container {
+  #brand-footer .container,
+  div[data-reactroot] .container {
     padding-right: 15px;
     padding-left: 15px;
   }
 }
 
 @media (min-width: 768px) {
-  #brand-footer .container {
+  #brand-footer .container,
+  div[data-reactroot] .container {
     padding-right: 15px;
     padding-left: 15px;
   }
 }
 
 @media (min-width: 992px) {
-  #brand-footer .container {
+  #brand-footer .container,
+  div[data-reactroot] .container {
     padding-right: 15px;
     padding-left: 15px;
   }
 }
 
 @media (min-width: 1200px) {
-  #brand-footer .container {
+  #brand-footer .container,
+  div[data-reactroot] .container {
     padding-right: 15px;
     padding-left: 15px;
   }
 }
 
 @media (min-width: 576px) {
-  #brand-footer .container {
+  #brand-footer .container,
+  div[data-reactroot] .container {
     width: 540px;
     max-width: 100%;
   }
 }
 
 @media (min-width: 768px) {
-  #brand-footer .container {
+  #brand-footer .container,
+  div[data-reactroot] .container {
     width: 720px;
     max-width: 100%;
   }
 }
 
 @media (min-width: 992px) {
-  #brand-footer .container {
+  #brand-footer .container,
+  div[data-reactroot] .container {
     width: 960px;
     max-width: 100%;
   }
 }
 
 @media (min-width: 1200px) {
-  #brand-footer .container {
+  #brand-footer .container,
+  div[data-reactroot] .container {
     width: 1140px;
     max-width: 100%;
   }
 }
 
-#brand-footer .container-fluid {
+#brand-footer .container-fluid,
+  div[data-reactroot] .container-fluid {
   position: relative;
   margin-left: auto;
   margin-right: auto;
@@ -84,34 +97,39 @@
 }
 
 @media (min-width: 576px) {
-  #brand-footer .container-fluid {
+  #brand-footer .container-fluid,
+  div[data-reactroot] .container-fluid {
     padding-right: 15px;
     padding-left: 15px;
   }
 }
 
 @media (min-width: 768px) {
-  #brand-footer .container-fluid {
+  #brand-footer .container-fluid,
+  div[data-reactroot] .container-fluid {
     padding-right: 15px;
     padding-left: 15px;
   }
 }
 
 @media (min-width: 992px) {
-  #brand-footer .container-fluid {
+  #brand-footer .container-fluid,
+  div[data-reactroot] .container-fluid {
     padding-right: 15px;
     padding-left: 15px;
   }
 }
 
 @media (min-width: 1200px) {
-  #brand-footer .container-fluid {
+  #brand-footer .container-fluid,
+  div[data-reactroot] .container-fluid {
     padding-right: 15px;
     padding-left: 15px;
   }
 }
 
-#brand-footer .row {
+#brand-footer .row,
+  div[data-reactroot] .row {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -124,28 +142,32 @@
 }
 
 @media (min-width: 576px) {
-  #brand-footer .row {
+  #brand-footer .row,
+  div[data-reactroot] .row  {
     margin-right: -15px;
     margin-left: -15px;
   }
 }
 
 @media (min-width: 768px) {
-  #brand-footer .row {
+  #brand-footer .row,
+  div[data-reactroot] .row  {
     margin-right: -15px;
     margin-left: -15px;
   }
 }
 
 @media (min-width: 992px) {
-  #brand-footer .row {
+  #brand-footer .row,
+  div[data-reactroot] .row  {
     margin-right: -15px;
     margin-left: -15px;
   }
 }
 
 @media (min-width: 1200px) {
-  #brand-footer .row {
+  #brand-footer .row,
+  div[data-reactroot] .row  {
     margin-right: -15px;
     margin-left: -15px;
   }
