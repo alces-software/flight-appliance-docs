@@ -76,10 +76,6 @@ div[data-reactroot] .modal-backdrop {
   background-color: #000;
 }
 
-div[data-reactroot] .modal-backdrop.fade {
-  opacity: 0;
-}
-
 div[data-reactroot] .modal-backdrop.show {
   opacity: 0.5;
 }

@@ -48,23 +48,6 @@
     background-size: 100% 100%;
 }
 
-.collapse.show {
-    display: block;
-}
-
-.collapse {
-    display: none;
-}
-
-.collapsing {
-  position: relative;
-  height: 0;
-  overflow: hidden;
-  -webkit-transition: height 0.35s ease;
-  -o-transition: height 0.35s ease;
-  transition: height 0.35s ease;
-}
-
 .navbar-toggler-right {
     position: absolute;
     right: 16px;
@@ -429,4 +412,13 @@ tbody.collapse.show {
   font-size: 0.875rem;
   color: #6c757d;
   white-space: nowrap;
+}
+
+div[data-reactroot] .fade {
+  opacity: 0;
+  transition: opacity 0.15s linear;
+}
+
+div[data-reactroot] .fade.show {
+  opacity: 1;
 }
