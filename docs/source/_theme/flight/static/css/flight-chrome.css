@@ -17,12 +17,29 @@
 
 .navbar {
     position: relative;
+    display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
-    -ms-flex-direction: column;
-    flex-direction: column;
-    padding: 16px 16px;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    padding: 0.5rem 1rem;
 }
+
+@media (min-width: 768px) {
+    .navbar-expand-md {
+        -ms-flex-flow: row nowrap;
+        flex-flow: row nowrap;
+        -ms-flex-pack: start;
+        justify-content: flex-start;
+    }
+}
+
 .navbar-toggler {
     -ms-flex-item-align: start;
     align-self: flex-start;
