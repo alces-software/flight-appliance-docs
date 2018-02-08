@@ -50,8 +50,12 @@ input {
   background: #2794d8;
 }
 
+.navbar {
+    box-shadow: none !important;
+}
+
 #brand-header img {
-    max-width: initial;
+    width: initial;
 }
 
 #brand-footer {
