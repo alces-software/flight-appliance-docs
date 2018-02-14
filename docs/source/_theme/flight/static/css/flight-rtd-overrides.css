@@ -56,6 +56,7 @@ input {
 
 #brand-header img {
     width: initial;
+    max-width: inherit;
 }
 
 #brand-footer {
@@ -83,4 +84,16 @@ input {
 
 .wy-menu-vertical header, .wy-menu-vertical p.caption {
     color: #777777;
+}
+
+.btn.btn-success, .btn.btn-success:disabled, .btn.btn-success.disabled, .btn.btn-success.disabled:hover {
+    background-color: #18BC9C !important;
+}
+
+.btn.btn-success:hover {
+    background-color: #149A80 !important;
+}
+
+.btn-link:hover {
+    color: #0f7864 !important;
 }
