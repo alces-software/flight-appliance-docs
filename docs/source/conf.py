@@ -47,7 +47,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = u'flight-appliance-docs'
-copyright = u'2016-2017, Alces Flight Ltd'
+copyright = u'2016-2018, Alces Flight Ltd'
 author = u'Alces Flight Ltd'
 
 # The version info for the project you're documenting, acts as replacement for
