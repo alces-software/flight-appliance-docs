@@ -109,6 +109,10 @@ div[data-reactroot] .modal-body {
   -ms-flex: 1 1 auto;
   flex: 1 1 auto;
   padding: 15px;
+
+  /* Prevent Discourse from restricting the height of the modal */
+  max-height: none;
+  overflow-y: unset;
 }
 
 div[data-reactroot] .modal-footer {
