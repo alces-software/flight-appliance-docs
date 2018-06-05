@@ -247,7 +247,7 @@ div[data-reactroot] .form-control:disabled, .form-control[readonly] {
   opacity: 1;
 }
 
-div[data-reactroot] label, div[data-reactroot] p, div[data-reactroot] button {
+div[data-reactroot] label, div[data-reactroot] :not(.navbar) :not(.navbar-brand) p, div[data-reactroot] button {
   display: inline-block;
   font-family: 'Lato', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-size: 16px;
