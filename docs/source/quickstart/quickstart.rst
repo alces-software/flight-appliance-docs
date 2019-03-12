@@ -6,7 +6,7 @@ Getting started as quickly as possible
 
 This documentation is designed to provide a quick-start guide to your personal Flight Compute cluster, but if you've used clusters before then you might just need a *super-quick* guide to help you get started. Here are just the basics, along with things you should probably look at in more detail when you have time. Useful commands are included with each step - please refer to the full documentation for further details. 
 
- 1. Launch your personal Alces Flight Compute cluster on AWS or a compatible OpenStack private cloud. To use the AWS platform, use the **Personal HPC compute cluster** launch option from the `Alces Flight Marketplace product page <http://tiny.cc/alcesflight>`_ **Manual Launch** tab to start a personal cluster in a new VPC. You will be asked various questions about how you want your cluster to look - most options are explained, with sensible defaults shown.
+ 1. Launch your personal Alces Flight Compute cluster on AWS or a compatible OpenStack private cloud. To use the AWS platform, use the provided CloudFormation (CFN) template to start a personal cluster in a new VPC. You will be asked various questions about how you want your cluster to look - most options are explained, with sensible defaults shown.
 
  2. Login to your cluster via SSH using your chosen username, and the SSH key registered with your cloud provider. Your cloud service should report the access IP address to log into once your cluster is launched. If you enabled cluster auto-scaling, compute nodes are automatically added/removed based on the status of your job-scheduler queue. Use ``alces configure autoscaling disable`` to turn off scaling if you'll be running jobs manually. 
 
