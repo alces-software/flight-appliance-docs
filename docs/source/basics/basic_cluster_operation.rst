@@ -9,7 +9,7 @@ Logging in
 
 You can access the login node for your private Flight Compute cluster using SSH from the network ranges you permitted at launch time. You will need to use the SSH keypair configured for the cluster in order to access it. 
 
-In cluster launched using the Flight Compute AWS Marketplace CloudFormation template, compute nodes do not have Internet-accessible IP addresses. In order to access individual compute nodes, you must first login to the cluster login node. 
+For a cluster launched using a default launch template, compute nodes do not have Internet-accessible IP addresses. In order to access individual compute nodes, you must first login to the cluster login node. 
 
 .. image:: AWS-Marketplace-Diagram.png
     :alt: AWS CFT Diagram
@@ -20,7 +20,7 @@ When you login to the cluster via SSH, you are automatically placed in your home
 Becoming the root user
 ----------------------
 
-Most cluster operations, including starting applications and running jobs, should be performed as the user created when the Flight Compute cluster was launched from AWS Marketplace. However - for some privileged operations, users may need to change to being the root user. Users can prefix any command they want to run as the root user with the ``sudo`` command; e.g. 
+Most cluster operations, including starting applications and running jobs, should be performed as the user created when the Flight Compute cluster was launched from the launch template. However - for some privileged operations, users may need to change to being the root user. Users can prefix any command they want to run as the root user with the ``sudo`` command; e.g. 
 
    ``sudo yum install screen``
    
@@ -41,7 +41,7 @@ Users can find the names of their compute nodes by using the ``nodeattr`` comman
   - ``nodeattr -c nodes`` - shows a comma-separated list of current compute node hostnames
   - ``nodeattr -n nodes`` - shows a new-line-separated list of current compute node hostnames
 
-The login node hostname for Flight Compute clusters launched from AWS Marketplace is always ``login1``. 
+The login node hostname for Flight Compute clusters launched using default templates is always ``login1``. 
 
 Moving between login and compute nodes
 --------------------------------------
