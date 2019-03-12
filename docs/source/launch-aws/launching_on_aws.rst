@@ -73,7 +73,7 @@ https://s3-eu-west-1.amazonaws.com/openflighthpc/templates/solo-cluster.yaml
 
 Click on the **Next** button to begin launching your cluster.
 
-.. image:: AWS_CFN_selecttemplate.jpg
+.. image:: aws_CFN_selecttemplate.jpg
     :alt: Entering a CFN template URL
 
 
