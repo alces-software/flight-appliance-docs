@@ -30,11 +30,9 @@ Creating your Cluster
 Method of Launching
 -------------------
 
-The simplest method of launching a cluster is by using the AWS Marketplace - clusters launch using an AWS CloudFormation template which asks the user a number of simple questions in order to configure their cluster environment. This method is documented on this page, and is the fastest way to launch your own, personal HPC cluster environment. 
+The simplest method of launching a cluster is by using AWS Cloudformation (CFN) - clusters launch using a CFN template which asks the user a number of simple questions in order to configure their cluster environment. This method is documented on this page, and is the fastest way to launch your own, personal HPC cluster environment. 
 
 Advanced users may also wish to launch a cluster one instance at a time, or deploy a single login node to be used interactively. Follow this guide for information on how to manually configure a cluster by launching individual instances - :ref:`manual_launch`.
-
-.. note:: If you wish to use CloudFormation to create a single Alces Flight instance on AWS (e.g. just a login node) instead of using :ref:`the AMI method <manual_launch>`, set **Autoscaling policy** to ``enabled`` and **Initial compute nodes (autoscaling)** to ``0``.
 
 Users can also use one of the example CloudFormation templates as the basis of their own cluster deployments. This allows more customisation of your cluster, including choosing how many nodes can be launched, configuring different types of EBS backing storage and choosing different availability zones for your compute nodes. For more information, see - :ref:`template_launch`.
 
@@ -56,37 +54,33 @@ Most charges are made per unit (e.g. per compute node instance, or per GB of sto
  - `AWS Simple Monthly Calculator <https://calculator.s3.amazonaws.com/index.html>`_
  - `AWS TCO Calculator <https://awstcocalculator.com/>`_
 
-Finding Alces Flight Compute on AWS
+Launching Alces Flight Compute on AWS
 -----------------------------------
 
-Sign-in to your AWS account, and navigate to the `AWS Marketplace <https://aws.amazon.com/marketplace>`_. Search for **Alces Flight** in the search box provided to find the Flight Compute product. 
+Sign-in to your AWS account, and navigate to the AWS Console. Search for **Cloud Formation** in your AWS console and click to visit the page:
 
-.. image:: marketplace_2016.4.jpg
-    :alt: Alces Flight in AWS Marketplace
+.. image:: AWS_CFN_search.jpg
+    :alt: Finding the AWS CFN console
 
-Click on the **Continue** button to view details on how to launch. 
+In the CloudFormation console, ensure that your AWS region is set to where you'd like the cluster to be launched - the region name is shown on the right of the menu bar at the top of the page. Click on the blue **Create Stack** button on the top-left hand side of the page to launch a new cluster:
 
+.. image:: AWS_CFN_createpage.jpg
+    :alt: Creating a new cluster in CFN console
 
-Launching a Personal HPC cluster from AWS Marketplace
------------------------------------------------------
+In the AWS console window, choose the option to **Specify an Amazon S3 template URL** and enter the following URL into the text box:
 
-Follow these instructions to launch your cluster:
+https://s3-eu-west-1.amazonaws.com/openflighthpc/templates/solo-cluster.yaml
 
- - After clicking the **Continue** button from the main product page, select the **Manual Launch** tab in your browser. 
- - Scroll down the page and select your local AWS region in the **Select a Region** section
- - Choose **Personal HPC compute cluster** from the *Deployment Options* section
- - Under the *Launch* section, click on the **Launch with CloudFormation Console** button to start deploying your cluster. 
+Click on the **Next** button to begin launching your cluster.
 
-.. image:: mp-launch.jpg
-    :alt: Alces Flight in AWS Marketplace
-
-As well as an Amazon Machine Image (AMI), Flight Compute subscribers are provided with a CloudFormation template (CFN template) that can be used to launch your own cluster rapidly after answering a few setup questions. Advanced users can also use the AMI directly with their own CFN templates to provide more customised environments for specialised requirements. This documentation is designed to assist new users when launching with the CFN template provided on the AWS Marketplace page. 
+.. image:: AWS_CFN_selecttemplate.jpg
+    :alt: Entering a CFN template URL
 
 
 How to answer CloudFormation questions
 ---------------------------------------
 
-When you choose to start a Flight Compute cluster from AWS Marketplace, you will be prompted to answer a number of questions about what you want the environment to look like. Flight will automatically launch your desired configuration based on the answers you give. The questions you'll be asked are the following:
+When you choose to start a Flight Compute cluster from using AWS CFN, you will be prompted to answer a number of questions about what you want the environment to look like. Flight will automatically launch your desired configuration based on the answers you give. The questions you'll be asked are the following:
 
  - **Stack name**; this is the name that you want to call your cluster. It's fine to enter **"cluster"** here if this is your first time, but entering something descriptive will help you keep track of multiple clusters if you launch more. Naming your cluster after colours (red, blue, orange), your favourite singer (clapton, toriamos, bieber) or Greek legends (apollo, thor, aphrodite) keeps things more interesting. Avoid using spaces and punctuation, or names longer than 16 characters.
  
@@ -176,7 +170,7 @@ When you choose to start a Flight Compute cluster from AWS Marketplace, you will
   - **Compute node system disk type** ; you may optionally select a system disk type for any deployed compute hosts, allowing you to optimise compute hosts' local ephemeral storage to your workload requirements
       
 .. image:: aws-launch_CFT_questions.jpg
-    :alt: AWS Marketplace CloudFormation template questions
+    :alt: AWS CloudFormation template questions
    
 When all the questions are answered, click the **Next** button to proceed. Enter any tags you wish to use to identify instances in your environment on the next page, then click the **Next** button again. On the review page, read through the answers you've provided and correct any mistakes - click on the *Capabilities* check-box to authorize creations of an IAM role to report cluster performance back to AWS, and click on the **Create** button.
 
@@ -186,7 +180,7 @@ Your personal compute cluster will then be created. While on-demand instances ty
 On-demand vs SPOT instances
 ---------------------------
 
-The AWS EC2 service supports a number of different charging models for launching instances. The quick-start CloudFormation template included with Alces Flight Compute in AWS Marketplace allows users to choose between two different models:
+The AWS EC2 service supports a number of different charging models for launching instances. The quick-start AWS CloudFormation template allows users to choose between two different models:
 
  - On-demand instances; instances are launched immediately at a fixed hourly price. Once launched, your instance will not normally be terminated unless you choose to stop it.
  
@@ -194,7 +188,7 @@ The AWS EC2 service supports a number of different charging models for launching
  
 SPOT instances are a good way to pay a lower cost for cloud computing for non-urgent workloads. If SPOT compute node instances are terminated in your cluster, any running jobs will be lost - the nodes will also be automatically removed from the queue system to ensure no new jobs attempt to start on them. Once the SPOT price becomes low enough for your instances to start again, your compute nodes will automatically restart and rejoin the cluster. 
 
-The CloudFormation templates provided for Alces Flight Compute via AWS Marketplace will not launch a login node instance on the SPOT market - **login nodes are always launched as on-demand instances**, and are immune from fluctuating costs in the SPOT market.
+The AWS CloudFormation template provided for Alces Flight Compute will not launch a login node instance on the SPOT market - **login nodes are always launched as on-demand instances**, and are immune from fluctuating costs in the SPOT market.
  
 
 Using an auto-scaling cluster
@@ -204,7 +198,7 @@ An auto-scaling cluster automatically reports the status of the job scheduler qu
 
 Your Alces Flight compute cluster will never scale larger than the maximum number of instances entered at launch time. The cluster will automatically scale down to a single compute node when idle, or be reduced to zero nodes if you are using SPOT based compute nodes, and the price climbs higher than your configured maximum.
 
-If you are running jobs manually (i.e. not through the job-scheduler), you may wish to disable autoscaling to prevent nodes not running scheduled jobs from being shutdown. This can be done by entering ``0`` (zero) in the **ComputeSpotPrice** when launching your Flight Compute cluster via AWS Marketplace, or using the command ``alces configure autoscaling disable`` command when logged in to the cluster login node.
+If you are running jobs manually (i.e. not through the job-scheduler), you may wish to disable autoscaling to prevent nodes not running scheduled jobs from being shutdown. This can be done by entering ``0`` (zero) in the **ComputeSpotPrice** when launching your Flight Compute cluster via AWS CloudFormation, or using the command ``alces configure autoscaling disable`` command when logged in to the cluster login node.
 
 
 
