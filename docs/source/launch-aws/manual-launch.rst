@@ -3,21 +3,14 @@
 Launching a single Alces Flight instance on AWS
 ###############################################
 
-Alces Flight Compute is provided as a single multi-purpose Amazon Machine Image (AMI) which can be configured to run as a cluster login or compute node on Amazon Web Services (AWS) public cloud. An Amazon CloudFormation template can be used to launch a number of instances at the same time, along with relevant infrastructure components (e.g. networks, security groups) to create a compute cluster quickly and easily. The AWS Marketplace provides users with a method to quickly locate the template and launch a cluster, based on a short list of configuration questions answered at launch time. 
+Alces Flight Compute is provided as a single multi-purpose Amazon Machine Image (AMI) which can be configured to run as a cluster login or compute node on Amazon Web Services (AWS) public cloud. An Amazon CloudFormation template can be used to launch a number of instances at the same time, along with relevant infrastructure components (e.g. networks, security groups) to create a compute cluster quickly and easily. The AWS CloudFormation (CFN) template service provides users with a method to quickly launch a cluster, based on a short list of configuration questions answered at launch time. 
 
 For advanced users, or users that only require a single login node for their work, Alces Flight Compute can also be launched as a single instance. Users have access to the full range of Gridware software applications available on a compute cluster and can choose to optionally :ref:`add infrastructure and compute nodes <manual-launch-add-nodes>` to their environment at a later date. 
 
-.. note:: If you wish to use CloudFormation to create a single Alces Flight instance on AWS (e.g. just a login node) instead of using :ref:`the AMI method <manual_launch>`, follow the documentation for :ref:`launching_on_aws` and set **Autoscaling policy** to ``enabled`` and **Initial compute nodes (autoscaling)** to ``0``.
+Launching the Alces Flight AMI
+------------------------------
 
-Finding and Launching the Alces Flight AMI
-------------------------------------------
-
-To launch a single-instance of Alces Flight Compute use the AWS Marketplace to search for the latest version of Alces Flight Compute and subscribe to the product. Click on the "Manual Launch" tab and a list of AMI-IDs will be provided that instances can be launched from:
-
-.. image:: marketplace_ami-id.png
-    :alt: AWS Marketplace AMI-IDs
-
-Click on the button marked **Launch with EC2 console** to start a single-instance of Alces Flight Compute in the region of your choice. Alternatively, you can note the AMI-ID and use this to manually configure your AMI in the EC2 console. Launch your instance with the settings you require, choosing the instance type, disk size and security group settings suitable for your environment.
+Search for the **Alces Flight Compute** AMI in your chosen region and use this to manually configure your AMI in the EC2 console. Launch your instance with the settings you require, choosing the instance type, disk size and security group settings suitable for your environment.
 
 .. note:: Your security group needs to allow "All traffic" inbound from the nodes within your selected subnet. Further to this, allow ``port 22`` (SSH) to be accessed from your client system to allow you to login and configure the instance for use.
 

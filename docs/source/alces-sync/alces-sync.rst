@@ -9,7 +9,7 @@ Alces Flight Compute is designed to provide users with a personal, ephemeral env
 Getting started
 ---------------
 
-When logging in to your Alces Flight Compute for the first time - the Alces synchronization tool will pull any data stored in the default location in your S3 bucket. For an AWS account that has either not used the Alces synchronization utility or not created an Alces Flight Compute environment before - no files will need to be synchronized.
+When logging in to your Alces Flight Compute cluster for the first time - the Alces synchronization tool will pull any data stored in the default location in your S3 bucket. For an AWS account that has either not used the Alces synchronization utility or not created an Alces Flight Compute environment before - no files will need to be synchronized.
 
 To view the synchronization location of your current user, you can use the following command to displays both the local directory to be synced and its remote S3 location:
 
