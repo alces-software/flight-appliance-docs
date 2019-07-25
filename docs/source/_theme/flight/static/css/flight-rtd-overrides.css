@@ -2,6 +2,7 @@ body {
   font-family: 'Lato', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   overflow-x: hidden;
   font-size: 16px;
+  padding: 100px 0 0 !important;
 }
 a,
 a:hover,
@@ -31,10 +32,6 @@ h5,
 h6, .rst-content .toctree-wrapper p.caption {
   font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 700;
-}
-
-.flight-body {
-    margin-top: 100px;
 }
 
 .wy-nav-side {
